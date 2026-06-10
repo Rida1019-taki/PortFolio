@@ -1,4 +1,4 @@
-import { ArrowRight, Mail, Terminal, Link, Rocket } from "lucide-react";
+import { ArrowRight, Mail, Phone, Sparkles } from "lucide-react";
 import Image from "next/image";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
@@ -15,27 +15,23 @@ export default function Home() {
     {
       name: "HealthCare",
       description: "A comprehensive medical management REST API designed for scalability and efficiency.",
-      tags: ["Java", "Spring Boot", "Docker", "Spring Security", "Hibernate", "Flayway", "Maven", "SQL",
-        "Drived Query", "Architecture MVC", "REST API", "DTO & Mapper (mapstruct)", "Junit", "Docker",
-        "Swagger", "Git & Gitignore", "Spring Security", "JWT", "Authentification utilisateur", "Pagination", "Sorting", "Filtering"],
+      tags: ["Java", "Spring Boot", "Docker", "Spring Security", "Hibernate", "Flyway", "JWT", "REST API"],
       image: "/healthcare.png",
-      github: "https://github.com/ENAA-School-Student/HealthCare-Syst-me-de-Gestion_M-dicale.git"
+      github: "https://github.com/ENAA-School-Student/HealthCare-Syst-me-de-Gestion_M-dicale.git",
     },
     {
       name: "FleetFlow",
       description: "Ce projet consiste à développer un système de gestion logistique permettant d’administrer les clients, les chauffeurs, les véhicules et les livraisons.",
-      tags: ["Java", "Spring Boot", "Spring Data JPA", "DTO", "MapStruct",
-        "Docker", "Lombok", "MySQL", "Swagger", "Flyway", "Github Actions", "Test Unitaires",
-        "Spring Security", "JWT", "Pagination", "Sorting", "Filtering"],
+      tags: ["Java", "Spring Boot", "MapStruct", "Docker", "MySQL", "Swagger", "GitHub Actions", "JWT"],
       image: "/fleetflow.png",
-      github: "https://github.com/NihadHub/fleetFlow.git"
+      github: "https://github.com/NihadHub/fleetFlow.git",
     },
     {
       name: "ISTA OUED-ZEM",
       description: "Educational mobile application providing digital resources and campus information for students.",
       tags: ["Kotlin", "SQLite"],
       image: "/istaouedzem.png",
-      github: "https://github.com/Rida1019-taki/ISTA-OUED-ZEM.git"
+      github: "https://github.com/Rida1019-taki/ISTA-OUED-ZEM.git",
     },
   ];
 
@@ -52,70 +48,97 @@ export default function Home() {
     },
   ];
 
-  return (
-    <div className="relative min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 selection:bg-indigo-200 dark:selection:bg-indigo-900">
-      {/* Organic Background Blobs */}
-      <div className="absolute top-[-10%] left-[-10%] w-[400px] h-[400px] bg-purple-200 dark:bg-purple-900/20 blob animate-float" />
-      <div className="absolute bottom-[-5%] right-[-5%] w-[500px] h-[500px] bg-indigo-200 dark:bg-indigo-900/20 blob animate-float" style={{ animationDelay: '-2s' }} />
+  const tickerItems = [
+    "Open to freelance",
+    "Full stack Java",
+    "Mobile apps with Kotlin",
+    "REST APIs",
+    "Spring Boot architecture",
+    "Clean UI and UX",
+  ];
 
-      <nav className="fixed top-0 w-full z-50 backdrop-blur-md border-b border-zinc-200/50 dark:border-zinc-800/50">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <span className="font-bold tracking-tighter text-xl">RIDA TAKI</span>
-          <div className="hidden md:flex gap-8 text-sm font-medium">
-            <a href="#about" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">About</a>
-            <a href="#skills" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Skills</a>
-            <a href="#projects" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Projects</a>
-            <a href="#education" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Education</a>
-            <a href="#contact" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Contact</a>
+  return (
+    <div className="min-h-screen text-[var(--foreground)]">
+      <nav className="fixed top-0 z-50 w-full border-b border-[color:var(--line)]/70 bg-[color:var(--background)]/85 backdrop-blur-md">
+        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+          <div className="flex items-end gap-2">
+            <span className="display text-2xl font-semibold leading-none">Rida Taki</span>
+            <span className="mb-1 text-xs uppercase tracking-[0.2em] text-[color:var(--muted)]">Portfolio</span>
           </div>
+          <a
+            href="#contact"
+            className="rounded-full border border-[color:var(--line)] bg-[color:var(--surface)] px-4 py-1.5 text-sm font-medium transition hover:border-[color:var(--brand)]"
+          >
+            Let&apos;s talk
+          </a>
         </div>
       </nav>
 
-      <main className="max-w-6xl mx-auto px-6 pt-32 pb-20">
-        {/* Hero Section */}
-        <section id="about" className="flex flex-col md:flex-row gap-12 items-center mb-32">
-          <div className="flex-1 space-y-8">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 text-xs font-bold uppercase tracking-wider">
-              <Rocket size={14} /> Available for new projects
+      <main className="mx-auto max-w-6xl space-y-24 px-6 pb-20 pt-28 md:space-y-28 md:pt-32">
+        <section id="about" className="grid items-center gap-10 md:grid-cols-[1.2fr_1fr]">
+          <div className="space-y-7 reveal">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[color:var(--line)] bg-[color:var(--surface)] px-4 py-1.5 text-xs uppercase tracking-[0.16em] text-[color:var(--muted)]">
+              <Sparkles size={14} /> Available for projects
             </div>
-            <h1 className="text-6xl md:text-8xl font-black tracking-tight leading-[0.9]">
-              Full Stack <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Developer</span>
+            <h1 className="display text-6xl leading-[0.88] sm:text-7xl md:text-8xl">
+              I build digital products with soul and structure.
             </h1>
-            <p className="text-xl text-zinc-600 dark:text-zinc-400 max-w-lg leading-relaxed">
-              I am Rida Taki, a passionate Web & Mobile developer. I build robust digital experiences with Java, Spring Boot, and modern mobile technologies.
+            <p className="max-w-xl text-lg leading-relaxed text-[color:var(--muted)] sm:text-xl">
+              Full stack and mobile developer focused on clean architecture, fast APIs, and interfaces people actually enjoy using.
             </p>
-            <div className="flex gap-4">
-              <a href="#contact" className="px-8 py-4 bg-zinc-900 dark:bg-zinc-100 text-zinc-50 dark:text-zinc-950 rounded-2xl font-bold hover:scale-105 transition-transform flex items-center gap-2">
-                Let&apos;s Talk <ArrowRight size={18} />
+            <div className="flex flex-wrap gap-3">
+              <a
+                href="#projects"
+                className="inline-flex items-center gap-2 rounded-2xl bg-[color:var(--brand)] px-6 py-3 font-medium text-white transition hover:bg-[color:var(--brand-soft)]"
+              >
+                View projects <ArrowRight size={16} />
+              </a>
+              <a
+                href="#contact"
+                className="rounded-2xl border border-[color:var(--line)] bg-[color:var(--surface)] px-6 py-3 font-medium transition hover:border-[color:var(--brand)]"
+              >
+                Contact me
               </a>
             </div>
           </div>
-          <div className="flex-1 relative">
-            <div className="w-full aspect-square bg-zinc-200 dark:bg-zinc-900 rounded-[2rem] rotate-3 animate-float overflow-hidden shadow-2xl relative">
+
+          <div className="paper reveal relative rounded-[2rem] p-4 sm:p-6">
+            <div className="soft-grid absolute inset-0 rounded-[2rem] opacity-40" />
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[1.3rem] border border-white/40">
               <Image
-                src="/photo.jpg"
+                src="/image.png"
                 alt="Rida Taki"
                 fill
                 className="object-cover"
                 priority
               />
             </div>
+            <p className="relative mt-4 text-sm tracking-wide text-[color:var(--muted)]">
+              Based in Morocco. Building with Java, Spring, Kotlin, and React.
+            </p>
           </div>
         </section>
 
-        {/* Skills Section */}
-        <section id="skills" className="mb-32 space-y-12">
-          <div className="flex justify-between items-end">
-            <h2 className="text-4xl font-bold tracking-tight">Technical Skills</h2>
-            <div className="w-24 h-1 bg-indigo-600 rounded-full" />
+        <div className="ticker">
+          <div className="ticker-track text-sm uppercase tracking-[0.18em] text-[color:var(--muted)]">
+            {[...tickerItems, ...tickerItems].map((item, index) => (
+              <span key={`${item}-${index}`}>{item}</span>
+            ))}
           </div>
+        </div>
+
+        <section id="skills" className="space-y-8">
+          <h2 className="section-title">Technical Palette</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {skills.map((skill) => (
-              <div key={skill.category} className="p-8 rounded-[2rem] border border-zinc-200 dark:border-zinc-800 bg-white/50 dark:bg-zinc-900/50 backdrop-blur-sm">
-                <h3 className="text-lg font-bold mb-4 text-indigo-600 dark:text-indigo-400">{skill.category}</h3>
+              <div key={skill.category} className="paper rounded-[1.6rem] p-7">
+                <h3 className="mb-4 text-lg font-semibold text-[color:var(--brand)]">{skill.category}</h3>
                 <div className="flex flex-wrap gap-2">
                   {skill.items.map((item) => (
-                    <span key={item} className="px-3 py-1 bg-zinc-100 dark:bg-zinc-800 rounded-full text-xs font-medium">
+                    <span
+                      key={item}
+                      className="rounded-full border border-[color:var(--line)] bg-white/70 px-3 py-1 text-xs font-medium"
+                    >
                       {item}
                     </span>
                   ))}
@@ -125,31 +148,28 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Projects Section */}
-        <section id="projects" className="mb-32 space-y-12">
-          <div className="flex justify-between items-end">
-            <h2 className="text-4xl font-bold tracking-tight">Selected Works</h2>
-            <div className="w-24 h-1 bg-indigo-600 rounded-full" />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {projects.map((project, i) => (
-              <div key={project.name} className={`group relative p-8 rounded-[2rem] border border-zinc-200 dark:border-zinc-800 hover:border-indigo-500/50 transition-all duration-500 ${i % 2 === 1 ? 'md:mt-12' : ''}`}>
-                <div className="aspect-video bg-zinc-200 dark:bg-zinc-900 rounded-xl mb-6 overflow-hidden relative">
+        <section id="projects" className="space-y-8">
+          <h2 className="section-title">Selected Work</h2>
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+            {projects.map((project) => (
+              <article key={project.name} className="paper project-card rounded-[1.8rem] p-5 sm:p-6">
+                <div className="relative mb-5 aspect-video overflow-hidden rounded-xl border border-[color:var(--line)]">
                   <Image
                     src={project.image}
                     alt={project.name}
                     fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-700"
+                    className="object-cover transition duration-500 hover:scale-105"
                   />
                 </div>
-                <h3 className="text-2xl font-bold mb-2">{project.name}</h3>
-                <p className="text-zinc-600 dark:text-zinc-400 mb-6 leading-relaxed">
-                  {project.description}
-                </p>
-                <div className="flex gap-2 mb-8 flex-wrap">
-                  {project.tags.map((t, i) => (
-                    <span key={i} className="px-3 py-1 bg-zinc-100 dark:bg-zinc-900 rounded-full text-xs font-medium">
-                      {t}
+                <h3 className="mb-2 text-2xl font-semibold">{project.name}</h3>
+                <p className="mb-5 leading-relaxed text-[color:var(--muted)]">{project.description}</p>
+                <div className="mb-6 flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-[color:var(--line)] bg-[color:var(--surface)] px-3 py-1 text-xs font-medium"
+                    >
+                      {tag}
                     </span>
                   ))}
                 </div>
@@ -157,29 +177,28 @@ export default function Home() {
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 font-bold text-indigo-600 dark:text-indigo-400 group-hover:gap-4 transition-all"
+                  className="inline-flex items-center gap-2 font-medium text-[color:var(--brand)] transition hover:gap-3"
                 >
                   View on GitHub <ArrowRight size={18} />
                 </a>
-              </div>
+              </article>
             ))}
           </div>
         </section>
 
-        {/* Education Section */}
-        <section id="education" className="mb-32 space-y-12">
-          <div className="flex justify-between items-end">
-            <h2 className="text-4xl font-bold tracking-tight">Education</h2>
-            <div className="w-24 h-1 bg-indigo-600 rounded-full" />
-          </div>
-          <div className="space-y-6">
+        <section id="education" className="space-y-8">
+          <h2 className="section-title">Education</h2>
+          <div className="space-y-5">
             {education.map((edu) => (
-              <div key={edu.institution} className="p-8 rounded-[2rem] border border-zinc-200 dark:border-zinc-800 flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div
+                key={edu.institution}
+                className="paper flex flex-col justify-between gap-4 rounded-[1.4rem] p-6 sm:flex-row sm:items-center"
+              >
                 <div>
-                  <h3 className="text-xl font-bold">{edu.degree}</h3>
-                  <p className="text-zinc-600 dark:text-zinc-400">{edu.institution}</p>
+                  <h3 className="text-xl font-semibold">{edu.degree}</h3>
+                  <p className="text-[color:var(--muted)]">{edu.institution}</p>
                 </div>
-                <span className="px-4 py-2 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 rounded-xl text-sm font-bold">
+                <span className="rounded-xl border border-[color:var(--line)] bg-[color:var(--surface-strong)] px-4 py-2 text-sm font-medium">
                   {edu.period}
                 </span>
               </div>
@@ -187,65 +206,52 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Contact Section */}
-<section
-  id="contact"
-  className="p-12 rounded-[3rem] bg-indigo-600 text-white overflow-hidden relative"
->
-  <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 blob" />
+        <section id="contact" className="paper rounded-[2rem] p-8 sm:p-12">
+          <div className="grid gap-8 md:grid-cols-[1.2fr_1fr] md:items-end">
+            <div className="space-y-4">
+              <h2 className="section-title">Let&apos;s Build Something Strong</h2>
+              <p className="max-w-2xl text-lg leading-relaxed text-[color:var(--muted)]">
+                I&apos;m open to internships, freelance missions, and collaborative product work.
+                If you need a reliable developer who can move from backend architecture to polished interfaces, I&apos;m ready.
+              </p>
+            </div>
+            <div className="space-y-4 rounded-2xl border border-[color:var(--line)] bg-white/60 p-6">
+              <a
+                href="mailto:takirida72@gmail.com"
+                className="inline-flex items-center gap-3 text-base font-medium transition hover:text-[color:var(--brand)]"
+              >
+                <Mail size={18} /> takirida72@gmail.com
+              </a>
+              <p className="inline-flex items-center gap-3 text-base font-medium">
+                <Phone size={18} /> +212 649 487 957
+              </p>
+              <div className="flex gap-4 pt-2 text-[color:var(--muted)]">
+                <a
+                  href="https://github.com/Rida1019-taki"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition hover:text-[color:var(--brand)]"
+                >
+                  <FaGithub size={22} />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/rida-taki-bb44a8350"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition hover:text-[color:var(--brand)]"
+                >
+                  <FaLinkedin size={22} />
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
 
-  <div className="relative z-10 space-y-8 max-w-2xl">
-    <h2 className="text-5xl font-black leading-tight">
-      Let's Work Together
-    </h2>
-
-    <p className="text-indigo-100 text-xl leading-relaxed">
-      I&apos;m always open to discussing new projects, creative ideas or opportunities to be part of your visions. Reach out via email or phone.
-    </p>
-
-    <div className="flex flex-col gap-4">
-      <a
-        href="mailto:takirida72@gmail.com"
-        className="inline-flex items-center gap-4 text-2xl font-bold hover:underline underline-offset-8 transition-all"
-      >
-        <Mail size={32} /> takirida72@gmail.com
-      </a>
-
-      <div className="inline-flex items-center gap-4 text-xl font-medium text-indigo-100">
-        (212) 0649487957
-      </div>
-
-      {/* Social Icons */}
-      <div className="flex gap-6 mt-4">
-        <a
-          href="https://github.com/Rida1019-taki"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:scale-110 transition-transform"
-        >
-          <FaGithub size={24} />
-        </a>
-
-        <a
-          href="https://www.linkedin.com/in/rida-taki-bb44a8350"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:scale-110 transition-transform"
-        >
-          <FaLinkedin size={24} />
-        </a>
-      </div>
+      <footer className="mx-auto mt-4 flex w-full max-w-6xl justify-center border-t border-[color:var(--line)] px-6 py-10 text-sm text-[color:var(--muted)]">
+        <p>© 2026 Rida Taki. Crafted with intention.</p>
+      </footer>
     </div>
-  </div>
-</section>
-
-</main>
-
-{/* Footer */}
-<footer className="max-w-6xl mx-auto px-6 py-12 border-t border-zinc-200 dark:border-zinc-800 text-sm text-zinc-500 flex justify-center items-center">
-  <p>© 2026 Rida Taki. Crafted with care.</p>
-</footer>
-</div>
-);
+  );
 }
 
