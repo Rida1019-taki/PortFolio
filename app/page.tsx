@@ -1,4 +1,4 @@
-import { ArrowRight, Mail, Phone, Sparkles } from "lucide-react";
+import { ArrowRight, FileText, Mail, Phone, Sparkles } from "lucide-react";
 import Image from "next/image";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
@@ -45,6 +45,24 @@ export default function Home() {
       institution: "ISTA Oued Zem",
       degree: "Digital Development - Mobile",
       period: "2023 - 2025",
+    },
+  ];
+
+  const documents = [
+    {
+      title: "Certif Cisco - Introduction a la cybersecurite",
+      description: "Certificate and learning notes in cybersecurity fundamentals.",
+      file: "/docs/introduction-cybersecurite.pdf",
+    },
+    {
+      title: "Certif Cisco - Les bases du materiel informatique",
+      description: "Proof of foundational hardware and computer architecture knowledge.",
+      file: "/docs/bases-materiel-informatique.pdf",
+    },
+    {
+      title: "Certif Cisco - Python Essentials 1",
+      description: "Python basics certificate covering core programming concepts.",
+      file: "/docs/python-essentials-1.pdf",
     },
   ];
 
@@ -202,6 +220,29 @@ export default function Home() {
                   {edu.period}
                 </span>
               </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="documents" className="space-y-8">
+          <h2 className="section-title">Cisco Certifications</h2>
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+            {documents.map((doc) => (
+              <article key={doc.file} className="paper rounded-[1.4rem] p-6">
+                <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[color:var(--line)] bg-white/70 px-3 py-1 text-xs uppercase tracking-[0.14em] text-[color:var(--muted)]">
+                  <FileText size={14} /> PDF
+                </div>
+                <h3 className="text-xl font-semibold">{doc.title}</h3>
+                <p className="mt-2 text-[color:var(--muted)]">{doc.description}</p>
+                <a
+                  href={doc.file}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-5 inline-flex items-center gap-2 font-medium text-[color:var(--brand)] transition hover:gap-3"
+                >
+                  Open PDF <ArrowRight size={18} />
+                </a>
+              </article>
             ))}
           </div>
         </section>
