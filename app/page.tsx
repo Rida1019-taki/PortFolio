@@ -322,7 +322,7 @@ export default function Home() {
                         <div className="absolute bottom-5 left-5 right-5 z-20">
                           <div className="flex items-center gap-2 text-sm text-[color:var(--foreground-dim)]">
                             <MapPin size={14} className="text-[color:var(--brand)]" />
-                            Morocco
+                            Beni Mellal, Morocco
                           </div>
                         </div>
                       </div>
@@ -691,7 +691,7 @@ export default function Home() {
                       </div>
                       <div>
                         <div className="text-xs text-[color:var(--muted)]">Location</div>
-                        <div className="text-sm font-semibold">Morocco</div>
+                        <div className="text-sm font-semibold">Beni Mellal, Morocco</div>
                       </div>
                     </div>
                   </div>
