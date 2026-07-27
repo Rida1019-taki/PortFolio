@@ -1,298 +1,740 @@
-import { ArrowRight, FileText, Mail, Phone, Sparkles } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Award,
+  BookOpen,
+  Briefcase,
+  Code2,
+  Database,
+  Download,
+  ExternalLink,
+  FileText,
+  GraduationCap,
+  Layers,
+  Mail,
+  MapPin,
+  Phone,
+  Rocket,
+  Server,
+  Smartphone,
+  Terminal,
+  Wrench,
+  Zap,
+} from "lucide-react";
 import Image from "next/image";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import {
+  FaDocker,
+  FaGithub,
+  FaJava,
+  FaLinkedin,
+  FaPython,
+  FaReact,
+} from "react-icons/fa";
+import {
+  SiKotlin,
+  SiSpringboot,
+  SiFlutter,
+  SiMysql,
+  SiPostman,
+  SiFigma,
+} from "react-icons/si";
+import ScrollReveal from "@/components/ScrollReveal";
+import ParticleField from "@/components/ParticleField";
+import MouseGlow from "@/components/MouseGlow";
+import MobileMenu from "@/components/MobileMenu";
+import AnimatedNumber from "@/components/AnimatedNumber";
+import TypewriterText from "@/components/TypewriterText";
 
 export default function Home() {
   const skills = [
-    { category: "Languages", items: ["Java", "Python", "PHP", "JavaScript"] },
-    { category: "Mobile", items: ["Kotlin", "Flutter"] },
-    { category: "Web", items: ["React", "Spring Boot", "Spring Security", "HTML5", "CSS3"] },
-    { category: "Databases", items: ["MySQL", "SQLite", "JPA", "Hibernate"] },
-    { category: "Tools & DevOps", items: ["Docker", "Github Actions", "Scrum", "Git", "Figma", "Postman"] },
+    {
+      category: "Languages",
+      icon: <Terminal size={20} />,
+      items: ["Java", "Python", "PHP", "JavaScript"],
+      accent: "var(--brand)",
+    },
+    {
+      category: "Mobile Dev",
+      icon: <Smartphone size={20} />,
+      items: ["Kotlin", "Flutter"],
+      accent: "var(--accent-gold)",
+    },
+    {
+      category: "Web & Frameworks",
+      icon: <Layers size={20} />,
+      items: ["React", "Spring Boot", "Spring Security", "HTML5", "CSS3"],
+      accent: "var(--accent-blue)",
+    },
+    {
+      category: "Databases",
+      icon: <Database size={20} />,
+      items: ["MySQL", "SQLite", "JPA", "Hibernate"],
+      accent: "var(--accent-emerald)",
+    },
+    {
+      category: "Tools & DevOps",
+      icon: <Wrench size={20} />,
+      items: ["Docker", "Github Actions", "Scrum", "Git", "Figma", "Postman"],
+      accent: "#a78bfa",
+    },
   ];
 
   const projects = [
     {
       name: "HealthCare",
-      description: "A comprehensive medical management REST API designed for scalability and efficiency.",
+      subtitle: "Medical Management System",
+      description:
+          "A comprehensive medical management REST API designed for scalability and efficiency. Built with enterprise-grade patterns, secure JWT authentication, and database migrations.",
       tags: ["Java", "Spring Boot", "Docker", "Spring Security", "Hibernate", "Flyway", "JWT", "REST API"],
       image: "/healthcare.png",
       github: "https://github.com/ENAA-School-Student/HealthCare-Syst-me-de-Gestion_M-dicale.git",
+      accent: "#5a8fd4",
+      number: "01",
     },
     {
       name: "FleetFlow",
-      description: "Ce projet consiste à développer un système de gestion logistique permettant d’administrer les clients, les chauffeurs, les véhicules et les livraisons.",
+      subtitle: "Logistics Management Platform",
+      description:
+          "Full-featured logistics system for administering clients, drivers, vehicles, and deliveries. Real-time tracking, route optimization, and CI/CD pipeline.",
       tags: ["Java", "Spring Boot", "MapStruct", "Docker", "MySQL", "Swagger", "GitHub Actions", "JWT"],
       image: "/fleetflow.png",
       github: "https://github.com/NihadHub/fleetFlow.git",
+      accent: "#e07040",
+      number: "02",
     },
     {
       name: "ISTA OUED-ZEM",
-      description: "Educational mobile application providing digital resources and campus information for students.",
-      tags: ["Kotlin", "SQLite"],
+      subtitle: "Educational Mobile App",
+      description:
+          "Native Android application providing digital resources, course materials, and campus information for technical institute students.",
+      tags: ["Kotlin", "SQLite", "Material Design", "Android"],
       image: "/istaouedzem.png",
       github: "https://github.com/Rida1019-taki/ISTA-OUED-ZEM.git",
+      accent: "#5ab88a",
+      number: "03",
     },
   ];
 
   const education = [
     {
       institution: "École Numérique Ahmed Al Hansali",
-      degree: "Full Stack Java",
-      period: "2025 - Present",
+      degree: "Full Stack Java / JEE",
+      period: "2025 — Present",
+      status: "current",
     },
     {
       institution: "ISTA Oued Zem",
-      degree: "Digital Development - Mobile",
-      period: "2023 - 2025",
+      degree: "Digital Development — Mobile Option",
+      period: "2023 — 2025",
+      status: "completed",
     },
   ];
 
   const documents = [
     {
-      title: "Certif Cisco - Introduction a la cybersecurite",
-      description: "Certificate and learning notes in cybersecurity fundamentals.",
+      title: "Introduction à la Cybersécurité",
+      issuer: "Cisco Networking Academy",
       file: "/docs/introduction-cybersecurite.pdf",
+      icon: "🛡️",
     },
     {
-      title: "Certif Cisco - Les bases du materiel informatique",
-      description: "Proof of foundational hardware and computer architecture knowledge.",
+      title: "Les Bases du Matériel Informatique",
+      issuer: "Cisco Networking Academy",
       file: "/docs/bases-materiel-informatique.pdf",
+      icon: "🖥️",
     },
     {
-      title: "Certif Cisco - Python Essentials 1",
-      description: "Python basics certificate covering core programming concepts.",
+      title: "Python Essentials 1",
+      issuer: "Cisco Networking Academy",
       file: "/docs/python-essentials-1.pdf",
+      icon: "🐍",
     },
   ];
 
   const tickerItems = [
     "Open to freelance",
-    "Full stack Java",
-    "Mobile apps with Kotlin",
-    "REST APIs",
+    "Full stack Java/JEE",
+    "Mobile with Kotlin",
+    "REST API design",
     "Spring Boot architecture",
-    "Clean UI and UX",
+    "Clean UI & UX",
+    "Docker & CI/CD",
+    "Agile / Scrum",
+  ];
+
+  const techStack = [
+    { icon: <FaJava size={26} />, label: "Java", color: "#e07040" },
+    { icon: <SiSpringboot size={22} />, label: "Spring", color: "#5ab88a" },
+    { icon: <SiKotlin size={20} />, label: "Kotlin", color: "#a78bfa" },
+    { icon: <FaReact size={22} />, label: "React", color: "#5a8fd4" },
+    { icon: <FaPython size={22} />, label: "Python", color: "#d4a853" },
+    { icon: <FaDocker size={22} />, label: "Docker", color: "#5a8fd4" },
+    { icon: <SiFlutter size={20} />, label: "Flutter", color: "#5a8fd4" },
+    { icon: <SiMysql size={24} />, label: "MySQL", color: "#e07040" },
+    { icon: <SiPostman size={20} />, label: "Postman", color: "#e07040" },
+    { icon: <SiFigma size={18} />, label: "Figma", color: "#a78bfa" },
   ];
 
   return (
-    <div className="min-h-screen text-[var(--foreground)]">
-      <nav className="fixed top-0 z-50 w-full border-b border-[color:var(--line)]/70 bg-[color:var(--background)]/85 backdrop-blur-md">
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-          <div className="flex items-end gap-2">
-            <span className="display text-2xl font-semibold leading-none">Rida Taki</span>
-            <span className="mb-1 text-xs uppercase tracking-[0.2em] text-[color:var(--muted)]">Portfolio</span>
-          </div>
-          <a
-            href="#contact"
-            className="rounded-full border border-[color:var(--line)] bg-[color:var(--surface)] px-4 py-1.5 text-sm font-medium transition hover:border-[color:var(--brand)]"
-          >
-            Let&apos;s talk
-          </a>
-        </div>
-      </nav>
+      <div className="min-h-screen text-[var(--foreground)] relative">
+        <ParticleField />
+        <MouseGlow />
 
-      <main className="mx-auto max-w-6xl space-y-24 px-6 pb-20 pt-28 md:space-y-28 md:pt-32">
-        <section id="about" className="grid items-center gap-10 md:grid-cols-[1.2fr_1fr]">
-          <div className="space-y-7 reveal">
-            <div className="inline-flex items-center gap-2 rounded-full border border-[color:var(--line)] bg-[color:var(--surface)] px-4 py-1.5 text-xs uppercase tracking-[0.16em] text-[color:var(--muted)]">
-              <Sparkles size={14} /> Available for projects
-            </div>
-            <h1 className="display text-6xl leading-[0.88] sm:text-7xl md:text-8xl">
-              I build digital products with soul and structure.
-            </h1>
-            <p className="max-w-xl text-lg leading-relaxed text-[color:var(--muted)] sm:text-xl">
-              Full stack and mobile developer focused on clean architecture, fast APIs, and interfaces people actually enjoy using.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <a
-                href="#projects"
-                className="inline-flex items-center gap-2 rounded-2xl bg-[color:var(--brand)] px-6 py-3 font-medium text-white transition hover:bg-[color:var(--brand-soft)]"
-              >
-                View projects <ArrowRight size={16} />
-              </a>
-              <a
-                href="#contact"
-                className="rounded-2xl border border-[color:var(--line)] bg-[color:var(--surface)] px-6 py-3 font-medium transition hover:border-[color:var(--brand)]"
-              >
-                Contact me
-              </a>
-            </div>
-          </div>
+        {/* ═══ NAVBAR ═══ */}
+        <nav className="glass-nav fixed top-0 z-50 w-full">
+          <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8">
+            <a href="#" className="flex items-center gap-3">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[color:var(--brand)] to-[#c05530] text-sm font-bold text-white">
+                RT
+              </div>
+              <div className="hidden sm:block">
+                <span className="display text-lg font-semibold leading-none">Rida Taki</span>
+              </div>
+            </a>
 
-          <div className="paper reveal relative rounded-[2rem] p-4 sm:p-6">
-            <div className="soft-grid absolute inset-0 rounded-[2rem] opacity-40" />
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[1.3rem] border border-white/40">
-              <Image
-                src="/image.png"
-                alt="Rida Taki"
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-            <p className="relative mt-4 text-sm tracking-wide text-[color:var(--muted)]">
-              Based in Morocco. Building with Java, Spring, Kotlin, and React.
-            </p>
-          </div>
-        </section>
-
-        <div className="ticker">
-          <div className="ticker-track text-sm uppercase tracking-[0.18em] text-[color:var(--muted)]">
-            {[...tickerItems, ...tickerItems].map((item, index) => (
-              <span key={`${item}-${index}`}>{item}</span>
-            ))}
-          </div>
-        </div>
-
-        <section id="skills" className="space-y-8">
-          <h2 className="section-title">Technical Palette</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {skills.map((skill) => (
-              <div key={skill.category} className="paper rounded-[1.6rem] p-7">
-                <h3 className="mb-4 text-lg font-semibold text-[color:var(--brand)]">{skill.category}</h3>
-                <div className="flex flex-wrap gap-2">
-                  {skill.items.map((item) => (
-                    <span
+            <div className="hidden items-center gap-7 md:flex">
+              {["About", "Skills", "Work", "Education", "Contact"].map((item) => (
+                  <a
                       key={item}
-                      className="rounded-full border border-[color:var(--line)] bg-white/70 px-3 py-1 text-xs font-medium"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section id="projects" className="space-y-8">
-          <h2 className="section-title">Selected Work</h2>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-            {projects.map((project) => (
-              <article key={project.name} className="paper project-card rounded-[1.8rem] p-5 sm:p-6">
-                <div className="relative mb-5 aspect-video overflow-hidden rounded-xl border border-[color:var(--line)]">
-                  <Image
-                    src={project.image}
-                    alt={project.name}
-                    fill
-                    className="object-cover transition duration-500 hover:scale-105"
-                  />
-                </div>
-                <h3 className="mb-2 text-2xl font-semibold">{project.name}</h3>
-                <p className="mb-5 leading-relaxed text-[color:var(--muted)]">{project.description}</p>
-                <div className="mb-6 flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full border border-[color:var(--line)] bg-[color:var(--surface)] px-3 py-1 text-xs font-medium"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 font-medium text-[color:var(--brand)] transition hover:gap-3"
-                >
-                  View on GitHub <ArrowRight size={18} />
-                </a>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section id="education" className="space-y-8">
-          <h2 className="section-title">Education</h2>
-          <div className="space-y-5">
-            {education.map((edu) => (
-              <div
-                key={edu.institution}
-                className="paper flex flex-col justify-between gap-4 rounded-[1.4rem] p-6 sm:flex-row sm:items-center"
-              >
-                <div>
-                  <h3 className="text-xl font-semibold">{edu.degree}</h3>
-                  <p className="text-[color:var(--muted)]">{edu.institution}</p>
-                </div>
-                <span className="rounded-xl border border-[color:var(--line)] bg-[color:var(--surface-strong)] px-4 py-2 text-sm font-medium">
-                  {edu.period}
-                </span>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section id="documents" className="space-y-8">
-          <h2 className="section-title">Cisco Certifications</h2>
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-            {documents.map((doc) => (
-              <article key={doc.file} className="paper rounded-[1.4rem] p-6">
-                <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[color:var(--line)] bg-white/70 px-3 py-1 text-xs uppercase tracking-[0.14em] text-[color:var(--muted)]">
-                  <FileText size={14} /> PDF
-                </div>
-                <h3 className="text-xl font-semibold">{doc.title}</h3>
-                <p className="mt-2 text-[color:var(--muted)]">{doc.description}</p>
-                <a
-                  href={doc.file}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-5 inline-flex items-center gap-2 font-medium text-[color:var(--brand)] transition hover:gap-3"
-                >
-                  Open PDF <ArrowRight size={18} />
-                </a>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section id="contact" className="paper rounded-[2rem] p-8 sm:p-12">
-          <div className="grid gap-8 md:grid-cols-[1.2fr_1fr] md:items-end">
-            <div className="space-y-4">
-              <h2 className="section-title">Let&apos;s Build Something Strong</h2>
-              <p className="max-w-2xl text-lg leading-relaxed text-[color:var(--muted)]">
-                I&apos;m open to internships, freelance missions, and collaborative product work.
-                If you need a reliable developer who can move from backend architecture to polished interfaces, I&apos;m ready.
-              </p>
+                      href={`#${item.toLowerCase()}`}
+                      className="nav-link font-medium text-[color:var(--muted)] transition hover:text-[color:var(--foreground)]"
+                  >
+                    {item}
+                  </a>
+              ))}
             </div>
-            <div className="space-y-4 rounded-2xl border border-[color:var(--line)] bg-white/60 p-6">
+
+            <div className="flex items-center gap-3">
               <a
-                href="mailto:takirida72@gmail.com"
-                className="inline-flex items-center gap-3 text-base font-medium transition hover:text-[color:var(--brand)]"
+                  href="#contact"
+                  className="btn-primary hidden rounded-full px-5 py-2 text-sm font-semibold text-white sm:inline-flex sm:items-center sm:gap-2"
               >
-                <Mail size={18} /> takirida72@gmail.com
+                Hire me <Zap size={14} />
               </a>
-              <p className="inline-flex items-center gap-3 text-base font-medium">
-                <Phone size={18} /> +212 649 487 957
-              </p>
-              <div className="flex gap-4 pt-2 text-[color:var(--muted)]">
-                <a
+              <MobileMenu />
+            </div>
+          </div>
+        </nav>
+
+        <main className="relative z-10">
+          {/* ═══ HERO ═══ */}
+          <section id="about" className="relative min-h-screen flex items-center overflow-hidden">
+            <div className="hero-mesh">
+              <div className="orb orb-1" />
+              <div className="orb orb-2" />
+              <div className="orb orb-3" />
+            </div>
+
+            <div className="mx-auto max-w-7xl px-5 py-32 sm:px-8 md:py-0">
+              <div className="grid items-center gap-12 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
+                {/* Left */}
+                <div className="relative z-10 space-y-8">
+                  <div className="reveal flex items-center gap-3">
+                    <div className="status-dot" />
+                    <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--accent-emerald)]">
+                    Available for projects
+                  </span>
+                  </div>
+
+                  <h1 className="reveal reveal-d1 display text-[clamp(2.8rem,7vw,5rem)] leading-[0.92] tracking-tight">
+                    <span className="gradient-text">Crafting digital</span>
+                    <br />
+                    <span className="gradient-text">experiences that</span>
+                    <br />
+                    <span className="brand-gradient-text">truly matter.</span>
+                  </h1>
+
+                  <div className="reveal reveal-d2 text-lg sm:text-xl">
+                    <TypewriterText />
+                  </div>
+
+                  <p className="reveal reveal-d3 max-w-lg text-base leading-relaxed text-[color:var(--muted)] sm:text-lg">
+                    Full stack &amp; mobile developer from Morocco. I architect robust backends,
+                    build native apps, and craft interfaces people genuinely enjoy using.
+                  </p>
+
+                  {/* Stats */}
+                  <div className="reveal reveal-d4 flex items-center gap-6 sm:gap-8">
+                    <div className="text-center">
+                      <div className="display text-3xl font-bold sm:text-4xl">
+                        <AnimatedNumber value={3} suffix="+" />
+                      </div>
+                      <div className="mt-1 text-[10px] uppercase tracking-[0.16em] text-[color:var(--muted)]">
+                        Projects
+                      </div>
+                    </div>
+                    <div className="stat-divider" />
+                    <div className="text-center">
+                      <div className="display text-3xl font-bold sm:text-4xl">
+                        <AnimatedNumber value={10} suffix="+" />
+                      </div>
+                      <div className="mt-1 text-[10px] uppercase tracking-[0.16em] text-[color:var(--muted)]">
+                        Technologies
+                      </div>
+                    </div>
+                    <div className="stat-divider" />
+                    <div className="text-center">
+                      <div className="display text-3xl font-bold sm:text-4xl">
+                        <AnimatedNumber value={3} />
+                      </div>
+                      <div className="mt-1 text-[10px] uppercase tracking-[0.16em] text-[color:var(--muted)]">
+                        Certifications
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* CTAs */}
+                  <div className="reveal reveal-d5 flex flex-wrap gap-4">
+                    <a
+                        href="#work"
+                        className="btn-primary inline-flex items-center gap-2 rounded-2xl px-7 py-3.5 text-sm font-semibold text-white"
+                    >
+                      View my work <ArrowRight size={16} />
+                    </a>
+                    <a
+                        href="#contact"
+                        className="btn-secondary inline-flex items-center gap-2 rounded-2xl px-7 py-3.5 text-sm font-semibold"
+                    >
+                      <Mail size={16} /> Get in touch
+                    </a>
+                  </div>
+                </div>
+
+                {/* Right — Photo */}
+                <div className="reveal reveal-d3 relative hidden lg:block">
+                  <div className="relative mx-auto max-w-[380px]">
+                    {/* Decorative ring */}
+                    <div className="absolute -inset-4 rounded-[2.5rem] border border-dashed border-white/5" />
+                    <div className="absolute -inset-8 rounded-[3rem] border border-dashed border-white/[0.03]" />
+
+                    <div className="photo-frame relative rounded-[2rem] overflow-hidden">
+                      <div className="dot-grid absolute inset-0 z-10 opacity-40" />
+                      <div className="relative aspect-[3/4] overflow-hidden rounded-[2rem]">
+                        <Image
+                            src="/image.png"
+                            alt="Rida Taki"
+                            fill
+                            className="object-cover"
+                            priority
+                        />
+                        {/* Bottom gradient */}
+                        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[color:var(--background)] via-[color:var(--background)]/50 to-transparent" />
+                        <div className="absolute bottom-5 left-5 right-5 z-20">
+                          <div className="flex items-center gap-2 text-sm text-[color:var(--foreground-dim)]">
+                            <MapPin size={14} className="text-[color:var(--brand)]" />
+                            Morocco
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Floating cards */}
+                    <div className="float-badge absolute -right-6 top-12 z-20 glass rounded-2xl px-4 py-3 shadow-2xl" style={{ animationDelay: "0s" }}>
+                      <div className="flex items-center gap-2 text-xs font-semibold">
+                        <Server size={14} className="text-[color:var(--brand)]" />
+                        <span>Backend</span>
+                      </div>
+                    </div>
+
+                    <div className="float-badge absolute -left-6 bottom-32 z-20 glass rounded-2xl px-4 py-3 shadow-2xl" style={{ animationDelay: "-2s" }}>
+                      <div className="flex items-center gap-2 text-xs font-semibold">
+                        <Smartphone size={14} className="text-[color:var(--accent-gold)]" />
+                        <span>Mobile</span>
+                      </div>
+                    </div>
+
+                    <div className="float-badge absolute -right-4 bottom-16 z-20 glass rounded-2xl px-4 py-3 shadow-2xl" style={{ animationDelay: "-4s" }}>
+                      <div className="flex items-center gap-2 text-xs font-semibold">
+                        <Rocket size={14} className="text-[color:var(--accent-emerald)]" />
+                        <span>DevOps</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* ═══ TECH STACK STRIP ═══ */}
+          <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8">
+            <ScrollReveal>
+              <div className="glass rounded-2xl px-6 py-5 sm:px-10 sm:py-6">
+                <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10">
+                  {techStack.map((t) => (
+                      <div
+                          key={t.label}
+                          className="icon-lift group flex flex-col items-center gap-2"
+                          style={{ color: "var(--muted)" }}
+                          title={t.label}
+                      >
+                        <div className="transition-colors" style={{ color: "inherit" }}>
+                          {t.icon}
+                        </div>
+                        <span className="text-[9px] font-semibold uppercase tracking-[0.14em] opacity-0 transition-opacity group-hover:opacity-100">
+                      {t.label}
+                    </span>
+                      </div>
+                  ))}
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+
+          {/* ═══ TICKER ═══ */}
+          <div className="mt-20 sm:mt-28">
+            <div className="ticker">
+              <div className="ticker-track text-xs font-semibold uppercase tracking-[0.22em] text-[color:var(--muted)]">
+                {[...tickerItems, ...tickerItems].map((item, i) => (
+                    <span key={`${item}-${i}`} className="flex items-center gap-[2.5rem]">
+                  {i > 0 && <span className="ticker-dot" />}
+                      {item}
+                </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* ═══ SKILLS ═══ */}
+          <section id="skills" className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
+            <ScrollReveal>
+              <div className="mb-14 max-w-2xl space-y-4">
+              <span className="section-label flex items-center gap-2">
+                <Code2 size={14} /> Technical Expertise
+              </span>
+                <h2 className="section-title gradient-text">
+                  The tools I use to build
+                </h2>
+                <p className="text-base leading-relaxed text-[color:var(--muted)] sm:text-lg">
+                  From backend systems to mobile apps — here&apos;s the technology stack
+                  I work with daily to deliver production-ready solutions.
+                </p>
+              </div>
+            </ScrollReveal>
+
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {skills.map((skill, i) => (
+                  <ScrollReveal key={skill.category} delay={i * 80}>
+                    <div className="bento h-full rounded-2xl p-6 sm:p-7">
+                      <div className="mb-5 flex items-center gap-3">
+                        <div
+                            className="flex h-11 w-11 items-center justify-center rounded-xl"
+                            style={{
+                              background: `color-mix(in oklab, ${skill.accent} 12%, transparent)`,
+                              color: skill.accent,
+                            }}
+                        >
+                          {skill.icon}
+                        </div>
+                        <h3 className="text-base font-semibold">{skill.category}</h3>
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {skill.items.map((item) => (
+                            <span key={item} className="tag rounded-full px-3.5 py-1.5 text-xs font-medium text-[color:var(--foreground-dim)]">
+                        {item}
+                      </span>
+                        ))}
+                      </div>
+                    </div>
+                  </ScrollReveal>
+              ))}
+            </div>
+          </section>
+
+          <div className="section-divider mx-auto max-w-7xl" />
+
+          {/* ═══ PROJECTS ═══ */}
+          <section id="work" className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
+            <ScrollReveal>
+              <div className="mb-14 max-w-2xl space-y-4">
+              <span className="section-label flex items-center gap-2">
+                <Briefcase size={14} /> Selected Work
+              </span>
+                <h2 className="section-title gradient-text">
+                  Projects I&apos;m proud of
+                </h2>
+                <p className="text-base leading-relaxed text-[color:var(--muted)] sm:text-lg">
+                  Real-world applications built with production standards, clean architecture,
+                  and thoughtful user experience.
+                </p>
+              </div>
+            </ScrollReveal>
+
+            <div className="space-y-6">
+              {projects.map((project, i) => (
+                  <ScrollReveal key={project.name} delay={i * 120}>
+                    <article className="bento project-card group grid gap-0 overflow-hidden rounded-2xl md:grid-cols-[1fr_1.1fr] lg:grid-cols-[1fr_1.3fr]">
+                      {/* Image side */}
+                      <div className="relative aspect-video overflow-hidden md:aspect-auto md:min-h-[320px]">
+                        <Image
+                            src={project.image}
+                            alt={project.name}
+                            fill
+                            className="project-img object-cover"
+                        />
+                        {/* Gradient overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[color:var(--surface)]/80 hidden md:block" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--surface)] to-transparent md:hidden" />
+                        {/* Project number */}
+                        <div className="absolute left-5 top-5 z-10">
+                      <span
+                          className="display text-5xl font-bold opacity-20"
+                          style={{ color: project.accent }}
+                      >
+                        {project.number}
+                      </span>
+                        </div>
+                        {/* Accent bar */}
+                        <div
+                            className="absolute bottom-0 left-0 right-0 h-[2px] md:bottom-auto md:left-auto md:right-0 md:top-0 md:h-full md:w-[2px]"
+                            style={{ background: `linear-gradient(to right, ${project.accent}, transparent)` }}
+                        />
+                      </div>
+
+                      {/* Content side */}
+                      <div className="flex flex-col justify-center p-6 sm:p-8 lg:p-10">
+                        <div className="mb-1 text-xs font-semibold uppercase tracking-[0.16em] text-[color:var(--muted)]">
+                          {project.subtitle}
+                        </div>
+                        <h3 className="mb-3 text-2xl font-bold sm:text-3xl">{project.name}</h3>
+                        <p className="mb-6 leading-relaxed text-[color:var(--muted)]">
+                          {project.description}
+                        </p>
+                        <div className="mb-6 flex flex-wrap gap-2">
+                          {project.tags.map((tag) => (
+                              <span key={tag} className="tag rounded-full px-3 py-1 text-[11px] font-medium text-[color:var(--foreground-dim)]">
+                          {tag}
+                        </span>
+                          ))}
+                        </div>
+                        <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="link-underline inline-flex w-fit items-center gap-2 text-sm font-semibold text-[color:var(--brand)] transition-all hover:gap-3"
+                        >
+                          <FaGithub size={16} /> View on GitHub <ArrowUpRight size={14} />
+                        </a>
+                      </div>
+                    </article>
+                  </ScrollReveal>
+              ))}
+            </div>
+          </section>
+
+          <div className="section-divider mx-auto max-w-7xl" />
+
+          {/* ═══ EDUCATION ═══ */}
+          <section id="education" className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
+            <ScrollReveal>
+              <div className="mb-14 max-w-2xl space-y-4">
+              <span className="section-label flex items-center gap-2">
+                <GraduationCap size={14} /> Education
+              </span>
+                <h2 className="section-title gradient-text">
+                  Academic journey
+                </h2>
+              </div>
+            </ScrollReveal>
+
+            <div className="grid gap-4 md:grid-cols-2">
+              {education.map((edu, i) => (
+                  <ScrollReveal key={edu.institution} delay={i * 100}>
+                    <div className="bento group flex h-full flex-col rounded-2xl p-6 sm:p-8">
+                      <div className="mb-5 flex items-center justify-between">
+                        <div
+                            className="flex h-11 w-11 items-center justify-center rounded-xl"
+                            style={{
+                              background: edu.status === "current"
+                                  ? "color-mix(in oklab, var(--accent-emerald) 12%, transparent)"
+                                  : "color-mix(in oklab, var(--accent-gold) 12%, transparent)",
+                              color: edu.status === "current" ? "var(--accent-emerald)" : "var(--accent-gold)",
+                            }}
+                        >
+                          {edu.status === "current" ? <BookOpen size={20} /> : <GraduationCap size={20} />}
+                        </div>
+                        {edu.status === "current" && (
+                            <div className="flex items-center gap-2 rounded-full border border-[color:var(--accent-emerald)]/20 bg-[color:var(--accent-emerald)]/5 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-[color:var(--accent-emerald)]">
+                              <div className="status-dot" style={{ width: 6, height: 6 }} />
+                              Current
+                            </div>
+                        )}
+                      </div>
+                      <h3 className="mb-1 text-xl font-bold">{edu.degree}</h3>
+                      <p className="mb-4 text-sm text-[color:var(--muted)]">{edu.institution}</p>
+                      <div className="mt-auto">
+                    <span className="inline-flex rounded-lg border border-[color:var(--line)] bg-[color:var(--surface-2)] px-3 py-1.5 text-xs font-semibold text-[color:var(--muted)]">
+                      {edu.period}
+                    </span>
+                      </div>
+                    </div>
+                  </ScrollReveal>
+              ))}
+            </div>
+          </section>
+
+          <div className="section-divider mx-auto max-w-7xl" />
+
+          {/* ═══ CERTIFICATIONS ═══ */}
+          <section className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
+            <ScrollReveal>
+              <div className="mb-14 max-w-2xl space-y-4">
+              <span className="section-label flex items-center gap-2">
+                <Award size={14} /> Certifications
+              </span>
+                <h2 className="section-title gradient-text">
+                  Cisco credentials
+                </h2>
+                <p className="text-base leading-relaxed text-[color:var(--muted)]">
+                  Industry-recognized certifications validating technical foundations.
+                </p>
+              </div>
+            </ScrollReveal>
+
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {documents.map((doc, i) => (
+                  <ScrollReveal key={doc.file} delay={i * 100}>
+                    <div className="bento cert-card group flex h-full flex-col rounded-2xl p-6 sm:p-7">
+                      <div className="mb-4 text-3xl">{doc.icon}</div>
+                      <h3 className="mb-1 text-lg font-bold leading-snug">{doc.title}</h3>
+                      <p className="mb-6 flex-1 text-sm text-[color:var(--muted)]">{doc.issuer}</p>
+                      <a
+                          href={doc.file}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="link-underline inline-flex w-fit items-center gap-2 text-sm font-semibold text-[color:var(--brand)] transition-all hover:gap-3"
+                      >
+                        <FileText size={14} /> View certificate <ExternalLink size={12} />
+                      </a>
+                    </div>
+                  </ScrollReveal>
+              ))}
+            </div>
+          </section>
+
+          <div className="section-divider mx-auto max-w-7xl" />
+
+          {/* ═══ CONTACT ═══ */}
+          <section id="contact" className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
+            <ScrollReveal>
+              <div className="glow-border relative overflow-hidden rounded-3xl border border-[color:var(--line-strong)] bg-[color:var(--surface)] p-8 sm:p-12 lg:p-16">
+                {/* Background orbs */}
+                <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-[color:var(--brand)] opacity-[0.03] blur-[100px]" />
+                <div className="absolute -bottom-20 -left-20 h-60 w-60 rounded-full bg-[color:var(--accent-gold)] opacity-[0.04] blur-[80px]" />
+
+                <div className="relative grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:items-start">
+                  {/* Left */}
+                  <div className="space-y-6">
+                  <span className="section-label flex items-center gap-2">
+                    <Mail size={14} /> Contact
+                  </span>
+                    <h2 className="section-title gradient-text leading-tight">
+                      Let&apos;s build something<br />remarkable together.
+                    </h2>
+                    <p className="max-w-xl text-base leading-relaxed text-[color:var(--muted)] sm:text-lg">
+                      I&apos;m open to internships, freelance missions, and collaborative product work.
+                      If you need a developer who cares about both the architecture and the user experience — let&apos;s talk.
+                    </p>
+
+                    {/* Social icons */}
+                    <div className="flex gap-3 pt-2">
+                      <a
+                          href="https://github.com/Rida1019-taki"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="icon-lift flex h-12 w-12 items-center justify-center rounded-xl border border-[color:var(--line)] bg-[color:var(--surface-2)] text-[color:var(--muted)] transition"
+                      >
+                        <FaGithub size={20} />
+                      </a>
+                      <a
+                          href="https://www.linkedin.com/in/rida-taki-bb44a8350"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="icon-lift flex h-12 w-12 items-center justify-center rounded-xl border border-[color:var(--line)] bg-[color:var(--surface-2)] text-[color:var(--muted)] transition"
+                      >
+                        <FaLinkedin size={20} />
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Right — Contact card */}
+                  <div className="space-y-3 rounded-2xl border border-[color:var(--line)] bg-[color:var(--surface-2)] p-6 sm:p-7">
+                    <h3 className="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--muted)]">
+                      Reach out
+                    </h3>
+
+                    <a
+                        href="mailto:takirida72@gmail.com"
+                        className="group flex items-center gap-4 rounded-xl px-3 py-3 transition hover:bg-white/[0.03]"
+                    >
+                      <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-[color:var(--brand)]/10 text-[color:var(--brand)]">
+                        <Mail size={18} />
+                      </div>
+                      <div>
+                        <div className="text-xs text-[color:var(--muted)]">Email</div>
+                        <div className="text-sm font-semibold group-hover:text-[color:var(--brand)] transition-colors">takirida72@gmail.com</div>
+                      </div>
+                    </a>
+
+                    <div className="flex items-center gap-4 rounded-xl px-3 py-3">
+                      <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-[color:var(--accent-emerald)]/10 text-[color:var(--accent-emerald)]">
+                        <Phone size={18} />
+                      </div>
+                      <div>
+                        <div className="text-xs text-[color:var(--muted)]">Phone</div>
+                        <div className="text-sm font-semibold">+212 649 487 957</div>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-4 rounded-xl px-3 py-3">
+                      <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-[color:var(--accent-gold)]/10 text-[color:var(--accent-gold)]">
+                        <MapPin size={18} />
+                      </div>
+                      <div>
+                        <div className="text-xs text-[color:var(--muted)]">Location</div>
+                        <div className="text-sm font-semibold">Morocco</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
+          </section>
+        </main>
+
+        {/* ═══ FOOTER ═══ */}
+        <footer className="relative z-10 border-t border-[color:var(--line)]">
+          <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 px-5 py-10 sm:flex-row sm:px-8">
+            <div className="flex items-center gap-3">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-[color:var(--brand)] to-[#c05530] text-xs font-bold text-white">
+                RT
+              </div>
+              <span className="text-sm text-[color:var(--muted)]">
+              © 2026 Rida Taki
+            </span>
+            </div>
+            <p className="text-xs text-[color:var(--muted)]">
+              Designed &amp; developed with ♥ and clean code.
+            </p>
+            <div className="flex gap-3">
+              <a
                   href="https://github.com/Rida1019-taki"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="transition hover:text-[color:var(--brand)]"
-                >
-                  <FaGithub size={22} />
-                </a>
-                <a
+                  className="icon-lift text-[color:var(--muted)]"
+              >
+                <FaGithub size={18} />
+              </a>
+              <a
                   href="https://www.linkedin.com/in/rida-taki-bb44a8350"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="transition hover:text-[color:var(--brand)]"
-                >
-                  <FaLinkedin size={22} />
-                </a>
-              </div>
+                  className="icon-lift text-[color:var(--muted)]"
+              >
+                <FaLinkedin size={18} />
+              </a>
             </div>
           </div>
-        </section>
-      </main>
-
-      <footer className="mx-auto mt-4 flex w-full max-w-6xl justify-center border-t border-[color:var(--line)] px-6 py-10 text-sm text-[color:var(--muted)]">
-        <p>© 2026 Rida Taki. Crafted with intention.</p>
-      </footer>
-    </div>
+        </footer>
+      </div>
   );
 }
-
