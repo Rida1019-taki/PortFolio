@@ -4,18 +4,18 @@ import {
   Award,
   BookOpen,
   Briefcase,
-  Code2,
+  Code2, CodeXml,
   Database,
   Download,
-  ExternalLink,
+  ExternalLink, FileCode2,
   FileText,
-  GraduationCap,
+  GraduationCap, Laptop, Laptop2,
   Layers,
   Mail,
-  MapPin,
+  MapPin, Monitor,
   Phone,
   Rocket,
-  Server,
+  Server, Shield, ShieldCheck,
   Smartphone,
   Terminal,
   Wrench,
@@ -118,7 +118,7 @@ export default function Home() {
   const education = [
     {
       institution: "École Numérique Ahmed Al Hansali",
-      degree: "Full Stack Java / JEE",
+      degree: "Full Stack Java / React",
       period: "2025 — Present",
       status: "current",
     },
@@ -135,19 +135,19 @@ export default function Home() {
       title: "Introduction à la Cybersécurité",
       issuer: "Cisco Networking Academy",
       file: "/docs/introduction-cybersecurite.pdf",
-      icon: "🛡️",
+      icon: ShieldCheck,
     },
     {
       title: "Les Bases du Matériel Informatique",
       issuer: "Cisco Networking Academy",
       file: "/docs/bases-materiel-informatique.pdf",
-      icon: "🖥️",
+      icon: Laptop2,
     },
     {
       title: "Python Essentials 1",
       issuer: "Cisco Networking Academy",
       file: "/docs/python-essentials-1.pdf",
-      icon: "🐍",
+      icon: Code2,
     },
   ];
 
@@ -578,12 +578,14 @@ export default function Home() {
           <section className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
             <ScrollReveal>
               <div className="mb-14 max-w-2xl space-y-4">
-              <span className="section-label flex items-center gap-2">
-                <Award size={14} /> Certifications
-              </span>
+      <span className="section-label flex items-center gap-2">
+        <Award size={14} /> Certifications
+      </span>
+
                 <h2 className="section-title gradient-text">
-                  Cisco credentials
+                  Cisco Credentials
                 </h2>
+
                 <p className="text-base leading-relaxed text-[color:var(--muted)]">
                   Industry-recognized certifications validating technical foundations.
                 </p>
@@ -591,23 +593,41 @@ export default function Home() {
             </ScrollReveal>
 
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {documents.map((doc, i) => (
-                  <ScrollReveal key={doc.file} delay={i * 100}>
-                    <div className="bento cert-card group flex h-full flex-col rounded-2xl p-6 sm:p-7">
-                      <div className="mb-4 text-3xl">{doc.icon}</div>
-                      <h3 className="mb-1 text-lg font-bold leading-snug">{doc.title}</h3>
-                      <p className="mb-6 flex-1 text-sm text-[color:var(--muted)]">{doc.issuer}</p>
-                      <a
-                          href={doc.file}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="link-underline inline-flex w-fit items-center gap-2 text-sm font-semibold text-[color:var(--brand)] transition-all hover:gap-3"
-                      >
-                        <FileText size={14} /> View certificate <ExternalLink size={12} />
-                      </a>
-                    </div>
-                  </ScrollReveal>
-              ))}
+              {documents.map((doc, i) => {
+                const Icon = doc.icon;
+
+                return (
+                    <ScrollReveal key={doc.file} delay={i * 100}>
+                      <div className="bento cert-card group flex h-full flex-col rounded-2xl p-6 sm:p-7">
+                        <div className="mb-4">
+                          <Icon
+                              size={40}
+                              className="text-[color:var(--brand)] transition-transform duration-300 group-hover:scale-110"
+                          />
+                        </div>
+
+                        <h3 className="mb-1 text-lg font-bold leading-snug">
+                          {doc.title}
+                        </h3>
+
+                        <p className="mb-6 flex-1 text-sm text-[color:var(--muted)]">
+                          {doc.issuer}
+                        </p>
+
+                        <a
+                            href={doc.file}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="link-underline inline-flex w-fit items-center gap-2 text-sm font-semibold text-[color:var(--brand)] transition-all hover:gap-3"
+                        >
+                          <FileText size={14} />
+                          View certificate
+                          <ExternalLink size={12} />
+                        </a>
+                      </div>
+                    </ScrollReveal>
+                );
+              })}
             </div>
           </section>
 
