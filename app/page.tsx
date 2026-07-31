@@ -1,3 +1,5 @@
+"use client";
+import { toast } from "sonner";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -44,6 +46,8 @@ import MouseGlow from "@/components/MouseGlow";
 import MobileMenu from "@/components/MobileMenu";
 import AnimatedNumber from "@/components/AnimatedNumber";
 import TypewriterText from "@/components/TypewriterText";
+import emailjs from "@emailjs/browser";
+import {useState} from "react";
 
 export default function Home() {
   const skills = [
@@ -175,6 +179,38 @@ export default function Home() {
     { icon: <SiFigma size={18} />, label: "Figma", color: "#a78bfa" },
   ];
 
+  const [loading, setLoading] = useState(false);
+
+  const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const form = e.currentTarget;
+
+    setLoading(true);
+
+    try {
+      await emailjs.sendForm(
+          "service_jav8hl6",
+          "template_440vkxl",
+          form,
+          "TSdGK4h7h-xBeD4yD"
+      );
+
+      form.reset();
+
+      toast.success("Message sent!", {
+        description: "Your email has been delivered successfully.",
+      });
+    } catch (error) {
+      console.error(error);
+
+      toast.error("Failed to send message", {
+        description: "Please try again in a few moments.",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
       <div className="min-h-screen text-[var(--foreground)] relative">
         <ParticleField />
@@ -714,7 +750,10 @@ export default function Home() {
                   </div>
 
                   {/* Right */}
-                  <form className="space-y-5 rounded-2xl border border-[color:var(--line)] bg-[color:var(--surface-2)] p-6 sm:p-7">
+                  <form
+                      onSubmit={sendEmail}
+                      className="space-y-5 rounded-2xl border border-[color:var(--line)] bg-[color:var(--surface-2)] p-6 sm:p-7"
+                  >
                     <h3 className="text-xl font-bold">
                       Send me a message
                     </h3>
@@ -724,6 +763,7 @@ export default function Home() {
                         Full Name
                       </label>
                       <input
+                          name="from_name"
                           type="text"
                           placeholder="Your name"
                           className="w-full rounded-xl border border-[color:var(--line)] bg-transparent px-4 py-3 outline-none"
@@ -735,6 +775,7 @@ export default function Home() {
                         Email
                       </label>
                       <input
+                          name="from_email"
                           type="email"
                           placeholder="your@email.com"
                           className="w-full rounded-xl border border-[color:var(--line)] bg-transparent px-4 py-3 outline-none"
@@ -746,6 +787,7 @@ export default function Home() {
                         Subject
                       </label>
                       <input
+                          name="subject"
                           type="text"
                           placeholder="Subject"
                           className="w-full rounded-xl border border-[color:var(--line)] bg-transparent px-4 py-3 outline-none"
@@ -757,6 +799,7 @@ export default function Home() {
                         Message
                       </label>
                       <textarea
+                          name="message"
                           rows={5}
                           placeholder="Write your message..."
                           className="w-full rounded-xl border border-[color:var(--line)] bg-transparent px-4 py-3 outline-none"
@@ -765,9 +808,10 @@ export default function Home() {
 
                     <button
                         type="submit"
-                        className="btn-primary w-full rounded-xl py-3"
+                        disabled={loading}
+                        className="btn-primary w-full rounded-xl py-3 disabled:opacity-60"
                     >
-                      Send Message
+                      {loading ? "Sending..." : "Send Message"}
                     </button>
                   </form>
 

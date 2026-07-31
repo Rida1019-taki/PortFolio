@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Outfit } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "sonner";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -34,7 +35,15 @@ export default function RootLayout({
           lang="en"
           className={`${outfit.variable} ${cormorant.variable} ${mono.variable} h-full antialiased`}
       >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+      {children}
+      <Toaster
+          position="top-right"
+          richColors
+          closeButton
+          duration={4000}
+      />
+      </body>
       </html>
   );
 }
