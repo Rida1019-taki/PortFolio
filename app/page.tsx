@@ -193,7 +193,7 @@ export default function Home() {
             </a>
 
             <div className="hidden items-center gap-7 md:flex">
-              {["About", "Skills", "Work", "Education", "Contact"].map((item) => (
+              {["About", "Skills", "Work", "Education", "Resume", "Contact"].map((item) => (
                   <a
                       key={item}
                       href={`#${item.toLowerCase()}`}
@@ -633,6 +633,36 @@ export default function Home() {
 
           <div className="section-divider mx-auto max-w-7xl" />
 
+          {/* ═══ RESUME ═══ */}
+          <section id="resume" className="mx-auto max-w-7xl px-5 py-24 sm:px-8">
+            <ScrollReveal>
+              <div className="bento rounded-3xl p-10 text-center">
+                <h2 className="section-title gradient-text">
+                  My Resume
+                </h2>
+
+                <p className="mt-4 text-[color:var(--muted)]">
+                  Download my latest CV to learn more about my education,
+                  technical skills and professional experience.
+                </p>
+
+                <a
+                    href="/docs/Rida_Taki_CV.pdf"
+                    download
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary mt-8 inline-flex items-center gap-2 rounded-2xl px-8 py-4"
+                >
+                  <Download size={18} />
+                  Download Resume
+                </a>
+              </div>
+            </ScrollReveal>
+          </section>
+
+          <div className="section-divider mx-auto max-w-7xl" />
+
+
           {/* ═══ CONTACT ═══ */}
           <section id="contact" className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
             <ScrollReveal>
@@ -642,17 +672,23 @@ export default function Home() {
                 <div className="absolute -bottom-20 -left-20 h-60 w-60 rounded-full bg-[color:var(--accent-gold)] opacity-[0.04] blur-[80px]" />
 
                 <div className="relative grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:items-start">
+
                   {/* Left */}
                   <div className="space-y-6">
-                  <span className="section-label flex items-center gap-2">
-                    <Mail size={14} /> Contact
-                  </span>
+          <span className="section-label flex items-center gap-2">
+            <Mail size={14} /> Contact
+          </span>
+
                     <h2 className="section-title gradient-text leading-tight">
-                      Let&apos;s build something<br />remarkable together.
+                      Let&apos;s build something
+                      <br />
+                      remarkable together.
                     </h2>
+
                     <p className="max-w-xl text-base leading-relaxed text-[color:var(--muted)] sm:text-lg">
-                      I&apos;m open to internships, freelance missions, and collaborative product work.
-                      If you need a developer who cares about both the architecture and the user experience — let&apos;s talk.
+                      I&apos;m open to internships, freelance missions, and collaborative
+                      product work. If you need a developer who cares about both the
+                      architecture and the user experience — let&apos;s talk.
                     </p>
 
                     {/* Social icons */}
@@ -665,6 +701,7 @@ export default function Home() {
                       >
                         <FaGithub size={20} />
                       </a>
+
                       <a
                           href="https://www.linkedin.com/in/rida-taki-bb44a8350"
                           target="_blank"
@@ -676,45 +713,64 @@ export default function Home() {
                     </div>
                   </div>
 
-                  {/* Right — Contact card */}
-                  <div className="space-y-3 rounded-2xl border border-[color:var(--line)] bg-[color:var(--surface-2)] p-6 sm:p-7">
-                    <h3 className="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--muted)]">
-                      Reach out
+                  {/* Right */}
+                  <form className="space-y-5 rounded-2xl border border-[color:var(--line)] bg-[color:var(--surface-2)] p-6 sm:p-7">
+                    <h3 className="text-xl font-bold">
+                      Send me a message
                     </h3>
 
-                    <a
-                        href="mailto:takirida72@gmail.com"
-                        className="group flex items-center gap-4 rounded-xl px-3 py-3 transition hover:bg-white/[0.03]"
+                    <div>
+                      <label className="mb-2 block text-sm font-medium">
+                        Full Name
+                      </label>
+                      <input
+                          type="text"
+                          placeholder="Your name"
+                          className="w-full rounded-xl border border-[color:var(--line)] bg-transparent px-4 py-3 outline-none"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="mb-2 block text-sm font-medium">
+                        Email
+                      </label>
+                      <input
+                          type="email"
+                          placeholder="your@email.com"
+                          className="w-full rounded-xl border border-[color:var(--line)] bg-transparent px-4 py-3 outline-none"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="mb-2 block text-sm font-medium">
+                        Subject
+                      </label>
+                      <input
+                          type="text"
+                          placeholder="Subject"
+                          className="w-full rounded-xl border border-[color:var(--line)] bg-transparent px-4 py-3 outline-none"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="mb-2 block text-sm font-medium">
+                        Message
+                      </label>
+                      <textarea
+                          rows={5}
+                          placeholder="Write your message..."
+                          className="w-full rounded-xl border border-[color:var(--line)] bg-transparent px-4 py-3 outline-none"
+                      />
+                    </div>
+
+                    <button
+                        type="submit"
+                        className="btn-primary w-full rounded-xl py-3"
                     >
-                      <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-[color:var(--brand)]/10 text-[color:var(--brand)]">
-                        <Mail size={18} />
-                      </div>
-                      <div>
-                        <div className="text-xs text-[color:var(--muted)]">Email</div>
-                        <div className="text-sm font-semibold group-hover:text-[color:var(--brand)] transition-colors">takirida72@gmail.com</div>
-                      </div>
-                    </a>
+                      Send Message
+                    </button>
+                  </form>
 
-                    <div className="flex items-center gap-4 rounded-xl px-3 py-3">
-                      <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-[color:var(--accent-emerald)]/10 text-[color:var(--accent-emerald)]">
-                        <Phone size={18} />
-                      </div>
-                      <div>
-                        <div className="text-xs text-[color:var(--muted)]">Phone</div>
-                        <div className="text-sm font-semibold">+212 649 487 957</div>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center gap-4 rounded-xl px-3 py-3">
-                      <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-[color:var(--accent-gold)]/10 text-[color:var(--accent-gold)]">
-                        <MapPin size={18} />
-                      </div>
-                      <div>
-                        <div className="text-xs text-[color:var(--muted)]">Location</div>
-                        <div className="text-sm font-semibold">Beni Mellal, Morocco</div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </ScrollReveal>
