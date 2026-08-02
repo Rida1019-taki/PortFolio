@@ -155,6 +155,23 @@ export default function Home() {
     },
   ];
 
+  const hackathons = [
+    {
+      title: "Rally AI Future Lab 2026",
+      description:
+          "Participated in an AI hackathon focused on innovative healthcare solutions. Worked in a multidisciplinary team to build an AI-powered medical assistant prototype.",
+      image: "/hackathons/rally-ai.jpg",
+      tags: ["AI", "Healthcare", "Innovation", "Teamwork"],
+    },
+    {
+      title: "FootTech Hackathon 2026",
+      description:
+          "Developed a football technology solution with rapid prototyping and pitch presentation within 36 hours.",
+      image: "/hackathons/foottech.jpg",
+      tags: ["Sports Tech", "Next", "Python", "Hackathon"],
+    },
+  ];
+
   const tickerItems = [
     "Open to freelance",
     "Full stack Java/JEE",
@@ -229,7 +246,7 @@ export default function Home() {
             </a>
 
             <div className="hidden items-center gap-7 md:flex">
-              {["About", "Skills", "Work", "Education", "Resume", "Contact"].map((item) => (
+              {["About", "Skills", "Work", "Education", "Hackathons", "Resume", "Contact"].map((item) => (
                   <a
                       key={item}
                       href={`#${item.toLowerCase()}`}
@@ -668,6 +685,123 @@ export default function Home() {
           </section>
 
           <div className="section-divider mx-auto max-w-7xl" />
+
+          <section id="hackathons" className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
+            <ScrollReveal>
+              <div className="mb-14 max-w-2xl space-y-4">
+      <span className="section-label flex items-center gap-2">
+        <Award size={14} /> Hackathons
+      </span>
+
+                <h2 className="section-title gradient-text">
+                  Innovation & Competitions
+                </h2>
+
+                <p className="text-base leading-relaxed text-[color:var(--muted)]">
+                  Participating in hackathons has strengthened my teamwork,
+                  problem-solving and rapid prototyping skills.
+                </p>
+              </div>
+            </ScrollReveal>
+
+            <div className="grid gap-6 md:grid-cols-2">
+              {hackathons.map((hackathon, index) => (
+                  <ScrollReveal key={index} delay={index * 100}>
+                    <article className="bento overflow-hidden rounded-2xl">
+                      <div className="relative h-60">
+                        <Image
+                            src={hackathon.image}
+                            alt={hackathon.title}
+                            fill
+                            className="object-cover"
+                        />
+                      </div>
+
+                      <div className="p-6">
+                        <h3 className="text-xl font-bold">
+                          {hackathon.title}
+                        </h3>
+
+                        <p className="mt-2 text-sm text-[color:var(--muted)]">
+                          {hackathon.description}
+                        </p>
+
+                        <div className="mt-4 flex flex-wrap gap-2">
+                          {hackathon.tags.map((tag) => (
+                              <span
+                                  key={tag}
+                                  className="tag rounded-full px-3 py-1 text-xs"
+                              >
+                  {tag}
+                </span>
+                          ))}
+                        </div>
+                      </div>
+                    </article>
+                  </ScrollReveal>
+              ))}
+            </div>
+          </section>
+
+          {/* ═══ HACKATHONS ═══ */}
+          <section
+              id="hackathons"
+              className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32"
+          >
+            <ScrollReveal>
+              <div className="mb-14 max-w-2xl space-y-4">
+      <span className="section-label flex items-center gap-2">
+        <Award size={14} />
+        Hackathons
+      </span>
+
+                <h2 className="section-title gradient-text">
+                  Innovation & Competitions
+                </h2>
+
+                <p className="text-base leading-relaxed text-[color:var(--muted)]">
+                  Participating in hackathons has strengthened my teamwork,
+                  problem-solving and rapid prototyping skills.
+                </p>
+              </div>
+            </ScrollReveal>
+
+            <div className="grid gap-6 md:grid-cols-2">
+              {hackathons.map((hackathon, index) => (
+                  <ScrollReveal key={index} delay={index * 100}>
+                    <article className="bento overflow-hidden rounded-2xl">
+                      <div className="relative h-60">
+                        <Image
+                            src={hackathon.image}
+                            alt={hackathon.title}
+                            fill
+                            className="object-cover transition duration-500 hover:scale-105"
+                        />
+                      </div>
+
+                      <div className="p-6">
+                        <h3 className="text-xl font-bold">{hackathon.title}</h3>
+
+                        <p className="mt-2 text-sm text-[color:var(--muted)]">
+                          {hackathon.description}
+                        </p>
+
+                        <div className="mt-4 flex flex-wrap gap-2">
+                          {hackathon.tags.map((tag) => (
+                              <span
+                                  key={tag}
+                                  className="tag rounded-full px-3 py-1 text-xs"
+                              >
+                  {tag}
+                </span>
+                          ))}
+                        </div>
+                      </div>
+                    </article>
+                  </ScrollReveal>
+              ))}
+            </div>
+          </section>
 
           {/* ═══ RESUME ═══ */}
           <section id="resume" className="mx-auto max-w-7xl px-5 py-24 sm:px-8">
