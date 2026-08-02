@@ -230,6 +230,23 @@ export default function Home() {
   };
   return (
       <div className="min-h-screen text-[var(--foreground)] relative">
+
+        {/* Background Video */}
+        <div className="fixed inset-0 -z-20 overflow-hidden">
+          <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              className="h-full w-full object-cover"
+          >
+            <source src="/video/portfolio.mp4" type="video/mp4" />
+          </video>
+
+          <div className="absolute inset-0 bg-black/60" />
+        </div>
+
         <ParticleField />
         <MouseGlow />
 
@@ -448,7 +465,10 @@ export default function Home() {
           </div>
 
           {/* ═══ SKILLS ═══ */}
-          <section id="skills" className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
+          <section
+              id="skills"
+              className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32 relative overflow-hidden"
+          >
             <ScrollReveal>
               <div className="mb-14 max-w-2xl space-y-4">
               <span className="section-label flex items-center gap-2">
@@ -685,63 +705,6 @@ export default function Home() {
           </section>
 
           <div className="section-divider mx-auto max-w-7xl" />
-
-          <section id="hackathons" className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
-            <ScrollReveal>
-              <div className="mb-14 max-w-2xl space-y-4">
-      <span className="section-label flex items-center gap-2">
-        <Award size={14} /> Hackathons
-      </span>
-
-                <h2 className="section-title gradient-text">
-                  Innovation & Competitions
-                </h2>
-
-                <p className="text-base leading-relaxed text-[color:var(--muted)]">
-                  Participating in hackathons has strengthened my teamwork,
-                  problem-solving and rapid prototyping skills.
-                </p>
-              </div>
-            </ScrollReveal>
-
-            <div className="grid gap-6 md:grid-cols-2">
-              {hackathons.map((hackathon, index) => (
-                  <ScrollReveal key={index} delay={index * 100}>
-                    <article className="bento overflow-hidden rounded-2xl">
-                      <div className="relative h-60">
-                        <Image
-                            src={hackathon.image}
-                            alt={hackathon.title}
-                            fill
-                            className="object-cover"
-                        />
-                      </div>
-
-                      <div className="p-6">
-                        <h3 className="text-xl font-bold">
-                          {hackathon.title}
-                        </h3>
-
-                        <p className="mt-2 text-sm text-[color:var(--muted)]">
-                          {hackathon.description}
-                        </p>
-
-                        <div className="mt-4 flex flex-wrap gap-2">
-                          {hackathon.tags.map((tag) => (
-                              <span
-                                  key={tag}
-                                  className="tag rounded-full px-3 py-1 text-xs"
-                              >
-                  {tag}
-                </span>
-                          ))}
-                        </div>
-                      </div>
-                    </article>
-                  </ScrollReveal>
-              ))}
-            </div>
-          </section>
 
           {/* ═══ HACKATHONS ═══ */}
           <section
