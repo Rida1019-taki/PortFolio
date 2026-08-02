@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Outfit } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
+import { GoogleAnalytics } from '@next/third-parties/google';
+
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -44,6 +46,7 @@ export default function RootLayout({
           duration={4000}
       />
       </body>
+      <GoogleAnalytics gaId="G-8DQ110SCP5" />
       </html>
   );
 }
