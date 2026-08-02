@@ -234,12 +234,12 @@ export default function Home() {
         {/* Background Video */}
         <div className="fixed inset-0 -z-20 overflow-hidden">
           <video
+              className="video-bg"
               autoPlay
-              loop
               muted
+              loop
               playsInline
               preload="auto"
-              className="h-full w-full object-cover"
           >
             <source src="/video/portfolio.mp4" type="video/mp4" />
           </video>
