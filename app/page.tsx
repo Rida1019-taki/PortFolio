@@ -26,11 +26,11 @@ import {
 import Image from "next/image";
 import {
   FaDocker,
-  FaGithub,
+  FaGithub, FaInstagram,
   FaJava,
   FaLinkedin,
   FaPython,
-  FaReact,
+  FaReact, FaWhatsapp,
 } from "react-icons/fa";
 import {
   SiKotlin,
@@ -733,7 +733,7 @@ export default function Home() {
                           href="https://github.com/Rida1019-taki"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="icon-lift flex h-12 w-12 items-center justify-center rounded-xl border border-[color:var(--line)] bg-[color:var(--surface-2)] text-[color:var(--muted)] transition"
+                          className="icon-lift flex h-12 w-12 items-center justify-center rounded-xl border border-[color:var(--line)] bg-[color:var(--surface-2)] text-[color:var(--muted)] transition hover:text-white hover:bg-[color:var(--brand)]"
                       >
                         <FaGithub size={20} />
                       </a>
@@ -742,13 +742,30 @@ export default function Home() {
                           href="https://www.linkedin.com/in/rida-taki-bb44a8350"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="icon-lift flex h-12 w-12 items-center justify-center rounded-xl border border-[color:var(--line)] bg-[color:var(--surface-2)] text-[color:var(--muted)] transition"
+                          className="icon-lift flex h-12 w-12 items-center justify-center rounded-xl border border-[color:var(--line)] bg-[color:var(--surface-2)] text-[color:var(--muted)] transition hover:text-white hover:bg-[color:var(--brand)]"
                       >
                         <FaLinkedin size={20} />
                       </a>
+
+                      <a
+                          href="https://wa.me/212649487957"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="icon-lift flex h-12 w-12 items-center justify-center rounded-xl border border-[color:var(--line)] bg-[color:var(--surface-2)] text-[color:var(--muted)] transition hover:text-white hover:bg-green-600"
+                      >
+                        <FaWhatsapp size={20} />
+                      </a>
+
+                      <a
+                          href="https://www.instagram.com/rida_taki_10?igsh=OW5pZnI2Mjh2ejBv"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="icon-lift flex h-12 w-12 items-center justify-center rounded-xl border border-[color:var(--line)] bg-[color:var(--surface-2)] text-[color:var(--muted)] transition hover:text-white hover:bg-pink-600"
+                      >
+                        <FaInstagram size={20} />
+                      </a>
                     </div>
                   </div>
-
                   {/* Right */}
                   <form
                       onSubmit={sendEmail}
@@ -851,6 +868,26 @@ export default function Home() {
                   className="icon-lift text-[color:var(--muted)]"
               >
                 <FaLinkedin size={18} />
+              </a>
+
+              <a
+                  href="https://wa.me/212649487957"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="icon-lift text-[color:var(--muted)] transition hover:text-green-500"
+                  aria-label="WhatsApp"
+              >
+                <FaWhatsapp size={18} />
+              </a>
+
+              <a
+                  href="https://www.instagram.com/rida_taki_10?igsh=OW5pZnI2Mjh2ejBv"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="icon-lift text-[color:var(--muted)] transition hover:text-pink-500"
+                  aria-label="Instagram"
+              >
+                <FaInstagram size={18} />
               </a>
             </div>
           </div>
