@@ -38,7 +38,7 @@ import {
   SiFlutter,
   SiMysql,
   SiPostman,
-  SiFigma,
+  SiFigma, SiDart,
 } from "react-icons/si";
 import ScrollReveal from "@/components/ScrollReveal";
 import ParticleField from "@/components/ParticleField";
@@ -54,7 +54,7 @@ export default function Home() {
     {
       category: "Languages",
       icon: <Terminal size={20} />,
-      items: ["Java", "Python", "PHP", "JavaScript"],
+      items: ["Java", "Dart", "JavaScript"],
       accent: "var(--brand)",
     },
     {
@@ -191,9 +191,11 @@ export default function Home() {
     { icon: <FaPython size={22} />, label: "Python", color: "#d4a853" },
     { icon: <FaDocker size={22} />, label: "Docker", color: "#5a8fd4" },
     { icon: <SiFlutter size={20} />, label: "Flutter", color: "#5a8fd4" },
+    { icon: <SiDart size={20} />, label: "Dart", color: "#0175C2" },
     { icon: <SiMysql size={24} />, label: "MySQL", color: "#e07040" },
     { icon: <SiPostman size={20} />, label: "Postman", color: "#e07040" },
     { icon: <SiFigma size={18} />, label: "Figma", color: "#a78bfa" },
+
   ];
 
   const [loading, setLoading] = useState(false);
