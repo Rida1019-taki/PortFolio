@@ -85,35 +85,72 @@ export default function Home() {
 
   const projects = [
     {
-      name: "HealthCare",
-      subtitle: "Medical Management System",
+      name: "HealthCare+",
+      subtitle: "Medical Management Platform",
       description:
-          "A comprehensive medical management REST API designed for scalability and efficiency. Built with enterprise-grade patterns, secure JWT authentication, and database migrations.",
-      tags: ["Java", "Spring Boot", "Docker", "Spring Security", "Hibernate", "Flyway", "JWT", "REST API"],
+          "Complete healthcare management platform composed of a secure Spring Boot REST API and a modern React frontend. The application includes JWT authentication, role-based authorization, patient and doctor management, appointments, medical records, responsive dashboards, Docker deployment, and RESTful APIs.",
+      tags: [
+        "Java",
+        "Spring Boot",
+        "React",
+        "Spring Security",
+        "JWT",
+        "Hibernate",
+        "MySQL",
+        "Docker",
+        "Axios",
+        "REST API",
+      ],
       image: "/healthcare.png",
-      github: "https://github.com/ENAA-School-Student/HealthCare-Syst-me-de-Gestion_M-dicale.git",
+      githubBackend:
+          "https://github.com/ENAA-School-Student/HealthCare-Syst-me-de-Gestion_M-dicale",
+      githubFrontend:
+          "https://github.com/Rida1019-taki/HealthCare_FrontEnd",
       accent: "#5a8fd4",
       number: "01",
     },
     {
-      name: "FleetFlow",
+      name: "LogiTrack",
       subtitle: "Logistics Management Platform",
       description:
-          "Full-featured logistics system for administering clients, drivers, vehicles, and deliveries. Real-time tracking, route optimization, and CI/CD pipeline.",
-      tags: ["Java", "Spring Boot", "MapStruct", "Docker", "MySQL", "Swagger", "GitHub Actions", "JWT"],
-      image: "/fleetflow.png",
-      github: "https://github.com/NihadHub/fleetFlow.git",
+          "Complete full-stack logistics management platform composed of a secure Spring Boot REST API and a modern React frontend. The application includes JWT authentication, role-based access control (ADMIN, MANAGER, AGENT), client, product and order management, dashboard statistics, pagination, filtering, Axios interceptors, Protected Routes, Role Guards, and a responsive Material UI interface.",
+      tags: [
+        "Java",
+        "Spring Boot",
+        "React",
+        "Vite",
+        "Spring Security",
+        "JWT",
+        "MySQL",
+        "Axios",
+        "React Router",
+        "React Hook Form",
+        "Yup",
+        "MUI",
+      ],
+      image: "/logitrack.png",
+      githubBackend: "https://github.com/Rida1019-taki/LogiTrack",
+      githubFrontend: "https://github.com/Rida1019-taki/LogiTrack_FrontEnd",
       accent: "#e07040",
       number: "02",
     },
     {
-      name: "ISTA OUED-ZEM",
-      subtitle: "Educational Mobile App",
+      name: "FleetFlow",
+      subtitle: "Logistics & Fleet Management",
       description:
-          "Native Android application providing digital resources, course materials, and campus information for technical institute students.",
-      tags: ["Kotlin", "SQLite", "Material Design", "Android"],
-      image: "/istaouedzem.png",
-      github: "https://github.com/Rida1019-taki/ISTA-OUED-ZEM.git",
+          "Enterprise logistics management platform for handling clients, vehicles, deliveries, and fleet operations. Includes REST APIs, Dockerized deployment, CI/CD pipeline, Swagger documentation, and secure JWT authentication.",
+      tags: [
+        "Java",
+        "Spring Boot",
+        "Docker",
+        "MapStruct",
+        "MySQL",
+        "Swagger",
+        "JWT",
+        "GitHub Actions",
+      ],
+      image: "/fleetflow.png",
+      github: "https://github.com/NihadHub/fleetFlow.git",
       accent: "#5ab88a",
       number: "03",
     },
@@ -522,7 +559,7 @@ export default function Home() {
             <ScrollReveal>
               <div className="mb-14 max-w-2xl space-y-4">
               <span className="section-label flex items-center gap-2">
-                <Briefcase size={14} /> Selected Work
+                <Briefcase size={14} /> Selected Projects
               </span>
                 <h2 className="section-title gradient-text">
                   Projects I&apos;m proud of
@@ -576,19 +613,55 @@ export default function Home() {
                         </p>
                         <div className="mb-6 flex flex-wrap gap-2">
                           {project.tags.map((tag) => (
-                              <span key={tag} className="tag rounded-full px-3 py-1 text-[11px] font-medium text-[color:var(--foreground-dim)]">
-                          {tag}
-                        </span>
+                              <span
+                                  key={tag}
+                                  className="tag rounded-full px-3 py-1 text-[11px] font-medium text-[color:var(--foreground-dim)]"
+                              >
+      {tag}
+    </span>
                           ))}
                         </div>
-                        <a
-                            href={project.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="link-underline inline-flex w-fit items-center gap-2 text-sm font-semibold text-[color:var(--brand)] transition-all hover:gap-3"
-                        >
-                          <FaGithub size={16} /> View on GitHub <ArrowUpRight size={14} />
-                        </a>
+
+                        <div className="flex flex-wrap gap-4">
+                          {project.githubBackend && (
+                              <a
+                                  href={project.githubBackend}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="link-underline inline-flex items-center gap-2 text-sm font-semibold text-[color:var(--brand)] transition-all hover:gap-3"
+                              >
+                                <FaGithub size={16} />
+                                Backend
+                                <ArrowUpRight size={14} />
+                              </a>
+                          )}
+
+                          {project.githubFrontend && (
+                              <a
+                                  href={project.githubFrontend}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="link-underline inline-flex items-center gap-2 text-sm font-semibold text-[color:var(--brand)] transition-all hover:gap-3"
+                              >
+                                <FaGithub size={16} />
+                                Frontend
+                                <ArrowUpRight size={14} />
+                              </a>
+                          )}
+
+                          {!project.githubBackend && project.github && (
+                              <a
+                                  href={project.github}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="link-underline inline-flex items-center gap-2 text-sm font-semibold text-[color:var(--brand)] transition-all hover:gap-3"
+                              >
+                                <FaGithub size={16} />
+                                View on GitHub
+                                <ArrowUpRight size={14} />
+                              </a>
+                          )}
+                        </div>
                       </div>
                     </article>
                   </ScrollReveal>
