@@ -25,6 +25,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import {
+  FaDiscord,
   FaDocker,
   FaGithub, FaInstagram,
   FaJava,
@@ -924,7 +925,10 @@ export default function Home() {
 
 
           {/* ═══ CONTACT ═══ */}
-          <section id="contact" className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
+          <section
+              id="contact"
+              className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32"
+          >
             <ScrollReveal>
               <div className="glow-border relative overflow-hidden rounded-3xl border border-[color:var(--line-strong)] bg-[color:var(--surface)] p-8 sm:p-12 lg:p-16">
                 {/* Background orbs */}
@@ -932,12 +936,11 @@ export default function Home() {
                 <div className="absolute -bottom-20 -left-20 h-60 w-60 rounded-full bg-[color:var(--accent-gold)] opacity-[0.04] blur-[80px]" />
 
                 <div className="relative grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:items-start">
-
                   {/* Left */}
                   <div className="space-y-6">
-          <span className="section-label flex items-center gap-2">
-            <Mail size={14} /> Contact
-          </span>
+                  <span className="section-label flex items-center gap-2">
+                    <Mail size={14} /> Contact
+                  </span>
 
                     <h2 className="section-title gradient-text leading-tight">
                       Let&apos;s build something
@@ -946,18 +949,20 @@ export default function Home() {
                     </h2>
 
                     <p className="max-w-xl text-base leading-relaxed text-[color:var(--muted)] sm:text-lg">
-                      I&apos;m open to internships, freelance missions, and collaborative
-                      product work. If you need a developer who cares about both the
-                      architecture and the user experience — let&apos;s talk.
+                      I&apos;m open to internships, freelance missions, and
+                      collaborative product work. If you need a developer who
+                      cares about both the architecture and the user experience —
+                      let&apos;s talk.
                     </p>
 
                     {/* Social icons */}
-                    <div className="flex gap-3 pt-2">
+                    <div className="flex flex-wrap gap-3 pt-2">
                       <a
                           href="https://github.com/Rida1019-taki"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="icon-lift flex h-12 w-12 items-center justify-center rounded-xl border border-[color:var(--line)] bg-[color:var(--surface-2)] text-[color:var(--muted)] transition hover:text-white hover:bg-[color:var(--brand)]"
+                          className="icon-lift flex h-12 w-12 items-center justify-center rounded-xl border border-[color:var(--line)] bg-[color:var(--surface-2)] text-[color:var(--muted)] transition hover:bg-[color:var(--brand)] hover:text-white"
+                          aria-label="GitHub"
                       >
                         <FaGithub size={20} />
                       </a>
@@ -966,7 +971,8 @@ export default function Home() {
                           href="https://www.linkedin.com/in/rida-taki-bb44a8350"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="icon-lift flex h-12 w-12 items-center justify-center rounded-xl border border-[color:var(--line)] bg-[color:var(--surface-2)] text-[color:var(--muted)] transition hover:text-white hover:bg-[color:var(--brand)]"
+                          className="icon-lift flex h-12 w-12 items-center justify-center rounded-xl border border-[color:var(--line)] bg-[color:var(--surface-2)] text-[color:var(--muted)] transition hover:bg-[color:var(--brand)] hover:text-white"
+                          aria-label="LinkedIn"
                       >
                         <FaLinkedin size={20} />
                       </a>
@@ -975,29 +981,40 @@ export default function Home() {
                           href="https://wa.me/212649487957"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="icon-lift flex h-12 w-12 items-center justify-center rounded-xl border border-[color:var(--line)] bg-[color:var(--surface-2)] text-[color:var(--muted)] transition hover:text-white hover:bg-green-600"
+                          className="icon-lift flex h-12 w-12 items-center justify-center rounded-xl border border-[color:var(--line)] bg-[color:var(--surface-2)] text-[color:var(--muted)] transition hover:bg-green-600 hover:text-white"
+                          aria-label="WhatsApp"
                       >
                         <FaWhatsapp size={20} />
+                      </a>
+
+                      <a
+                          href="https://discord.com/users/rida_taki"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="icon-lift flex h-12 w-12 items-center justify-center rounded-xl border border-[color:var(--line)] bg-[color:var(--surface-2)] text-[color:var(--muted)] transition hover:bg-[#5865F2] hover:text-white"
+                          aria-label="Discord"
+                      >
+                        <FaDiscord size={20} />
                       </a>
 
                       <a
                           href="https://www.instagram.com/rida_taki_10?igsh=OW5pZnI2Mjh2ejBv"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="icon-lift flex h-12 w-12 items-center justify-center rounded-xl border border-[color:var(--line)] bg-[color:var(--surface-2)] text-[color:var(--muted)] transition hover:text-white hover:bg-pink-600"
+                          className="icon-lift flex h-12 w-12 items-center justify-center rounded-xl border border-[color:var(--line)] bg-[color:var(--surface-2)] text-[color:var(--muted)] transition hover:bg-pink-600 hover:text-white"
+                          aria-label="Instagram"
                       >
                         <FaInstagram size={20} />
                       </a>
                     </div>
                   </div>
+
                   {/* Right */}
                   <form
                       onSubmit={sendEmail}
                       className="space-y-5 rounded-2xl border border-[color:var(--line)] bg-[color:var(--surface-2)] p-6 sm:p-7"
                   >
-                    <h3 className="text-xl font-bold">
-                      Send me a message
-                    </h3>
+                    <h3 className="text-xl font-bold">Send me a message</h3>
 
                     <div>
                       <label className="mb-2 block text-sm font-medium">
@@ -1007,7 +1024,8 @@ export default function Home() {
                           name="from_name"
                           type="text"
                           placeholder="Your name"
-                          className="w-full rounded-xl border border-[color:var(--line)] bg-transparent px-4 py-3 outline-none"
+                          className="w-full rounded-xl border border-[color:var(--line)] bg-transparent px-4 py-3 outline-none focus:border-[color:var(--brand)] transition-colors"
+                          required
                       />
                     </div>
 
@@ -1019,7 +1037,8 @@ export default function Home() {
                           name="from_email"
                           type="email"
                           placeholder="your@email.com"
-                          className="w-full rounded-xl border border-[color:var(--line)] bg-transparent px-4 py-3 outline-none"
+                          className="w-full rounded-xl border border-[color:var(--line)] bg-transparent px-4 py-3 outline-none focus:border-[color:var(--brand)] transition-colors"
+                          required
                       />
                     </div>
 
@@ -1031,7 +1050,8 @@ export default function Home() {
                           name="subject"
                           type="text"
                           placeholder="Subject"
-                          className="w-full rounded-xl border border-[color:var(--line)] bg-transparent px-4 py-3 outline-none"
+                          className="w-full rounded-xl border border-[color:var(--line)] bg-transparent px-4 py-3 outline-none focus:border-[color:var(--brand)] transition-colors"
+                          required
                       />
                     </div>
 
@@ -1043,7 +1063,8 @@ export default function Home() {
                           name="message"
                           rows={5}
                           placeholder="Write your message..."
-                          className="w-full rounded-xl border border-[color:var(--line)] bg-transparent px-4 py-3 outline-none"
+                          className="w-full rounded-xl border border-[color:var(--line)] bg-transparent px-4 py-3 outline-none focus:border-[color:var(--brand)] transition-colors"
+                          required
                       />
                     </div>
 
@@ -1055,7 +1076,6 @@ export default function Home() {
                       {loading ? "Sending..." : "Send Message"}
                     </button>
                   </form>
-
                 </div>
               </div>
             </ScrollReveal>
@@ -1073,23 +1093,28 @@ export default function Home() {
               © 2026 Rida Taki
             </span>
             </div>
+
             <p className="text-xs text-[color:var(--muted)]">
               Designed &amp; developed with ♥ and clean code.
             </p>
+
             <div className="flex gap-3">
               <a
                   href="https://github.com/Rida1019-taki"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="icon-lift text-[color:var(--muted)]"
+                  className="icon-lift text-[color:var(--muted)] transition-colors hover:text-white"
+                  aria-label="GitHub"
               >
                 <FaGithub size={18} />
               </a>
+
               <a
                   href="https://www.linkedin.com/in/rida-taki-bb44a8350"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="icon-lift text-[color:var(--muted)]"
+                  className="icon-lift text-[color:var(--muted)] transition-colors hover:text-white"
+                  aria-label="LinkedIn"
               >
                 <FaLinkedin size={18} />
               </a>
@@ -1102,6 +1127,16 @@ export default function Home() {
                   aria-label="WhatsApp"
               >
                 <FaWhatsapp size={18} />
+              </a>
+
+              <a
+                  href="https://discord.com/users/rida_taki"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="icon-lift text-[color:var(--muted)] transition hover:text-[#5865F2]"
+                  aria-label="Discord"
+              >
+                <FaDiscord size={18} />
               </a>
 
               <a
