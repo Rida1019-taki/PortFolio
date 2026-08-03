@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+@property --font-outfit { syntax: "*"; inherits: true; }
+@property --font-cormorant { syntax: "*"; inherits: true; }
+@property --font-ui-mono { syntax: "*"; inherits: true; }
+
+@property --glow-x { syntax: "<length-percentage>"; inherits: false; initial-value: 50%; }
+@property --glow-y { syntax: "<length-percentage>"; inherits: false; initial-value: 50%; }
+
+:root {
+  --font-outfit: system-ui, sans-serif;
+  --font-cormorant: Georgia, serif;
+  --font-ui-mono: monospace;
+}
+
 :root {
   --background: #0e0c0b;
   --surface: #1a1714;
@@ -247,10 +260,11 @@ body::before {
 }
 
 /* ═══════════════════════════════════════════
-   Bento Card
+   Bento Card (Solid/Semi-opaque)
    ═══════════════════════════════════════════ */
 .bento {
-  background: rgba(26, 23, 20, 0.65);
+  /* خلفية غامقة محددة (0.85) باش تغطي الفيديو وما يبقاش الشفافية الزائدة */
+  background: rgba(18, 16, 14, 0.85);
   border: 1px solid var(--line);
   border-radius: 1.5rem;
   backdrop-filter: blur(12px);
@@ -267,7 +281,7 @@ body::before {
   border-radius: inherit;
   background: radial-gradient(
           ellipse at var(--glow-x, 50%) var(--glow-y, 50%),
-          rgba(224, 112, 64, 0.06) 0%,
+          rgba(224, 112, 64, 0.08) 0%,
           transparent 60%
   );
   opacity: 0;
@@ -280,13 +294,13 @@ body::before {
 }
 
 .bento:hover {
+  background: rgba(18, 16, 14, 0.95); /* كيزيد يغماق كثر فـ Hover */
   border-color: var(--line-strong);
   transform: translateY(-4px);
   box-shadow:
-          0 20px 50px -15px rgba(0, 0, 0, 0.4),
-          0 0 0 1px rgba(224, 112, 64, 0.05);
+          0 20px 50px -15px rgba(0, 0, 0, 0.5),
+          0 0 0 1px rgba(224, 112, 64, 0.1);
 }
-
 /* ═══════════════════════════════════════════
    Project Card
    ═══════════════════════════════════════════ */

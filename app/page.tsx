@@ -48,7 +48,7 @@ import MobileMenu from "@/components/MobileMenu";
 import AnimatedNumber from "@/components/AnimatedNumber";
 import TypewriterText from "@/components/TypewriterText";
 import emailjs from "@emailjs/browser";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 export default function Home() {
   const skills = [
@@ -268,6 +268,24 @@ export default function Home() {
       setLoading(false);
     }
   };
+
+  // 1. زيد هاد State و useEffect فـ بداية Home()
+  const [isPastAbout, setIsPastAbout] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const aboutSection = document.getElementById("about");
+      if (aboutSection) {
+        const rect = aboutSection.getBoundingClientRect();
+        // غير يفوت الأسفل ديال About منتصف الشاشة كتغير الشفافية
+        setIsPastAbout(rect.bottom < window.innerHeight / 2);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
       <div className="min-h-screen text-[var(--foreground)] relative">
 
@@ -284,7 +302,14 @@ export default function Home() {
             <source src="/video/portfolio.mp4" type="video/mp4" />
           </video>
 
-          <div className="absolute inset-0 bg-black/60" />
+          {/* Overlay: فـ Hero خفيف، ومن بعد كيتزاد التظليل والـ Blur باش المحتوى يبان قاطح */}
+          <div
+              className={`absolute inset-0 transition-all duration-700 ease-in-out ${
+                  isPastAbout
+                      ? "bg-black/80 backdrop-blur-md"   /* 👈 تغماق 80% + Blur خفيف باش الفيديو ما يشتتش العين */
+                      : "bg-black/50 backdrop-blur-none"  /* 👈 فـ Hero كيبان الفيديو واضح سينمائي */
+              }`}
+          />
         </div>
 
         <ParticleField />
@@ -357,7 +382,7 @@ export default function Home() {
                                   hover:bg-white/10
                                   hover:shadow-[0_0_25px_rgba(212,168,83,0.35)]
                                 "
-                                                      >
+                        >
                                 <span
                                     className="
                                     absolute
@@ -374,7 +399,7 @@ export default function Home() {
                                   "
                                 />
 
-                                                        <span className="relative z-10">
+                          <span className="relative z-10">
                                   {item}
                                 </span>
                         </a>

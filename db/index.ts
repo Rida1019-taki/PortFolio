@@ -1,10 +1,11 @@
 import { drizzle } from "drizzle-orm/node-postgres";
 import { Pool } from "pg";
+import * as schema from "./schema"; // استورد الـ schema ديالك هنا
 
 const databaseUrl = process.env.DATABASE_URL;
 
 if (!databaseUrl) {
-    throw new Error("DATABASE_URL is required");
+    throw new Error("DATABASE_URL environment variable is required");
 }
 
 const globalForDb = globalThis as typeof globalThis & {
@@ -21,4 +22,5 @@ if (process.env.NODE_ENV !== "production") {
     globalForDb.__arenaNextJsPostgresqlPool = pool;
 }
 
-export const db = drizzle(pool);
+// تمرير الـ schema للـ drizzle كي يعطيك type-safe queries
+export const db = drizzle(pool, { schema });
