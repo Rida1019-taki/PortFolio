@@ -129,7 +129,7 @@ export default function Home() {
         "Yup",
         "MUI",
       ],
-      image: "/logitrack.png",
+      image: "/logitrack1.png",
       githubBackend: "https://github.com/Rida1019-taki/LogiTrack",
       githubFrontend: "https://github.com/Rida1019-taki/LogiTrack_FrontEnd",
       accent: "#e07040",
@@ -269,7 +269,6 @@ export default function Home() {
     }
   };
 
-  // 1. زيد هاد State و useEffect فـ بداية Home()
   const [isPastAbout, setIsPastAbout] = useState(false);
 
   useEffect(() => {
@@ -277,7 +276,6 @@ export default function Home() {
       const aboutSection = document.getElementById("about");
       if (aboutSection) {
         const rect = aboutSection.getBoundingClientRect();
-        // غير يفوت الأسفل ديال About منتصف الشاشة كتغير الشفافية
         setIsPastAbout(rect.bottom < window.innerHeight / 2);
       }
     };
@@ -302,7 +300,6 @@ export default function Home() {
             <source src="/video/portfolio.mp4" type="video/mp4" />
           </video>
 
-          {/* Overlay: فـ Hero خفيف، ومن بعد كيتزاد التظليل والـ Blur باش المحتوى يبان قاطح */}
           <div
               className={`absolute inset-0 transition-all duration-700 ease-in-out ${
                   isPastAbout
@@ -454,7 +451,7 @@ export default function Home() {
                   </div>
 
                   <div className="flex items-center gap-2 text-xs font-mono text-gray-400">
-                    <span className="text-[#D9A441]">//</span>
+                    <span className="text-[#D9A441]">{"//"}</span>
                     <span>Clean Code Advocate</span>
                   </div>
                 </div>
@@ -581,48 +578,63 @@ export default function Home() {
             </div>
           </div>
 
-          {/* ═══ SKILLS ═══ */}
-          <section
-              id="skills"
-              className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32 relative overflow-hidden"
-          >
+          {/* ═══ SKILLS SECTION ═══ */}
+          <section id="skills" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
             <ScrollReveal>
               <div className="mb-14 max-w-2xl space-y-4">
-              <span className="section-label flex items-center gap-2">
-                <Code2 size={14} /> Technical Expertise
+              <span className="section-label inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
+                <Code2 size={14} /> Technical Arsenal
               </span>
-                <h2 className="section-title gradient-text">
-                  The tools I use to build
+                <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
+                  <span className="gradient-text">Architecting with </span>
+                  <br />
+                  <span className="brand-gradient-text italic font-serif">modern precision.</span>
                 </h2>
                 <p className="text-base leading-relaxed text-[color:var(--muted)] sm:text-lg">
-                  From backend systems to mobile apps — here&apos;s the technology stack
-                  I work with daily to deliver production-ready solutions.
+                  From resilient backends to fluid mobile applications — these are the core tools and frameworks I rely on daily.
                 </p>
               </div>
             </ScrollReveal>
 
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {skills.map((skill, i) => (
                   <ScrollReveal key={skill.category} delay={i * 80}>
-                    <div className="bento h-full rounded-2xl p-6 sm:p-7">
-                      <div className="mb-5 flex items-center gap-3">
-                        <div
-                            className="flex h-11 w-11 items-center justify-center rounded-xl"
-                            style={{
-                              background: `color-mix(in oklab, ${skill.accent} 12%, transparent)`,
-                              color: skill.accent,
-                            }}
-                        >
-                          {skill.icon}
-                        </div>
-                        <h3 className="text-base font-semibold">{skill.category}</h3>
-                      </div>
-                      <div className="flex flex-wrap gap-2">
-                        {skill.items.map((item) => (
-                            <span key={item} className="tag rounded-full px-3.5 py-1.5 text-xs font-medium text-[color:var(--foreground-dim)]">
-                        {item}
+                    <div className="bento group relative flex flex-col justify-between rounded-2xl p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[color:var(--line-strong)]">
+                      <div>
+                        <div className="mb-6 flex items-center justify-between">
+                          <div
+                              className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 transition-transform duration-300 group-hover:scale-110"
+                              style={{
+                                background: `color-mix(in oklab, ${skill.accent} 10%, transparent)`,
+                                color: skill.accent,
+                              }}
+                          >
+                            {skill.icon}
+                          </div>
+
+                          <span className="rounded-full border border-white/5 bg-white/[0.03] px-3 py-1 text-[10px] font-mono uppercase tracking-widest text-[color:var(--muted)]">
+                        {skill.items.length} Skills
                       </span>
-                        ))}
+                        </div>
+
+                        <h3 className="mb-4 text-lg font-bold text-white tracking-wide">
+                          {skill.category}
+                        </h3>
+
+                        <div className="flex flex-wrap gap-2">
+                          {skill.items.map((item) => (
+                              <span
+                                  key={item}
+                                  className="inline-flex items-center gap-2 rounded-lg border border-white/5 bg-white/[0.03] px-3.5 py-1.5 text-xs font-medium text-gray-300 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.08] hover:text-white"
+                              >
+                          <span
+                              className="h-1.5 w-1.5 rounded-full"
+                              style={{ backgroundColor: skill.accent }}
+                          />
+                                {item}
+                        </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </ScrollReveal>
@@ -632,85 +644,68 @@ export default function Home() {
 
           <div className="section-divider mx-auto max-w-7xl" />
 
-          {/* ═══ PROJECTS ═══ */}
-          <section id="work" className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
+          {/* ═══ PROJECTS (WORK) ═══ */}
+          <section id="work" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
             <ScrollReveal>
-              <div className="mb-14 max-w-2xl space-y-4">
-              <span className="section-label flex items-center gap-2">
-                <Briefcase size={14} /> Selected Projects
-              </span>
-                <h2 className="section-title gradient-text">
-                  Projects I&apos;m proud of
-                </h2>
-                <p className="text-base leading-relaxed text-[color:var(--muted)] sm:text-lg">
-                  Real-world applications built with production standards, clean architecture,
-                  and thoughtful user experience.
+              <div className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8">
+                <div>
+                  <div className="flex items-center gap-2 font-mono text-xs text-[#D9A441] mb-3">
+                    <span className="text-white/40">{"//"}</span>
+                    <span className="uppercase tracking-[0.2em] font-medium">Selected Works</span>
+                  </div>
+                  <h2 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white">
+                    Featured <span className="italic font-serif font-normal text-[var(--brand)]">Projects</span>
+                  </h2>
+                </div>
+                <p className="max-w-md text-sm sm:text-base text-[color:var(--muted)] leading-relaxed">
+                  Real-world applications built with production standards, clean architecture, and intuitive user experience.
                 </p>
               </div>
             </ScrollReveal>
 
-            <div className="space-y-6">
+            <div className="space-y-24">
               {projects.map((project, i) => (
-                  <ScrollReveal key={project.name} delay={i * 120}>
-                    <article className="bento project-card group grid gap-0 overflow-hidden rounded-2xl md:grid-cols-[1fr_1.1fr] lg:grid-cols-[1fr_1.3fr]">
-                      {/* Image side */}
-                      <div className="relative aspect-video overflow-hidden md:aspect-auto md:min-h-[320px]">
-                        <Image
-                            src={project.image}
-                            alt={project.name}
-                            fill
-                            className="project-img object-cover"
-                        />
-                        {/* Gradient overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[color:var(--surface)]/80 hidden md:block" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--surface)] to-transparent md:hidden" />
-                        {/* Project number */}
-                        <div className="absolute left-5 top-5 z-10">
-                      <span
-                          className="display text-5xl font-bold opacity-20"
-                          style={{ color: project.accent }}
-                      >
+                  <ScrollReveal key={project.name} delay={i * 100}>
+                    <article className="group grid gap-8 lg:grid-cols-12 items-center">
+                      <div className={`space-y-6 lg:col-span-5 ${i % 2 === 1 ? 'lg:order-2' : ''}`}>
+                        <div className="flex items-center gap-4">
+                      <span className="font-mono text-3xl font-light text-[#D9A441]">
                         {project.number}
                       </span>
+                          <div className="h-[1px] w-12 bg-white/20" />
+                          <span className="text-xs font-mono uppercase tracking-widest text-[color:var(--muted)]">
+                        {project.subtitle}
+                      </span>
                         </div>
-                        {/* Accent bar */}
-                        <div
-                            className="absolute bottom-0 left-0 right-0 h-[2px] md:bottom-auto md:left-auto md:right-0 md:top-0 md:h-full md:w-[2px]"
-                            style={{ background: `linear-gradient(to right, ${project.accent}, transparent)` }}
-                        />
-                      </div>
 
-                      {/* Content side */}
-                      <div className="flex flex-col justify-center p-6 sm:p-8 lg:p-10">
-                        <div className="mb-1 text-xs font-semibold uppercase tracking-[0.16em] text-[color:var(--muted)]">
-                          {project.subtitle}
-                        </div>
-                        <h3 className="mb-3 text-2xl font-bold sm:text-3xl">{project.name}</h3>
-                        <p className="mb-6 leading-relaxed text-[color:var(--muted)]">
+                        <h3 className="text-3xl sm:text-4xl font-bold text-white transition-colors duration-300 group-hover:text-[var(--brand)]">
+                          {project.name}
+                        </h3>
+
+                        <p className="text-base text-[color:var(--muted)] leading-relaxed">
                           {project.description}
                         </p>
-                        <div className="mb-6 flex flex-wrap gap-2">
+
+                        <div className="flex flex-wrap gap-2 pt-2">
                           {project.tags.map((tag) => (
                               <span
                                   key={tag}
-                                  className="tag rounded-full px-3 py-1 text-[11px] font-medium text-[color:var(--foreground-dim)]"
+                                  className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-mono text-gray-300"
                               >
-      {tag}
-    </span>
+                          {tag}
+                        </span>
                           ))}
                         </div>
 
-                        <div className="flex flex-wrap gap-4">
+                        <div className="flex flex-wrap gap-4 pt-4">
                           {project.githubBackend && (
                               <a
                                   href={project.githubBackend}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="link-underline inline-flex items-center gap-2 text-sm font-semibold text-[color:var(--brand)] transition-all hover:gap-3"
+                                  className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-white border-b border-white/30 pb-1 transition-all hover:border-[var(--brand)] hover:text-[var(--brand)]"
                               >
-                                <FaGithub size={16} />
-                                Backend
-                                <ArrowUpRight size={14} />
+                                <FaGithub size={14} /> Backend Code <ArrowUpRight size={12} />
                               </a>
                           )}
 
@@ -719,11 +714,9 @@ export default function Home() {
                                   href={project.githubFrontend}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="link-underline inline-flex items-center gap-2 text-sm font-semibold text-[color:var(--brand)] transition-all hover:gap-3"
+                                  className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-white border-b border-white/30 pb-1 transition-all hover:border-[var(--brand)] hover:text-[var(--brand)]"
                               >
-                                <FaGithub size={16} />
-                                Frontend
-                                <ArrowUpRight size={14} />
+                                <FaGithub size={14} /> Frontend Code <ArrowUpRight size={12} />
                               </a>
                           )}
 
@@ -732,13 +725,25 @@ export default function Home() {
                                   href={project.github}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="link-underline inline-flex items-center gap-2 text-sm font-semibold text-[color:var(--brand)] transition-all hover:gap-3"
+                                  className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-white border-b border-white/30 pb-1 transition-all hover:border-[var(--brand)] hover:text-[var(--brand)]"
                               >
-                                <FaGithub size={16} />
-                                View on GitHub
-                                <ArrowUpRight size={14} />
+                                <FaGithub size={14} /> View Repository <ArrowUpRight size={12} />
                               </a>
                           )}
+                        </div>
+                      </div>
+
+                      <div className={`lg:col-span-7 ${i % 2 === 1 ? 'lg:order-1' : ''}`}>
+                        <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-2 transition-all duration-500 group-hover:border-white/20 group-hover:shadow-2xl">
+                          <div className="relative aspect-[16/10] overflow-hidden rounded-xl">
+                            <Image
+                                src={project.image}
+                                alt={project.name}
+                                fill
+                                className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                            />
+                            <div className="absolute inset-0 bg-black/20 transition-opacity duration-500 group-hover:opacity-0" />
+                          </div>
                         </div>
                       </div>
                     </article>
