@@ -160,10 +160,10 @@ body::before {
    Hero Gradient Mesh
    ═══════════════════════════════════════════ */
 .hero-mesh {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  z-index: 0;
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  z-index:1;
 }
 
 .hero-mesh .orb {
@@ -608,7 +608,17 @@ body {
 .video-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(14, 12, 11, 0.55);
+  background:
+          linear-gradient(
+                  180deg,
+                  rgba(14,12,11,.75),
+                  rgba(14,12,11,.55)
+          ),
+          radial-gradient(
+                  circle at 70% 30%,
+                  rgba(224,112,64,.15),
+                  transparent 40%
+          );
 }
 
 /* Allow sections to show video */
@@ -630,4 +640,208 @@ html {
   .video-bg {
     object-position: center;
   }
+}
+
+.nav-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 999px;
+  transition: all .3s ease;
+}
+
+.nav-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg,#C9A063,#B8860B);
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+
+.nav-item:hover::before {
+  opacity: .18;
+}
+
+.nav-item:hover {
+  color: white;
+  transform: translateY(-2px);
+  box-shadow:
+          0 0 20px rgba(212,168,83,.35),
+          inset 0 0 15px rgba(255,255,255,.08);
+}
+
+.float-badge-3d {
+  animation: floatBadge3D 5s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+
+@keyframes floatBadge3D {
+  0%,100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-12px) rotate(2deg);
+  }
+}
+
+
+@keyframes textReveal {
+  0% {
+    opacity:0;
+    transform:translateX(-35px);
+    letter-spacing:8px;
+    filter:blur(6px);
+  }
+
+  100% {
+    opacity:1;
+    transform:translateX(0);
+    letter-spacing:0;
+    filter:blur(0);
+  }
+}
+
+
+@keyframes badgeReveal {
+  0% {
+    opacity:0;
+    transform:translateY(20px) scale(.85);
+    filter:blur(6px);
+  }
+
+  100% {
+    opacity:1;
+    transform:translateY(0) scale(1);
+    filter:blur(0);
+  }
+}
+
+
+@keyframes pulseGlow {
+  0%,100% {
+    filter:drop-shadow(0 0 0px var(--accent-gold));
+  }
+
+  50% {
+    filter:drop-shadow(0 0 10px var(--accent-gold));
+  }
+}
+
+/* =====================================
+   Premium Hero Background
+===================================== */
+
+.hero-effects {
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  z-index:0;
+  pointer-events:none;
+}
+
+
+/* Animated grid */
+
+.floating-grid {
+  position:absolute;
+  inset:0;
+  background-image:
+          linear-gradient(
+                  rgba(255,255,255,.035) 1px,
+                  transparent 1px
+          ),
+          linear-gradient(
+                  90deg,
+                  rgba(255,255,255,.035) 1px,
+                  transparent 1px
+          );
+
+  background-size:70px 70px;
+  mask-image:radial-gradient(
+          circle at center,
+          black,
+          transparent 75%
+  );
+
+  animation:gridMove 25s linear infinite;
+}
+
+
+@keyframes gridMove {
+  from {
+    transform:translateY(0);
+  }
+
+  to {
+    transform:translateY(70px);
+  }
+}
+
+
+
+/* Light Orbs */
+
+.light-orb {
+  position:absolute;
+  border-radius:50%;
+  filter:blur(120px);
+  animation:orbMove 12s ease-in-out infinite alternate;
+}
+
+
+.orb-orange {
+  width:500px;
+  height:500px;
+  background:rgba(224,112,64,.18);
+  top:-150px;
+  right:-100px;
+}
+
+
+.orb-gold {
+  width:400px;
+  height:400px;
+  background:rgba(212,168,83,.12);
+  bottom:-150px;
+  left:100px;
+  animation-delay:2s;
+}
+
+
+.orb-blue {
+  width:350px;
+  height:350px;
+  background:rgba(90,143,212,.12);
+  top:40%;
+  left:45%;
+  animation-delay:4s;
+}
+
+
+
+@keyframes orbMove {
+
+  0% {
+    transform:translate(0,0) scale(1);
+  }
+
+  100% {
+    transform:translate(50px,-40px) scale(1.15);
+  }
+
+}
+
+
+
+/* Film grain */
+
+.noise-layer {
+  position:absolute;
+  inset:0;
+  opacity:.04;
+  background-image:url(
+  "data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.8'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E"
+  );
 }

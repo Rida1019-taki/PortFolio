@@ -290,176 +290,228 @@ export default function Home() {
         <MouseGlow />
 
         {/* ═══ NAVBAR ═══ */}
-        <nav className="glass-nav fixed top-0 z-50 w-full">
-          <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8">
-            <a href="#" className="flex items-center gap-3">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[color:var(--brand)] to-[#c05530] text-sm font-bold text-white">
-                RT
-              </div>
-              <div className="hidden sm:block">
-                <span className="display text-lg font-semibold leading-none">Rida Taki</span>
-              </div>
-            </a>
+        <header className="fixed top-5 inset-x-0 z-50 flex justify-center">
+          <nav
+              className="w-fit"
+          >
+            <div
+                className="relative overflow-hidden rounded-full"
+                style={{
+                  background:
+                      "linear-gradient(135deg,rgba(255,255,255,.08),rgba(201,160,99,.16),rgba(139,94,52,.18))",
+                  backdropFilter: "blur(30px)",
+                  WebkitBackdropFilter: "blur(30px)",
+                  border: "1px solid rgba(255,255,255,.12)",
+                  boxShadow:
+                      "0 20px 60px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.15)",
+                }}
+            >
+              <div className="glass-shine" />
 
-            <div className="hidden items-center gap-7 md:flex">
-              {["About", "Skills", "Work", "Education", "Hackathons", "Resume", "Contact"].map((item) => (
-                  <a
-                      key={item}
-                      href={`#${item.toLowerCase()}`}
-                      className="nav-link font-medium text-[color:var(--muted)] transition hover:text-[color:var(--foreground)]"
+              <div className="flex h-[74px] items-center gap-10 px-8">
+                {/* Logo */}
+                <a href="#" className="flex items-center gap-3">
+                  <div
+                      className="flex h-10 w-10 items-center justify-center rounded-xl font-bold text-white"
+                      style={{
+                        background:
+                            "linear-gradient(135deg,#C9A063,#8B5E34,#B8860B)",
+                      }}
                   >
-                    {item}
-                  </a>
-              ))}
-            </div>
+                    RT
+                  </div>
 
-            <div className="flex items-center gap-3">
-              <a
-                  href="#contact"
-                  className="btn-primary hidden rounded-full px-5 py-2 text-sm font-semibold text-white sm:inline-flex sm:items-center sm:gap-2"
-              >
-                Hire me <Zap size={14} />
-              </a>
-              <MobileMenu />
+                  <span className="hidden md:block font-semibold text-white">
+            Rida Taki
+          </span>
+                </a>
+
+                {/* Links */}
+                <ul className="hidden md:flex items-center gap-2">
+                  {[
+                    "About",
+                    "Skills",
+                    "Work",
+                    "Education",
+                    "Hackathons",
+                    "Resume",
+                    "Contact",
+                  ].map((item) => (
+                      <li key={item}>
+                        <a
+                            key={item}
+                            href={`#${item.toLowerCase()}`}
+                            className="
+                                  relative
+                                  overflow-hidden
+                                  rounded-full
+                                  px-5
+                                  py-2.5
+                                  text-sm
+                                  font-medium
+                                  text-white/80
+                                  transition-all
+                                  duration-300
+                                  hover:text-white
+                                  hover:bg-white/10
+                                  hover:shadow-[0_0_25px_rgba(212,168,83,0.35)]
+                                "
+                                                      >
+                                <span
+                                    className="
+                                    absolute
+                                    inset-0
+                                    rounded-full
+                                    bg-gradient-to-r
+                                    from-[#C9A063]
+                                    via-[#D9A441]
+                                    to-[#B8860B]
+                                    opacity-0
+                                    transition-opacity
+                                    duration-300
+                                    group-hover:opacity-20
+                                  "
+                                />
+
+                                                        <span className="relative z-10">
+                                  {item}
+                                </span>
+                        </a>
+                      </li>
+                  ))}
+                </ul>
+
+                {/* Right */}
+                <div className="flex items-center gap-3">
+                  <a
+                      href="#contact"
+                      className="hidden sm:flex items-center rounded-full px-5 py-2 text-sm font-semibold text-white"
+                      style={{
+                        background:
+                            "linear-gradient(135deg,#C9A063,#B8860B)",
+                      }}
+                  >
+                    Hire Me
+                  </a>
+
+                  <MobileMenu />
+                </div>
+              </div>
             </div>
-          </div>
-        </nav>
+          </nav>
+        </header>
 
         <main className="relative z-10">
           {/* ═══ HERO ═══ */}
-          <section id="about" className="relative min-h-screen flex items-center overflow-hidden">
-            <div className="hero-mesh">
-              <div className="orb orb-1" />
-              <div className="orb orb-2" />
-              <div className="orb orb-3" />
+          <section
+              id="about"
+              className="relative min-h-screen flex items-center overflow-hidden z-10"
+          >
+            <div className="hero-effects">
+              <div className="floating-grid" />
+              <div className="light-orb orb-orange" />
+              <div className="light-orb orb-gold" />
+              <div className="light-orb orb-blue" />
+              <div className="noise-layer" />
             </div>
 
-            <div className="mx-auto max-w-7xl px-5 py-32 sm:px-8 md:py-0">
-              <div className="grid items-center gap-12 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
-                {/* Left */}
-                <div className="relative z-10 space-y-8">
-                  <div className="reveal flex items-center gap-3">
+            <div className="relative z-10 mx-auto max-w-6xl px-5 py-28 sm:px-8">
+              <div className="space-y-12">
+
+                {/* Header Tags */}
+                <div className="reveal flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-6">
+                  <div className="flex items-center gap-3">
                     <div className="status-dot" />
-                    <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--accent-emerald)]">
-                    Available for projects
-                  </span>
+                    <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[color:var(--accent-emerald)]">
+            Available for projects
+          </span>
                   </div>
 
-                  <h1 className="reveal reveal-d1 display text-[clamp(2.8rem,7vw,5rem)] leading-[0.92] tracking-tight">
-                    <span className="gradient-text">Crafting digital</span>
+                  <div className="flex items-center gap-2 text-xs font-mono text-gray-400">
+                    <span className="text-[#D9A441]">//</span>
+                    <span>Clean Code Advocate</span>
+                  </div>
+                </div>
+
+                {/* Main Massive Title */}
+                <div className="reveal reveal-d1 space-y-4">
+                  <h1 className="display text-[clamp(3rem,8vw,6.5rem)] font-extrabold leading-[0.9] tracking-tighter">
+                    <span className="gradient-text">Crafting digital </span>
                     <br />
-                    <span className="gradient-text">experiences that</span>
+                    <span className="gradient-text">experiences that </span>
                     <br />
-                    <span className="brand-gradient-text">truly matter.</span>
+                    <span className="brand-gradient-text italic font-serif">truly matter.</span>
                   </h1>
-
-                  <div className="reveal reveal-d2 text-lg sm:text-xl">
-                    <TypewriterText />
-                  </div>
-
-                  <p className="reveal reveal-d3 max-w-lg text-base leading-relaxed text-[color:var(--muted)] sm:text-lg">
-                    Full stack &amp; mobile developer from Morocco. I architect robust backends,
-                    build native apps, and craft interfaces people genuinely enjoy using.
-                  </p>
-
-                  {/* Stats */}
-                  <div className="reveal reveal-d4 flex items-center gap-6 sm:gap-8">
-                    <div className="text-center">
-                      <div className="display text-3xl font-bold sm:text-4xl">
-                        <AnimatedNumber value={3} suffix="+" />
-                      </div>
-                      <div className="mt-1 text-[10px] uppercase tracking-[0.16em] text-[color:var(--muted)]">
-                        Projects
-                      </div>
-                    </div>
-                    <div className="stat-divider" />
-                    <div className="text-center">
-                      <div className="display text-3xl font-bold sm:text-4xl">
-                        <AnimatedNumber value={10} suffix="+" />
-                      </div>
-                      <div className="mt-1 text-[10px] uppercase tracking-[0.16em] text-[color:var(--muted)]">
-                        Technologies
-                      </div>
-                    </div>
-                    <div className="stat-divider" />
-                    <div className="text-center">
-                      <div className="display text-3xl font-bold sm:text-4xl">
-                        <AnimatedNumber value={3} />
-                      </div>
-                      <div className="mt-1 text-[10px] uppercase tracking-[0.16em] text-[color:var(--muted)]">
-                        Certifications
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* CTAs */}
-                  <div className="reveal reveal-d5 flex flex-wrap gap-4">
-                    <a
-                        href="#work"
-                        className="btn-primary inline-flex items-center gap-2 rounded-2xl px-7 py-3.5 text-sm font-semibold text-white"
-                    >
-                      View my work <ArrowRight size={16} />
-                    </a>
-                    <a
-                        href="#contact"
-                        className="btn-secondary inline-flex items-center gap-2 rounded-2xl px-7 py-3.5 text-sm font-semibold"
-                    >
-                      <Mail size={16} /> Get in touch
-                    </a>
-                  </div>
                 </div>
 
-                {/* Right — Photo */}
-                <div className="reveal reveal-d3 relative hidden lg:block">
-                  <div className="relative mx-auto max-w-[380px]">
-                    {/* Decorative ring */}
-                    <div className="absolute -inset-4 rounded-[2.5rem] border border-dashed border-white/5" />
-                    <div className="absolute -inset-8 rounded-[3rem] border border-dashed border-white/[0.03]" />
+                {/* Subtitle / Typewriter */}
+                <div className="reveal reveal-d2 text-xl sm:text-2xl font-light text-gray-300">
+                  <TypewriterText />
+                </div>
 
-                    <div className="photo-frame relative rounded-[2rem] overflow-hidden">
-                      <div className="dot-grid absolute inset-0 z-10 opacity-40" />
-                      <div className="relative aspect-[3/4] overflow-hidden rounded-[2rem]">
-                        <Image
-                            src="/image.png"
-                            alt="Rida Taki"
-                            fill
-                            className="object-cover"
-                            priority
-                        />
-                        {/* Bottom gradient */}
-                        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[color:var(--background)] via-[color:var(--background)]/50 to-transparent" />
-                        <div className="absolute bottom-5 left-5 right-5 z-20">
-                          <div className="flex items-center gap-2 text-sm text-[color:var(--foreground-dim)]">
-                            <MapPin size={14} className="text-[color:var(--brand)]" />
-                            Beni Mellal, Morocco
-                          </div>
+                {/* Grid: Bio + Stats & CTAs */}
+                <div className="reveal reveal-d3 grid grid-cols-1 lg:grid-cols-12 gap-8 items-end pt-6 border-t border-white/10">
+
+                  {/* Paragraph Description */}
+                  <div className="lg:col-span-6 space-y-4">
+                    <p className="text-base sm:text-lg leading-relaxed text-[color:var(--muted)]">
+                      Full stack &amp; mobile developer from Morocco. I architect robust backends,
+                      build native apps, and craft interfaces people genuinely enjoy using.
+                    </p>
+
+                    <div className="flex items-center gap-2 text-xs font-medium text-[#D9A441]">
+                      <MapPin size={14} />
+                      <span>Beni Mellal, Morocco</span>
+                    </div>
+                  </div>
+
+                  {/* Stats & Actions Side-by-Side */}
+                  <div className="lg:col-span-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 bg-white/[0.02] p-6 rounded-3xl border border-white/5 backdrop-blur-md">
+
+                    {/* Quick Stats */}
+                    <div className="flex items-center gap-6">
+                      <div>
+                        <div className="display text-2xl font-bold sm:text-3xl text-white">
+                          <AnimatedNumber value={3} suffix="+" />
                         </div>
+                        <div className="text-[9px] uppercase tracking-widest text-[color:var(--muted)]">Projects</div>
+                      </div>
+                      <div className="h-8 w-[1px] bg-white/10" />
+                      <div>
+                        <div className="display text-2xl font-bold sm:text-3xl text-white">
+                          <AnimatedNumber value={10} suffix="+" />
+                        </div>
+                        <div className="text-[9px] uppercase tracking-widest text-[color:var(--muted)]">Techs</div>
+                      </div>
+                      <div className="h-8 w-[1px] bg-white/10" />
+                      <div>
+                        <div className="display text-2xl font-bold sm:text-3xl text-white">
+                          <AnimatedNumber value={3} />
+                        </div>
+                        <div className="text-[9px] uppercase tracking-widest text-[color:var(--muted)]">Certs</div>
                       </div>
                     </div>
 
-                    {/* Floating cards */}
-                    <div className="float-badge absolute -right-6 top-12 z-20 glass rounded-2xl px-4 py-3 shadow-2xl" style={{ animationDelay: "0s" }}>
-                      <div className="flex items-center gap-2 text-xs font-semibold">
-                        <Server size={14} className="text-[color:var(--brand)]" />
-                        <span>Backend</span>
-                      </div>
+                    {/* CTAs */}
+                    <div className="flex items-center gap-3 w-full sm:w-auto">
+                      <a
+                          href="#work"
+                          className="btn-primary flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-xs font-semibold text-white shadow-lg"
+                      >
+                        Work <ArrowRight size={14} />
+                      </a>
+                      <a
+                          href="#contact"
+                          className="btn-secondary flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-xs font-semibold border border-white/10"
+                      >
+                        <Mail size={14} /> Contact
+                      </a>
                     </div>
 
-                    <div className="float-badge absolute -left-6 bottom-32 z-20 glass rounded-2xl px-4 py-3 shadow-2xl" style={{ animationDelay: "-2s" }}>
-                      <div className="flex items-center gap-2 text-xs font-semibold">
-                        <Smartphone size={14} className="text-[color:var(--accent-gold)]" />
-                        <span>Mobile</span>
-                      </div>
-                    </div>
-
-                    <div className="float-badge absolute -right-4 bottom-16 z-20 glass rounded-2xl px-4 py-3 shadow-2xl" style={{ animationDelay: "-4s" }}>
-                      <div className="flex items-center gap-2 text-xs font-semibold">
-                        <Rocket size={14} className="text-[color:var(--accent-emerald)]" />
-                        <span>DevOps</span>
-                      </div>
-                    </div>
                   </div>
+
                 </div>
+
               </div>
             </div>
           </section>
