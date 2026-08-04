@@ -198,7 +198,7 @@ export default function Home() {
       title: "Rally AI Future Lab 2026",
       description:
           "Participated in an AI hackathon focused on innovative healthcare solutions. Worked in a multidisciplinary team to build an AI-powered medical assistant prototype.",
-      image: "/hackathons/rally-ai.jpg",
+      image: "/hackathons/rally-ai1.jpeg",
       tags: ["AI", "Healthcare", "Innovation", "Teamwork"],
     },
     {
