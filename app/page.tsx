@@ -303,8 +303,8 @@ export default function Home() {
           <div
               className={`absolute inset-0 transition-all duration-700 ease-in-out ${
                   isPastAbout
-                      ? "bg-black/80 backdrop-blur-md"   /* 👈 تغماق 80% + Blur خفيف باش الفيديو ما يشتتش العين */
-                      : "bg-black/50 backdrop-blur-none"  /* 👈 فـ Hero كيبان الفيديو واضح سينمائي */
+                      ? "bg-black/80 backdrop-blur-md"   
+                      : "bg-black/50 backdrop-blur-none"  
               }`}
           />
         </div>
@@ -318,7 +318,7 @@ export default function Home() {
               className="w-fit"
           >
             <div
-                className="relative overflow-hidden rounded-full"
+                className="relative overflow-visible rounded-full"
                 style={{
                   background:
                       "linear-gradient(135deg,rgba(255,255,255,.08),rgba(201,160,99,.16),rgba(139,94,52,.18))",
