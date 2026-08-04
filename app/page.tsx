@@ -456,16 +456,16 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Main Massive Title */}
-                <div className="reveal reveal-d1 space-y-4">
-                  <h1 className="display text-[clamp(3rem,8vw,6.5rem)] font-extrabold leading-[0.9] tracking-tighter">
-                    <span className="gradient-text">Crafting digital </span>
-                    <br />
-                    <span className="gradient-text">experiences that </span>
-                    <br />
-                    <span className="brand-gradient-text italic font-serif">truly matter.</span>
-                  </h1>
-                </div>
+                  {/* Main Massive Title */}
+                  <div className="reveal reveal-d1 space-y-4">
+                      <h1 className="display text-[clamp(3rem,8vw,6.5rem)] font-extrabold leading-[0.9] tracking-tighter">
+                          <span className="gradient-text">Crafting digital </span>
+                          <br />
+                          <span className="gradient-text">experiences that </span>
+                          <br />
+                          <span className="brand-gradient-text italic font-serif">truly matter.</span>
+                      </h1>
+                  </div>
 
                 {/* Subtitle / Typewriter */}
                 <div className="reveal reveal-d2 text-xl sm:text-2xl font-light text-gray-300">
@@ -754,433 +754,480 @@ export default function Home() {
 
           <div className="section-divider mx-auto max-w-7xl" />
 
-          {/* ═══ EDUCATION ═══ */}
-          <section id="education" className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
-            <ScrollReveal>
-              <div className="mb-14 max-w-2xl space-y-4">
-              <span className="section-label flex items-center gap-2">
-                <GraduationCap size={14} /> Education
-              </span>
-                <h2 className="section-title gradient-text">
-                  Academic journey
-                </h2>
-              </div>
-            </ScrollReveal>
+            {/* ═══ EDUCATION ═══ */}
+            <section id="education" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
+                <ScrollReveal>
+                    <div className="mb-16 space-y-4 text-center max-w-3xl mx-auto">
+      <span className="section-label inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
+        <GraduationCap size={14} /> Education & Credentials
+      </span>
+                        <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
+                            <span className="gradient-text">Academic </span>
+                            <span className="brand-gradient-text italic font-serif">Background.</span>
+                        </h2>
+                        <p className="text-sm sm:text-base text-[color:var(--muted)] leading-relaxed">
+                            Solid engineering foundations combined with specialized modern software development.
+                        </p>
+                    </div>
+                </ScrollReveal>
 
-            <div className="grid gap-4 md:grid-cols-2">
-              {education.map((edu, i) => (
-                  <ScrollReveal key={edu.institution} delay={i * 100}>
-                    <div className="bento group flex h-full flex-col rounded-2xl p-6 sm:p-8">
-                      <div className="mb-5 flex items-center justify-between">
-                        <div
-                            className="flex h-11 w-11 items-center justify-center rounded-xl"
-                            style={{
-                              background: edu.status === "current"
-                                  ? "color-mix(in oklab, var(--accent-emerald) 12%, transparent)"
-                                  : "color-mix(in oklab, var(--accent-gold) 12%, transparent)",
-                              color: edu.status === "current" ? "var(--accent-emerald)" : "var(--accent-gold)",
-                            }}
-                        >
-                          {edu.status === "current" ? <BookOpen size={20} /> : <GraduationCap size={20} />}
-                        </div>
-                        {edu.status === "current" && (
-                            <div className="flex items-center gap-2 rounded-full border border-[color:var(--accent-emerald)]/20 bg-[color:var(--accent-emerald)]/5 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-[color:var(--accent-emerald)]">
-                              <div className="status-dot" style={{ width: 6, height: 6 }} />
-                              Current
-                            </div>
-                        )}
-                      </div>
-                      <h3 className="mb-1 text-xl font-bold">{edu.degree}</h3>
-                      <p className="mb-4 text-sm text-[color:var(--muted)]">{edu.institution}</p>
-                      <div className="mt-auto">
-                    <span className="inline-flex rounded-lg border border-[color:var(--line)] bg-[color:var(--surface-2)] px-3 py-1.5 text-xs font-semibold text-[color:var(--muted)]">
-                      {edu.period}
+                <div className="grid gap-8 md:grid-cols-2">
+                    {education.map((edu, i) => {
+                        const isCurrent = edu.status === "current";
+                        return (
+                            <ScrollReveal key={edu.institution} delay={i * 120}>
+                                <div className="group relative h-full rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.05] to-transparent p-1 transition-all duration-500 hover:border-[#D9A441]/40 hover:shadow-[0_10px_40px_-15px_rgba(217,164,65,0.2)]">
+
+                                    {/* Glow effect on hover */}
+                                    <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#D9A441]/10 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+                                    <div className="relative flex h-full flex-col justify-between rounded-[22px] bg-black/40 p-8 backdrop-blur-xl">
+
+                                        {/* Header */}
+                                        <div>
+                                            <div className="flex items-center justify-between mb-6">
+                                                <div className="flex items-center gap-3">
+                                                    <div
+                                                        className={`flex h-12 w-12 items-center justify-center rounded-2xl border ${
+                                                            isCurrent
+                                                                ? "border-[color:var(--accent-emerald)]/30 bg-[color:var(--accent-emerald)]/10 text-[color:var(--accent-emerald)]"
+                                                                : "border-[#D9A441]/30 bg-[#D9A441]/10 text-[#D9A441]"
+                                                        }`}
+                                                    >
+                                                        {isCurrent ? <BookOpen size={22} /> : <GraduationCap size={22} />}
+                                                    </div>
+                                                    <div>
+                      <span className="text-xs font-mono uppercase tracking-widest text-white/50 block">
+                        Degree Program
+                      </span>
+                                                        <span className="text-xs font-mono font-semibold text-[#D9A441]">
+                        {edu.period}
+                      </span>
+                                                    </div>
+                                                </div>
+
+                                                {isCurrent && (
+                                                    <span className="inline-flex items-center gap-1.5 rounded-full border border-[color:var(--accent-emerald)]/30 bg-[color:var(--accent-emerald)]/10 px-3 py-1 text-[10px] font-mono font-medium text-[color:var(--accent-emerald)]">
+                      <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--accent-emerald)] animate-pulse" />
+                      Active
                     </span>
-                      </div>
-                    </div>
-                  </ScrollReveal>
-              ))}
-            </div>
-          </section>
+                                                )}
+                                            </div>
 
-          <div className="section-divider mx-auto max-w-7xl" />
+                                            <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-[#D9A441] transition-colors duration-300">
+                                                {edu.degree}
+                                            </h3>
+                                        </div>
 
-          {/* ═══ CERTIFICATIONS ═══ */}
-          <section className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
-            <ScrollReveal>
-              <div className="mb-14 max-w-2xl space-y-4">
-      <span className="section-label flex items-center gap-2">
-        <Award size={14} /> Certifications
-      </span>
+                                        {/* Footer */}
+                                        <div className="mt-8 border-t border-white/10 pt-4 flex items-center justify-between">
+                                            <p className="text-sm font-medium text-gray-300">
+                                                {edu.institution}
+                                            </p>
 
-                <h2 className="section-title gradient-text">
-                  Cisco Credentials
-                </h2>
+                                            <div className="h-8 w-8 rounded-full border border-white/10 flex items-center justify-center text-white/40 group-hover:border-[#D9A441] group-hover:text-[#D9A441] transition-all duration-300">
+                                                <Award size={16} />
+                                            </div>
+                                        </div>
 
-                <p className="text-base leading-relaxed text-[color:var(--muted)]">
-                  Industry-recognized certifications validating technical foundations.
-                </p>
-              </div>
-            </ScrollReveal>
-
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {documents.map((doc, i) => {
-                const Icon = doc.icon;
-
-                return (
-                    <ScrollReveal key={doc.file} delay={i * 100}>
-                      <div className="bento cert-card group flex h-full flex-col rounded-2xl p-6 sm:p-7">
-                        <div className="mb-4">
-                          <Icon
-                              size={40}
-                              className="text-[color:var(--brand)] transition-transform duration-300 group-hover:scale-110"
-                          />
-                        </div>
-
-                        <h3 className="mb-1 text-lg font-bold leading-snug">
-                          {doc.title}
-                        </h3>
-
-                        <p className="mb-6 flex-1 text-sm text-[color:var(--muted)]">
-                          {doc.issuer}
-                        </p>
-
-                        <a
-                            href={doc.file}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="link-underline inline-flex w-fit items-center gap-2 text-sm font-semibold text-[color:var(--brand)] transition-all hover:gap-3"
-                        >
-                          <FileText size={14} />
-                          View certificate
-                          <ExternalLink size={12} />
-                        </a>
-                      </div>
-                    </ScrollReveal>
-                );
-              })}
-            </div>
-          </section>
-
-          <div className="section-divider mx-auto max-w-7xl" />
-
-          {/* ═══ HACKATHONS ═══ */}
-          <section
-              id="hackathons"
-              className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32"
-          >
-            <ScrollReveal>
-              <div className="mb-14 max-w-2xl space-y-4">
-      <span className="section-label flex items-center gap-2">
-        <Award size={14} />
-        Hackathons
-      </span>
-
-                <h2 className="section-title gradient-text">
-                  Innovation & Competitions
-                </h2>
-
-                <p className="text-base leading-relaxed text-[color:var(--muted)]">
-                  Participating in hackathons has strengthened my teamwork,
-                  problem-solving and rapid prototyping skills.
-                </p>
-              </div>
-            </ScrollReveal>
-
-            <div className="grid gap-6 md:grid-cols-2">
-              {hackathons.map((hackathon, index) => (
-                  <ScrollReveal key={index} delay={index * 100}>
-                    <article className="bento overflow-hidden rounded-2xl">
-                      <div className="relative h-60">
-                        <Image
-                            src={hackathon.image}
-                            alt={hackathon.title}
-                            fill
-                            className="object-cover transition duration-500 hover:scale-105"
-                        />
-                      </div>
-
-                      <div className="p-6">
-                        <h3 className="text-xl font-bold">{hackathon.title}</h3>
-
-                        <p className="mt-2 text-sm text-[color:var(--muted)]">
-                          {hackathon.description}
-                        </p>
-
-                        <div className="mt-4 flex flex-wrap gap-2">
-                          {hackathon.tags.map((tag) => (
-                              <span
-                                  key={tag}
-                                  className="tag rounded-full px-3 py-1 text-xs"
-                              >
-                  {tag}
-                </span>
-                          ))}
-                        </div>
-                      </div>
-                    </article>
-                  </ScrollReveal>
-              ))}
-            </div>
-          </section>
-
-          {/* ═══ RESUME ═══ */}
-          <section id="resume" className="mx-auto max-w-7xl px-5 py-24 sm:px-8">
-            <ScrollReveal>
-              <div className="bento rounded-3xl p-10 text-center">
-                <h2 className="section-title gradient-text">
-                  My Resume
-                </h2>
-
-                <p className="mt-4 text-[color:var(--muted)]">
-                  Download my latest CV to learn more about my education,
-                  technical skills and professional experience.
-                </p>
-
-                <a
-                    href="/docs/Rida_Taki_CV.pdf"
-                    download
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-primary mt-8 inline-flex items-center gap-2 rounded-2xl px-8 py-4"
-                >
-                  <Download size={18} />
-                  Download Resume
-                </a>
-              </div>
-            </ScrollReveal>
-          </section>
-
-          <div className="section-divider mx-auto max-w-7xl" />
-
-
-          {/* ═══ CONTACT ═══ */}
-          <section
-              id="contact"
-              className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32"
-          >
-            <ScrollReveal>
-              <div className="glow-border relative overflow-hidden rounded-3xl border border-[color:var(--line-strong)] bg-[color:var(--surface)] p-8 sm:p-12 lg:p-16">
-                {/* Background orbs */}
-                <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-[color:var(--brand)] opacity-[0.03] blur-[100px]" />
-                <div className="absolute -bottom-20 -left-20 h-60 w-60 rounded-full bg-[color:var(--accent-gold)] opacity-[0.04] blur-[80px]" />
-
-                <div className="relative grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:items-start">
-                  {/* Left */}
-                  <div className="space-y-6">
-                  <span className="section-label flex items-center gap-2">
-                    <Mail size={14} /> Contact
-                  </span>
-
-                    <h2 className="section-title gradient-text leading-tight">
-                      Let&apos;s build something
-                      <br />
-                      remarkable together.
-                    </h2>
-
-                    <p className="max-w-xl text-base leading-relaxed text-[color:var(--muted)] sm:text-lg">
-                      I&apos;m open to internships, freelance missions, and
-                      collaborative product work. If you need a developer who
-                      cares about both the architecture and the user experience —
-                      let&apos;s talk.
-                    </p>
-
-                    {/* Social icons */}
-                    <div className="flex flex-wrap gap-3 pt-2">
-                      <a
-                          href="https://github.com/Rida1019-taki"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="icon-lift flex h-12 w-12 items-center justify-center rounded-xl border border-[color:var(--line)] bg-[color:var(--surface-2)] text-[color:var(--muted)] transition hover:bg-[color:var(--brand)] hover:text-white"
-                          aria-label="GitHub"
-                      >
-                        <FaGithub size={20} />
-                      </a>
-
-                      <a
-                          href="https://www.linkedin.com/in/rida-taki-bb44a8350"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="icon-lift flex h-12 w-12 items-center justify-center rounded-xl border border-[color:var(--line)] bg-[color:var(--surface-2)] text-[color:var(--muted)] transition hover:bg-[color:var(--brand)] hover:text-white"
-                          aria-label="LinkedIn"
-                      >
-                        <FaLinkedin size={20} />
-                      </a>
-
-                      <a
-                          href="https://wa.me/212649487957"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="icon-lift flex h-12 w-12 items-center justify-center rounded-xl border border-[color:var(--line)] bg-[color:var(--surface-2)] text-[color:var(--muted)] transition hover:bg-green-600 hover:text-white"
-                          aria-label="WhatsApp"
-                      >
-                        <FaWhatsapp size={20} />
-                      </a>
-
-                      <a
-                          href="https://discord.com/users/rida_taki"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="icon-lift flex h-12 w-12 items-center justify-center rounded-xl border border-[color:var(--line)] bg-[color:var(--surface-2)] text-[color:var(--muted)] transition hover:bg-[#5865F2] hover:text-white"
-                          aria-label="Discord"
-                      >
-                        <FaDiscord size={20} />
-                      </a>
-
-                      <a
-                          href="https://www.instagram.com/rida_taki_10?igsh=OW5pZnI2Mjh2ejBv"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="icon-lift flex h-12 w-12 items-center justify-center rounded-xl border border-[color:var(--line)] bg-[color:var(--surface-2)] text-[color:var(--muted)] transition hover:bg-pink-600 hover:text-white"
-                          aria-label="Instagram"
-                      >
-                        <FaInstagram size={20} />
-                      </a>
-                    </div>
-                  </div>
-
-                  {/* Right */}
-                  <form
-                      onSubmit={sendEmail}
-                      className="space-y-5 rounded-2xl border border-[color:var(--line)] bg-[color:var(--surface-2)] p-6 sm:p-7"
-                  >
-                    <h3 className="text-xl font-bold">Send me a message</h3>
-
-                    <div>
-                      <label className="mb-2 block text-sm font-medium">
-                        Full Name
-                      </label>
-                      <input
-                          name="from_name"
-                          type="text"
-                          placeholder="Your name"
-                          className="w-full rounded-xl border border-[color:var(--line)] bg-transparent px-4 py-3 outline-none focus:border-[color:var(--brand)] transition-colors"
-                          required
-                      />
-                    </div>
-
-                    <div>
-                      <label className="mb-2 block text-sm font-medium">
-                        Email
-                      </label>
-                      <input
-                          name="from_email"
-                          type="email"
-                          placeholder="your@email.com"
-                          className="w-full rounded-xl border border-[color:var(--line)] bg-transparent px-4 py-3 outline-none focus:border-[color:var(--brand)] transition-colors"
-                          required
-                      />
-                    </div>
-
-                    <div>
-                      <label className="mb-2 block text-sm font-medium">
-                        Subject
-                      </label>
-                      <input
-                          name="subject"
-                          type="text"
-                          placeholder="Subject"
-                          className="w-full rounded-xl border border-[color:var(--line)] bg-transparent px-4 py-3 outline-none focus:border-[color:var(--brand)] transition-colors"
-                          required
-                      />
-                    </div>
-
-                    <div>
-                      <label className="mb-2 block text-sm font-medium">
-                        Message
-                      </label>
-                      <textarea
-                          name="message"
-                          rows={5}
-                          placeholder="Write your message..."
-                          className="w-full rounded-xl border border-[color:var(--line)] bg-transparent px-4 py-3 outline-none focus:border-[color:var(--brand)] transition-colors"
-                          required
-                      />
-                    </div>
-
-                    <button
-                        type="submit"
-                        disabled={loading}
-                        className="btn-primary w-full rounded-xl py-3 disabled:opacity-60"
-                    >
-                      {loading ? "Sending..." : "Send Message"}
-                    </button>
-                  </form>
+                                    </div>
+                                </div>
+                            </ScrollReveal>
+                        );
+                    })}
                 </div>
-              </div>
-            </ScrollReveal>
-          </section>
+            </section>
+
+          <div className="section-divider mx-auto max-w-7xl" />
+
+            {/* ═══ CERTIFICATIONS ═══ */}
+            <section className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
+                <ScrollReveal>
+                    <div className="mb-16 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+                        <div className="space-y-4 max-w-2xl">
+        <span className="section-label inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
+          <Award size={14} /> Verified Credentials
+        </span>
+                            <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
+                                <span className="gradient-text">Professional </span>
+                                <br />
+                                <span className="brand-gradient-text italic font-serif">Certifications.</span>
+                            </h2>
+                        </div>
+                        <p className="max-w-md text-sm sm:text-base text-[color:var(--muted)] leading-relaxed">
+                            Industry-recognized Cisco certifications validating networking, security, and foundational programming skills.
+                        </p>
+                    </div>
+                </ScrollReveal>
+
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    {documents.map((doc, i) => {
+                        const Icon = doc.icon;
+
+                        return (
+                            <ScrollReveal key={doc.file} delay={i * 100}>
+                                <div className="group relative h-full rounded-3xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#D9A441]/50 hover:bg-white/[0.04] hover:shadow-[0_20px_40px_-15px_rgba(217,164,65,0.15)] flex flex-col justify-between">
+
+                                    {/* Top Accent Light */}
+                                    <div className="absolute top-0 right-10 h-[1px] w-20 bg-gradient-to-r from-transparent via-[#D9A441]/40 to-transparent transition-all duration-500 group-hover:w-32 group-hover:via-[#D9A441]" />
+
+                                    <div>
+                                        {/* Header Icon & Badge */}
+                                        <div className="flex items-center justify-between mb-6">
+                                            <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-[#D9A441] transition-transform duration-500 group-hover:scale-110 group-hover:border-[#D9A441]/40 group-hover:bg-[#D9A441]/10">
+                                                <Icon size={26} />
+                                            </div>
+                                            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[10px] font-mono uppercase tracking-wider text-white/60">
+                  <Award size={10} className="text-[#D9A441]" /> Verified
+                </span>
+                                        </div>
+
+                                        {/* Title & Issuer */}
+                                        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#D9A441] transition-colors duration-300 leading-snug">
+                                            {doc.title}
+                                        </h3>
+                                        <p className="text-sm text-[color:var(--muted)] mb-8 font-medium">
+                                            {doc.issuer}
+                                        </p>
+                                    </div>
+
+                                    {/* Bottom Action Button */}
+                                    <div className="pt-4 border-t border-white/5">
+                                        <a
+                                            href={doc.file}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="group/btn inline-flex w-full items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-xs font-semibold text-white transition-all duration-300 hover:border-[#D9A441] hover:bg-[#D9A441] hover:text-black"
+                                        >
+                <span className="flex items-center gap-2">
+                  <FileText size={15} /> View PDF Certificate
+                </span>
+                                            <ExternalLink size={14} className="transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </ScrollReveal>
+                        );
+                    })}
+                </div>
+            </section>
+
+          <div className="section-divider mx-auto max-w-7xl" />
+
+            {/* ═══ HACKATHONS ═══ */}
+            <section
+                id="hackathons"
+                className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32"
+            >
+                <ScrollReveal>
+                    <div className="mb-16 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+                        <div className="space-y-4 max-w-2xl">
+        <span className="section-label inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
+          <Rocket size={14} /> Competitive Coding
+        </span>
+                            <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
+                                <span className="gradient-text">Innovation & </span>
+                                <br />
+                                <span className="brand-gradient-text italic font-serif">Hackathons.</span>
+                            </h2>
+                        </div>
+                        <p className="max-w-md text-sm sm:text-base text-[color:var(--muted)] leading-relaxed">
+                            Fast-paced challenges that sharpen my problem-solving skills, rapid prototyping, and collaborative engineering under high pressure.
+                        </p>
+                    </div>
+                </ScrollReveal>
+
+                <div className="grid gap-8 md:grid-cols-2">
+                    {hackathons.map((hackathon, index) => (
+                        <ScrollReveal key={index} delay={index * 120}>
+                            <article className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#D9A441]/50 hover:shadow-[0_20px_50px_-15px_rgba(217,164,65,0.2)]">
+                                {/* Image Container with Zoom & Overlay */}
+                                <div className="relative h-64 w-full overflow-hidden">
+                                    <Image
+                                        src={hackathon.image}
+                                        alt={hackathon.title}
+                                        fill
+                                        className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-110"
+                                    />
+                                    {/* Gradient Mask for Smooth Blending */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+
+                                    {/* Top Badge */}
+                                    <div className="absolute top-4 left-4 z-10">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-black/60 px-3 py-1 text-[10px] font-mono font-medium text-white backdrop-blur-md">
+                <Zap size={12} className="text-[#D9A441]" /> Hackathon Project
+              </span>
+                                    </div>
+                                </div>
+
+                                {/* Content Details */}
+                                <div className="relative p-6 sm:p-8 space-y-4">
+                                    <h3 className="text-2xl font-bold text-white transition-colors duration-300 group-hover:text-[#D9A441]">
+                                        {hackathon.title}
+                                    </h3>
+
+                                    <p className="text-sm text-[color:var(--muted)] leading-relaxed font-medium">
+                                        {hackathon.description}
+                                    </p>
+
+                                    {/* Tags */}
+                                    <div className="pt-2 flex flex-wrap gap-2">
+                                        {hackathon.tags.map((tag) => (
+                                            <span
+                                                key={tag}
+                                                className="inline-flex items-center gap-1 rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-xs font-mono text-gray-300 transition-colors group-hover:border-[#D9A441]/30"
+                                            >
+                  <span className="text-[#D9A441]">#</span>
+                                                {tag}
+                </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            </article>
+                        </ScrollReveal>
+                    ))}
+                </div>
+            </section>
+
+            {/* ═══ RESUME ═══ */}
+            <section id="resume" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8">
+                <ScrollReveal>
+                    <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.05] via-white/[0.02] to-transparent p-8 sm:p-14 text-center backdrop-blur-2xl shadow-2xl">
+
+                        {/* Background Radial Glow */}
+                        <div className="absolute -top-24 left-1/2 -translate-x-1/2 h-64 w-64 rounded-full bg-[#D9A441]/10 blur-3xl pointer-events-none" />
+
+                        {/* Top Badge */}
+                        <div className="relative z-10 mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441]">
+                            <FileText size={14} /> Official Curriculum Vitae
+                        </div>
+
+                        {/* Title & Description */}
+                        <div className="relative z-10 max-w-2xl mx-auto space-y-4">
+                            <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
+                                <span className="gradient-text">Ready to work </span>
+                                <br />
+                                <span className="brand-gradient-text italic font-serif">together?</span>
+                            </h2>
+
+                            <p className="text-sm sm:text-base leading-relaxed text-[color:var(--muted)]">
+                                Download my latest CV to explore my technical skills, academic background, and full project history in detail.
+                            </p>
+                        </div>
+
+                        {/* Download Button */}
+                        <div className="relative z-10 mt-10 flex justify-center">
+                            <a
+                                href="/docs/Rida_Taki_CV.pdf"
+                                download
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group relative inline-flex items-center gap-3 overflow-hidden rounded-2xl bg-gradient-to-r from-[#C9A063] to-[#B8860B] px-8 py-4 text-sm font-bold text-black transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(217,164,65,0.4)]"
+                            >
+                                <Download size={18} className="transition-transform duration-300 group-hover:-translate-y-0.5" />
+                                <span>Download Resume (PDF)</span>
+                            </a>
+                        </div>
+
+                        {/* Subtle Bottom Accent Line */}
+                        <div className="absolute bottom-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#D9A441]/30 to-transparent" />
+                    </div>
+                </ScrollReveal>
+            </section>
+
+          <div className="section-divider mx-auto max-w-7xl" />
+
+
+            {/* ═══ CONTACT ═══ */}
+            <section
+                id="contact"
+                className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32"
+            >
+                <ScrollReveal>
+                    <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] p-8 sm:p-12 lg:p-16 backdrop-blur-2xl shadow-2xl">
+                        {/* Dynamic Ambient Orbs */}
+                        <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-[#D9A441]/10 blur-[120px] pointer-events-none" />
+                        <div className="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-[color:var(--brand)]/10 blur-[120px] pointer-events-none" />
+
+                        <div className="relative z-10 grid gap-12 lg:grid-cols-12 items-start">
+                            {/* Left Column - Contact Info & Socials */}
+                            <div className="space-y-8 lg:col-span-6">
+                                <div className="space-y-4">
+            <span className="section-label inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
+              <Mail size={14} /> Get In Touch
+            </span>
+
+                                    <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight leading-[1.1]">
+                                        <span className="gradient-text">Let&apos;s build something </span>
+                                        <br />
+                                        <span className="brand-gradient-text italic font-serif">remarkable together.</span>
+                                    </h2>
+
+                                    <p className="max-w-xl text-base leading-relaxed text-[color:var(--muted)] sm:text-lg font-medium">
+                                        I&apos;m open to internships, freelance missions, and collaborative product work. If you need a developer who cares about both solid architecture and intuitive user experience — let&apos;s talk.
+                                    </p>
+                                </div>
+
+                                {/* Social Links Grid */}
+                                <div className="space-y-3">
+            <span className="text-xs font-mono uppercase tracking-widest text-white/50 block">
+              Connect via Socials
+            </span>
+                                    <div className="flex flex-wrap gap-3">
+                                        {[
+                                            { icon: <FaGithub size={18} />, href: "https://github.com/Rida1019-taki", label: "GitHub", hoverBg: "hover:bg-white/20 hover:text-white" },
+                                            { icon: <FaLinkedin size={18} />, href: "https://www.linkedin.com/in/rida-taki-bb44a8350", label: "LinkedIn", hoverBg: "hover:bg-[#0A66C2] hover:text-white hover:border-[#0A66C2]" },
+                                            { icon: <FaWhatsapp size={18} />, href: "https://wa.me/212649487957", label: "WhatsApp", hoverBg: "hover:bg-[#25D366] hover:text-white hover:border-[#25D366]" },
+                                            { icon: <FaDiscord size={18} />, href: "https://discord.com/users/rida_taki", label: "Discord", hoverBg: "hover:bg-[#5865F2] hover:text-white hover:border-[#5865F2]" },
+                                            { icon: <FaInstagram size={18} />, href: "https://www.instagram.com/rida_taki_10?igsh=OW5pZnI2Mjh2ejBv", label: "Instagram", hoverBg: "hover:bg-[#E4405F] hover:text-white hover:border-[#E4405F]" },
+                                        ].map((s) => (
+                                            <a
+                                                key={s.label}
+                                                href={s.href}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                aria-label={s.label}
+                                                className={`flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-gray-300 backdrop-blur-md transition-all duration-300 hover:scale-110 hover:shadow-lg ${s.hoverBg}`}
+                                            >
+                                                {s.icon}
+                                            </a>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Right Column - Contact Form */}
+                            <div className="lg:col-span-6">
+                                <form
+                                    onSubmit={sendEmail}
+                                    className="space-y-5 rounded-3xl border border-white/10 bg-white/[0.03] p-6 sm:p-8 backdrop-blur-xl shadow-xl"
+                                >
+                                    <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-2">
+                                        <h3 className="text-xl font-bold text-white">Send Message</h3>
+                                        <span className="text-xs font-mono text-[#D9A441]">{"//"} Direct Mail</span>
+                                    </div>
+
+                                    <div className="space-y-4">
+                                        <div>
+                                            <label className="mb-2 block text-xs font-mono uppercase tracking-wider text-gray-400">
+                                                Full Name
+                                            </label>
+                                            <input
+                                                name="from_name"
+                                                type="text"
+                                                placeholder="John Doe"
+                                                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 outline-none transition-all duration-300 focus:border-[#D9A441] focus:bg-white/10 focus:shadow-[0_0_15px_rgba(217,164,65,0.2)]"
+                                                required
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <label className="mb-2 block text-xs font-mono uppercase tracking-wider text-gray-400">
+                                                Email Address
+                                            </label>
+                                            <input
+                                                name="from_email"
+                                                type="email"
+                                                placeholder="john@example.com"
+                                                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 outline-none transition-all duration-300 focus:border-[#D9A441] focus:bg-white/10 focus:shadow-[0_0_15px_rgba(217,164,65,0.2)]"
+                                                required
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <label className="mb-2 block text-xs font-mono uppercase tracking-wider text-gray-400">
+                                                Subject
+                                            </label>
+                                            <input
+                                                name="subject"
+                                                type="text"
+                                                placeholder="Project Inquiry / Opportunity"
+                                                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 outline-none transition-all duration-300 focus:border-[#D9A441] focus:bg-white/10 focus:shadow-[0_0_15px_rgba(217,164,65,0.2)]"
+                                                required
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <label className="mb-2 block text-xs font-mono uppercase tracking-wider text-gray-400">
+                                                Your Message
+                                            </label>
+                                            <textarea
+                                                name="message"
+                                                rows={4}
+                                                placeholder="Tell me about your project or offer..."
+                                                className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 outline-none transition-all duration-300 focus:border-[#D9A441] focus:bg-white/10 focus:shadow-[0_0_15px_rgba(217,164,65,0.2)]"
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <button
+                                        type="submit"
+                                        disabled={loading}
+                                        className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-[#C9A063] to-[#B8860B] py-3.5 text-xs font-bold uppercase tracking-widest text-black transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_25px_rgba(217,164,65,0.4)] disabled:opacity-50"
+                                    >
+                                        <span>{loading ? "Sending..." : "Send Message"}</span>
+                                        <Rocket size={14} className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </ScrollReveal>
+            </section>
         </main>
 
-        {/* ═══ FOOTER ═══ */}
-        <footer className="relative z-10 border-t border-[color:var(--line)]">
-          <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 px-5 py-10 sm:flex-row sm:px-8">
-            <div className="flex items-center gap-3">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-[color:var(--brand)] to-[#c05530] text-xs font-bold text-white">
-                RT
+          {/* ═══ FOOTER ═══ */}
+          <footer className="relative z-10 border-t border-white/10 bg-black/40 backdrop-blur-xl">
+              <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-5 py-8 sm:flex-row sm:px-8">
+                  {/* Brand Logo & Copyright */}
+                  <div className="flex items-center gap-3">
+                      <div
+                          className="flex h-9 w-9 items-center justify-center rounded-xl font-bold text-xs text-white shadow-lg"
+                          style={{
+                              background: "linear-gradient(135deg,#C9A063,#8B5E34,#B8860B)",
+                          }}
+                      >
+                          RT
+                      </div>
+                      <div className="flex flex-col">
+                          <span className="text-sm font-semibold text-white">Rida Taki</span>
+                          <span className="text-[11px] font-mono text-[color:var(--muted)]">
+          © {new Date().getFullYear()} All rights reserved.
+        </span>
+                      </div>
+                  </div>
+
+                  {/* Center Text / Status */}
+                  <div className="flex items-center gap-2 text-xs font-mono text-[color:var(--muted)]">
+                      <span className="text-[#D9A441]">{"//"}</span>
+                      <span>Architected with precision &amp; passion</span>
+                  </div>
+
+                  {/* Social Links */}
+                  <div className="flex items-center gap-3">
+                      {[
+                          { icon: <FaGithub size={16} />, href: "https://github.com/Rida1019-taki", label: "GitHub" },
+                          { icon: <FaLinkedin size={16} />, href: "https://www.linkedin.com/in/rida-taki-bb44a8350", label: "LinkedIn" },
+                          { icon: <FaWhatsapp size={16} />, href: "https://wa.me/212649487957", label: "WhatsApp" },
+                          { icon: <FaDiscord size={16} />, href: "https://discord.com/users/rida_taki", label: "Discord" },
+                          { icon: <FaInstagram size={16} />, href: "https://www.instagram.com/rida_taki_10?igsh=OW5pZnI2Mjh2ejBv", label: "Instagram" },
+                      ].map((social) => (
+                          <a
+                              key={social.label}
+                              href={social.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label={social.label}
+                              className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-gray-400 transition-all duration-300 hover:scale-110 hover:border-[#D9A441]/50 hover:bg-[#D9A441]/10 hover:text-[#D9A441]"
+                          >
+                              {social.icon}
+                          </a>
+                      ))}
+                  </div>
               </div>
-              <span className="text-sm text-[color:var(--muted)]">
-              © 2026 Rida Taki
-            </span>
-            </div>
-
-            <p className="text-xs text-[color:var(--muted)]">
-              Designed &amp; developed with ♥ and clean code.
-            </p>
-
-            <div className="flex gap-3">
-              <a
-                  href="https://github.com/Rida1019-taki"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="icon-lift text-[color:var(--muted)] transition-colors hover:text-white"
-                  aria-label="GitHub"
-              >
-                <FaGithub size={18} />
-              </a>
-
-              <a
-                  href="https://www.linkedin.com/in/rida-taki-bb44a8350"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="icon-lift text-[color:var(--muted)] transition-colors hover:text-white"
-                  aria-label="LinkedIn"
-              >
-                <FaLinkedin size={18} />
-              </a>
-
-              <a
-                  href="https://wa.me/212649487957"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="icon-lift text-[color:var(--muted)] transition hover:text-green-500"
-                  aria-label="WhatsApp"
-              >
-                <FaWhatsapp size={18} />
-              </a>
-
-              <a
-                  href="https://discord.com/users/rida_taki"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="icon-lift text-[color:var(--muted)] transition hover:text-[#5865F2]"
-                  aria-label="Discord"
-              >
-                <FaDiscord size={18} />
-              </a>
-
-              <a
-                  href="https://www.instagram.com/rida_taki_10?igsh=OW5pZnI2Mjh2ejBv"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="icon-lift text-[color:var(--muted)] transition hover:text-pink-500"
-                  aria-label="Instagram"
-              >
-                <FaInstagram size={18} />
-              </a>
-            </div>
-          </div>
-        </footer>
+          </footer>
       </div>
   );
 }
