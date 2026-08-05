@@ -336,7 +336,7 @@
                 preload="auto"
                 style={{
                   imageRendering: "crisp-edges",
-                  transform: "translateZ(0)", // بيسرع الأداء بالـ GPU (Hardware Acceleration)
+                  transform: "translateZ(0)",
                 }}
             >
               <source src="/video/portfolio.webm" type="video/webm" />
