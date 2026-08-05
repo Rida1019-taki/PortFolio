@@ -499,7 +499,7 @@
 
                     {/* Tag Pill */}
                     <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 text-xs font-mono text-gray-300 backdrop-blur-md">
-                      <span className="text-[#D9A441] font-bold">//</span>
+                      <span className="text-[#D9A441] font-bold">{"//"}</span>
                       <span>Clean Code Advocate</span>
                     </div>
                   </div>
