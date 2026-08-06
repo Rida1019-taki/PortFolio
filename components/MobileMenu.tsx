@@ -1,45 +1,42 @@
-"use client";
-
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
-
-const links = [
-    { href: "#about", label: "About" },
-    { href: "#skills", label: "Skills" },
-    { href: "#work", label: "Work" },
-    { href: "#education", label: "Education" },
-    { href: "#hackathons", label: "Hackathons" },
-    { href: "#resume", label: "Resume" },
-    { href: "#contact", label: "Contact" },
-];
+import { HiMenuAlt3, HiX } from "react-icons/hi";
 
 export default function MobileMenu() {
-    const [open, setOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className="relative md:hidden">
+        <div className="md:hidden">
             <button
-                onClick={() => setOpen(!open)}
-                className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-[color:var(--foreground)]"
-                aria-label="Toggle menu"
+                onClick={() => setIsOpen(!isOpen)}
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-all"
+                aria-label="Toggle Menu"
             >
-                {open ? <X size={20} /> : <Menu size={20} />}
+                {isOpen ? <HiX size={20} /> : <HiMenuAlt3 size={20} />}
             </button>
 
-            {open && (
-                <div className="fixed left-0 right-0 top-24 z-[9999] border-b border-white/5 bg-[color:var(--background)]/95 backdrop-blur-2xl">
-                    <div className="flex flex-col gap-1 px-6 py-4">
-                        {links.map((l) => (
-                            <a
-                                key={l.href}
-                                href={l.href}
-                                onClick={() => setOpen(false)}
-                                className="rounded-xl px-4 py-3 text-sm font-medium text-[color:var(--muted)] transition hover:bg-white/5 hover:text-[color:var(--foreground)]"
-                            >
-                                {l.label}
-                            </a>
+            {isOpen && (
+                <div className="absolute top-20 inset-x-4 rounded-3xl border border-white/20 bg-black/90 p-6 backdrop-blur-2xl shadow-2xl flex flex-col gap-4 animate-in fade-in slide-in-from-top-5 duration-300">
+                    <ul className="flex flex-col gap-3">
+                        {[
+                            "About",
+                            "Skills",
+                            "Work",
+                            "Education",
+                            "Hackathons",
+                            "Resume",
+                            "Contact",
+                        ].map((item) => (
+                            <li key={item}>
+                                <a
+                                    href={`#${item.toLowerCase()}`}
+                                    onClick={() => setIsOpen(false)}
+                                    className="block rounded-xl px-4 py-2.5 text-sm font-semibold text-white/80 hover:bg-white/10 hover:text-white transition-all"
+                                >
+                                    {item}
+                                </a>
+                            </li>
                         ))}
-                    </div>
+                    </ul>
                 </div>
             )}
         </div>

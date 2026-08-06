@@ -1,510 +1,589 @@
-  "use client";
-  import { toast } from "sonner";
-  import {
-    ArrowRight,
-    ArrowUpRight,
-    Award,
-    BookOpen,
-    Briefcase,
-    Code2, CodeXml,
-    Database,
-    Download,
-    ExternalLink, FileCode2,
-    FileText,
-    GraduationCap, Laptop, Laptop2,
-    Layers,
-    Mail,
-    MapPin, Monitor,
-    Phone,
-    Rocket,
-    Server, Shield, ShieldCheck,
-    Smartphone,
-    Terminal,
-    Wrench,
-    Zap,
-  } from "lucide-react";
-  import Image from "next/image";
-  import {
-    FaDiscord,
-    FaDocker,
-    FaGithub, FaInstagram,
-    FaJava,
-    FaLinkedin,
-    FaPython,
-    FaReact, FaWhatsapp,
-  } from "react-icons/fa";
-  import {
-    SiKotlin,
-    SiSpringboot,
-    SiFlutter,
-    SiMysql,
-    SiPostman,
-    SiFigma, SiDart,
-  } from "react-icons/si";
-  import ScrollReveal from "@/components/ScrollReveal";
-  import ParticleField from "@/components/ParticleField";
-  import MouseGlow from "@/components/MouseGlow";
-  import MobileMenu from "@/components/MobileMenu";
-  import AnimatedNumber from "@/components/AnimatedNumber";
-  import TypewriterText from "@/components/TypewriterText";
-  import emailjs from "@emailjs/browser";
-  import {useEffect, useRef, useState} from "react";
+"use client";
+import { toast } from "sonner";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Award,
+  BookOpen,
+  Briefcase,
+  Code2,
+  CodeXml,
+  Database,
+  Download,
+  ExternalLink,
+  FileCode2,
+  FileText,
+  GraduationCap,
+  Laptop,
+  Laptop2,
+  Layers,
+  Mail,
+  MapPin,
+  Monitor,
+  Phone,
+  Rocket,
+  Server,
+  Shield,
+  ShieldCheck,
+  Smartphone,
+  Terminal,
+  Wrench,
+  Zap,
+} from "lucide-react";
+import Image from "next/image";
+import {
+  FaDiscord,
+  FaDocker,
+  FaGithub,
+  FaInstagram,
+  FaJava,
+  FaLinkedin,
+  FaPython,
+  FaReact,
+  FaWhatsapp,
+} from "react-icons/fa";
+import {
+  SiKotlin,
+  SiSpringboot,
+  SiFlutter,
+  SiMysql,
+  SiPostman,
+  SiFigma,
+  SiDart,
+} from "react-icons/si";
+import ScrollReveal from "@/components/ScrollReveal";
+import ParticleField from "@/components/ParticleField";
+import MouseGlow from "@/components/MouseGlow";
+import AnimatedNumber from "@/components/AnimatedNumber";
+import TypewriterText from "@/components/TypewriterText";
+import emailjs from "@emailjs/browser";
+import { useEffect, useRef, useState } from "react";
+import MobileMenu from "@/components/MobileMenu";
+import {HiMenu, HiOutlineMenu, HiOutlineMenuAlt3, HiSparkles, HiX} from "react-icons/hi";
+import {FiArrowUpRight} from "react-icons/fi";
 
-  export default function Home() {
-    const skills = [
-      {
-        category: "Languages",
-        icon: <Terminal size={20} />,
-        items: ["Java", "Dart", "JavaScript"],
-        accent: "var(--brand)",
-      },
-      {
-        category: "Mobile Dev",
-        icon: <Smartphone size={20} />,
-        items: ["Kotlin", "Flutter"],
-        accent: "var(--accent-gold)",
-      },
-      {
-        category: "Web & Frameworks",
-        icon: <Layers size={20} />,
-        items: ["React", "Spring Boot", "Spring Security", "HTML5", "CSS3"],
-        accent: "var(--accent-blue)",
-      },
-      {
-        category: "Databases",
-        icon: <Database size={20} />,
-        items: ["MySQL", "SQLite", "JPA", "Hibernate"],
-        accent: "var(--accent-emerald)",
-      },
-      {
-        category: "Tools & DevOps",
-        icon: <Wrench size={20} />,
-        items: ["Docker", "Github Actions", "Scrum", "Git", "Figma", "Postman"],
-        accent: "#a78bfa",
-      },
-    ];
+export function Header() {
+  const socialLinks = [
+    { icon: <FaGithub size={15} />, href: "https://github.com/Rida1019-taki", label: "GitHub" },
+    { icon: <FaLinkedin size={15} />, href: "https://www.linkedin.com/in/rida-taki-bb44a8350", label: "LinkedIn" },
+    { icon: <FaWhatsapp size={15} />, href: "https://wa.me/212649487957", label: "WhatsApp" },
+    { icon: <FaDiscord size={15} />, href: "https://discord.com/users/rida_taki", label: "Discord" },
+    { icon: <FaInstagram size={15} />, href: "https://www.instagram.com/rida_taki_10?igsh=OW5pZnI2Mjh2ejBv", label: "Instagram" },
+  ];
 
-    const projects = [
-      {
-        name: "HealthCare+",
-        subtitle: "Medical Management Platform",
-        description:
-            "Complete healthcare management platform composed of a secure Spring Boot REST API and a modern React frontend. The application includes JWT authentication, role-based authorization, patient and doctor management, appointments, medical records, responsive dashboards, Docker deployment, and RESTful APIs.",
-        tags: [
-          "Java",
-          "Spring Boot",
-          "React",
-          "Spring Security",
-          "JWT",
-          "Hibernate",
-          "MySQL",
-          "Docker",
-          "Axios",
-          "REST API",
-        ],
-        image: "/healthcare.png",
-        githubBackend:
-            "https://github.com/ENAA-School-Student/HealthCare-Syst-me-de-Gestion_M-dicale",
-        githubFrontend:
-            "https://github.com/Rida1019-taki/HealthCare_FrontEnd",
-        accent: "#5a8fd4",
-        number: "01",
-      },
-      {
-        name: "LogiTrack",
-        subtitle: "Logistics Management Platform",
-        description:
-            "Complete full-stack logistics management platform composed of a secure Spring Boot REST API and a modern React frontend. The application includes JWT authentication, role-based access control (ADMIN, MANAGER, AGENT), client, product and order management, dashboard statistics, pagination, filtering, Axios interceptors, Protected Routes, Role Guards, and a responsive Material UI interface.",
-        tags: [
-          "Java",
-          "Spring Boot",
-          "React",
-          "Vite",
-          "Spring Security",
-          "JWT",
-          "MySQL",
-          "Axios",
-          "React Router",
-          "React Hook Form",
-          "Yup",
-          "MUI",
-        ],
-        image: "/logitrack1.png",
-        githubBackend: "https://github.com/Rida1019-taki/LogiTrack",
-        githubFrontend: "https://github.com/Rida1019-taki/LogiTrack_FrontEnd",
-        accent: "#e07040",
-        number: "02",
-      },
-      {
-        name: "FleetFlow",
-        subtitle: "Logistics & Fleet Management",
-        description:
-            "Enterprise logistics management platform for handling clients, vehicles, deliveries, and fleet operations. Includes REST APIs, Dockerized deployment, CI/CD pipeline, Swagger documentation, and secure JWT authentication.",
-        tags: [
-          "Java",
-          "Spring Boot",
-          "Docker",
-          "MapStruct",
-          "MySQL",
-          "Swagger",
-          "JWT",
-          "GitHub Actions",
-        ],
-        image: "/fleetflow.png",
-        github: "https://github.com/NihadHub/fleetFlow.git",
-        accent: "#5ab88a",
-        number: "03",
-      },
-    ];
+  const navItems = [
+    { label: "About", href: "#about" },
+    { label: "Skills", href: "#skills" },
+    { label: "Work", href: "#work" },
+    { label: "Education", href: "#education" },
+    { label: "Hackathons", href: "#hackathons" },
+    { label: "Contact", href: "#contact" },
+  ];
 
-    const education = [
-      {
-        institution: "École Numérique Ahmed Al Hansali",
-        degree: "Full Stack Java / React",
-        period: "2025 — Present",
-        status: "current",
-      },
-      {
-        institution: "ISTA Oued Zem",
-        degree: "Digital Development — Mobile Option",
-        period: "2023 — 2025",
-        status: "completed",
-      },
-    ];
+  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("about");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-    const documents = [
-      {
-        title: "Introduction à la Cybersécurité",
-        issuer: "Cisco Networking Academy",
-        file: "/docs/introduction-cybersecurite.pdf",
-        icon: ShieldCheck,
-      },
-      {
-        title: "Les Bases du Matériel Informatique",
-        issuer: "Cisco Networking Academy",
-        file: "/docs/bases-materiel-informatique.pdf",
-        icon: Laptop2,
-      },
-      {
-        title: "Python Essentials 1",
-        issuer: "Cisco Networking Academy",
-        file: "/docs/python-essentials-1.pdf",
-        icon: Code2,
-      },
-    ];
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 30);
+    };
 
-    const hackathons = [
-      {
-        title: "Rally AI Future Lab 2026",
-        description:
-            "Participated in an AI hackathon focused on innovative healthcare solutions. Worked in a multidisciplinary team to build an AI-powered medical assistant prototype.",
-        image: "/hackathons/rally-ai1.jpeg",
-        tags: ["AI", "Healthcare", "Innovation", "Teamwork"],
-      },
-      {
-        title: "FootTech Hackathon 2026",
-        description:
-            "Developed a football technology solution with rapid prototyping and pitch presentation within 36 hours.",
-        image: "/hackathons/foottech.jpg",
-        tags: ["Sports Tech", "Next", "Python", "Hackathon"],
-      },
-    ];
+    window.addEventListener("scroll", handleScroll);
 
-    const tickerItems = [
-      "Open to freelance",
-      "Full stack Java/JEE",
-      "Mobile with Kotlin",
-      "REST API design",
-      "Spring Boot architecture",
-      "Clean UI & UX",
-      "Docker & CI/CD",
-      "Agile / Scrum",
-    ];
+    const observerOptions = {
+      root: null,
+      rootMargin: "-20% 0px -60% 0px",
+      threshold: 0,
+    };
 
-    const techStack = [
-      { icon: <FaJava size={26} />, label: "Java", color: "#e07040" },
-      { icon: <SiSpringboot size={22} />, label: "Spring", color: "#5ab88a" },
-      { icon: <SiKotlin size={20} />, label: "Kotlin", color: "#a78bfa" },
-      { icon: <FaReact size={22} />, label: "React", color: "#5a8fd4" },
-      { icon: <FaPython size={22} />, label: "Python", color: "#d4a853" },
-      { icon: <FaDocker size={22} />, label: "Docker", color: "#5a8fd4" },
-      { icon: <SiFlutter size={20} />, label: "Flutter", color: "#5a8fd4" },
-      { icon: <SiDart size={20} />, label: "Dart", color: "#0175C2" },
-      { icon: <SiMysql size={24} />, label: "MySQL", color: "#e07040" },
-      { icon: <SiPostman size={20} />, label: "Postman", color: "#e07040" },
-      { icon: <SiFigma size={18} />, label: "Figma", color: "#a78bfa" },
+    const observerCallback: IntersectionObserverCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
 
-    ];
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-    const [loading, setLoading] = useState(false);
+    navItems.forEach((item) => {
+      const element = document.querySelector(item.href);
+      if (element) observer.observe(element);
+    });
 
-    const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      observer.disconnect();
+    };
+  }, []);
 
-      const form = e.currentTarget;
+  return (
+      <header className="fixed top-5 inset-x-0 z-50 px-4 sm:px-6 pointer-events-none">
+        <div
+            className={`mx-auto max-w-4xl pointer-events-auto flex items-center justify-between rounded-full px-6 py-4 transition-all duration-500 border ${
+                scrolled
+                    ? "border-white/10 bg-black/85 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
+                    : "border-white/5 bg-black/30 backdrop-blur-md"
+            }`}
+        >
+          {/* Brand / Minimalist Text Logo */}
+          <a href="#" className="flex items-center gap-3 group pl-1">
+            <div className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] font-mono text-xs font-bold text-white transition-all duration-300 group-hover:scale-105 group-hover:rotate-6 group-hover:border-[#D9A441] group-hover:text-[#D9A441] group-hover:shadow-[0_0_15px_rgba(217,164,65,0.4)]">
+              RT
+            </div>
+            <div className="flex flex-col">
+            <span className="text-xs font-semibold text-white tracking-tight transition-colors duration-300 group-hover:text-[#D9A441]">
+              Rida Taki
+            </span>
+              <span className="text-[9px] font-mono text-gray-500 tracking-wider">
+              DEVELOPER
+            </span>
+            </div>
+          </a>
 
-      setLoading(true);
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-2">
+            {navItems.map((item) => {
+              const id = item.href.replace("#", "");
+              const isActive = activeSection === id;
+              return (
+                  <a
+                      key={item.label}
+                      href={item.href}
+                      className={`relative px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${
+                          isActive
+                              ? "text-white bg-white/10"
+                              : "text-gray-400 hover:text-white hover:bg-white/5 hover:scale-105"
+                      }`}
+                  >
+                    {item.label}
+                    {isActive && (
+                        <span className="absolute bottom-0 left-3 right-3 h-[2px] rounded-full bg-[#D9A441] shadow-[0_0_10px_#D9A441]" />
+                    )}
+                  </a>
+              );
+            })}
+          </nav>
 
-      try {
-        await emailjs.sendForm(
-            "service_jav8hl6",
-            "template_440vkxl",
-            form,
-            "TSdGK4h7h-xBeD4yD"
-        );
+          {/* Right Actions */}
+          <div className="flex items-center gap-3">
+            {/* Social Icons with Hover Effects */}
+            <div className="hidden lg:flex items-center gap-2 border-r border-white/10 pr-3">
+              {socialLinks.map((social) => (
+                  <a
+                      key={social.label}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.label}
+                      className="flex h-8 w-8 items-center justify-center rounded-full border border-white/5 bg-white/[0.03] text-gray-400 transition-all duration-300 hover:-translate-y-1 hover:border-[#D9A441]/60 hover:bg-[#D9A441]/10 hover:text-[#D9A441] hover:shadow-[0_0_12px_rgba(217,164,65,0.3)]"
+                  >
+                    {social.icon}
+                  </a>
+              ))}
+            </div>
 
-        form.reset();
+            {/* Minimalist Action CTA */}
+            <a
+                href="#contact"
+                className="group inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-medium text-white backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-[#D9A441] hover:bg-[#D9A441] hover:text-black hover:shadow-[0_0_20px_rgba(217,164,65,0.5)]"
+            >
+              <span>Let's Talk</span>
+              <FiArrowUpRight size={13} className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+            </a>
 
-        toast.success("Message sent!", {
-          description: "Your email has been delivered successfully.",
-        });
-      } catch (error) {
-        console.error(error);
+            {/* Mobile Menu Trigger */}
+            <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label="Toggle Navigation"
+                className="md:hidden flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-300 transition-all duration-300 hover:border-[#D9A441]/50 hover:text-[#D9A441]"
+            >
+              {isMobileMenuOpen ? <HiX size={18} /> : <HiOutlineMenu size={18} />}
+            </button>
+          </div>
+        </div>
 
-        toast.error("Failed to send message", {
-          description: "Please try again in a few moments.",
-        });
-      } finally {
-        setLoading(false);
+        {/* Mobile Menu Modal */}
+        {isMobileMenuOpen && (
+            <div className="pointer-events-auto md:hidden mt-2 mx-auto max-w-xs rounded-2xl border border-white/10 bg-black/95 p-4 backdrop-blur-2xl shadow-2xl space-y-3 animate-in fade-in slide-in-from-top-2 duration-300">
+              <div className="flex flex-col gap-1">
+                {navItems.map((item) => (
+                    <a
+                        key={item.label}
+                        href={item.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="rounded-xl px-3 py-2 text-xs font-medium text-gray-300 hover:bg-white/10 hover:text-white transition-all duration-200"
+                    >
+                      {item.label}
+                    </a>
+                ))}
+              </div>
+
+              {/* Mobile Socials */}
+              <div className="flex items-center justify-center gap-3 border-t border-white/10 pt-3">
+                {socialLinks.map((social) => (
+                    <a
+                        key={social.label}
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={social.label}
+                        className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 transition-all duration-300 hover:border-[#D9A441] hover:text-[#D9A441]"
+                    >
+                      {social.icon}
+                    </a>
+                ))}
+              </div>
+            </div>
+        )}
+      </header>
+  );
+}
+
+export default function Home() {
+  const skills = [
+    {
+      category: "Languages",
+      icon: <Terminal size={20} />,
+      items: ["Java", "Dart", "JavaScript"],
+      accent: "var(--brand)",
+    },
+    {
+      category: "Mobile Dev",
+      icon: <Smartphone size={20} />,
+      items: ["Kotlin", "Flutter"],
+      accent: "var(--accent-gold)",
+    },
+    {
+      category: "Web & Frameworks",
+      icon: <Layers size={20} />,
+      items: ["React", "Spring Boot", "Spring Security", "HTML5", "CSS3"],
+      accent: "var(--accent-blue)",
+    },
+    {
+      category: "Databases",
+      icon: <Database size={20} />,
+      items: ["MySQL", "SQLite", "JPA", "Hibernate"],
+      accent: "var(--accent-emerald)",
+    },
+    {
+      category: "Tools & DevOps",
+      icon: <Wrench size={20} />,
+      items: ["Docker", "Github Actions", "Scrum", "Git", "Figma", "Postman"],
+      accent: "#a78bfa",
+    },
+  ];
+
+  const projects = [
+    {
+      name: "HealthCare+",
+      subtitle: "Medical Management Platform",
+      description:
+          "Complete healthcare management platform composed of a secure Spring Boot REST API and a modern React frontend. The application includes JWT authentication, role-based authorization, patient and doctor management, appointments, medical records, responsive dashboards, Docker deployment, and RESTful APIs.",
+      tags: [
+        "Java",
+        "Spring Boot",
+        "React",
+        "Spring Security",
+        "JWT",
+        "Hibernate",
+        "MySQL",
+        "Docker",
+        "Axios",
+        "REST API",
+      ],
+      image: "/healthcare.png",
+      githubBackend:
+          "https://github.com/ENAA-School-Student/HealthCare-Syst-me-de-Gestion_M-dicale",
+      githubFrontend:
+          "https://github.com/Rida1019-taki/HealthCare-Frontend.git",
+      accent: "#5a8fd4",
+      number: "01",
+    },
+    {
+      name: "LogiTrack",
+      subtitle: "Logistics Management Platform",
+      description:
+          "Complete full-stack logistics management platform composed of a secure Spring Boot REST API and a modern React frontend. The application includes JWT authentication, role-based access control (ADMIN, MANAGER, AGENT), client, product and order management, dashboard statistics, pagination, filtering, Axios interceptors, Protected Routes, Role Guards, and a responsive Material UI interface.",
+      tags: [
+        "Java",
+        "Spring Boot",
+        "React",
+        "Vite",
+        "Spring Security",
+        "JWT",
+        "MySQL",
+        "Axios",
+        "React Router",
+        "React Hook Form",
+        "Yup",
+        "MUI",
+      ],
+      image: "/logitrack1.png",
+      githubBackend: "https://github.com/Rida1019-taki/LogiTrack",
+      githubFrontend: "https://github.com/Rida1019-taki/LogiTrack_FrontEnd",
+      accent: "#e07040",
+      number: "02",
+    },
+    {
+      name: "FleetFlow",
+      subtitle: "Logistics & Fleet Management",
+      description:
+          "Enterprise logistics management platform for handling clients, vehicles, deliveries, and fleet operations. Includes REST APIs, Dockerized deployment, CI/CD pipeline, Swagger documentation, and secure JWT authentication.",
+      tags: [
+        "Java",
+        "Spring Boot",
+        "Docker",
+        "MapStruct",
+        "MySQL",
+        "Swagger",
+        "JWT",
+        "GitHub Actions",
+      ],
+      image: "/fleetflow.png",
+      github: "https://github.com/NihadHub/fleetFlow.git",
+      accent: "#5ab88a",
+      number: "03",
+    },
+  ];
+
+  const education = [
+    {
+      institution: "École Numérique Ahmed Al Hansali",
+      degree: "Full Stack Java / React",
+      period: "2025 — Present",
+      status: "current",
+    },
+    {
+      institution: "ISTA Oued Zem",
+      degree: "Digital Development — Mobile Option",
+      period: "2023 — 2025",
+      status: "completed",
+    },
+  ];
+
+  const documents = [
+    {
+      title: "Introduction à la Cybersécurité",
+      issuer: "Cisco Networking Academy",
+      file: "/docs/introduction-cybersecurite.pdf",
+      icon: ShieldCheck,
+    },
+    {
+      title: "Les Bases du Matériel Informatique",
+      issuer: "Cisco Networking Academy",
+      file: "/docs/bases-materiel-informatique.pdf",
+      icon: Laptop2,
+    },
+    {
+      title: "Python Essentials 1",
+      issuer: "Cisco Networking Academy",
+      file: "/docs/python-essentials-1.pdf",
+      icon: Code2,
+    },
+  ];
+
+  const hackathons = [
+    {
+      title: "Rally AI Future Lab 2026",
+      description:
+          "Participated in an AI hackathon focused on innovative healthcare solutions. Worked in a multidisciplinary team to build an AI-powered medical assistant prototype.",
+      image: "/hackathons/rally-ai1.jpeg",
+      tags: ["AI", "Healthcare", "Innovation", "Teamwork"],
+    },
+    {
+      title: "FootTech Hackathon 2026",
+      description:
+          "Developed a football technology solution with rapid prototyping and pitch presentation within 36 hours.",
+      image: "/hackathons/foottech.jpg",
+      tags: ["Sports Tech", "Next", "Python", "Hackathon"],
+    },
+  ];
+
+  const tickerItems = [
+    "Open to freelance",
+    "Full stack Java/JEE",
+    "Mobile with Kotlin",
+    "REST API design",
+    "Spring Boot architecture",
+    "Clean UI & UX",
+    "Docker & CI/CD",
+    "Agile / Scrum",
+  ];
+
+  const techStack = [
+    { icon: <FaJava size={26} />, label: "Java", color: "#e07040" },
+    { icon: <SiSpringboot size={22} />, label: "Spring", color: "#5ab88a" },
+    { icon: <SiKotlin size={20} />, label: "Kotlin", color: "#a78bfa" },
+    { icon: <FaReact size={22} />, label: "React", color: "#5a8fd4" },
+    { icon: <FaPython size={22} />, label: "Python", color: "#d4a853" },
+    { icon: <FaDocker size={22} />, label: "Docker", color: "#5a8fd4" },
+    { icon: <SiFlutter size={20} />, label: "Flutter", color: "#5a8fd4" },
+    { icon: <SiDart size={20} />, label: "Dart", color: "#0175C2" },
+    { icon: <SiMysql size={24} />, label: "MySQL", color: "#e07040" },
+    { icon: <SiPostman size={20} />, label: "Postman", color: "#e07040" },
+    { icon: <SiFigma size={18} />, label: "Figma", color: "#a78bfa" },
+  ];
+
+  const [loading, setLoading] = useState(false);
+
+  const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const form = e.currentTarget;
+
+    setLoading(true);
+
+    try {
+      await emailjs.sendForm(
+          "service_jav8hl6",
+          "template_440vkxl",
+          form,
+          "TSdGK4h7h-xBeD4yD"
+      );
+
+      form.reset();
+
+      toast.success("Message sent!", {
+        description: "Your email has been delivered successfully.",
+      });
+    } catch (error) {
+      console.error(error);
+
+      toast.error("Failed to send message", {
+        description: "Please try again in a few moments.",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const [isPastAbout, setIsPastAbout] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const aboutSection = document.getElementById("about");
+      if (aboutSection) {
+        const rect = aboutSection.getBoundingClientRect();
+        setIsPastAbout(rect.bottom < window.innerHeight / 2);
       }
     };
 
-    const [isPastAbout, setIsPastAbout] = useState(false);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-    useEffect(() => {
-      const handleScroll = () => {
-        const aboutSection = document.getElementById("about");
-        if (aboutSection) {
-          const rect = aboutSection.getBoundingClientRect();
-          setIsPastAbout(rect.bottom < window.innerHeight / 2);
-        }
-      };
+  // 1. Title scroll visibility
+  const [isTitleVisible, setIsTitleVisible] = useState(true);
+  const titleRef = useRef<HTMLDivElement | null>(null);
 
-      window.addEventListener("scroll", handleScroll);
-      return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+        ([entry]) => {
+          setIsTitleVisible(entry.isIntersecting);
+        },
+        { threshold: 0.1 }
+    );
 
-    // 1. Title scroll visibility
-    const [isTitleVisible, setIsTitleVisible] = useState(true);
-    const titleRef = useRef<HTMLDivElement | null>(null);
+    if (titleRef.current) {
+      observer.observe(titleRef.current);
+    }
 
-    useEffect(() => {
-      const observer = new IntersectionObserver(
-          ([entry]) => {
-            setIsTitleVisible(entry.isIntersecting);
-          },
-          { threshold: 0.1 }
-      );
+    return () => observer.disconnect();
+  }, []);
 
-      if (titleRef.current) {
-        observer.observe(titleRef.current);
-      }
+  // 2. Bio scroll visibility
+  const [isBioVisible, setIsBioVisible] = useState(true);
+  const bioRef = useRef<HTMLDivElement | null>(null);
 
-      return () => observer.disconnect();
-    }, []);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+        ([entry]) => {
+          setIsBioVisible(entry.isIntersecting);
+        },
+        { threshold: 0.1 }
+    );
 
-    // 2. Bio scroll visibility
-    const [isBioVisible, setIsBioVisible] = useState(true);
-    const bioRef = useRef<HTMLDivElement | null>(null);
+    if (bioRef.current) {
+      observer.observe(bioRef.current);
+    }
 
-    useEffect(() => {
-      const observer = new IntersectionObserver(
-          ([entry]) => {
-            setIsBioVisible(entry.isIntersecting);
-          },
-          { threshold: 0.1 }
-      );
+    return () => observer.disconnect();
+  }, []);
 
-      if (bioRef.current) {
-        observer.observe(bioRef.current);
-      }
+  return (
+      <div className="min-h-screen text-[var(--foreground)] relative">
+        {/* Header / Navbar Component */}
+        <Header />
 
-      return () => observer.disconnect();
-    }, []);
+        {/* Background Video */}
+        <div className="fixed inset-0 -z-20 overflow-hidden">
+          <video
+              className="video-bg w-full h-full object-cover rounded-none"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              style={{
+                imageRendering: "crisp-edges",
+                transform: "translateZ(0)",
+              }}
+          >
+            <source src="/video/portfolio.webm" type="video/webm" />
+            <source src="/video/portfolio.mp4" type="video/mp4" />
+          </video>
 
-    return (
-        <div className="min-h-screen text-[var(--foreground)] relative">
+          <div
+              className={`absolute inset-0 transition-all duration-700 ease-in-out ${
+                  isPastAbout
+                      ? "bg-black/80 backdrop-blur-md"
+                      : "bg-black/50 backdrop-blur-none"
+              }`}
+          />
+        </div>
 
-          {/* Background Video */}
-          <div className="fixed inset-0 -z-20 overflow-hidden">
-            <video
-                className="video-bg w-full h-full object-cover rounded-none"
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="auto"
-                style={{
-                  imageRendering: "crisp-edges",
-                  transform: "translateZ(0)",
-                }}
-            >
-              <source src="/video/portfolio.webm" type="video/webm" />
-              <source src="/video/portfolio.mp4" type="video/mp4" />
-            </video>
+        <ParticleField />
+        <MouseGlow />
 
-            <div
-                className={`absolute inset-0 transition-all duration-700 ease-in-out ${
-                    isPastAbout
-                        ? "bg-black/80 backdrop-blur-md"   
-                        : "bg-black/50 backdrop-blur-none"  
-                }`}
-            />
-          </div>
-
-          <ParticleField />
-          <MouseGlow />
-
-          {/* ═══ NAVBAR ═══ */}
-          <header className="fixed top-5 inset-x-0 z-50 flex justify-center">
-            <nav
-                className="w-fit"
-            >
-              <div
-                  className="relative overflow-visible rounded-full"
-                  style={{
-                    background:
-                        "linear-gradient(135deg,rgba(255,255,255,.08),rgba(201,160,99,.16),rgba(139,94,52,.18))",
-                    backdropFilter: "blur(30px)",
-                    WebkitBackdropFilter: "blur(30px)",
-                    border: "1px solid rgba(255,255,255,.12)",
-                    boxShadow:
-                        "0 20px 60px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.15)",
-                  }}
-              >
-                <div className="glass-shine" />
-
-                <div className="flex h-[74px] items-center gap-10 px-8">
-                  {/* Logo */}
-                  <a href="#" className="flex items-center gap-3">
-                    <div
-                        className="flex h-10 w-10 items-center justify-center rounded-xl font-bold text-white"
-                        style={{
-                          background:
-                              "linear-gradient(135deg,#C9A063,#8B5E34,#B8860B)",
-                        }}
-                    >
-                      RT
-                    </div>
-
-                    <span className="hidden md:block font-semibold text-white">
-              Rida Taki
-            </span>
-                  </a>
-
-                  {/* Links */}
-                  <ul className="hidden md:flex items-center gap-2">
-                    {[
-                      "About",
-                      "Skills",
-                      "Work",
-                      "Education",
-                      "Hackathons",
-                      "Resume",
-                      "Contact",
-                    ].map((item) => (
-                        <li key={item}>
-                          <a
-                              key={item}
-                              href={`#${item.toLowerCase()}`}
-                              className="
-                                    relative
-                                    overflow-hidden
-                                    rounded-full
-                                    px-5
-                                    py-2.5
-                                    text-sm
-                                    font-medium
-                                    text-white/80
-                                    transition-all
-                                    duration-300
-                                    hover:text-white
-                                    hover:bg-white/10
-                                    hover:shadow-[0_0_25px_rgba(212,168,83,0.35)]
-                                  "
-                          >
-                                  <span
-                                      className="
-                                      absolute
-                                      inset-0
-                                      rounded-full
-                                      bg-gradient-to-r
-                                      from-[#C9A063]
-                                      via-[#D9A441]
-                                      to-[#B8860B]
-                                      opacity-0
-                                      transition-opacity
-                                      duration-300
-                                      group-hover:opacity-20
-                                    "
-                                  />
-
-                            <span className="relative z-10">
-                                    {item}
-                                  </span>
-                          </a>
-                        </li>
-                    ))}
-                  </ul>
-
-                  {/* Right */}
-                  <div className="flex items-center gap-3">
-                    <a
-                        href="#contact"
-                        className="hidden sm:flex items-center rounded-full px-5 py-2 text-sm font-semibold text-white"
-                        style={{
-                          background:
-                              "linear-gradient(135deg,#C9A063,#B8860B)",
-                        }}
-                    >
-                      Hire Me
-                    </a>
-
-                    <MobileMenu />
-                  </div>
-                </div>
-              </div>
-            </nav>
-          </header>
-
-          <main className="relative z-10">
-            {/* ═══ HERO ═══ */}
+          <main className="relative z-10 pt-20">
+            {/* HERO SECTION */}
             <section
                 id="about"
-                className="relative min-h-screen flex items-center overflow-hidden z-10"
+                className="relative min-h-screen flex items-center justify-center overflow-hidden z-10 pt-32 pb-16"
             >
-              <div className="hero-effects">
-                <div className="floating-grid" />
-                <div className="light-orb orb-orange" />
-                <div className="light-orb orb-gold" />
-                <div className="light-orb orb-blue" />
-                <div className="noise-layer" />
+              {/* Ambient Subtle Glows */}
+              <div className="hero-effects pointer-events-none">
+                <div className="floating-grid opacity-30" />
+                <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gradient-to-tr from-[#D9A441]/15 via-emerald-500/5 to-transparent blur-[120px] rounded-full" />
+                <div className="noise-layer opacity-40" />
               </div>
 
-              <div className="relative z-10 mx-auto max-w-6xl px-5 py-28 sm:px-8">
+              <div className="relative z-10 mx-auto max-w-6xl px-6 sm:px-8 w-full">
                 <div className="space-y-12">
 
-                  {/* Header Tags */}
-                  <div className="reveal flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-6">
-                    {/* Status Pill */}
-                    <div className="flex items-center gap-2.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3.5 py-1.5 backdrop-blur-md">
-    <span className="relative flex h-2 w-2">
-      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-    </span>
-                      <span className="text-[11px] font-semibold uppercase tracking-widest text-emerald-400">
-      Available for projects
-    </span>
+                  {/* 1. Status Bar / Micro Badges */}
+                  <div className="reveal flex flex-wrap items-center justify-between gap-4 border-b border-white/[0.08] pb-6">
+                    <div className="flex items-center gap-2.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-4 py-1.5 backdrop-blur-md">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+                      <span className="text-[11px] font-mono font-medium uppercase tracking-widest text-emerald-400">
+            Open to New Opportunities
+          </span>
                     </div>
 
-                    {/* Tag Pill */}
-                    <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 text-xs font-mono text-gray-300 backdrop-blur-md">
-                      <span className="text-[#D9A441] font-bold">{"//"}</span>
-                      <span>Clean Code Advocate</span>
+                    <div className="flex items-center gap-2 text-xs font-mono text-gray-400">
+                      <MapPin size={14} className="text-[#D9A441]" />
+                      <span>Beni Mellal, Morocco</span>
+                      <span className="text-gray-600">|</span>
+                      <span className="text-gray-500">UTC+1</span>
                     </div>
                   </div>
 
-                  {/* Main Massive Title - Slightly Smaller & Refined Size */}
+                  {/* 2. Main Hero Statement */}
                   <div
                       ref={titleRef}
                       className={`reveal reveal-d1 space-y-2 transition-all duration-700 ease-in-out ${
@@ -539,72 +618,102 @@
                     </div>
                   </div>
 
-                  {/* Grid: Bio + Stats & CTAs */}
-                  <div className="reveal reveal-d3 grid grid-cols-1 lg:grid-cols-12 gap-8 items-end pt-6 border-t border-white/10">
+                  {/* 3. Content Grid: Bio & Experience Specs */}
+                  <div className="reveal reveal-d3 grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch pt-2">
 
-                    {/* Paragraph Description — Fully Transparent with High Contrast Text */}
+                    {/* Bio Narrative Card with Enhanced Background */}
                     <div
                         ref={bioRef}
-                        className={`lg:col-span-6 space-y-4 p-6 rounded-2xl bg-black/40 border border-white/10 backdrop-blur-md shadow-2xl relative overflow-hidden transition-all duration-700 ease-in-out ${
+                        className={`lg:col-span-7 flex flex-col justify-between p-8 rounded-3xl border border-white/10 bg-gradient-to-br from-black/80 via-black/50 to-[#D9A441]/10 backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] relative overflow-hidden transition-all duration-700 ease-in-out hover:border-[#D9A441]/30 ${
                             isBioVisible
                                 ? "opacity-100 translate-y-0"
                                 : "opacity-0 -translate-y-4 pointer-events-none"
                         }`}
                     >
-                      {/* Ambient Corner Glow */}
-                      <div className="absolute -top-12 -left-12 w-28 h-28 bg-[#D9A441]/10 rounded-full blur-2xl pointer-events-none" />
+                      {/* Ambient Background Glow Spot */}
+                      <div className="absolute -top-20 -right-20 h-48 w-48 rounded-full bg-[#D9A441]/15 blur-3xl pointer-events-none" />
+                      <div className="absolute -bottom-20 -left-20 h-48 w-48 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
 
-                      <p className="relative z-10 text-base sm:text-lg leading-relaxed bg-gradient-to-r from-white via-gray-100 to-[#D9A441] bg-clip-text text-transparent font-medium">
-                        Full stack &amp; mobile developer from Morocco. I architect robust backends,
-                        build native apps, and craft interfaces people genuinely enjoy using.
-                      </p>
+                      {/* Subtle Left Border Accent */}
+                      <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-[#F3C669] via-[#D9A441] to-transparent opacity-80" />
 
-                      <div className="relative z-10 flex items-center gap-2 text-xs font-semibold text-[#F5D061] pt-1 border-t border-white/5">
-                        <MapPin size={15} className="text-[#F5D061]" />
-                        <span className="tracking-wide">Beni Mellal, Morocco</span>
+                      <div className="space-y-4 relative z-10">
+                        <div className="flex items-center justify-between border-b border-white/10 pb-3">
+      <span className="text-[10px] font-mono uppercase tracking-widest text-[#D9A441] font-semibold">
+        About Me
+      </span>
+                          <div className="...">
+                            {/* Background */}
+                            <p>Some text</p>
+                          </div>
+                        </div>
+
+                        <p className="text-base sm:text-lg leading-relaxed text-gray-200 font-normal">
+                          Junior Developer specializing in <span className="text-white font-semibold">Java, Spring Boot, React, and Kotlin</span>. Passionate about building clean API architectures, efficient databases, and functional user interfaces.
+                        </p>
+                      </div>
+
+                      {/* Tech Pills Footer */}
+                      <div className="flex flex-wrap items-center gap-2 pt-6 mt-6 border-t border-white/10 relative z-10">
+                        {["Java 21", "Spring Boot", "React", "Next.js", "Docker", "MySQL"].map((tech) => (
+                            <span
+                                key={tech}
+                                className="rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-xs font-mono text-gray-300 backdrop-blur-md hover:border-[#D9A441]/40 hover:text-white transition-all"
+                            >
+        {tech}
+      </span>
+                        ))}
                       </div>
                     </div>
 
-                    {/* Stats & Actions Side-by-Side */}
-                    <div className="lg:col-span-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 bg-white/[0.02] p-6 rounded-3xl border border-white/5 backdrop-blur-md">
+                    {/* Stats & Actions Side Panel */}
+                    <div className="lg:col-span-5 flex flex-col justify-between p-8 rounded-3xl border border-white/10 bg-black/40 backdrop-blur-xl shadow-2xl space-y-8">
 
-                      {/* Quick Stats */}
-                      <div className="flex items-center gap-6">
-                        <div>
-                          <div className="display text-2xl font-bold sm:text-3xl text-white">
+                      {/* Metrics Grid */}
+                      <div className="grid grid-cols-3 gap-2 text-center divide-x divide-white/10">
+                        <div className="pr-2">
+                          <div className="text-3xl font-bold text-white font-mono">
                             <AnimatedNumber value={3} suffix="+" />
                           </div>
-                          <div className="text-[9px] uppercase tracking-widest text-[color:var(--muted)]">Projects</div>
+                          <div className="text-[9px] font-mono uppercase tracking-widest text-gray-400 mt-1">Projects</div>
                         </div>
-                        <div className="h-8 w-[1px] bg-white/10" />
-                        <div>
-                          <div className="display text-2xl font-bold sm:text-3xl text-white">
+
+                        <div className="px-2">
+                          <div className="text-3xl font-bold text-white font-mono">
                             <AnimatedNumber value={10} suffix="+" />
                           </div>
-                          <div className="text-[9px] uppercase tracking-widest text-[color:var(--muted)]">Techs</div>
+                          <div className="text-[9px] font-mono uppercase tracking-widest text-gray-400 mt-1">Tech Stack</div>
                         </div>
-                        <div className="h-8 w-[1px] bg-white/10" />
-                        <div>
-                          <div className="display text-2xl font-bold sm:text-3xl text-white">
+
+                        <div className="pl-2">
+                          <div className="text-3xl font-bold text-white font-mono">
                             <AnimatedNumber value={3} />
                           </div>
-                          <div className="text-[9px] uppercase tracking-widest text-[color:var(--muted)]">Certs</div>
+                          <div className="text-[9px] font-mono uppercase tracking-widest text-gray-400 mt-1">Certs</div>
                         </div>
                       </div>
 
-                      {/* CTAs */}
-                      <div className="flex items-center gap-3 w-full sm:w-auto">
+                      {/* Call-to-Action Buttons */}
+                      <div className="flex flex-col sm:flex-row items-center gap-3">
                         <a
                             href="#work"
-                            className="btn-primary flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-xs font-semibold text-white shadow-lg"
+                            className="w-full sm:flex-1 inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3.5 text-xs font-bold text-black transition-all duration-300 hover:scale-[1.02] shadow-[0_0_20px_rgba(201,160,99,0.3)]"
+                            style={{
+                              background: "linear-gradient(135deg, #F3C669, #C9A063)",
+                            }}
                         >
-                          Work <ArrowRight size={14} />
+                          Explore Projects <ArrowRight size={15} />
                         </a>
+
                         <a
                             href="#contact"
-                            className="btn-secondary flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-xs font-semibold border border-white/10"
+                            className="w-full sm:w-auto group inline-flex items-center justify-center gap-2.5 rounded-2xl px-6 py-3.5 text-xs font-semibold text-gray-200 bg-white/[0.04] border border-white/10 backdrop-blur-xl transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:text-white hover:scale-[1.02] active:scale-95 shadow-lg"
                         >
-                          <Mail size={14} /> Contact
+                          <Mail
+                              size={15}
+                              className="text-[#D9A441] transition-transform duration-300 group-hover:scale-110"
+                          />
+                          <span>Let's Talk</span>
                         </a>
                       </div>
 
