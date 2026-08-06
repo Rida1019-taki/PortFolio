@@ -142,6 +142,8 @@ export function Header() {
             </div>
           </a>
 
+
+
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-2">
             {navItems.map((item) => {
