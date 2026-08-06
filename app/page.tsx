@@ -232,6 +232,7 @@ export function Header() {
                         className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 transition-all duration-300 hover:border-[#D9A441] hover:text-[#D9A441]"
                     >
                       {social.icon}
+
                     </a>
                 ))}
               </div>
