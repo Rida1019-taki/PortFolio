@@ -77,7 +77,8 @@ export function Header() {
     { number: "03", label: "Work", href: "#work" },
     { number: "04", label: "Education", href: "#education" },
     { number: "05", label: "Hackathons", href: "#hackathons" },
-    { number: "06", label: "Contact", href: "#contact" },
+    { number: "06", label: "Resume", href: "#resume" },
+    { number: "07", label: "Contact", href: "#contact" },
   ];
 
   const [scrolled, setScrolled] = useState(false);
@@ -150,7 +151,7 @@ export function Header() {
                         : "border-white/10"
                 }`}
             >
-              {navItems.slice(0, 6).map((item) => {
+              {navItems.slice(0, 7).map((item) => {
                 const id = item.href.replace("#", "");
                 const isActive = activeSection === id;
                 return (
