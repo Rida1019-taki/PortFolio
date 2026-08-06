@@ -866,3 +866,8 @@ html {
   object-fit: cover; /* كيحافظ على دقة وقياسات الفيديو الأصلية */
   filter: contrast(105%) brightness(95%); /* تحسين خفيف للتباين ووضوح الألوان */
 }
+
+.width-control{
+  min-width: stretch;
+  justify-content: space-between;
+}

@@ -121,11 +121,11 @@ export function Header() {
   return (
       <header className="fixed top-5 inset-x-0 z-50 px-4 sm:px-6 pointer-events-none">
         <div
-            className={`mx-auto max-w-4xl pointer-events-auto flex items-center justify-between rounded-full px-6 py-4 transition-all duration-500 border ${
+            className={`mx-auto max-w-4xl pointer-events-auto flex items-center rounded-full px-6 py-4 transition-all duration-500 border width-control  ${
                 scrolled
                     ? "border-white/10 bg-black/85 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
                     : "border-white/5 bg-black/30 backdrop-blur-md"
-            }`}
+             }`}
         >
           {/* Brand / Minimalist Text Logo */}
           <a href="#" className="flex items-center gap-3 group pl-1">
