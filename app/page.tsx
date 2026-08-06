@@ -58,9 +58,9 @@ import AnimatedNumber from "@/components/AnimatedNumber";
 import TypewriterText from "@/components/TypewriterText";
 import emailjs from "@emailjs/browser";
 import { useEffect, useRef, useState } from "react";
-import MobileMenu from "@/components/MobileMenu";
 import {HiMenu, HiOutlineMenu, HiOutlineMenuAlt3, HiSparkles, HiX} from "react-icons/hi";
-import {FiArrowUpRight} from "react-icons/fi";
+import {FiArrowUpRight, FiCommand} from "react-icons/fi";
+
 
 export function Header() {
   const socialLinks = [
@@ -72,21 +72,21 @@ export function Header() {
   ];
 
   const navItems = [
-    { label: "About", href: "#about" },
-    { label: "Skills", href: "#skills" },
-    { label: "Work", href: "#work" },
-    { label: "Education", href: "#education" },
-    { label: "Hackathons", href: "#hackathons" },
-    { label: "Contact", href: "#contact" },
+    { number: "01", label: "About", href: "#about" },
+    { number: "02", label: "Skills", href: "#skills" },
+    { number: "03", label: "Work", href: "#work" },
+    { number: "04", label: "Education", href: "#education" },
+    { number: "05", label: "Hackathons", href: "#hackathons" },
+    { number: "06", label: "Contact", href: "#contact" },
   ];
 
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("about");
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
+      setScrolled(window.scrollY > 40);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -119,111 +119,62 @@ export function Header() {
   }, []);
 
   return (
-      <header className="fixed top-5 inset-x-0 z-50 px-4 sm:px-6 pointer-events-none">
-        <div
-            className={`mx-auto max-w-4xl pointer-events-auto flex items-center rounded-full px-6 py-4 transition-all duration-500 border width-control  ${
-                scrolled
-                    ? "border-white/10 bg-black/85 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
-                    : "border-white/5 bg-black/30 backdrop-blur-md"
-             }`}
-        >
-          {/* Brand / Minimalist Text Logo */}
-          <a href="#" className="flex items-center gap-3 group pl-1">
-            <div className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] font-mono text-xs font-bold text-white transition-all duration-300 group-hover:scale-105 group-hover:rotate-6 group-hover:border-[#D9A441] group-hover:text-[#D9A441] group-hover:shadow-[0_0_15px_rgba(217,164,65,0.4)]">
-              RT
-            </div>
-            <div className="flex flex-col">
-            <span className="text-xs font-semibold text-white tracking-tight transition-colors duration-300 group-hover:text-[#D9A441]">
-              Rida Taki
-            </span>
-              <span className="text-[9px] font-mono text-gray-500 tracking-wider">
-              DEVELOPER
-            </span>
-            </div>
-          </a>
+      <>
+        {/* Dynamic Floating Pill Header */}
+        <header className="fixed top-6 inset-x-0 z-50 px-4 sm:px-8 pointer-events-none">
+          <div className="mx-auto max-w-7xl flex items-center justify-between pointer-events-auto gap-3">
 
-
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-2">
-            {navItems.map((item) => {
-              const id = item.href.replace("#", "");
-              const isActive = activeSection === id;
-              return (
-                  <a
-                      key={item.label}
-                      href={item.href}
-                      className={`relative px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${
-                          isActive
-                              ? "text-white bg-white/10"
-                              : "text-gray-400 hover:text-white hover:bg-white/5 hover:scale-105"
-                      }`}
-                  >
-                    {item.label}
-                    {isActive && (
-                        <span className="absolute bottom-0 left-3 right-3 h-[2px] rounded-full bg-[#D9A441] shadow-[0_0_10px_#D9A441]" />
-                    )}
-                  </a>
-              );
-            })}
-          </nav>
-
-          {/* Right Actions */}
-          <div className="flex items-center gap-3">
-            {/* Social Icons with Hover Effects */}
-            <div className="hidden lg:flex items-center gap-2 border-r border-white/10 pr-3">
-              {socialLinks.map((social) => (
-                  <a
-                      key={social.label}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={social.label}
-                      className="flex h-8 w-8 items-center justify-center rounded-full border border-white/5 bg-white/[0.03] text-gray-400 transition-all duration-300 hover:-translate-y-1 hover:border-[#D9A441]/60 hover:bg-[#D9A441]/10 hover:text-[#D9A441] hover:shadow-[0_0_12px_rgba(217,164,65,0.3)]"
-                  >
-                    {social.icon}
-                  </a>
-              ))}
-            </div>
-
-            {/* Minimalist Action CTA */}
+            {/* Logo Badge */}
             <a
-                href="#contact"
-                className="group inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-medium text-white backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-[#D9A441] hover:bg-[#D9A441] hover:text-black hover:shadow-[0_0_20px_rgba(217,164,65,0.5)]"
+                href="#"
+                className="group flex items-center gap-3 rounded-2xl bg-neutral-950/80 p-2 pr-4 border border-white/10 backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.8)] hover:border-[#D9A441]/50 transition-all duration-300"
             >
-              <span>Let's Talk</span>
-              <FiArrowUpRight size={13} className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#D9A441] font-mono text-xs font-black text-black group-hover:scale-105 transition-transform">
+                RT
+              </div>
+              <div className="flex flex-col">
+              <span className="text-xs font-black tracking-widest text-white group-hover:text-[#D9A441] transition-colors">
+                RIDA TAKI
+              </span>
+                <span className="text-[9px] font-mono text-gray-400">
+                DEVELOPER
+              </span>
+              </div>
             </a>
 
-            {/* Mobile Menu Trigger */}
-            <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                aria-label="Toggle Navigation"
-                className="md:hidden flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-300 transition-all duration-300 hover:border-[#D9A441]/50 hover:text-[#D9A441]"
+            {/* Nav Links Badge */}
+            <div
+                className={`hidden lg:flex items-center gap-1 rounded-2xl bg-neutral-950/80 p-2 border backdrop-blur-2xl transition-all duration-500 ${
+                    scrolled
+                        ? "border-[#D9A441]/30 shadow-[0_10px_30px_rgba(0,0,0,0.8)] scale-95"
+                        : "border-white/10"
+                }`}
             >
-              {isMobileMenuOpen ? <HiX size={18} /> : <HiOutlineMenu size={18} />}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Menu Modal */}
-        {isMobileMenuOpen && (
-            <div className="pointer-events-auto md:hidden mt-2 mx-auto max-w-xs rounded-2xl border border-white/10 bg-black/95 p-4 backdrop-blur-2xl shadow-2xl space-y-3 animate-in fade-in slide-in-from-top-2 duration-300">
-              <div className="flex flex-col gap-1">
-                {navItems.map((item) => (
+              {navItems.slice(0, 6).map((item) => {
+                const id = item.href.replace("#", "");
+                const isActive = activeSection === id;
+                return (
                     <a
                         key={item.label}
                         href={item.href}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="rounded-xl px-3 py-2 text-xs font-medium text-gray-300 hover:bg-white/10 hover:text-white transition-all duration-200"
+                        className={`relative px-4 py-2 text-xs font-mono uppercase tracking-wider transition-all duration-300 rounded-xl ${
+                            isActive
+                                ? "text-black bg-[#D9A441] font-bold shadow-[0_0_15px_rgba(217,164,65,0.4)]"
+                                : "text-gray-400 hover:text-white hover:bg-white/5"
+                        }`}
                     >
                       {item.label}
                     </a>
-                ))}
-              </div>
+                );
+              })}
+            </div>
 
-              {/* Mobile Socials */}
-              <div className="flex items-center justify-center gap-3 border-t border-white/10 pt-3">
+            {/* Social Icons Badge + Action Buttons */}
+            <div className="flex items-center gap-2">
+
+              {/* Always Visible Social Icons Badge */}
+              {/* Social Icons Badge */}
+              <div className="hidden sm:flex items-center gap-1.5 rounded-2xl bg-neutral-950/80 p-2 border border-white/10 backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
                 {socialLinks.map((social) => (
                     <a
                         key={social.label}
@@ -231,15 +182,108 @@ export function Header() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={social.label}
-                        className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 transition-all duration-300 hover:border-[#D9A441] hover:text-[#D9A441]"
+                        className="flex h-8 w-8 items-center justify-center rounded-xl text-gray-400 hover:text-black hover:bg-[#D9A441] transition-all duration-300"
                     >
                       {social.icon}
                     </a>
                 ))}
               </div>
+
+              {/* Let's Talk CTA */}
+              <a
+                  href="#contact"
+                  className="hidden md:flex items-center gap-2 rounded-2xl bg-neutral-950/80 px-4 py-2.5 border border-white/10 text-xs font-mono font-bold text-white hover:text-[#D9A441] hover:border-[#D9A441]/50 backdrop-blur-2xl transition-all duration-300"
+              >
+                <FiCommand size={14} className="text-[#D9A441]" />
+                <span>LET'S TALK</span>
+              </a>
+
+              {/* Kinetic Menu Button */}
+              <button
+                  onClick={() => setIsOpen(!isOpen)}
+                  className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#D9A441] text-black hover:bg-white transition-all duration-300 shadow-[0_0_20px_rgba(217,164,65,0.3)] hover:scale-105"
+              >
+                {isOpen ? <HiX size={22} /> : <HiOutlineMenuAlt3 size={22} />}
+              </button>
             </div>
-        )}
-      </header>
+          </div>
+        </header>
+
+        {/* Fullscreen Interactive Overlay Menu */}
+        <div
+            className={`fixed inset-0 z-40 bg-black/95 backdrop-blur-3xl transition-all duration-700 flex flex-col justify-between p-8 md:p-16 ${
+                isOpen
+                    ? "opacity-100 pointer-events-auto translate-y-0"
+                    : "opacity-0 pointer-events-none -translate-y-8"
+            }`}
+        >
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
+
+          <div className="pt-16" />
+
+          {/* Overlay Navigation */}
+          <div className="relative z-10 mx-auto max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <nav className="flex flex-col gap-2">
+              {navItems.map((item) => (
+                  <a
+                      key={item.label}
+                      href={item.href}
+                      onClick={() => setIsOpen(false)}
+                      className="group flex items-center gap-6 py-2 text-3xl sm:text-5xl font-black tracking-tight text-neutral-500 hover:text-white transition-all duration-300"
+                  >
+                <span className="font-mono text-sm text-[#D9A441] opacity-60 group-hover:opacity-100 group-hover:translate-x-2 transition-all">
+                  {item.number}
+                </span>
+                    <span className="group-hover:translate-x-4 transition-transform duration-300">
+                  {item.label}
+                </span>
+                  </a>
+              ))}
+            </nav>
+
+            <div className="flex flex-col gap-8 border-t md:border-t-0 md:border-l border-white/10 pt-8 md:pt-0 md:pl-12">
+              <div>
+                <h4 className="font-mono text-xs uppercase tracking-widest text-[#D9A441] mb-2">
+                  // Direct Contact
+                </h4>
+                <a
+                    href="#contact"
+                    onClick={() => setIsOpen(false)}
+                    className="text-lg font-bold text-white hover:underline"
+                >
+                  takirida72@email.com
+                </a>
+              </div>
+
+              <div>
+                <h4 className="font-mono text-xs uppercase tracking-widest text-[#D9A441] mb-4">
+                  // Social Channels
+                </h4>
+                <div className="flex flex-wrap gap-3">
+                  {socialLinks.map((social) => (
+                      <a
+                          key={social.label}
+                          href={social.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-xs font-mono text-gray-300 hover:border-[#D9A441] hover:text-[#D9A441] hover:bg-[#D9A441]/10 transition-all"
+                      >
+                        {social.icon}
+                        <span>{social.label}</span>
+                        <FiArrowUpRight size={12} />
+                      </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative z-10 mx-auto max-w-5xl w-full flex justify-between items-center text-xs font-mono text-gray-500 border-t border-white/10 pt-6">
+            <span>DESIGN & CODE BY RIDA TAKI</span>
+            <span className="hidden sm:inline">BENI MELLAL, MOROCCO</span>
+          </div>
+        </div>
+      </>
   );
 }
 
