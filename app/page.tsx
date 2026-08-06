@@ -196,7 +196,7 @@ export function Header() {
                   className="hidden md:flex items-center gap-2 rounded-2xl bg-neutral-950/80 px-4 py-2.5 border border-white/10 text-xs font-mono font-bold text-white hover:text-[#D9A441] hover:border-[#D9A441]/50 backdrop-blur-2xl transition-all duration-300"
               >
                 <FiCommand size={14} className="text-[#D9A441]" />
-                <span>LET'S TALK</span>
+                <span>{"LET'S TALK"}</span>
               </a>
 
               {/* Kinetic Menu Button */}
@@ -245,7 +245,7 @@ export function Header() {
             <div className="flex flex-col gap-8 border-t md:border-t-0 md:border-l border-white/10 pt-8 md:pt-0 md:pl-12">
               <div>
                 <h4 className="font-mono text-xs uppercase tracking-widest text-[#D9A441] mb-2">
-                  // Direct Contact
+                  {"// Direct Contact"}
                 </h4>
                 <a
                     href="#contact"
@@ -258,7 +258,7 @@ export function Header() {
 
               <div>
                 <h4 className="font-mono text-xs uppercase tracking-widest text-[#D9A441] mb-4">
-                  // Social Channels
+                  {"// Social Channels"}
                 </h4>
                 <div className="flex flex-wrap gap-3">
                   {socialLinks.map((social) => (
@@ -760,7 +760,7 @@ export default function Home() {
                               size={15}
                               className="text-[#D9A441] transition-transform duration-300 group-hover:scale-110"
                           />
-                          <span>Let's Talk</span>
+                          <span>{"LET'S TALK"}</span>
                         </a>
                       </div>
 
