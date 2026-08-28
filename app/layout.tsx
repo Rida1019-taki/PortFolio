@@ -17,7 +17,6 @@ const cormorant = Cormorant_Garamond({
     display: "swap",
 });
 
-// استبدال Outfit بـ JetBrains_Mono باش يعطيك خط Mono حقيقي
 const mono = JetBrains_Mono({
     variable: "--font-ui-mono",
     subsets: ["latin"],
@@ -43,10 +42,8 @@ export default function RootLayout({
         <body className="min-h-full flex flex-col">
         {children}
         <Toaster position="top-right" richColors closeButton duration={4000} />
+        <GoogleAnalytics gaId="G-DS2HD5NH07" />
         </body>
-
-        {/* Google Analytics داخل الـ html */}
-        <GoogleAnalytics gaId="G-8DQ110SCP5" />
         </html>
     );
 }
