@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Outfit, JetBrains_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 import { GoogleAnalytics } from "@next/third-parties/google";
@@ -10,10 +10,10 @@ const outfit = Outfit({
     display: "swap",
 });
 
-const cormorant = Cormorant_Garamond({
-    variable: "--font-cormorant",
+const plusJakarta = Plus_Jakarta_Sans({
+    variable: "--font-heading",
     subsets: ["latin"],
-    weight: ["400", "500", "600", "700"],
+    weight: ["400", "500", "600", "700", "800"],
     display: "swap",
 });
 
@@ -37,7 +37,7 @@ export default function RootLayout({
     return (
         <html
             lang="en"
-            className={`${outfit.variable} ${cormorant.variable} ${mono.variable} h-full antialiased`}
+            className={`${outfit.variable} ${plusJakarta.variable} ${mono.variable} h-full antialiased`}
         >
         <body className="min-h-full flex flex-col">
         {children}

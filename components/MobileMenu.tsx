@@ -21,6 +21,7 @@ export default function MobileMenu() {
                             "About",
                             "Skills",
                             "Work",
+                            "Experience",
                             "Education",
                             "Hackathons",
                             "Resume",

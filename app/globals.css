@@ -2,16 +2,16 @@
 @plugin "tailwindcss-animate";
 
 @property --font-outfit { syntax: "*"; inherits: true; }
-@property --font-cormorant { syntax: "*"; inherits: true; }
+@property --font-heading { syntax: "*"; inherits: true; }
 @property --font-ui-mono { syntax: "*"; inherits: true; }
 
 @property --glow-x { syntax: "<length-percentage>"; inherits: false; initial-value: 50%; }
 @property --glow-y { syntax: "<length-percentage>"; inherits: false; initial-value: 50%; }
 
 :root {
-  --font-outfit: system-ui, sans-serif;
-  --font-cormorant: Georgia, serif;
-  --font-ui-mono: monospace;
+  --font-outfit: var(--font-outfit), system-ui, sans-serif;
+  --font-heading: var(--font-heading), system-ui, sans-serif;
+  --font-ui-mono: var(--font-ui-mono), monospace;
 }
 
 :root {
@@ -82,8 +82,9 @@ body::before {
    Typography
    ═══════════════════════════════════════════ */
 .display {
-  font-family: var(--font-cormorant), serif;
+  font-family: var(--font-heading), var(--font-outfit), system-ui, sans-serif;
   letter-spacing: -0.03em;
+  font-weight: 800;
 }
 
 .section-label {
@@ -95,9 +96,11 @@ body::before {
 }
 
 .section-title {
-  font-family: var(--font-cormorant), serif;
+  font-family: var(--font-heading), var(--font-outfit), system-ui, sans-serif;
   font-size: clamp(2.2rem, 5vw, 3.5rem);
-  line-height: 1;
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.02em;
   color: var(--foreground);
 }
 

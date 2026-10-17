@@ -75,10 +75,11 @@ export function Header() {
     { number: "01", label: "About", href: "#about" },
     { number: "02", label: "Skills", href: "#skills" },
     { number: "03", label: "Work", href: "#work" },
-    { number: "04", label: "Education", href: "#education" },
-    { number: "05", label: "Hackathons", href: "#hackathons" },
-    { number: "06", label: "Resume", href: "#resume" },
-    { number: "07", label: "Contact", href: "#contact" },
+    { number: "04", label: "Experience", href: "#experience" },
+    { number: "05", label: "Education", href: "#education" },
+    { number: "06", label: "Hackathons", href: "#hackathons" },
+    { number: "07", label: "Resume", href: "#resume" },
+    { number: "08", label: "Contact", href: "#contact" },
   ];
 
   const [scrolled, setScrolled] = useState(false);
@@ -151,7 +152,7 @@ export function Header() {
                         : "border-white/10"
                 }`}
             >
-              {navItems.slice(0, 7).map((item) => {
+              {navItems.map((item) => {
                 const id = item.href.replace("#", "");
                 const isActive = activeSection === id;
                 return (
@@ -325,9 +326,21 @@ export default function Home() {
   const projects = [
     {
       name: "HealthCare+",
-      subtitle: "Medical Management Platform",
+      domain: "Système Médical & Santé",
+      subtitle: "Plateforme Hospitalière Full-Stack Sécurisée",
       description:
-          "Complete healthcare management platform composed of a secure Spring Boot REST API and a modern React frontend. The application includes JWT authentication, role-based authorization, patient and doctor management, appointments, medical records, responsive dashboards, Docker deployment, and RESTful APIs.",
+        "Solution complète de gestion médicale permettant l'administration centralisée des patients, médecins, consultations et dossiers médicaux, articulée autour d'une API REST Spring Boot robuste et d'un client React dynamique.",
+      specs: [
+        { label: "Architecture", value: "API RESTful découplée" },
+        { label: "Sécurité", value: "Spring Security & JWT" },
+        { label: "Base de données", value: "MySQL & Hibernate ORM" },
+        { label: "Déploiement", value: "Docker & Environnement isolé" },
+      ],
+      highlights: [
+        "Authentification sécurisée par token JWT et gestion granulaire des rôles (Médecin, Patient, Admin).",
+        "Gestion complète des dossiers médicaux électroniques et prise de rendez-vous en temps réel.",
+        "Tableaux de bord d'analyse avec requêtes optimisées et architecture prête pour la production.",
+      ],
       tags: [
         "Java",
         "Spring Boot",
@@ -342,30 +355,40 @@ export default function Home() {
       ],
       image: "/healthcare.png",
       githubBackend:
-          "https://github.com/ENAA-School-Student/HealthCare-Syst-me-de-Gestion_M-dicale",
+        "https://github.com/ENAA-School-Student/HealthCare-Syst-me-de-Gestion_M-dicale",
       githubFrontend:
-          "https://github.com/Rida1019-taki/HealthCare-Frontend.git",
+        "https://github.com/Rida1019-taki/HealthCare-Frontend.git",
       accent: "#5a8fd4",
       number: "01",
     },
     {
       name: "LogiTrack",
-      subtitle: "Logistics Management Platform",
+      domain: "Logistique & Supply Chain",
+      subtitle: "Système de Gestion des Flux et Expéditions",
       description:
-          "Complete full-stack logistics management platform composed of a secure Spring Boot REST API and a modern React frontend. The application includes JWT authentication, role-based access control (ADMIN, MANAGER, AGENT), client, product and order management, dashboard statistics, pagination, filtering, Axios interceptors, Protected Routes, Role Guards, and a responsive Material UI interface.",
+        "Plateforme d'entreprise dédiée au pilotage des opérations logistiques, du suivi des stocks et de la traçabilité des livraisons, dotée d'un contrôle d'accès multi-rôles strict et d'une interface utilisateur Material UI avancée.",
+      specs: [
+        { label: "Architecture", value: "Client-Serveur modulaire" },
+        { label: "Contrôle d'accès", value: "Role Guards (ADMIN, MANAGER, AGENT)" },
+        { label: "Validation", value: "React Hook Form & Yup" },
+        { label: "Données", value: "MySQL, Pagination & Filtrage" },
+      ],
+      highlights: [
+        "Sécurisation complète du routage (Protected Routes, Role Guards et intercepteurs Axios).",
+        "Gestion en temps réel des commandes, produits et statuts d'expédition avec filtres avancés.",
+        "Tableaux de bord statistiques interactifs avec pagination et requêtes API asynchrones.",
+      ],
       tags: [
         "Java",
         "Spring Boot",
         "React",
         "Vite",
+        "Material UI",
         "Spring Security",
         "JWT",
         "MySQL",
         "Axios",
         "React Router",
-        "React Hook Form",
-        "Yup",
-        "MUI",
       ],
       image: "/logitrack1.png",
       githubBackend: "https://github.com/Rida1019-taki/LogiTrack",
@@ -375,23 +398,63 @@ export default function Home() {
     },
     {
       name: "FleetFlow",
-      subtitle: "Logistics & Fleet Management",
+      domain: "Gestion de Parc & DevOps",
+      subtitle: "Plateforme de Flotte Automobile & Livraisons",
       description:
-          "Enterprise logistics management platform for handling clients, vehicles, deliveries, and fleet operations. Includes REST APIs, Dockerized deployment, CI/CD pipeline, Swagger documentation, and secure JWT authentication.",
+        "Solution d'ingénierie logicielle pour l'orchestration des flottes de véhicules, la gestion des conducteurs et l'automatisation des flux logistiques, intégrée dans une chaîne d'intégration continue CI/CD.",
+      specs: [
+        { label: "Architecture", value: "Micro-services & Design Patterns" },
+        { label: "Documentation", value: "Swagger / OpenAPI 3.0" },
+        { label: "DevOps & CI/CD", value: "Pipeline GitHub Actions" },
+        { label: "Persistance", value: "MySQL & Transactions JPA" },
+      ],
+      highlights: [
+        "Architecture basée sur des DTOs stricts avec MapStruct pour des transferts de données optimisés.",
+        "Pipeline CI/CD automatisé avec GitHub Actions pour les tests et la validation continue.",
+        "Documentation interactive des endpoints API via Swagger UI facilitant l'intégration.",
+      ],
       tags: [
         "Java",
         "Spring Boot",
         "Docker",
-        "MapStruct",
-        "MySQL",
-        "Swagger",
-        "JWT",
         "GitHub Actions",
+        "MapStruct",
+        "Swagger",
+        "MySQL",
+        "JWT",
       ],
       image: "/fleetflow.png",
       github: "https://github.com/NihadHub/fleetFlow.git",
       accent: "#5ab88a",
       number: "03",
+    },
+  ];
+
+  const experiences = [
+    {
+      company: "Skaii service",
+      role: "DÉVELOPPEUR INFORMATIQUE",
+      service: "DÉVELOPPEUR WEB",
+      period: "15/10/2026 — Présent",
+      status: "current",
+      location: "Maroc",
+      description:
+        "Conception, développement et maintenance d'applications web modernes et performantes. Intégration d'architectures logicielles fiables, conception d'APIs RESTful et développement d'interfaces utilisateur intuitives.",
+      responsibilities: [
+        "Développement et intégration d'interfaces web dynamiques et responsives.",
+        "Conception, développement et consommation d'APIs RESTful sécurisées.",
+        "Gestion, modélisation et optimisation des bases de données relationnelles.",
+        "Collaboration selon les méthodologies agiles (Scrum) et respect des bonnes pratiques logicielles.",
+      ],
+      technologies: [
+        "React",
+        "Laravel",
+        "Java",
+        "Spring Boot",
+        "REST API",
+        "MySQL",
+        "Git",
+      ],
     },
   ];
 
@@ -473,6 +536,7 @@ export default function Home() {
     { icon: <SiFigma size={18} />, label: "Figma", color: "#a78bfa" },
   ];
 
+  const [selectedProject, setSelectedProject] = useState<string>("all");
   const [loading, setLoading] = useState(false);
 
   const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -648,7 +712,7 @@ export default function Home() {
       experiences that{" "}
     </span>
                       <br />
-                      <span className="bg-gradient-to-r from-[#F3C669] via-[#D9A441] to-[#B8860B] bg-clip-text text-transparent italic font-serif">
+                      <span className="bg-gradient-to-r from-[#F3C669] via-[#D9A441] to-[#B8860B] bg-clip-text text-transparent font-extrabold tracking-tight">
       truly matter.
     </span>
                     </h1>
@@ -821,7 +885,7 @@ export default function Home() {
                   <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
                     <span className="gradient-text">Architecting with </span>
                     <br />
-                    <span className="brand-gradient-text italic font-serif">modern precision.</span>
+                    <span className="brand-gradient-text font-extrabold tracking-tight">modern precision.</span>
                   </h2>
                   <p className="text-base leading-relaxed text-[color:var(--muted)] sm:text-lg">
                     From resilient backends to fluid mobile applications — these are the core tools and frameworks I rely on daily.
@@ -878,114 +942,401 @@ export default function Home() {
   
             <div className="section-divider mx-auto max-w-7xl" />
   
-            {/* ═══ PROJECTS (WORK) ═══ */}
+            {/* ═══ FEATURED PROJECTS (BENTO SHOWCASE) ═══ */}
             <section id="work" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
               <ScrollReveal>
-                <div className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8">
+                <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8">
                   <div>
                     <div className="flex items-center gap-2 font-mono text-xs text-[#D9A441] mb-3">
                       <span className="text-white/40">{"//"}</span>
-                      <span className="uppercase tracking-[0.2em] font-medium">Selected Works</span>
+                      <span className="uppercase tracking-[0.25em] font-semibold">Featured Work</span>
                     </div>
                     <h2 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white">
-                      Featured <span className="italic font-serif font-normal text-[var(--brand)]">Projects</span>
+                      Selected <span className="text-[#D9A441] font-extrabold tracking-tight">Projects</span>
                     </h2>
                   </div>
                   <p className="max-w-md text-sm sm:text-base text-[color:var(--muted)] leading-relaxed">
-                    Real-world applications built with production standards, clean architecture, and intuitive user experience.
+                    Une sélection d&apos;applications full-stack et d&apos;architectures logicielles construites avec rigueur, performance et design soigné.
                   </p>
                 </div>
               </ScrollReveal>
-  
-              <div className="space-y-24">
-                {projects.map((project, i) => (
-                    <ScrollReveal key={project.name} delay={i * 100}>
-                      <article className="group grid gap-8 lg:grid-cols-12 items-center">
-                        <div className={`space-y-6 lg:col-span-5 ${i % 2 === 1 ? 'lg:order-2' : ''}`}>
-                          <div className="flex items-center gap-4">
-                        <span className="font-mono text-3xl font-light text-[#D9A441]">
-                          {project.number}
-                        </span>
-                            <div className="h-[1px] w-12 bg-white/20" />
-                            <span className="text-xs font-mono uppercase tracking-widest text-[color:var(--muted)]">
-                          {project.subtitle}
-                        </span>
+
+              {/* Bento Grid */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                
+                {/* ─── CARD 1: HERO FEATURED PROJECT (HealthCare+) ─── */}
+                <ScrollReveal className="lg:col-span-12">
+                  <div className="group relative rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.05] via-white/[0.02] to-transparent p-1 transition-all duration-500 hover:border-[#5a8fd4]/50 hover:shadow-[0_20px_70px_-15px_rgba(90,143,212,0.25)]">
+                    <div className="relative rounded-[22px] bg-black/80 p-6 sm:p-10 backdrop-blur-2xl overflow-hidden">
+                      {/* Ambient Glow */}
+                      <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-[#5a8fd4]/15 blur-[120px] pointer-events-none group-hover:bg-[#5a8fd4]/25 transition-all duration-500" />
+                      
+                      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                        {/* Info Left */}
+                        <div className="lg:col-span-5 space-y-6">
+                          <div className="flex items-center gap-3">
+                            <span className="font-mono text-xs font-bold text-[#5a8fd4] border border-[#5a8fd4]/30 bg-[#5a8fd4]/10 px-3 py-1 rounded-full">
+                              01 • FEATURED
+                            </span>
+                            <span className="text-xs font-mono uppercase tracking-wider text-white/50">
+                              Système Médical & Hospitalier
+                            </span>
                           </div>
-  
-                          <h3 className="text-3xl sm:text-4xl font-bold text-white transition-colors duration-300 group-hover:text-[var(--brand)]">
-                            {project.name}
-                          </h3>
-  
-                          <p className="text-base text-[color:var(--muted)] leading-relaxed">
-                            {project.description}
+
+                          <div>
+                            <h3 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight group-hover:text-[#5a8fd4] transition-colors duration-300">
+                              HealthCare+
+                            </h3>
+                            <p className="text-sm font-mono text-[#D9A441] font-medium mt-1">
+                              Medical Management Platform
+                            </p>
+                          </div>
+
+                          <p className="text-sm sm:text-base text-gray-300 leading-relaxed font-normal">
+                            Plateforme hospitalière complète composée d&apos;une API REST Spring Boot sécurisée et d&apos;un client React moderne. Gestion des patients, dossiers médicaux électroniques, consultations et tableaux de bord analytiques conteneurisés avec Docker.
                           </p>
-  
+
+                          {/* Tech Pills */}
                           <div className="flex flex-wrap gap-2 pt-2">
-                            {project.tags.map((tag) => (
-                                <span
-                                    key={tag}
-                                    className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-mono text-gray-300"
-                                >
-                            {tag}
-                          </span>
+                            {["Java 21", "Spring Boot", "React", "JWT Auth", "Hibernate", "MySQL", "Docker", "REST API"].map((tag) => (
+                              <span
+                                key={tag}
+                                className="rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-xs font-mono text-gray-300 transition-colors hover:border-[#5a8fd4]/40 hover:text-white"
+                              >
+                                {tag}
+                              </span>
                             ))}
                           </div>
-  
-                          <div className="flex flex-wrap gap-4 pt-4">
-                            {project.githubBackend && (
-                                <a
-                                    href={project.githubBackend}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-white border-b border-white/30 pb-1 transition-all hover:border-[var(--brand)] hover:text-[var(--brand)]"
-                                >
-                                  <FaGithub size={14} /> Backend Code <ArrowUpRight size={12} />
-                                </a>
-                            )}
-  
-                            {project.githubFrontend && (
-                                <a
-                                    href={project.githubFrontend}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-white border-b border-white/30 pb-1 transition-all hover:border-[var(--brand)] hover:text-[var(--brand)]"
-                                >
-                                  <FaGithub size={14} /> Frontend Code <ArrowUpRight size={12} />
-                                </a>
-                            )}
-  
-                            {!project.githubBackend && project.github && (
-                                <a
-                                    href={project.github}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-white border-b border-white/30 pb-1 transition-all hover:border-[var(--brand)] hover:text-[var(--brand)]"
-                                >
-                                  <FaGithub size={14} /> View Repository <ArrowUpRight size={12} />
-                                </a>
-                            )}
+
+                          {/* CTAs */}
+                          <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-white/10">
+                            <a
+                              href="https://github.com/ENAA-School-Student/HealthCare-Syst-me-de-Gestion_M-dicale"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-xs font-mono font-semibold text-white transition-all duration-300 hover:border-[#5a8fd4] hover:bg-[#5a8fd4] hover:text-black hover:shadow-[0_0_20px_rgba(90,143,212,0.4)]"
+                            >
+                              <FaGithub size={15} />
+                              <span>Backend Code</span>
+                              <ArrowUpRight size={13} />
+                            </a>
+                            <a
+                              href="https://github.com/Rida1019-taki/HealthCare-Frontend.git"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-xs font-mono font-semibold text-white transition-all duration-300 hover:border-[#5a8fd4] hover:bg-[#5a8fd4] hover:text-black hover:shadow-[0_0_20px_rgba(90,143,212,0.4)]"
+                            >
+                              <FaGithub size={15} />
+                              <span>Frontend Code</span>
+                              <ArrowUpRight size={13} />
+                            </a>
                           </div>
                         </div>
-  
-                        <div className={`lg:col-span-7 ${i % 2 === 1 ? 'lg:order-1' : ''}`}>
-                          <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-2 transition-all duration-500 group-hover:border-white/20 group-hover:shadow-2xl">
-                            <div className="relative aspect-[16/10] overflow-hidden rounded-xl">
+
+                        {/* Visual Right */}
+                        <div className="lg:col-span-7">
+                          <div className="relative rounded-2xl border border-white/15 bg-neutral-950/80 p-2 sm:p-3 shadow-2xl transition-all duration-500 group-hover:border-[#5a8fd4]/40 group-hover:shadow-[0_25px_60px_rgba(0,0,0,0.95)]">
+                            <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-neutral-900">
                               <Image
-                                  src={project.image}
-                                  alt={project.name}
-                                  fill
-                                  className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                                src="/healthcare.png"
+                                alt="HealthCare+ Preview"
+                                fill
+                                sizes="(max-width: 1024px) 100vw, 700px"
+                                className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
                               />
-                              <div className="absolute inset-0 bg-black/20 transition-opacity duration-500 group-hover:opacity-0" />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-40 transition-opacity duration-300 group-hover:opacity-10" />
+                              
+                              {/* Floating Badge on Image */}
+                              <div className="absolute bottom-4 left-4 z-10 flex items-center gap-2 rounded-full border border-white/20 bg-black/70 px-3.5 py-1.5 backdrop-blur-md text-xs font-mono text-white">
+                                <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                                <span>Hospital Management System</span>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </article>
-                    </ScrollReveal>
-                ))}
+                      </div>
+                    </div>
+                  </div>
+                </ScrollReveal>
+
+                {/* ─── CARD 2: LogiTrack ─── */}
+                <ScrollReveal delay={100} className="lg:col-span-6">
+                  <div className="group relative h-full rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.05] via-white/[0.02] to-transparent p-1 transition-all duration-500 hover:border-[#e07040]/50 hover:shadow-[0_20px_70px_-15px_rgba(224,112,64,0.25)] flex flex-col">
+                    <div className="relative h-full rounded-[22px] bg-black/80 p-6 sm:p-8 backdrop-blur-2xl flex flex-col justify-between overflow-hidden">
+                      {/* Ambient Glow */}
+                      <div className="absolute -top-20 -right-20 h-72 w-72 rounded-full bg-[#e07040]/15 blur-[100px] pointer-events-none group-hover:bg-[#e07040]/25 transition-all duration-500" />
+
+                      <div className="space-y-6">
+                        {/* Header */}
+                        <div className="flex items-center justify-between">
+                          <span className="font-mono text-xs font-bold text-[#e07040] border border-[#e07040]/30 bg-[#e07040]/10 px-3 py-1 rounded-full">
+                            02 • LOGISTICS
+                          </span>
+                          <span className="text-xs font-mono uppercase tracking-wider text-white/50">
+                            Supply Chain Platform
+                          </span>
+                        </div>
+
+                        {/* Image Preview */}
+                        <div className="relative rounded-2xl border border-white/15 bg-neutral-950/80 p-2 shadow-2xl transition-all duration-500 group-hover:border-[#e07040]/40">
+                          <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-neutral-900">
+                            <Image
+                              src="/logitrack1.png"
+                              alt="LogiTrack Preview"
+                              fill
+                              sizes="(max-width: 1024px) 100vw, 550px"
+                              className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-40 transition-opacity duration-300 group-hover:opacity-10" />
+                          </div>
+                        </div>
+
+                        {/* Text */}
+                        <div>
+                          <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight group-hover:text-[#e07040] transition-colors duration-300">
+                            LogiTrack
+                          </h3>
+                          <p className="text-xs font-mono text-[#D9A441] font-medium mt-1">
+                            Logistics & Supply Chain Management
+                          </p>
+                        </div>
+
+                        <p className="text-sm text-gray-300 leading-relaxed font-normal">
+                          Plateforme web logistique full-stack avec contrôle d&apos;accès multi-rôles (ADMIN, MANAGER, AGENT), suivi en direct des commandes, pagination serveur et interface Material UI réactive.
+                        </p>
+
+                        {/* Tech Pills */}
+                        <div className="flex flex-wrap gap-1.5 pt-1">
+                          {["Spring Boot", "React", "Vite", "Material UI", "JWT", "MySQL", "Axios"].map((tag) => (
+                            <span
+                              key={tag}
+                              className="rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-mono text-gray-300 transition-colors hover:border-[#e07040]/40 hover:text-white"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* CTAs */}
+                      <div className="flex flex-wrap items-center gap-3 pt-6 mt-6 border-t border-white/10">
+                        <a
+                          href="https://github.com/Rida1019-taki/LogiTrack"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-3.5 py-2 text-xs font-mono font-semibold text-white transition-all duration-300 hover:border-[#e07040] hover:bg-[#e07040] hover:text-black hover:shadow-[0_0_20px_rgba(224,112,64,0.4)]"
+                        >
+                          <FaGithub size={14} />
+                          <span>Backend</span>
+                          <ArrowUpRight size={12} />
+                        </a>
+                        <a
+                          href="https://github.com/Rida1019-taki/LogiTrack_FrontEnd"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-3.5 py-2 text-xs font-mono font-semibold text-white transition-all duration-300 hover:border-[#e07040] hover:bg-[#e07040] hover:text-black hover:shadow-[0_0_20px_rgba(224,112,64,0.4)]"
+                        >
+                          <FaGithub size={14} />
+                          <span>Frontend</span>
+                          <ArrowUpRight size={12} />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </ScrollReveal>
+
+                {/* ─── CARD 3: FleetFlow ─── */}
+                <ScrollReveal delay={200} className="lg:col-span-6">
+                  <div className="group relative h-full rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.05] via-white/[0.02] to-transparent p-1 transition-all duration-500 hover:border-[#5ab88a]/50 hover:shadow-[0_20px_70px_-15px_rgba(90,184,138,0.25)] flex flex-col">
+                    <div className="relative h-full rounded-[22px] bg-black/80 p-6 sm:p-8 backdrop-blur-2xl flex flex-col justify-between overflow-hidden">
+                      {/* Ambient Glow */}
+                      <div className="absolute -top-20 -right-20 h-72 w-72 rounded-full bg-[#5ab88a]/15 blur-[100px] pointer-events-none group-hover:bg-[#5ab88a]/25 transition-all duration-500" />
+
+                      <div className="space-y-6">
+                        {/* Header */}
+                        <div className="flex items-center justify-between">
+                          <span className="font-mono text-xs font-bold text-[#5ab88a] border border-[#5ab88a]/30 bg-[#5ab88a]/10 px-3 py-1 rounded-full">
+                            03 • FLEET & DEVOPS
+                          </span>
+                          <span className="text-xs font-mono uppercase tracking-wider text-white/50">
+                            Enterprise Logistics
+                          </span>
+                        </div>
+
+                        {/* Image Preview */}
+                        <div className="relative rounded-2xl border border-white/15 bg-neutral-950/80 p-2 shadow-2xl transition-all duration-500 group-hover:border-[#5ab88a]/40">
+                          <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-neutral-900">
+                            <Image
+                              src="/fleetflow.png"
+                              alt="FleetFlow Preview"
+                              fill
+                              sizes="(max-width: 1024px) 100vw, 550px"
+                              className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-40 transition-opacity duration-300 group-hover:opacity-10" />
+                          </div>
+                        </div>
+
+                        {/* Text */}
+                        <div>
+                          <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight group-hover:text-[#5ab88a] transition-colors duration-300">
+                            FleetFlow
+                          </h3>
+                          <p className="text-xs font-mono text-[#D9A441] font-medium mt-1">
+                            Fleet Management & CI/CD
+                          </p>
+                        </div>
+
+                        <p className="text-sm text-gray-300 leading-relaxed font-normal">
+                          Système d&apos;orchestration de flottes automobiles et livraisons avec architecture DTO MapStruct, intégration continue GitHub Actions CI/CD et documentation interactive Swagger.
+                        </p>
+
+                        {/* Tech Pills */}
+                        <div className="flex flex-wrap gap-1.5 pt-1">
+                          {["Spring Boot", "Docker", "GitHub Actions", "Swagger", "MapStruct", "MySQL", "JWT"].map((tag) => (
+                            <span
+                              key={tag}
+                              className="rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-mono text-gray-300 transition-colors hover:border-[#5ab88a]/40 hover:text-white"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* CTAs */}
+                      <div className="flex flex-wrap items-center gap-3 pt-6 mt-6 border-t border-white/10">
+                        <a
+                          href="https://github.com/NihadHub/fleetFlow.git"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-xs font-mono font-semibold text-white transition-all duration-300 hover:border-[#5ab88a] hover:bg-[#5ab88a] hover:text-black hover:shadow-[0_0_20px_rgba(90,184,138,0.4)]"
+                        >
+                          <FaGithub size={14} />
+                          <span>View Repository</span>
+                          <ArrowUpRight size={12} />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </ScrollReveal>
+
               </div>
             </section>
   
+            <div className="section-divider mx-auto max-w-7xl" />
+
+            {/* ═══ EXPERIENCE ═══ */}
+            <section id="experience" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
+              <ScrollReveal>
+                <div className="mb-16 space-y-4 text-center max-w-3xl mx-auto">
+                  <span className="section-label inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
+                    <Briefcase size={14} /> Career & Professional Path
+                  </span>
+                  <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
+                    <span className="gradient-text">Work </span>
+                    <span className="brand-gradient-text font-extrabold tracking-tight">Experience.</span>
+                  </h2>
+                  <p className="text-sm sm:text-base text-[color:var(--muted)] leading-relaxed">
+                    Parcours professionnel et contribution au développement de solutions logicielles et web.
+                  </p>
+                </div>
+              </ScrollReveal>
+
+              <div className="space-y-8 max-w-5xl mx-auto">
+                {experiences.map((exp, i) => {
+                  const isCurrent = exp.status === "current";
+                  return (
+                    <ScrollReveal key={exp.company} delay={i * 120}>
+                      <div className="group relative rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.05] via-white/[0.02] to-transparent p-1 transition-all duration-500 hover:border-[#D9A441]/40 hover:shadow-[0_10px_40px_-15px_rgba(217,164,65,0.25)]">
+                        {/* Glow effect on hover */}
+                        <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#D9A441]/10 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none" />
+
+                        <div className="relative rounded-[22px] bg-black/50 p-6 sm:p-10 backdrop-blur-xl">
+                          {/* Header section with Company, Role, Service and Period */}
+                          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/10 pb-6 mb-6">
+                            <div className="flex items-start sm:items-center gap-4">
+                              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-[#D9A441]/30 bg-[#D9A441]/10 text-[#D9A441] transition-transform duration-300 group-hover:scale-105 shadow-[0_0_20px_rgba(217,164,65,0.2)]">
+                                <Briefcase size={26} />
+                              </div>
+                              <div>
+                                <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                                  <h3 className="text-2xl sm:text-3xl font-bold text-white group-hover:text-[#D9A441] transition-colors">
+                                    {exp.company}
+                                  </h3>
+                                  <span className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-[10px] font-mono text-gray-300">
+                                    <MapPin size={10} className="text-[#D9A441]" />
+                                    {exp.location}
+                                  </span>
+                                </div>
+                                <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm font-mono">
+                                  <span className="text-[#D9A441] font-bold tracking-wide">
+                                    Poste / Fonction : {exp.role}
+                                  </span>
+                                  <span className="text-gray-500 hidden sm:inline">•</span>
+                                  <span className="text-gray-300 font-medium">
+                                    Service : {exp.service}
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="flex items-center gap-2 self-start md:self-auto">
+                              {isCurrent && (
+                                <span className="inline-flex items-center gap-1.5 rounded-full border border-[color:var(--accent-emerald)]/30 bg-[color:var(--accent-emerald)]/10 px-3 py-1 text-[11px] font-mono font-medium text-[color:var(--accent-emerald)]">
+                                  <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--accent-emerald)] animate-pulse" />
+                                  En poste
+                                </span>
+                              )}
+                              <span className="rounded-xl border border-white/10 bg-white/5 px-3.5 py-1 text-xs font-mono text-gray-300">
+                                {exp.period}
+                              </span>
+                            </div>
+                          </div>
+
+                          {/* Description */}
+                          <p className="text-sm sm:text-base text-gray-300 leading-relaxed mb-6">
+                            {exp.description}
+                          </p>
+
+                          {/* Key Responsibilities */}
+                          <div className="mb-6 space-y-2.5">
+                            <h4 className="text-xs font-mono uppercase tracking-wider text-white/60">
+                              {"// Missions & Responsabilités"}
+                            </h4>
+                            <div className="grid gap-2.5 sm:grid-cols-2">
+                              {exp.responsibilities.map((resp, idx) => (
+                                <div
+                                  key={idx}
+                                  className="flex items-start gap-2.5 text-xs sm:text-sm text-gray-300 bg-white/[0.02] border border-white/5 rounded-xl p-3"
+                                >
+                                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[#D9A441]" />
+                                  <span>{resp}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Tech stack tags */}
+                          <div className="border-t border-white/10 pt-4 flex flex-wrap items-center gap-2">
+                            <span className="text-xs font-mono text-white/40 mr-1">Technologies :</span>
+                            {exp.technologies.map((tech) => (
+                              <span
+                                key={tech}
+                                className="inline-flex items-center rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-xs font-mono text-gray-300 transition-colors hover:border-[#D9A441]/40 hover:text-white"
+                              >
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </ScrollReveal>
+                  );
+                })}
+              </div>
+            </section>
+
             <div className="section-divider mx-auto max-w-7xl" />
   
               {/* ═══ EDUCATION ═══ */}
@@ -997,7 +1348,7 @@ export default function Home() {
         </span>
                           <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
                               <span className="gradient-text">Academic </span>
-                              <span className="brand-gradient-text italic font-serif">Background.</span>
+                              <span className="brand-gradient-text font-extrabold tracking-tight">Background.</span>
                           </h2>
                           <p className="text-sm sm:text-base text-[color:var(--muted)] leading-relaxed">
                               Solid engineering foundations combined with specialized modern software development.
@@ -1085,7 +1436,7 @@ export default function Home() {
                               <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
                                   <span className="gradient-text">Professional </span>
                                   <br />
-                                  <span className="brand-gradient-text italic font-serif">Certifications.</span>
+                                  <span className="brand-gradient-text font-extrabold tracking-tight">Certifications.</span>
                               </h2>
                           </div>
                           <p className="max-w-md text-sm sm:text-base text-[color:var(--muted)] leading-relaxed">
@@ -1163,7 +1514,7 @@ export default function Home() {
                     <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
                       <span className="gradient-text">Innovation & </span>
                       <br />
-                      <span className="brand-gradient-text italic font-serif">Hackathons.</span>
+                      <span className="brand-gradient-text font-extrabold tracking-tight">Hackathons.</span>
                     </h2>
                   </div>
                   <p className="max-w-md text-sm sm:text-base text-[color:var(--muted)] leading-relaxed">
@@ -1250,7 +1601,7 @@ export default function Home() {
                               <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
                                   <span className="gradient-text">Ready to work </span>
                                   <br />
-                                  <span className="brand-gradient-text italic font-serif">together?</span>
+                                  <span className="brand-gradient-text font-extrabold tracking-tight">together?</span>
                               </h2>
   
                               <p className="text-sm sm:text-base leading-relaxed text-[color:var(--muted)]">
@@ -1303,7 +1654,7 @@ export default function Home() {
                                       <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight leading-[1.1]">
                                           <span className="gradient-text">Let&apos;s build something </span>
                                           <br />
-                                          <span className="brand-gradient-text italic font-serif">remarkable together.</span>
+                                          <span className="brand-gradient-text font-extrabold tracking-tight">remarkable together.</span>
                                       </h2>
   
                                       <p className="max-w-xl text-base leading-relaxed text-[color:var(--muted)] sm:text-lg font-medium">
