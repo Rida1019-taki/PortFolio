@@ -203,7 +203,8 @@ export function Header() {
               {/* Kinetic Menu Button */}
               <button
                   onClick={() => setIsOpen(!isOpen)}
-                  className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#D9A441] text-black hover:bg-white transition-all duration-300 shadow-[0_0_20px_rgba(217,164,65,0.3)] hover:scale-105"
+                  className="flex lg:hidden h-11 w-11 items-center justify-center rounded-2xl bg-[#D9A441] text-black hover:bg-white transition-all duration-300 shadow-[0_0_20px_rgba(217,164,65,0.3)] hover:scale-105"
+                  aria-label="Toggle navigation menu"
               >
                 {isOpen ? <HiX size={22} /> : <HiOutlineMenuAlt3 size={22} />}
               </button>
@@ -435,16 +436,16 @@ export default function Home() {
       company: "Skaii service",
       role: "DÉVELOPPEUR INFORMATIQUE",
       service: "DÉVELOPPEUR WEB",
-      period: "15/10/2026 — Présent",
+      period: "15/10/2026 — Present",
       status: "current",
-      location: "Maroc",
+      location: "Morocco",
       description:
-        "Conception, développement et maintenance d'applications web modernes et performantes. Intégration d'architectures logicielles fiables, conception d'APIs RESTful et développement d'interfaces utilisateur intuitives.",
+        "Design, development, and maintenance of modern high-performance web applications. Implementing robust software architectures, RESTful API design, and intuitive user interfaces.",
       responsibilities: [
-        "Développement et intégration d'interfaces web dynamiques et responsives.",
-        "Conception, développement et consommation d'APIs RESTful sécurisées.",
-        "Gestion, modélisation et optimisation des bases de données relationnelles.",
-        "Collaboration selon les méthodologies agiles (Scrum) et respect des bonnes pratiques logicielles.",
+        "Developing responsive, dynamic, and intuitive user interfaces.",
+        "Designing, developing, and consuming secure RESTful APIs.",
+        "Relational database modeling, schema management, and query optimization.",
+        "Collaborating in agile teams (Scrum) following software quality best practices.",
       ],
       technologies: [
         "React",
@@ -636,7 +637,7 @@ export default function Home() {
               muted
               loop
               playsInline
-              preload="auto"
+              preload="metadata"
               style={{
                 imageRendering: "crisp-edges",
                 transform: "translateZ(0)",
@@ -956,7 +957,7 @@ export default function Home() {
                     </h2>
                   </div>
                   <p className="max-w-md text-sm sm:text-base text-[color:var(--muted)] leading-relaxed">
-                    Une sélection d&apos;applications full-stack et d&apos;architectures logicielles construites avec rigueur, performance et design soigné.
+                    A curated selection of full-stack applications and software architectures built with engineering rigor, high performance, and clean design.
                   </p>
                 </div>
               </ScrollReveal>
@@ -979,7 +980,7 @@ export default function Home() {
                               01 • FEATURED
                             </span>
                             <span className="text-xs font-mono uppercase tracking-wider text-white/50">
-                              Système Médical & Hospitalier
+                              Healthcare & Medical System
                             </span>
                           </div>
 
@@ -993,7 +994,7 @@ export default function Home() {
                           </div>
 
                           <p className="text-sm sm:text-base text-gray-300 leading-relaxed font-normal">
-                            Plateforme hospitalière complète composée d&apos;une API REST Spring Boot sécurisée et d&apos;un client React moderne. Gestion des patients, dossiers médicaux électroniques, consultations et tableaux de bord analytiques conteneurisés avec Docker.
+                            Full-stack hospital management platform composed of a secure Spring Boot REST API and a modern React frontend. Features comprehensive patient records, doctor scheduling, responsive analytics dashboards, and containerized Docker deployment.
                           </p>
 
                           {/* Tech Pills */}
@@ -1102,7 +1103,7 @@ export default function Home() {
                         </div>
 
                         <p className="text-sm text-gray-300 leading-relaxed font-normal">
-                          Plateforme web logistique full-stack avec contrôle d&apos;accès multi-rôles (ADMIN, MANAGER, AGENT), suivi en direct des commandes, pagination serveur et interface Material UI réactive.
+                          Full-stack logistics management platform featuring multi-role access control (ADMIN, MANAGER, AGENT), real-time order tracking, server-side pagination, and a reactive Material UI interface.
                         </p>
 
                         {/* Tech Pills */}
@@ -1188,7 +1189,7 @@ export default function Home() {
                         </div>
 
                         <p className="text-sm text-gray-300 leading-relaxed font-normal">
-                          Système d&apos;orchestration de flottes automobiles et livraisons avec architecture DTO MapStruct, intégration continue GitHub Actions CI/CD et documentation interactive Swagger.
+                          Vehicle fleet and delivery orchestration system built with strict MapStruct DTO architecture, automated GitHub Actions CI/CD pipelines, and interactive Swagger/OpenAPI documentation.
                         </p>
 
                         {/* Tech Pills */}
@@ -1238,7 +1239,7 @@ export default function Home() {
                     <span className="brand-gradient-text font-extrabold tracking-tight">Experience.</span>
                   </h2>
                   <p className="text-sm sm:text-base text-[color:var(--muted)] leading-relaxed">
-                    Parcours professionnel et contribution au développement de solutions logicielles et web.
+                    Professional journey and engineering impact in modern full-stack web and software development.
                   </p>
                 </div>
               </ScrollReveal>
@@ -1271,11 +1272,11 @@ export default function Home() {
                                 </div>
                                 <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm font-mono">
                                   <span className="text-[#D9A441] font-bold tracking-wide">
-                                    Poste / Fonction : {exp.role}
+                                    Role: {exp.role}
                                   </span>
                                   <span className="text-gray-500 hidden sm:inline">•</span>
                                   <span className="text-gray-300 font-medium">
-                                    Service : {exp.service}
+                                    Department: {exp.service}
                                   </span>
                                 </div>
                               </div>
@@ -1285,7 +1286,7 @@ export default function Home() {
                               {isCurrent && (
                                 <span className="inline-flex items-center gap-1.5 rounded-full border border-[color:var(--accent-emerald)]/30 bg-[color:var(--accent-emerald)]/10 px-3 py-1 text-[11px] font-mono font-medium text-[color:var(--accent-emerald)]">
                                   <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--accent-emerald)] animate-pulse" />
-                                  En poste
+                                  Current
                                 </span>
                               )}
                               <span className="rounded-xl border border-white/10 bg-white/5 px-3.5 py-1 text-xs font-mono text-gray-300">
@@ -1302,7 +1303,7 @@ export default function Home() {
                           {/* Key Responsibilities */}
                           <div className="mb-6 space-y-2.5">
                             <h4 className="text-xs font-mono uppercase tracking-wider text-white/60">
-                              {"// Missions & Responsabilités"}
+                              {"// Core Responsibilities & Impact"}
                             </h4>
                             <div className="grid gap-2.5 sm:grid-cols-2">
                               {exp.responsibilities.map((resp, idx) => (
