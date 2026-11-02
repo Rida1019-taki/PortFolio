@@ -56,6 +56,8 @@ import ParticleField from "@/components/ParticleField";
 import MouseGlow from "@/components/MouseGlow";
 import AnimatedNumber from "@/components/AnimatedNumber";
 import TypewriterText from "@/components/TypewriterText";
+import { useLanguage } from "@/components/LanguageProvider";
+import LanguageToggle from "@/components/LanguageToggle";
 import emailjs from "@emailjs/browser";
 import { useEffect, useRef, useState } from "react";
 import {HiMenu, HiOutlineMenu, HiOutlineMenuAlt3, HiSparkles, HiX} from "react-icons/hi";
@@ -63,6 +65,8 @@ import {FiArrowUpRight, FiCommand} from "react-icons/fi";
 
 
 export function Header() {
+  const { t } = useLanguage();
+
   const socialLinks = [
     { icon: <FaGithub size={15} />, href: "https://github.com/Rida1019-taki", label: "GitHub" },
     { icon: <FaLinkedin size={15} />, href: "https://www.linkedin.com/in/rida-taki-bb44a8350", label: "LinkedIn" },
@@ -72,14 +76,14 @@ export function Header() {
   ];
 
   const navItems = [
-    { number: "01", label: "About", href: "#about" },
-    { number: "02", label: "Skills", href: "#skills" },
-    { number: "03", label: "Work", href: "#work" },
-    { number: "04", label: "Experience", href: "#experience" },
-    { number: "05", label: "Education", href: "#education" },
-    { number: "06", label: "Hackathons", href: "#hackathons" },
-    { number: "07", label: "Resume", href: "#resume" },
-    { number: "08", label: "Contact", href: "#contact" },
+    { number: "01", label: t.nav.about, href: "#about" },
+    { number: "02", label: t.nav.skills, href: "#skills" },
+    { number: "03", label: t.nav.work, href: "#work" },
+    { number: "04", label: t.nav.experience, href: "#experience" },
+    { number: "05", label: t.nav.education, href: "#education" },
+    { number: "06", label: t.nav.hackathons, href: "#hackathons" },
+    { number: "07", label: t.nav.resume, href: "#resume" },
+    { number: "08", label: t.nav.contact, href: "#contact" },
   ];
 
   const [scrolled, setScrolled] = useState(false);
@@ -139,7 +143,7 @@ export function Header() {
                 RIDA TAKI
               </span>
                 <span className="text-[9px] font-mono text-gray-400">
-                DEVELOPER
+                {t.nav.roleTitle}
               </span>
               </div>
             </a>
@@ -191,13 +195,16 @@ export function Header() {
                 ))}
               </div>
 
+              {/* Language Switcher Pill */}
+              <LanguageToggle />
+
               {/* Let's Talk CTA */}
               <a
                   href="#contact"
                   className="hidden md:flex items-center gap-2 rounded-2xl bg-neutral-950/80 px-4 py-2.5 border border-white/10 text-xs font-mono font-bold text-white hover:text-[#D9A441] hover:border-[#D9A441]/50 backdrop-blur-2xl transition-all duration-300"
               >
                 <FiCommand size={14} className="text-[#D9A441]" />
-                <span>{"LET'S TALK"}</span>
+                <span>{t.nav.letsTalk}</span>
               </a>
 
               {/* Kinetic Menu Button */}
@@ -245,22 +252,30 @@ export function Header() {
             </nav>
 
             <div className="flex flex-col gap-8 border-t md:border-t-0 md:border-l border-white/10 pt-8 md:pt-0 md:pl-12">
+              {/* Language Selector in Mobile */}
+              <div>
+                <h4 className="font-mono text-xs uppercase tracking-widest text-[#D9A441] mb-3">
+                  {t.mobileMenu.languageTitle}
+                </h4>
+                <LanguageToggle variant="mobile" />
+              </div>
+
               <div>
                 <h4 className="font-mono text-xs uppercase tracking-widest text-[#D9A441] mb-2">
-                  {"// Direct Contact"}
+                  {t.mobileMenu.directContact}
                 </h4>
                 <a
                     href="#contact"
                     onClick={() => setIsOpen(false)}
                     className="text-lg font-bold text-white hover:underline"
                 >
-                  takirida72@email.com
+                  takirida72@gmail.com
                 </a>
               </div>
 
               <div>
                 <h4 className="font-mono text-xs uppercase tracking-widest text-[#D9A441] mb-4">
-                  {"// Social Channels"}
+                  {t.mobileMenu.socialChannels}
                 </h4>
                 <div className="flex flex-wrap gap-3">
                   {socialLinks.map((social) => (
@@ -282,8 +297,8 @@ export function Header() {
           </div>
 
           <div className="relative z-10 mx-auto max-w-5xl w-full flex justify-between items-center text-xs font-mono text-gray-500 border-t border-white/10 pt-6">
-            <span>DESIGN & CODE BY RIDA TAKI</span>
-            <span className="hidden sm:inline">BENI MELLAL, MOROCCO</span>
+            <span>{t.mobileMenu.credit}</span>
+            <span className="hidden sm:inline">{t.mobileMenu.location}</span>
           </div>
         </div>
       </>
@@ -291,33 +306,35 @@ export function Header() {
 }
 
 export default function Home() {
+  const { t } = useLanguage();
+
   const skills = [
     {
-      category: "Languages",
+      category: t.skills.categories.languages,
       icon: <Terminal size={20} />,
       items: ["Java", "Dart", "JavaScript"],
       accent: "var(--brand)",
     },
     {
-      category: "Mobile Dev",
+      category: t.skills.categories.mobile,
       icon: <Smartphone size={20} />,
       items: ["Kotlin", "Flutter"],
       accent: "var(--accent-gold)",
     },
     {
-      category: "Web & Frameworks",
+      category: t.skills.categories.web,
       icon: <Layers size={20} />,
       items: ["React", "Spring Boot", "Spring Security", "HTML5", "CSS3"],
       accent: "var(--accent-blue)",
     },
     {
-      category: "Databases",
+      category: t.skills.categories.databases,
       icon: <Database size={20} />,
       items: ["MySQL", "SQLite", "JPA", "Hibernate"],
       accent: "var(--accent-emerald)",
     },
     {
-      category: "Tools & DevOps",
+      category: t.skills.categories.tools,
       icon: <Wrench size={20} />,
       items: ["Docker", "Github Actions", "Scrum", "Git", "Figma", "Postman"],
       accent: "#a78bfa",
@@ -557,8 +574,8 @@ export default function Home() {
 
       form.reset();
 
-      toast.success("Message sent!", {
-        description: "Your email has been delivered successfully.",
+      toast.success(t.contact.toastSuccessTitle, {
+        description: t.contact.toastSuccessDesc,
       });
     } catch (error) {
       console.error(error);
@@ -683,13 +700,13 @@ export default function Home() {
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
           </span>
                       <span className="text-[11px] font-mono font-medium uppercase tracking-widest text-emerald-400">
-            Open to New Opportunities
+            {t.hero.statusBadge}
           </span>
                     </div>
 
                     <div className="flex items-center gap-2 text-xs font-mono text-gray-400">
                       <MapPin size={14} className="text-[#D9A441]" />
-                      <span>Beni Mellal, Morocco</span>
+                      <span>{t.hero.location}</span>
                       <span className="text-gray-600">|</span>
                       <span className="text-gray-500">UTC+1</span>
                     </div>
@@ -706,15 +723,15 @@ export default function Home() {
                   >
                     <h1 className="display text-[clamp(2.2rem,5vw,4.2rem)] font-extrabold leading-[1.05] tracking-tight">
     <span className="text-white drop-shadow-[0_4px_10px_rgba(0,0,0,0.8)]">
-      Crafting digital{" "}
+      {t.hero.line1}{" "}
     </span>
                       <br />
                       <span className="bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
-      experiences that{" "}
+      {t.hero.line2}{" "}
     </span>
                       <br />
                       <span className="bg-gradient-to-r from-[#F3C669] via-[#D9A441] to-[#B8860B] bg-clip-text text-transparent font-extrabold tracking-tight">
-      truly matter.
+      {t.hero.line3}
     </span>
                     </h1>
                   </div>
@@ -726,7 +743,7 @@ export default function Home() {
     <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#D9A441]"></span>
   </span>
                     <div className="text-base sm:text-xl font-mono text-gray-200 tracking-wide">
-                      <TypewriterText />
+                      <TypewriterText roles={t.hero.typewriterRoles} />
                     </div>
                   </div>
 
@@ -752,7 +769,7 @@ export default function Home() {
                       <div className="space-y-4 relative z-10">
                         <div className="flex items-center justify-between border-b border-white/10 pb-3">
       <span className="text-[10px] font-mono uppercase tracking-widest text-[#D9A441] font-semibold">
-        About Me
+        {t.hero.aboutBadge}
       </span>
                           <div className="...">
                             {/* Background */}
@@ -761,7 +778,7 @@ export default function Home() {
                         </div>
 
                         <p className="text-base sm:text-lg leading-relaxed text-gray-200 font-normal">
-                          Junior Developer specializing in <span className="text-white font-semibold">Java, Spring Boot, React, and Kotlin</span>. Passionate about building clean API architectures, efficient databases, and functional user interfaces.
+                          {t.hero.aboutBio}
                         </p>
                       </div>
 
@@ -787,21 +804,21 @@ export default function Home() {
                           <div className="text-3xl font-bold text-white font-mono">
                             <AnimatedNumber value={3} suffix="+" />
                           </div>
-                          <div className="text-[9px] font-mono uppercase tracking-widest text-gray-400 mt-1">Projects</div>
+                          <div className="text-[9px] font-mono uppercase tracking-widest text-gray-400 mt-1">{t.hero.projectsMetric}</div>
                         </div>
 
                         <div className="px-2">
                           <div className="text-3xl font-bold text-white font-mono">
                             <AnimatedNumber value={10} suffix="+" />
                           </div>
-                          <div className="text-[9px] font-mono uppercase tracking-widest text-gray-400 mt-1">Tech Stack</div>
+                          <div className="text-[9px] font-mono uppercase tracking-widest text-gray-400 mt-1">{t.hero.stackMetric}</div>
                         </div>
 
                         <div className="pl-2">
                           <div className="text-3xl font-bold text-white font-mono">
                             <AnimatedNumber value={3} />
                           </div>
-                          <div className="text-[9px] font-mono uppercase tracking-widest text-gray-400 mt-1">Certs</div>
+                          <div className="text-[9px] font-mono uppercase tracking-widest text-gray-400 mt-1">{t.hero.certsMetric}</div>
                         </div>
                       </div>
 
@@ -814,7 +831,7 @@ export default function Home() {
                               background: "linear-gradient(135deg, #F3C669, #C9A063)",
                             }}
                         >
-                          Explore Projects <ArrowRight size={15} />
+                          {t.hero.exploreBtn} <ArrowRight size={15} />
                         </a>
 
                         <a
@@ -881,15 +898,15 @@ export default function Home() {
               <ScrollReveal>
                 <div className="mb-14 max-w-2xl space-y-4">
       <span className="section-label inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
-        <Code2 size={14} /> Technical Arsenal
+        <Code2 size={14} /> {t.skills.badge}
       </span>
                   <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
-                    <span className="gradient-text">Architecting with </span>
+                    <span className="gradient-text">{t.skills.title1} </span>
                     <br />
-                    <span className="brand-gradient-text font-extrabold tracking-tight">modern precision.</span>
+                    <span className="brand-gradient-text font-extrabold tracking-tight">{t.skills.title2}</span>
                   </h2>
                   <p className="text-base leading-relaxed text-[color:var(--muted)] sm:text-lg">
-                    From resilient backends to fluid mobile applications — these are the core tools and frameworks I rely on daily.
+                    {t.skills.desc}
                   </p>
                 </div>
               </ScrollReveal>
@@ -912,7 +929,7 @@ export default function Home() {
                             </div>
 
                             <span className="rounded-full border border-white/5 bg-white/[0.03] px-3 py-1 text-[10px] font-mono uppercase tracking-widest text-[color:var(--muted)]">
-                {skill.items.length} Skills
+                {skill.items.length} {t.skills.skillsSuffix}
               </span>
                           </div>
 
@@ -950,14 +967,14 @@ export default function Home() {
                   <div>
                     <div className="flex items-center gap-2 font-mono text-xs text-[#D9A441] mb-3">
                       <span className="text-white/40">{"//"}</span>
-                      <span className="uppercase tracking-[0.25em] font-semibold">Featured Work</span>
+                      <span className="uppercase tracking-[0.25em] font-semibold">{t.work.badge}</span>
                     </div>
                     <h2 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white">
-                      Selected <span className="text-[#D9A441] font-extrabold tracking-tight">Projects</span>
+                      {t.work.title1} <span className="text-[#D9A441] font-extrabold tracking-tight">{t.work.title2}</span>
                     </h2>
                   </div>
                   <p className="max-w-md text-sm sm:text-base text-[color:var(--muted)] leading-relaxed">
-                    A curated selection of full-stack applications and software architectures built with engineering rigor, high performance, and clean design.
+                    {t.work.desc}
                   </p>
                 </div>
               </ScrollReveal>
@@ -977,10 +994,10 @@ export default function Home() {
                         <div className="lg:col-span-5 space-y-6">
                           <div className="flex items-center gap-3">
                             <span className="font-mono text-xs font-bold text-[#5a8fd4] border border-[#5a8fd4]/30 bg-[#5a8fd4]/10 px-3 py-1 rounded-full">
-                              01 • FEATURED
+                              {t.work.healthcare.tag}
                             </span>
                             <span className="text-xs font-mono uppercase tracking-wider text-white/50">
-                              Healthcare & Medical System
+                              {t.work.healthcare.domain}
                             </span>
                           </div>
 
@@ -989,12 +1006,12 @@ export default function Home() {
                               HealthCare+
                             </h3>
                             <p className="text-sm font-mono text-[#D9A441] font-medium mt-1">
-                              Medical Management Platform
+                              {t.work.healthcare.subtitle}
                             </p>
                           </div>
 
                           <p className="text-sm sm:text-base text-gray-300 leading-relaxed font-normal">
-                            Full-stack hospital management platform composed of a secure Spring Boot REST API and a modern React frontend. Features comprehensive patient records, doctor scheduling, responsive analytics dashboards, and containerized Docker deployment.
+                            {t.work.healthcare.desc}
                           </p>
 
                           {/* Tech Pills */}
@@ -1018,7 +1035,7 @@ export default function Home() {
                               className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-xs font-mono font-semibold text-white transition-all duration-300 hover:border-[#5a8fd4] hover:bg-[#5a8fd4] hover:text-black hover:shadow-[0_0_20px_rgba(90,143,212,0.4)]"
                             >
                               <FaGithub size={15} />
-                              <span>Backend Code</span>
+                              <span>{t.work.btnBackend}</span>
                               <ArrowUpRight size={13} />
                             </a>
                             <a
@@ -1028,7 +1045,7 @@ export default function Home() {
                               className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-xs font-mono font-semibold text-white transition-all duration-300 hover:border-[#5a8fd4] hover:bg-[#5a8fd4] hover:text-black hover:shadow-[0_0_20px_rgba(90,143,212,0.4)]"
                             >
                               <FaGithub size={15} />
-                              <span>Frontend Code</span>
+                              <span>{t.work.btnFrontend}</span>
                               <ArrowUpRight size={13} />
                             </a>
                           </div>
@@ -1050,7 +1067,7 @@ export default function Home() {
                               {/* Floating Badge on Image */}
                               <div className="absolute bottom-4 left-4 z-10 flex items-center gap-2 rounded-full border border-white/20 bg-black/70 px-3.5 py-1.5 backdrop-blur-md text-xs font-mono text-white">
                                 <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                                <span>Hospital Management System</span>
+                                <span>{t.work.healthcare.badge}</span>
                               </div>
                             </div>
                           </div>
@@ -1071,10 +1088,10 @@ export default function Home() {
                         {/* Header */}
                         <div className="flex items-center justify-between">
                           <span className="font-mono text-xs font-bold text-[#e07040] border border-[#e07040]/30 bg-[#e07040]/10 px-3 py-1 rounded-full">
-                            02 • LOGISTICS
+                            {t.work.logitrack.tag}
                           </span>
                           <span className="text-xs font-mono uppercase tracking-wider text-white/50">
-                            Supply Chain Platform
+                            {t.work.logitrack.domain}
                           </span>
                         </div>
 
@@ -1098,12 +1115,12 @@ export default function Home() {
                             LogiTrack
                           </h3>
                           <p className="text-xs font-mono text-[#D9A441] font-medium mt-1">
-                            Logistics & Supply Chain Management
+                            {t.work.logitrack.subtitle}
                           </p>
                         </div>
 
                         <p className="text-sm text-gray-300 leading-relaxed font-normal">
-                          Full-stack logistics management platform featuring multi-role access control (ADMIN, MANAGER, AGENT), real-time order tracking, server-side pagination, and a reactive Material UI interface.
+                          {t.work.logitrack.desc}
                         </p>
 
                         {/* Tech Pills */}
@@ -1157,10 +1174,10 @@ export default function Home() {
                         {/* Header */}
                         <div className="flex items-center justify-between">
                           <span className="font-mono text-xs font-bold text-[#5ab88a] border border-[#5ab88a]/30 bg-[#5ab88a]/10 px-3 py-1 rounded-full">
-                            03 • FLEET & DEVOPS
+                            {t.work.fleetflow.tag}
                           </span>
                           <span className="text-xs font-mono uppercase tracking-wider text-white/50">
-                            Enterprise Logistics
+                            {t.work.fleetflow.domain}
                           </span>
                         </div>
 
@@ -1184,12 +1201,12 @@ export default function Home() {
                             FleetFlow
                           </h3>
                           <p className="text-xs font-mono text-[#D9A441] font-medium mt-1">
-                            Fleet Management & CI/CD
+                            {t.work.fleetflow.subtitle}
                           </p>
                         </div>
 
                         <p className="text-sm text-gray-300 leading-relaxed font-normal">
-                          Vehicle fleet and delivery orchestration system built with strict MapStruct DTO architecture, automated GitHub Actions CI/CD pipelines, and interactive Swagger/OpenAPI documentation.
+                          {t.work.fleetflow.desc}
                         </p>
 
                         {/* Tech Pills */}
@@ -1214,7 +1231,7 @@ export default function Home() {
                           className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-xs font-mono font-semibold text-white transition-all duration-300 hover:border-[#5ab88a] hover:bg-[#5ab88a] hover:text-black hover:shadow-[0_0_20px_rgba(90,184,138,0.4)]"
                         >
                           <FaGithub size={14} />
-                          <span>View Repository</span>
+                          <span>{t.work.btnRepo}</span>
                           <ArrowUpRight size={12} />
                         </a>
                       </div>
@@ -1232,14 +1249,14 @@ export default function Home() {
               <ScrollReveal>
                 <div className="mb-16 space-y-4 text-center max-w-3xl mx-auto">
                   <span className="section-label inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
-                    <Briefcase size={14} /> Career & Professional Path
+                    <Briefcase size={14} /> {t.experience.badge}
                   </span>
                   <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
-                    <span className="gradient-text">Work </span>
-                    <span className="brand-gradient-text font-extrabold tracking-tight">Experience.</span>
+                    <span className="gradient-text">{t.experience.title1} </span>
+                    <span className="brand-gradient-text font-extrabold tracking-tight">{t.experience.title2}</span>
                   </h2>
                   <p className="text-sm sm:text-base text-[color:var(--muted)] leading-relaxed">
-                    Professional journey and engineering impact in modern full-stack web and software development.
+                    {t.experience.desc}
                   </p>
                 </div>
               </ScrollReveal>
@@ -1272,11 +1289,11 @@ export default function Home() {
                                 </div>
                                 <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm font-mono">
                                   <span className="text-[#D9A441] font-bold tracking-wide">
-                                    Role: {exp.role}
+                                    {t.experience.skaii.role.split(":")[0]}: {exp.role}
                                   </span>
                                   <span className="text-gray-500 hidden sm:inline">•</span>
                                   <span className="text-gray-300 font-medium">
-                                    Department: {exp.service}
+                                    {t.experience.skaii.service.split(":")[0]}: {exp.service}
                                   </span>
                                 </div>
                               </div>
@@ -1286,7 +1303,7 @@ export default function Home() {
                               {isCurrent && (
                                 <span className="inline-flex items-center gap-1.5 rounded-full border border-[color:var(--accent-emerald)]/30 bg-[color:var(--accent-emerald)]/10 px-3 py-1 text-[11px] font-mono font-medium text-[color:var(--accent-emerald)]">
                                   <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--accent-emerald)] animate-pulse" />
-                                  Current
+                                  {t.experience.skaii.currentBadge}
                                 </span>
                               )}
                               <span className="rounded-xl border border-white/10 bg-white/5 px-3.5 py-1 text-xs font-mono text-gray-300">
@@ -1303,7 +1320,7 @@ export default function Home() {
                           {/* Key Responsibilities */}
                           <div className="mb-6 space-y-2.5">
                             <h4 className="text-xs font-mono uppercase tracking-wider text-white/60">
-                              {"// Core Responsibilities & Impact"}
+                              {t.experience.skaii.responsibilitiesTitle}
                             </h4>
                             <div className="grid gap-2.5 sm:grid-cols-2">
                               {exp.responsibilities.map((resp, idx) => (
@@ -1320,7 +1337,7 @@ export default function Home() {
 
                           {/* Tech stack tags */}
                           <div className="border-t border-white/10 pt-4 flex flex-wrap items-center gap-2">
-                            <span className="text-xs font-mono text-white/40 mr-1">Technologies :</span>
+                            <span className="text-xs font-mono text-white/40 mr-1">{t.experience.skaii.techLabel}</span>
                             {exp.technologies.map((tech) => (
                               <span
                                 key={tech}
@@ -1345,14 +1362,14 @@ export default function Home() {
                   <ScrollReveal>
                       <div className="mb-16 space-y-4 text-center max-w-3xl mx-auto">
         <span className="section-label inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
-          <GraduationCap size={14} /> Education & Credentials
+          <GraduationCap size={14} /> {t.education.badge}
         </span>
                           <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
-                              <span className="gradient-text">Academic </span>
-                              <span className="brand-gradient-text font-extrabold tracking-tight">Background.</span>
+                              <span className="gradient-text">{t.education.title1} </span>
+                              <span className="brand-gradient-text font-extrabold tracking-tight">{t.education.title2}</span>
                           </h2>
                           <p className="text-sm sm:text-base text-[color:var(--muted)] leading-relaxed">
-                              Solid engineering foundations combined with specialized modern software development.
+                              {t.education.desc}
                           </p>
                       </div>
                   </ScrollReveal>
@@ -1384,7 +1401,7 @@ export default function Home() {
                                                       </div>
                                                       <div>
                         <span className="text-xs font-mono uppercase tracking-widest text-white/50 block">
-                          Degree Program
+                          {t.education.degreeType}
                         </span>
                                                           <span className="text-xs font-mono font-semibold text-[#D9A441]">
                           {edu.period}
@@ -1395,7 +1412,7 @@ export default function Home() {
                                                   {isCurrent && (
                                                       <span className="inline-flex items-center gap-1.5 rounded-full border border-[color:var(--accent-emerald)]/30 bg-[color:var(--accent-emerald)]/10 px-3 py-1 text-[10px] font-mono font-medium text-[color:var(--accent-emerald)]">
                         <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--accent-emerald)] animate-pulse" />
-                        Active
+                        {t.education.activeBadge}
                       </span>
                                                   )}
                                               </div>
@@ -1432,16 +1449,16 @@ export default function Home() {
                       <div className="mb-16 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
                           <div className="space-y-4 max-w-2xl">
           <span className="section-label inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
-            <Award size={14} /> Verified Credentials
+            <Award size={14} /> {t.certifications.badge}
           </span>
                               <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
-                                  <span className="gradient-text">Professional </span>
+                                  <span className="gradient-text">{t.certifications.title1} </span>
                                   <br />
-                                  <span className="brand-gradient-text font-extrabold tracking-tight">Certifications.</span>
+                                  <span className="brand-gradient-text font-extrabold tracking-tight">{t.certifications.title2}</span>
                               </h2>
                           </div>
                           <p className="max-w-md text-sm sm:text-base text-[color:var(--muted)] leading-relaxed">
-                              Industry-recognized Cisco certifications validating networking, security, and foundational programming skills.
+                              {t.certifications.desc}
                           </p>
                       </div>
                   </ScrollReveal>
@@ -1464,7 +1481,7 @@ export default function Home() {
                                                   <Icon size={26} />
                                               </div>
                                               <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[10px] font-mono uppercase tracking-wider text-white/60">
-                    <Award size={10} className="text-[#D9A441]" /> Verified
+                    <Award size={10} className="text-[#D9A441]" /> {t.certifications.verifiedBadge}
                   </span>
                                           </div>
   
@@ -1486,7 +1503,7 @@ export default function Home() {
                                               className="group/btn inline-flex w-full items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-xs font-semibold text-white transition-all duration-300 hover:border-[#D9A441] hover:bg-[#D9A441] hover:text-black"
                                           >
                   <span className="flex items-center gap-2">
-                    <FileText size={15} /> View PDF Certificate
+                    <FileText size={15} /> {t.certifications.btnPdf}
                   </span>
                                               <ExternalLink size={14} className="transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
                                           </a>
@@ -1510,16 +1527,16 @@ export default function Home() {
                 <div className="mb-16 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
                   <div className="space-y-4 max-w-2xl">
                 <span className="section-label inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
-                    <Rocket size={14} /> Competitive Coding
+                    <Rocket size={14} /> {t.hackathons.badge}
                 </span>
                     <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
-                      <span className="gradient-text">Innovation & </span>
+                      <span className="gradient-text">{t.hackathons.title1} </span>
                       <br />
-                      <span className="brand-gradient-text font-extrabold tracking-tight">Hackathons.</span>
+                      <span className="brand-gradient-text font-extrabold tracking-tight">{t.hackathons.title2}</span>
                     </h2>
                   </div>
                   <p className="max-w-md text-sm sm:text-base text-[color:var(--muted)] leading-relaxed">
-                    Fast-paced challenges that sharpen my problem-solving skills, rapid prototyping, and collaborative engineering under high pressure.
+                    {t.hackathons.desc}
                   </p>
                 </div>
               </ScrollReveal>
@@ -1546,7 +1563,7 @@ export default function Home() {
                             {/* Top Badge */}
                             <div className="absolute top-4 left-4 z-10">
                                 <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-black/60 px-3 py-1 text-[10px] font-mono font-medium text-white backdrop-blur-md">
-                                    <Zap size={12} className="text-[#D9A441]" /> Hackathon Project
+                                    <Zap size={12} className="text-[#D9A441]" /> {t.hackathons.projectTag}
                                 </span>
                             </div>
                           </div>
@@ -1594,19 +1611,19 @@ export default function Home() {
   
                           {/* Top Badge */}
                           <div className="relative z-10 mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441]">
-                              <FileText size={14} /> Official Curriculum Vitae
+                              <FileText size={14} /> {t.resume.badge}
                           </div>
   
                           {/* Title & Description */}
                           <div className="relative z-10 max-w-2xl mx-auto space-y-4">
                               <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
-                                  <span className="gradient-text">Ready to work </span>
+                                  <span className="gradient-text">{t.resume.title1} </span>
                                   <br />
-                                  <span className="brand-gradient-text font-extrabold tracking-tight">together?</span>
+                                  <span className="brand-gradient-text font-extrabold tracking-tight">{t.resume.title2}</span>
                               </h2>
   
                               <p className="text-sm sm:text-base leading-relaxed text-[color:var(--muted)]">
-                                  Download my latest CV to explore my technical skills, academic background, and full project history in detail.
+                                  {t.resume.desc}
                               </p>
                           </div>
   
@@ -1620,7 +1637,7 @@ export default function Home() {
                                   className="group relative inline-flex items-center gap-3 overflow-hidden rounded-2xl bg-gradient-to-r from-[#C9A063] to-[#B8860B] px-8 py-4 text-sm font-bold text-black transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(217,164,65,0.4)]"
                               >
                                   <Download size={18} className="transition-transform duration-300 group-hover:-translate-y-0.5" />
-                                  <span>Download Resume (PDF)</span>
+                                  <span>{t.resume.btnDownload}</span>
                               </a>
                           </div>
   
@@ -1649,24 +1666,24 @@ export default function Home() {
                               <div className="space-y-8 lg:col-span-6">
                                   <div className="space-y-4">
               <span className="section-label inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
-                <Mail size={14} /> Get In Touch
+                <Mail size={14} /> {t.contact.badge}
               </span>
   
                                       <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight leading-[1.1]">
-                                          <span className="gradient-text">Let&apos;s build something </span>
+                                          <span className="gradient-text">{t.contact.title1} </span>
                                           <br />
-                                          <span className="brand-gradient-text font-extrabold tracking-tight">remarkable together.</span>
+                                          <span className="brand-gradient-text font-extrabold tracking-tight">{t.contact.title2}</span>
                                       </h2>
   
                                       <p className="max-w-xl text-base leading-relaxed text-[color:var(--muted)] sm:text-lg font-medium">
-                                          I&apos;m open to internships, freelance missions, and collaborative product work. If you need a developer who cares about both solid architecture and intuitive user experience — let&apos;s talk.
+                                          {t.contact.desc}
                                       </p>
                                   </div>
   
                                   {/* Social Links Grid */}
                                   <div className="space-y-3">
               <span className="text-xs font-mono uppercase tracking-widest text-white/50 block">
-                Connect via Socials
+                {t.contact.socialsHeader}
               </span>
                                       <div className="flex flex-wrap gap-3">
                                           {[
@@ -1698,19 +1715,19 @@ export default function Home() {
                                       className="space-y-5 rounded-3xl border border-white/10 bg-white/[0.03] p-6 sm:p-8 backdrop-blur-xl shadow-xl"
                                   >
                                       <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-2">
-                                          <h3 className="text-xl font-bold text-white">Send Message</h3>
-                                          <span className="text-xs font-mono text-[#D9A441]">{"//"} Direct Mail</span>
+                                          <h3 className="text-xl font-bold text-white">{t.contact.formTitle}</h3>
+                                          <span className="text-xs font-mono text-[#D9A441]">{t.contact.formDirect}</span>
                                       </div>
   
                                       <div className="space-y-4">
                                           <div>
                                               <label className="mb-2 block text-xs font-mono uppercase tracking-wider text-gray-400">
-                                                  Full Name
+                                                  {t.contact.labelName}
                                               </label>
                                               <input
                                                   name="from_name"
                                                   type="text"
-                                                  placeholder="John Doe"
+                                                  placeholder={t.contact.placeholderName}
                                                   className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 outline-none transition-all duration-300 focus:border-[#D9A441] focus:bg-white/10 focus:shadow-[0_0_15px_rgba(217,164,65,0.2)]"
                                                   required
                                               />
@@ -1718,12 +1735,12 @@ export default function Home() {
   
                                           <div>
                                               <label className="mb-2 block text-xs font-mono uppercase tracking-wider text-gray-400">
-                                                  Email Address
+                                                  {t.contact.labelEmail}
                                               </label>
                                               <input
                                                   name="from_email"
                                                   type="email"
-                                                  placeholder="john@example.com"
+                                                  placeholder={t.contact.placeholderEmail}
                                                   className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 outline-none transition-all duration-300 focus:border-[#D9A441] focus:bg-white/10 focus:shadow-[0_0_15px_rgba(217,164,65,0.2)]"
                                                   required
                                               />
@@ -1731,12 +1748,12 @@ export default function Home() {
   
                                           <div>
                                               <label className="mb-2 block text-xs font-mono uppercase tracking-wider text-gray-400">
-                                                  Subject
+                                                  {t.contact.labelSubject}
                                               </label>
                                               <input
                                                   name="subject"
                                                   type="text"
-                                                  placeholder="Project Inquiry / Opportunity"
+                                                  placeholder={t.contact.placeholderSubject}
                                                   className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 outline-none transition-all duration-300 focus:border-[#D9A441] focus:bg-white/10 focus:shadow-[0_0_15px_rgba(217,164,65,0.2)]"
                                                   required
                                               />
@@ -1744,12 +1761,12 @@ export default function Home() {
   
                                           <div>
                                               <label className="mb-2 block text-xs font-mono uppercase tracking-wider text-gray-400">
-                                                  Your Message
+                                                  {t.contact.labelMessage}
                                               </label>
                                               <textarea
                                                   name="message"
                                                   rows={4}
-                                                  placeholder="Tell me about your project or offer..."
+                                                  placeholder={t.contact.placeholderMessage}
                                                   className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 outline-none transition-all duration-300 focus:border-[#D9A441] focus:bg-white/10 focus:shadow-[0_0_15px_rgba(217,164,65,0.2)]"
                                                   required
                                               />
@@ -1761,7 +1778,7 @@ export default function Home() {
                                           disabled={loading}
                                           className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-[#C9A063] to-[#B8860B] py-3.5 text-xs font-bold uppercase tracking-widest text-black transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_25px_rgba(217,164,65,0.4)] disabled:opacity-50"
                                       >
-                                          <span>{loading ? "Sending..." : "Send Message"}</span>
+                                          <span>{loading ? t.contact.btnSending : t.contact.btnSend}</span>
                                           <Rocket size={14} className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                                       </button>
                                   </form>
@@ -1788,7 +1805,7 @@ export default function Home() {
                         <div className="flex flex-col">
                             <span className="text-sm font-semibold text-white">Rida Taki</span>
                             <span className="text-[11px] font-mono text-[color:var(--muted)]">
-            © {new Date().getFullYear()} All rights reserved.
+            © {new Date().getFullYear()} {t.footer.rights}
           </span>
                         </div>
                     </div>
@@ -1796,7 +1813,7 @@ export default function Home() {
                     {/* Center Text / Status */}
                     <div className="flex items-center gap-2 text-xs font-mono text-[color:var(--muted)]">
                         <span className="text-[#D9A441]">{"//"}</span>
-                        <span>Architected with precision &amp; passion</span>
+                        <span>{t.footer.tagline}</span>
                     </div>
   
                     {/* Social Links */}

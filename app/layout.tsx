@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans, Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { LanguageProvider } from "@/components/LanguageProvider";
 
 const outfit = Outfit({
     variable: "--font-outfit",
@@ -74,8 +75,8 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-                                       children,
-                                   }: Readonly<{
+    children,
+}: Readonly<{
     children: React.ReactNode;
 }>) {
     return (
@@ -84,9 +85,11 @@ export default function RootLayout({
             className={`${outfit.variable} ${plusJakarta.variable} ${mono.variable} h-full antialiased`}
         >
         <body className="min-h-full flex flex-col">
-        {children}
-        <Toaster position="top-right" richColors closeButton duration={4000} />
-        <GoogleAnalytics gaId="G-DS2HD5NH07" />
+        <LanguageProvider>
+            {children}
+            <Toaster position="top-right" richColors closeButton duration={4000} />
+            <GoogleAnalytics gaId="G-DS2HD5NH07" />
+        </LanguageProvider>
         </body>
         </html>
     );
