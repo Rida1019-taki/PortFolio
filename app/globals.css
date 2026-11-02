@@ -9,9 +9,9 @@
 @property --glow-y { syntax: "<length-percentage>"; inherits: false; initial-value: 50%; }
 
 :root {
-  --font-outfit: var(--font-outfit), system-ui, sans-serif;
-  --font-heading: var(--font-heading), system-ui, sans-serif;
-  --font-ui-mono: var(--font-ui-mono), monospace;
+  --font-outfit: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-ui-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 :root {

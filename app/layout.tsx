@@ -1,29 +1,8 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { LanguageProvider } from "@/components/LanguageProvider";
-
-const outfit = Outfit({
-    variable: "--font-outfit",
-    subsets: ["latin"],
-    display: "swap",
-});
-
-const plusJakarta = Plus_Jakarta_Sans({
-    variable: "--font-heading",
-    subsets: ["latin"],
-    weight: ["400", "500", "600", "700", "800"],
-    display: "swap",
-});
-
-const mono = JetBrains_Mono({
-    variable: "--font-ui-mono",
-    subsets: ["latin"],
-    weight: ["400", "500", "600"],
-    display: "swap",
-});
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://www.ridataki.dev"),
@@ -80,10 +59,15 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html
-            lang="en"
-            className={`${outfit.variable} ${plusJakarta.variable} ${mono.variable} h-full antialiased`}
-        >
+        <html lang="en" className="h-full antialiased">
+        <head>
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+            <link
+                href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+                rel="stylesheet"
+            />
+        </head>
         <body className="min-h-full flex flex-col">
         <LanguageProvider>
             {children}
