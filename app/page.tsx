@@ -795,7 +795,7 @@ export default function Home() {
 
                       {/* Tech Pills Footer */}
                       <div className="flex flex-wrap items-center gap-2 pt-6 mt-6 border-t border-white/10 relative z-10">
-                        {["Java 21", "Spring Boot", "React", "Next.js", "Docker", "MySQL"].map((tech) => (
+                        {["Java 21", "Spring Boot", "React", "Kotlin", "Flutter", "Docker", "MySQL"].map((tech) => (
                             <span
                                 key={tech}
                                 className="rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-xs font-mono text-gray-300 backdrop-blur-md hover:border-[#D9A441]/40 hover:text-white transition-all"
