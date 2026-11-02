@@ -22,7 +22,6 @@ import {
   FaReact,
   FaDocker,
   FaGithub,
-  FaPython,
   FaGitAlt,
   FaCss3Alt,
 } from "react-icons/fa";
@@ -39,9 +38,7 @@ import {
   SiFigma,
   SiJavascript,
   SiHtml5,
-  SiTailwindcss,
   SiGithubactions,
-  SiFastapi,
 } from "react-icons/si";
 
 export type SkillCategory = "all" | "backend" | "frontend" | "mobile" | "databases" | "devops";
@@ -143,17 +140,6 @@ export default function SkillsShowcase({ t }: SkillsShowcaseProps) {
       description: "Modélisation relationnelle, requêtes JPQL, gestion transactionnelle @Transactional et lazy loading.",
       chips: ["Entity Mapping", "JPQL", "Transactions", "Repository"],
     },
-    {
-      name: "Python / FastAPI",
-      category: "backend",
-      categoryLabel: "Backend & APIs",
-      icon: <SiFastapi className="text-[#009688]" size={26} />,
-      brandColor: "#009688",
-      level: "proficient",
-      role: "Fast Async APIs & Automation",
-      description: "Création d'APIs asynchrones rapides, validation Pydantic et intégration de modèles d'IA / Machine Learning.",
-      chips: ["Async Python", "Pydantic", "FastAPI", "ML Ready"],
-    },
 
     // ─── FRONTEND ───
     {
@@ -177,17 +163,6 @@ export default function SkillsShowcase({ t }: SkillsShowcaseProps) {
       role: "Dynamic Client-Side Scripting",
       description: "Programmation asynchrone (Async/Await, Promises), manipulation du DOM, closures et modularité moderne.",
       chips: ["ES6+ Syntax", "Async / Await", "Fetch API", "Event Driven"],
-    },
-    {
-      name: "Tailwind CSS",
-      category: "frontend",
-      categoryLabel: "Frontend & Web",
-      icon: <SiTailwindcss className="text-[#06B6D4]" size={28} />,
-      brandColor: "#06B6D4",
-      level: "advanced",
-      role: "Utility-First Responsive Styling",
-      description: "Conception d'interfaces dark-mode premium, animations fluides, glassmorphism et design responsive précis.",
-      chips: ["Responsive", "Dark Mode", "Glassmorphism", "Flex/Grid"],
     },
     {
       name: "HTML5 & CSS3",

@@ -309,7 +309,7 @@ export const translations: Record<Language, TranslationSchema> = {
         },
         frontend: {
           title: "Reactive Web & Modern User Interfaces",
-          subtitle: "React • Next.js • TypeScript • Tailwind",
+          subtitle: "React • JavaScript • HTML5 • CSS3",
           desc: "Crafting fluid, high-performance web dashboards and interactive clients with responsive layouts, modern state management, and accessible UI components.",
         },
         mobile: {
@@ -626,7 +626,7 @@ export const translations: Record<Language, TranslationSchema> = {
         },
         frontend: {
           title: "Web Réactif & Interfaces Modernes",
-          subtitle: "React • Next.js • TypeScript • Tailwind",
+          subtitle: "React • JavaScript • HTML5 • CSS3",
           desc: "Développement d'applications web réactives, de tableaux de bord dynamiques et d'interfaces intuitives alliant performance et fluidité visuelle.",
         },
         mobile: {
