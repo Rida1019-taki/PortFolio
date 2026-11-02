@@ -7,6 +7,7 @@ export interface TranslationSchema {
     work: string;
     experience: string;
     education: string;
+    certifications: string;
     hackathons: string;
     resume: string;
     contact: string;
@@ -242,6 +243,7 @@ export const translations: Record<Language, TranslationSchema> = {
       work: "Work",
       experience: "Experience",
       education: "Education",
+      certifications: "Certifications",
       hackathons: "Hackathons",
       resume: "Resume",
       contact: "Contact",
@@ -559,6 +561,7 @@ export const translations: Record<Language, TranslationSchema> = {
       work: "Projets",
       experience: "Expérience",
       education: "Formation",
+      certifications: "Certifications",
       hackathons: "Hackathons",
       resume: "CV",
       contact: "Contact",

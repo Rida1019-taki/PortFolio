@@ -89,9 +89,10 @@ export function Header() {
     { number: "03", label: t.nav.work, href: "#work" },
     { number: "04", label: t.nav.experience, href: "#experience" },
     { number: "05", label: t.nav.education, href: "#education" },
-    { number: "06", label: t.nav.hackathons, href: "#hackathons" },
-    { number: "07", label: t.nav.resume, href: "#resume" },
-    { number: "08", label: t.nav.contact, href: "#contact" },
+    { number: "06", label: t.nav.certifications, href: "#certifications" },
+    { number: "07", label: t.nav.hackathons, href: "#hackathons" },
+    { number: "08", label: t.nav.resume, href: "#resume" },
+    { number: "09", label: t.nav.contact, href: "#contact" },
   ];
 
   const [scrolled, setScrolled] = useState(false);
