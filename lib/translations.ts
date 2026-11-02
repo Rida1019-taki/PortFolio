@@ -125,6 +125,13 @@ export interface TranslationSchema {
     title2: string;
     desc: string;
     projectTag: string;
+    hacktoberfest: {
+      title: string;
+      desc: string;
+      tag: string;
+      date: string;
+      certificateLabel: string;
+    };
     foottech: {
       title: string;
       desc: string;
@@ -330,11 +337,18 @@ export const translations: Record<Language, TranslationSchema> = {
       },
     },
     hackathons: {
-      badge: "Competitive Coding",
+      badge: "Competitive Coding & Tech Events",
       title1: "Innovation &",
       title2: "Hackathons.",
-      desc: "Fast-paced challenges that sharpen my problem-solving skills, rapid prototyping, and collaborative engineering under high pressure.",
+      desc: "Fast-paced hackathons and tech events that sharpen my problem-solving skills, rapid prototyping, and collaborative engineering under high pressure.",
       projectTag: "Hackathon Project",
+      hacktoberfest: {
+        title: "Hacktoberfest Hack Day Beni Mellal 2026",
+        desc: "Participated in person in the Hacktoberfest Hack Day organized in collaboration with the Robotics & AI Club FPBM (powered by MLH & DigitalOcean). Explored open-source development, collaborative innovation, and modern software architectures.",
+        tag: "Open Source & Tech Event",
+        date: "Oct 28, 2026",
+        certificateLabel: "View Certificate",
+      },
       foottech: {
         title: "FootTech National Hackathon 2026",
         desc: "Finalist in the national sports-tech hackathon. Developed an innovative technical solution under high-pressure constraints.",
@@ -538,11 +552,18 @@ export const translations: Record<Language, TranslationSchema> = {
       },
     },
     hackathons: {
-      badge: "Coding Compétitif",
+      badge: "Coding Compétitif & Événements Tech",
       title1: "Innovation &",
       title2: "Hackathons.",
-      desc: "Défis intensifs qui affûtent ma résolution de problèmes, mon prototypage rapide et l'esprit d'équipe sous contrainte.",
+      desc: "Défis intensifs et événements technologiques qui affûtent ma résolution de problèmes, mon prototypage rapide et l'esprit d'équipe sous contrainte.",
       projectTag: "Projet de Hackathon",
+      hacktoberfest: {
+        title: "Hacktoberfest Hack Day Béni Mellal 2026",
+        desc: "Participation en présentiel au Hacktoberfest Hack Day organisé en collaboration avec le Robotics & AI Club FPBM (partenaires officiels MLH & DigitalOcean). Une journée riche en découvertes, échanges et exploration de solutions innovantes en développement informatique.",
+        tag: "Événement Tech & Open Source",
+        date: "28 Oct 2026",
+        certificateLabel: "Voir l'Attestation",
+      },
       foottech: {
         title: "Hackathon National FootTech 2026",
         desc: "Finaliste du hackathon national sport & technologie. Conception et implémentation d'une solution innovante sous fortes contraintes de temps.",

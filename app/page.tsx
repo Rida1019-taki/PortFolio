@@ -512,20 +512,43 @@ export default function Home() {
     },
   ];
 
-  const hackathons = [
+  interface HackathonItem {
+    title: string;
+    description: string;
+    image: string;
+    certificate?: string | null;
+    tag?: string;
+    date?: string;
+    tags: string[];
+  }
+
+  const hackathons: HackathonItem[] = [
     {
-      title: "Rally AI Future Lab 2026",
-      description:
-          "Participated in an AI hackathon focused on innovative healthcare solutions. Worked in a multidisciplinary team to build an AI-powered medical assistant prototype.",
-      image: "/hackathons/rally-ai1.jpeg",
-      tags: ["AI", "Healthcare", "Innovation", "Teamwork"],
+      title: t.hackathons.hacktoberfest.title,
+      description: t.hackathons.hacktoberfest.desc,
+      image: "/hackathons/hacktoberfest-day.jpg",
+      certificate: "/hackathons/hacktoberfest-cert.png",
+      tag: t.hackathons.hacktoberfest.tag,
+      date: t.hackathons.hacktoberfest.date,
+      tags: ["Hacktoberfest", "Open Source", "Java", "Spring Boot", "React", "AI & Robotics"],
     },
     {
-      title: "FootTech Hackathon 2026",
-      description:
-          "Developed a football technology solution with rapid prototyping and pitch presentation within 36 hours.",
+      title: t.hackathons.foottech.title,
+      description: t.hackathons.foottech.desc,
       image: "/hackathons/foottech.jpg",
-      tags: ["Sports Tech", "Next", "Python", "Hackathon"],
+      certificate: null,
+      tag: t.hackathons.projectTag,
+      date: "2026",
+      tags: ["React", "Spring Boot", "Flutter", "MySQL", "Sports Tech"],
+    },
+    {
+      title: t.hackathons.rally.title,
+      description: t.hackathons.rally.desc,
+      image: "/hackathons/rally-ai1.jpeg",
+      certificate: null,
+      tag: t.hackathons.projectTag,
+      date: "2026",
+      tags: ["Python", "FastAPI", "React", "Docker", "Machine Learning"],
     },
   ];
 
@@ -1544,7 +1567,7 @@ export default function Home() {
               </ScrollReveal>
 
               {/* items-stretch لتوحيد الارتفاع بين العامودين */}
-              <div className="grid gap-8 md:grid-cols-2 items-stretch">
+              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 items-stretch">
                 {hackathons.map((hackathon, index) => (
                     <ScrollReveal key={index} delay={index * 120} className="h-full">
                       <article className="group relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#D9A441]/50 hover:shadow-[0_20px_50px_-15px_rgba(217,164,65,0.2)]">
@@ -1563,10 +1586,15 @@ export default function Home() {
                             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
 
                             {/* Top Badge */}
-                            <div className="absolute top-4 left-4 z-10">
-                                <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-black/60 px-3 py-1 text-[10px] font-mono font-medium text-white backdrop-blur-md">
-                                    <Zap size={12} className="text-[#D9A441]" /> {t.hackathons.projectTag}
+                            <div className="absolute top-4 inset-x-4 z-10 flex items-center justify-between pointer-events-none">
+                                <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-black/70 px-3 py-1 text-[10px] font-mono font-medium text-white backdrop-blur-md">
+                                    <Zap size={12} className="text-[#D9A441]" /> {hackathon.tag || t.hackathons.projectTag}
                                 </span>
+                                {hackathon.date && (
+                                  <span className="rounded-full border border-white/10 bg-black/60 px-2.5 py-0.5 text-[10px] font-mono text-[#D9A441] backdrop-blur-md">
+                                    {hackathon.date}
+                                  </span>
+                                )}
                             </div>
                           </div>
 
@@ -1582,8 +1610,24 @@ export default function Home() {
                           </div>
                         </div>
 
-                        {/* Bottom Container: Tags (تكون ديما محذية للأسفل) */}
+                        {/* Bottom Container: Certificate & Tags */}
                         <div className="px-6 pb-6 sm:px-8 sm:pb-8 pt-0">
+                          {hackathon.certificate && (
+                            <div className="pb-3">
+                              <a
+                                href={hackathon.certificate}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group/cert inline-flex items-center gap-2 rounded-xl border border-[#D9A441]/40 bg-[#D9A441]/10 px-3.5 py-2 text-xs font-mono font-semibold text-[#D9A441] hover:bg-[#D9A441] hover:text-black transition-all duration-300 w-full justify-between"
+                              >
+                                <span className="flex items-center gap-1.5">
+                                  <Award size={14} />
+                                  <span>{t.hackathons.hacktoberfest.certificateLabel}</span>
+                                </span>
+                                <ExternalLink size={12} className="transition-transform group-hover/cert:translate-x-0.5 group-hover/cert:-translate-y-0.5" />
+                              </a>
+                            </div>
+                          )}
                           <div className="flex flex-wrap gap-2 border-t border-white/5 pt-4">
                             {hackathon.tags.map((tag) => (
                                 <span
