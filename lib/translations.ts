@@ -28,6 +28,7 @@ export interface TranslationSchema {
     exploreBtn: string;
     talkBtn: string;
   };
+  tickerItems: string[];
   skills: {
     badge: string;
     title1: string;
@@ -212,6 +213,18 @@ export const translations: Record<Language, TranslationSchema> = {
       exploreBtn: "Explore Projects",
       talkBtn: "LET'S TALK",
     },
+    tickerItems: [
+      "Clean Architecture",
+      "RESTful APIs Design",
+      "Spring Boot Ecosystem",
+      "Microservices Ready",
+      "SOLID Principles",
+      "CI/CD Automation",
+      "Dockerized Containers",
+      "Database Optimization",
+      "JWT Security & Auth",
+      "High Performance & Scalability",
+    ],
     skills: {
       badge: "Technical Arsenal",
       title1: "Architecting with",
@@ -408,6 +421,18 @@ export const translations: Record<Language, TranslationSchema> = {
       exploreBtn: "Explorer les Projets",
       talkBtn: "CONTACTEZ-MOI",
     },
+    tickerItems: [
+      "Clean Architecture",
+      "Conception d'APIs RESTful",
+      "Écosystème Spring Boot",
+      "Architectures Modulaires",
+      "Principes SOLID",
+      "Automatisation CI/CD",
+      "Conteneurisation Docker",
+      "Optimisation Bases de Données",
+      "Sécurité & Authentification JWT",
+      "Haute Performance & Scalabilité",
+    ],
     skills: {
       badge: "Arsenal Technique",
       title1: "Bâtir avec une",

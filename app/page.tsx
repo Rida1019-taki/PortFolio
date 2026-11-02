@@ -529,15 +529,17 @@ export default function Home() {
     },
   ];
 
-  const tickerItems = [
-    "Open to freelance",
-    "Full stack Java/JEE",
-    "Mobile with Kotlin",
-    "REST API design",
-    "Spring Boot architecture",
-    "Clean UI & UX",
-    "Docker & CI/CD",
-    "Agile / Scrum",
+  const tickerItems = t.tickerItems || [
+    "Clean Architecture",
+    "RESTful APIs Design",
+    "Spring Boot Ecosystem",
+    "Microservices Ready",
+    "SOLID Principles",
+    "CI/CD Automation",
+    "Dockerized Containers",
+    "Database Optimization",
+    "JWT Security & Auth",
+    "High Performance & Scalability",
   ];
 
   const techStack = [
@@ -879,13 +881,13 @@ export default function Home() {
               </ScrollReveal>
             </div>
   
-            {/* ═══ TICKER ═══ */}
+            {/* ═══ ARCHITECTURE TELEMETRY TICKER ═══ */}
             <div className="mt-20 sm:mt-28">
-              <div className="ticker">
-                <div className="ticker-track text-xs font-semibold uppercase tracking-[0.22em] text-[color:var(--muted)]">
+              <div className="ticker group py-1.5 border-y border-white/10 bg-neutral-950/40 backdrop-blur-md">
+                <div className="ticker-track text-xs font-mono font-bold uppercase tracking-[0.25em] text-gray-400 group-hover:[animation-play-state:paused]">
                   {[...tickerItems, ...tickerItems].map((item, i) => (
-                      <span key={`${item}-${i}`} className="flex items-center gap-[2.5rem]">
-                    {i > 0 && <span className="ticker-dot" />}
+                      <span key={`${item}-${i}`} className="flex items-center gap-[2.5rem] transition-colors duration-300 hover:text-[#D9A441] cursor-default">
+                    {i > 0 && <span className="ticker-dot bg-[#D9A441] shadow-[0_0_8px_rgba(217,164,65,0.8)]" />}
                         {item}
                   </span>
                   ))}
