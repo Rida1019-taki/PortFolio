@@ -65,7 +65,7 @@ export default function ResumeShowcase({ t }: ResumeShowcaseProps) {
             </div>
             <div className="flex items-center gap-2.5 rounded-xl border border-white/5 bg-white/[0.02] px-3.5 py-2.5 text-xs font-mono text-gray-200">
               <MapPin size={14} className="text-[#D9A441] shrink-0" />
-              <span>Béni Mellal • Hybride / Remote</span>
+              <span>Oued Zem • Hybride / Remote</span>
             </div>
             <div className="flex items-center gap-2.5 rounded-xl border border-white/5 bg-white/[0.02] px-3.5 py-2.5 text-xs font-mono text-gray-200">
               <ShieldCheck size={14} className="text-emerald-400 shrink-0" />

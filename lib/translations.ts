@@ -250,7 +250,7 @@ export const translations: Record<Language, TranslationSchema> = {
     },
     hero: {
       statusBadge: "Open to New Opportunities",
-      location: "Beni Mellal, Morocco",
+      location: "Oued Zem, Morocco",
       line1: "Crafting digital",
       line2: "experiences that",
       line3: "truly matter.",
@@ -408,12 +408,12 @@ export const translations: Record<Language, TranslationSchema> = {
       secondaryType: "Secondary Education",
       bts: {
         degree: "BTS in Information Systems Development (DSI)",
-        institution: "Lycée Technique — Beni Mellal, Morocco",
+        institution: "Lycée Technique — Oued Zem, Morocco",
         period: "2024 — Present",
       },
       bac: {
         degree: "Baccalauréat in Physical Sciences",
-        institution: "Lycée Qualifiant Hassan II — Beni Mellal, Morocco",
+        institution: "Lycée Qualifiant Hassan II — Oued Zem, Morocco",
         period: "2023 — 2024",
       },
     },
@@ -454,7 +454,7 @@ export const translations: Record<Language, TranslationSchema> = {
       viewAllPhotos: "Click any photo to open 4K Lightbox",
       inActionBadge: "Rida Taki in Action",
       hacktoberfest: {
-        title: "Hacktoberfest Hack Day Beni Mellal 2026",
+        title: "Hacktoberfest Hack Day Oued Zem 2026",
         desc: "Participated in person in the Hacktoberfest Hack Day organized in collaboration with the Robotics & AI Club FPBM (powered by MLH & DigitalOcean). Explored open-source development, collaborative innovation, and modern software architectures.",
         tag: "Open Source & Tech Event • MLH × DigitalOcean",
         date: "Oct 28, 2026",
@@ -545,7 +545,7 @@ export const translations: Record<Language, TranslationSchema> = {
       socialChannels: "// Social Channels",
       languageTitle: "// Language / Langue",
       credit: "DESIGN & CODE BY RIDA TAKI",
-      location: "BENI MELLAL, MOROCCO",
+      location: "OUED ZEM, MOROCCO",
     },
     footer: {
       rights: "All rights reserved.",
@@ -567,7 +567,7 @@ export const translations: Record<Language, TranslationSchema> = {
     },
     hero: {
       statusBadge: "À l'écoute d'opportunités",
-      location: "Béni Mellal, Maroc",
+      location: "Oued Zem, Maroc",
       line1: "Concevoir des",
       line2: "expériences digitales",
       line3: "qui font la différence.",
@@ -725,12 +725,12 @@ export const translations: Record<Language, TranslationSchema> = {
       secondaryType: "Enseignement Secondaire",
       bts: {
         degree: "BTS en Développement des Systèmes d'Information (DSI)",
-        institution: "Lycée Technique — Béni Mellal, Maroc",
+        institution: "Lycée Technique — Oued Zem, Maroc",
         period: "2024 — Présent",
       },
       bac: {
         degree: "Baccalauréat en Sciences Physiques",
-        institution: "Lycée Qualifiant Hassan II — Béni Mellal, Maroc",
+        institution: "Lycée Qualifiant Hassan II — Oued Zem, Maroc",
         period: "2023 — 2024",
       },
     },
@@ -771,7 +771,7 @@ export const translations: Record<Language, TranslationSchema> = {
       viewAllPhotos: "Cliquez sur une photo pour l'agrandir en plein écran",
       inActionBadge: "Rida Taki sur le Terrain",
       hacktoberfest: {
-        title: "Hacktoberfest Hack Day Béni Mellal 2026",
+        title: "Hacktoberfest Hack Day Oued Zem 2026",
         desc: "Participation en présentiel au Hacktoberfest Hack Day organisé avec le Robotics & AI Club FPBM (partenaires officiels MLH & DigitalOcean). Une journée riche en live-coding, exploration d'architectures modernes en Java / Spring Boot et synergies autour de l'IA.",
         tag: "Événement Tech & Open Source • Partenaires MLH & DigitalOcean",
         date: "28 Octobre 2026",
@@ -862,7 +862,7 @@ export const translations: Record<Language, TranslationSchema> = {
       socialChannels: "// Réseaux Sociaux",
       languageTitle: "// Langue / Language",
       credit: "DESIGN & CODE PAR RIDA TAKI",
-      location: "BÉNI MELLAL, MAROC",
+      location: "OUED ZEM, MAROC",
     },
     footer: {
       rights: "Tous droits réservés.",

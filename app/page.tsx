@@ -454,8 +454,8 @@ export default function Home() {
     {
       institution: "École Numérique Ahmed Al Hansali",
       degree: "Full Stack Java / React",
-      period: "2025 — Present",
-      status: "current",
+      period: "12/01/2025 — 28/10/2026",
+      status: "completed",
     },
     {
       institution: "ISTA Oued Zem",

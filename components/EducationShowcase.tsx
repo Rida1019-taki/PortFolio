@@ -167,7 +167,7 @@ export default function EducationShowcase({ education, t }: EducationShowcasePro
                   <Sparkles size={13} className="text-[#D9A441]" />
                   <span>Validation Académique</span>
                 </span>
-                <span className="text-white/60">Béni Mellal, Maroc</span>
+                <span className="text-white/60">Oued Zem, Maroc</span>
               </div>
             </div>
           </div>

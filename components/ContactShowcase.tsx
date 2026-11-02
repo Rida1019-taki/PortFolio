@@ -221,7 +221,7 @@ export default function ContactShowcase({ t }: ContactShowcaseProps) {
                   Localisation & Mobilité
                 </div>
                 <div className="text-xs sm:text-sm font-medium text-gray-300">
-                  Béni Mellal, Maroc • Disponible en présentiel, hybride ou télétravail
+                  Oued Zem, Maroc • Disponible en présentiel, hybride ou télétravail
                 </div>
               </div>
             </div>
