@@ -58,7 +58,7 @@ import AnimatedNumber from "@/components/AnimatedNumber";
 import TypewriterText from "@/components/TypewriterText";
 import { useLanguage } from "@/components/LanguageProvider";
 import LanguageToggle from "@/components/LanguageToggle";
-import HackathonCard, { HackathonItem } from "@/components/HackathonCard";
+import HackathonShowcase, { HackathonDetail } from "@/components/HackathonShowcase";
 import emailjs from "@emailjs/browser";
 import { useEffect, useRef, useState } from "react";
 import {HiMenu, HiOutlineMenu, HiOutlineMenuAlt3, HiSparkles, HiX} from "react-icons/hi";
@@ -513,26 +513,17 @@ export default function Home() {
     },
   ];
 
-  const hackathons: HackathonItem[] = [
+  const hackathonsShowcase: HackathonDetail[] = [
     {
-      title: t.hackathons.hacktoberfest.title,
-      description: t.hackathons.hacktoberfest.desc,
-      image: "/hackathons/hacktoberfest-1.jpg",
-      images: [
-        "/hackathons/hacktoberfest-1.jpg",
-        "/hackathons/hacktoberfest-2.jpg",
-        "/hackathons/hacktoberfest-3.jpg",
-        "/hackathons/hacktoberfest-cert.png",
-      ],
-      certificate: "/hackathons/hacktoberfest-cert.png",
-      tag: t.hackathons.hacktoberfest.tag,
-      date: t.hackathons.hacktoberfest.date,
-      tags: ["Hacktoberfest", "Open Source", "Java", "Spring Boot", "React", "AI & Robotics"],
-    },
-    {
+      id: "foottech",
       title: t.hackathons.foottech.title,
       description: t.hackathons.foottech.desc,
-      image: "/hackathons/foottech-1.jpg",
+      tag: t.hackathons.foottech.tag || "National Competition • Finalist",
+      date: t.hackathons.foottech.date || "2026",
+      role: t.hackathons.foottech.role || "Lead Full Stack & Mobile Architect",
+      quote: t.hackathons.foottech.quote || "",
+      roleDetails: t.hackathons.foottech.roleDetails || [],
+      photoCaptions: t.hackathons.foottech.photoCaptions || [],
       images: [
         "/hackathons/foottech-1.jpg",
         "/hackathons/foottech-2.jpg",
@@ -540,17 +531,41 @@ export default function Home() {
         "/hackathons/foottech.jpg",
       ],
       certificate: null,
-      tag: t.hackathons.projectTag,
-      date: "2026",
+      certificateLabel: t.hackathons.foottech.certificateLabel,
       tags: ["React", "Spring Boot", "Flutter", "MySQL", "Sports Tech"],
     },
     {
+      id: "hacktoberfest",
+      title: t.hackathons.hacktoberfest.title,
+      description: t.hackathons.hacktoberfest.desc,
+      tag: t.hackathons.hacktoberfest.tag || "Open Source & AI Summit",
+      date: t.hackathons.hacktoberfest.date || "28 Oct 2026",
+      role: t.hackathons.hacktoberfest.role || "Full Stack Developer & Open Source Contributor",
+      quote: t.hackathons.hacktoberfest.quote || "",
+      roleDetails: t.hackathons.hacktoberfest.roleDetails || [],
+      photoCaptions: t.hackathons.hacktoberfest.photoCaptions || [],
+      images: [
+        "/hackathons/hacktoberfest-1.jpg",
+        "/hackathons/hacktoberfest-2.jpg",
+        "/hackathons/hacktoberfest-3.jpg",
+        "/hackathons/hacktoberfest-cert.png",
+      ],
+      certificate: "/hackathons/hacktoberfest-cert.png",
+      certificateLabel: t.hackathons.hacktoberfest.certificateLabel,
+      tags: ["Hacktoberfest", "Open Source", "Java", "Spring Boot", "React", "AI & Robotics"],
+    },
+    {
+      id: "rally",
       title: t.hackathons.rally.title,
       description: t.hackathons.rally.desc,
-      image: "/hackathons/rally-ai1.jpeg",
+      tag: t.hackathons.rally.tag || "AI & Innovation Challenge",
+      date: t.hackathons.rally.date || "2026",
+      role: t.hackathons.rally.role || "Algorithm & Backend Developer",
+      quote: t.hackathons.rally.quote || "",
+      roleDetails: t.hackathons.rally.roleDetails || [],
+      photoCaptions: t.hackathons.rally.photoCaptions || [],
+      images: ["/hackathons/rally-ai1.jpeg"],
       certificate: null,
-      tag: t.hackathons.projectTag,
-      date: "2026",
       tags: ["Python", "FastAPI", "React", "Docker", "Machine Learning"],
     },
   ];
@@ -1569,18 +1584,24 @@ export default function Home() {
                 </div>
               </ScrollReveal>
 
-              {/* items-stretch لتوحيد الارتفاع بين العامودين */}
-              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 items-stretch">
-                {hackathons.map((hackathon, index) => (
-                  <ScrollReveal key={index} delay={index * 120} className="h-full">
-                    <HackathonCard
-                      hackathon={hackathon}
-                      projectTag={t.hackathons.projectTag}
-                      certificateLabel={t.hackathons.hacktoberfest.certificateLabel}
-                    />
-                  </ScrollReveal>
-                ))}
-              </div>
+              {/* New Heroic Spotlight Showcase highlighting Rida in the Arena */}
+              <ScrollReveal delay={120}>
+                <HackathonShowcase
+                  hackathons={hackathonsShowcase}
+                  t={{
+                    badge: t.hackathons.badge,
+                    title1: t.hackathons.title1,
+                    title2: t.hackathons.title2,
+                    desc: t.hackathons.desc,
+                    roleLabel: t.hackathons.roleLabel,
+                    impactLabel: t.hackathons.impactLabel,
+                    photosLabel: t.hackathons.photosLabel,
+                    activeBadge: t.hackathons.activeBadge,
+                    inActionBadge: t.hackathons.inActionBadge,
+                    viewAllPhotos: t.hackathons.viewAllPhotos,
+                  }}
+                />
+              </ScrollReveal>
             </section>
   
               {/* ═══ RESUME ═══ */}

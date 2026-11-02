@@ -125,20 +125,45 @@ export interface TranslationSchema {
     title2: string;
     desc: string;
     projectTag: string;
+    roleLabel: string;
+    impactLabel: string;
+    teamLabel: string;
+    formatLabel: string;
+    photosLabel: string;
+    activeBadge: string;
+    viewAllPhotos: string;
+    inActionBadge: string;
     hacktoberfest: {
       title: string;
       desc: string;
       tag: string;
       date: string;
+      role: string;
+      roleDetails: string[];
       certificateLabel: string;
+      quote: string;
+      photoCaptions: string[];
     };
     foottech: {
       title: string;
       desc: string;
+      tag: string;
+      date: string;
+      role: string;
+      roleDetails: string[];
+      certificateLabel?: string;
+      quote: string;
+      photoCaptions: string[];
     };
     rally: {
       title: string;
       desc: string;
+      tag: string;
+      date: string;
+      role: string;
+      roleDetails: string[];
+      quote: string;
+      photoCaptions: string[];
     };
   };
   resume: {
@@ -337,25 +362,74 @@ export const translations: Record<Language, TranslationSchema> = {
       },
     },
     hackathons: {
-      badge: "Competitive Coding & Tech Events",
-      title1: "Innovation &",
+      badge: "In the Arena • Live Hackathons & Sprints",
+      title1: "Rida in Action &",
       title2: "Hackathons.",
-      desc: "Fast-paced hackathons and tech events that sharpen my problem-solving skills, rapid prototyping, and collaborative engineering under high pressure.",
+      desc: "Beyond theoretical code: transforming complex problems into scalable, production-ready solutions under intense 24h-48h collaborative hackathon sprints.",
       projectTag: "Hackathon Project",
+      roleLabel: "My Engineering Role",
+      impactLabel: "Key Contributions & Impact",
+      teamLabel: "Agile Team Collaboration",
+      formatLabel: "In-Person Sprint",
+      photosLabel: "Live Event Gallery & Credentials",
+      activeBadge: "Featured Event",
+      viewAllPhotos: "Click any photo to open 4K Lightbox",
+      inActionBadge: "Rida Taki in Action",
       hacktoberfest: {
         title: "Hacktoberfest Hack Day Beni Mellal 2026",
         desc: "Participated in person in the Hacktoberfest Hack Day organized in collaboration with the Robotics & AI Club FPBM (powered by MLH & DigitalOcean). Explored open-source development, collaborative innovation, and modern software architectures.",
-        tag: "Open Source & Tech Event",
+        tag: "Open Source & Tech Event • MLH × DigitalOcean",
         date: "Oct 28, 2026",
-        certificateLabel: "View Certificate",
+        role: "Full Stack Developer & Open Source Contributor",
+        quote: "Keep learning, keep building, keep innovating!",
+        certificateLabel: "View Official Attendance Certificate",
+        roleDetails: [
+          "Hands-on coding, explore modern Java & Spring Boot enterprise architectures",
+          "Collaborative exchange with AI, robotics engineers, and open-source contributors",
+          "Official Certificate of Attendance issued by DigitalOcean & MLH",
+        ],
+        photoCaptions: [
+          "Rida at work station with developer stickers (Docker, Go, Linux)",
+          "Writing notes and architectural design concepts during sessions",
+          "Lecture hall presentation and VS Code open on laptop",
+          "Official Certificate of Attendance (MLH × DigitalOcean)",
+        ],
       },
       foottech: {
         title: "FootTech National Hackathon 2026",
-        desc: "Finalist in the national sports-tech hackathon. Developed an innovative technical solution under high-pressure constraints.",
+        desc: "National sports & technology hackathon finalist. Led the technical development of a full-stack digital solution combining robust Spring Boot REST services, reactive React dashboard, and mobile integration with Flutter under intense time pressure.",
+        tag: "National Competition • Finalist",
+        date: "2026",
+        role: "Lead Full Stack & Mobile Architect",
+        quote: "Designing scalable architectures and turning team ideas into a working MVP under high pressure.",
+        certificateLabel: "View Project Showcase",
+        roleDetails: [
+          "Backend & API Architecture: Spring Boot REST APIs and relational MySQL data modeling",
+          "Frontend & Mobile: Reactive React UI and cross-platform mobile views in Flutter",
+          "Team leadership, rapid agile sprint execution, and final solution pitch",
+        ],
+        photoCaptions: [
+          "Rida discussing system architecture and user flows with teammate",
+          "Deep focus: drafting data models and technical specifications",
+          "Full 5-member team around the hackathon workspace table",
+          "Official FootTech project showcase poster",
+        ],
       },
       rally: {
         title: "Hackathon Rally AI & Innovation",
-        desc: "Participated in an intensive algorithmic and AI challenge focusing on automated data processing and machine learning workflows.",
+        desc: "Participated in an intensive algorithmic and AI challenge focusing on automated data processing, smart REST endpoints, and machine learning workflows.",
+        tag: "AI & Innovation Challenge",
+        date: "2026",
+        role: "Algorithm & Backend Developer",
+        quote: "Accelerating problem-solving with smart data pipelines and machine learning.",
+        roleDetails: [
+          "Automated data workflows and backend endpoints with FastAPI & Python",
+          "Prototyping predictive algorithms and feature extraction pipelines",
+          "High-pressure teamwork delivering functional data-driven outputs",
+        ],
+        photoCaptions: [
+          "Rally AI & Innovation official challenge banner",
+        ],
       },
     },
     resume: {
@@ -552,25 +626,74 @@ export const translations: Record<Language, TranslationSchema> = {
       },
     },
     hackathons: {
-      badge: "Coding Compétitif & Événements Tech",
-      title1: "Innovation &",
+      badge: "Sur le Terrain • Hackathons & Coding Compétitif",
+      title1: "Rida en Action &",
       title2: "Hackathons.",
-      desc: "Défis intensifs et événements technologiques qui affûtent ma résolution de problèmes, mon prototypage rapide et l'esprit d'équipe sous contrainte.",
+      desc: "Au-delà du code théorique : concevoir, prototyper et livrer des solutions robustes sous la pression des hackathons intensifs de 24h à 48h.",
       projectTag: "Projet de Hackathon",
+      roleLabel: "Mon Rôle Clé",
+      impactLabel: "Contributions & Réalisations",
+      teamLabel: "Travail d'Équipe Agile",
+      formatLabel: "Sprint en Présentiel",
+      photosLabel: "Photos du Terrain & Attestations",
+      activeBadge: "Événement en Vedette",
+      viewAllPhotos: "Cliquez sur une photo pour l'agrandir en plein écran",
+      inActionBadge: "Rida Taki sur le Terrain",
       hacktoberfest: {
         title: "Hacktoberfest Hack Day Béni Mellal 2026",
-        desc: "Participation en présentiel au Hacktoberfest Hack Day organisé en collaboration avec le Robotics & AI Club FPBM (partenaires officiels MLH & DigitalOcean). Une journée riche en découvertes, échanges et exploration de solutions innovantes en développement informatique.",
-        tag: "Événement Tech & Open Source",
-        date: "28 Oct 2026",
-        certificateLabel: "Voir l'Attestation",
+        desc: "Participation en présentiel au Hacktoberfest Hack Day organisé avec le Robotics & AI Club FPBM (partenaires officiels MLH & DigitalOcean). Une journée riche en live-coding, exploration d'architectures modernes en Java / Spring Boot et synergies autour de l'IA.",
+        tag: "Événement Tech & Open Source • Partenaires MLH & DigitalOcean",
+        date: "28 Octobre 2026",
+        role: "Développeur Full Stack & Contributeur Open Source",
+        quote: "Keep learning, keep building, keep innovating!",
+        certificateLabel: "Voir l'Attestation Officielle de Participation",
+        roleDetails: [
+          "Immersion dans les standards open source et architectures d'entreprise Java / Spring Boot",
+          "Échanges approfondis avec des passionnés et ingénieurs en IA et robotique",
+          "Attestation officielle décernée par DigitalOcean & Major League Hacking (MLH)",
+        ],
+        photoCaptions: [
+          "Rida au poste de travail avec ses stickers de dev (Docker, Go, Linux)",
+          "Prise de notes stratégiques et modélisation logicielle pendant les sessions",
+          "Vue de l'amphithéâtre avec présentation technique et code ouvert sur laptop",
+          "Attestation officielle de participation délivrée par DigitalOcean × MLH",
+        ],
       },
       foottech: {
         title: "Hackathon National FootTech 2026",
-        desc: "Finaliste du hackathon national sport & technologie. Conception et implémentation d'une solution innovante sous fortes contraintes de temps.",
+        desc: "Finaliste du hackathon national sport & technologie. Direction technique et développement intensif d'une solution complète combinant une architecture backend Spring Boot, des APIs REST sécurisées, un tableau de bord React et une interface mobile Flutter sous forte contrainte de temps.",
+        tag: "Compétition Nationale • Finaliste",
+        date: "2026",
+        role: "Lead Développeur Full Stack & Mobile",
+        quote: "Transformer une vision d'équipe en un MVP fonctionnel sous contrainte de temps.",
+        certificateLabel: "Voir le Projet",
+        roleDetails: [
+          "Architecture Backend & APIs REST : conception Spring Boot et modélisation MySQL",
+          "Interfaces Réactives & Mobile : dashboard React et vues cross-platform Flutter",
+          "Coordination d'équipe, planification agile du sprint et pitch devant le jury",
+        ],
+        photoCaptions: [
+          "Rida en discussion technique & architecture avec son coéquipier",
+          "Concentration maximale : modélisation des entités et conception du système",
+          "L'équipe au grand complet (5 membres) autour de la table de travail",
+          "Affiche officielle de présentation du projet FootTech",
+        ],
       },
       rally: {
         title: "Hackathon Rally AI & Innovation",
-        desc: "Participation à un challenge d'innovation et d'IA axé sur l'automatisation, le traitement de données et les flux intelligents.",
+        desc: "Participation à un challenge d'innovation axé sur l'automatisation, l'intégration de flux intelligents et le prototypage rapide avec Python et FastAPI.",
+        tag: "Challenge IA & Algorithmes",
+        date: "2026",
+        role: "Développeur Algorithmique & Backend",
+        quote: "Accélérer la résolution de problèmes grâce aux pipelines de données intelligents.",
+        roleDetails: [
+          "Automatisation de flux de données et création d'APIs performantes avec FastAPI",
+          "Expérimentation avec des modèles d'IA et de classification sous contrainte de temps",
+          "Résolution algorithmique collaborative et livraison d'un prototype fonctionnel",
+        ],
+        photoCaptions: [
+          "Bannière officielle du Hackathon Rally AI & Innovation",
+        ],
       },
     },
     resume: {
