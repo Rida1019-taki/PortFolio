@@ -532,7 +532,13 @@ export default function Home() {
     {
       title: t.hackathons.foottech.title,
       description: t.hackathons.foottech.desc,
-      image: "/hackathons/foottech.jpg",
+      image: "/hackathons/foottech-1.jpg",
+      images: [
+        "/hackathons/foottech-1.jpg",
+        "/hackathons/foottech-2.jpg",
+        "/hackathons/foottech-3.jpg",
+        "/hackathons/foottech.jpg",
+      ],
       certificate: null,
       tag: t.hackathons.projectTag,
       date: "2026",
