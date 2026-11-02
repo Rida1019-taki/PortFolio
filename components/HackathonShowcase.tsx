@@ -203,16 +203,38 @@ export default function HackathonShowcase({ hackathons, t }: HackathonShowcasePr
           {/* ─── LEFT COLUMN: VISUAL ARENA (RIDA IN ACTION) ─── */}
           <div className="lg:col-span-6 flex flex-col justify-between space-y-4">
             
-            {/* Main Stage Image Container */}
-            <div className="relative h-[380px] sm:h-[480px] lg:h-[520px] w-full rounded-2xl overflow-hidden border border-white/10 bg-neutral-950 group/stage">
-              
-              {/* Blurred Ambient Aura (Ensures portrait/landscape photos blend gorgeously) */}
-              <div
-                className="absolute inset-0 bg-cover bg-center blur-3xl opacity-35 scale-110 pointer-events-none transition-all duration-700"
-                style={{ backgroundImage: `url(${images[activePhotoIdx]})` }}
-              />
+            {/* Top Bar above Image (Keeps image completely unobstructed) */}
+            <div className="flex items-center justify-between gap-2 px-1">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-mono font-semibold text-white backdrop-blur-md">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D9A441] opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#D9A441]" />
+                </span>
+                <span>{t.inActionBadge}</span>
+              </span>
 
-              {/* Sharp Foreground Image */}
+              <div className="flex items-center gap-2">
+                {images.length > 1 && (
+                  <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-xs font-mono text-gray-300">
+                    <span className="text-[#D9A441] font-semibold">{activePhotoIdx + 1}</span> / {images.length}
+                  </span>
+                )}
+                <button
+                  type="button"
+                  onClick={() => setLightboxOpen(true)}
+                  title="Agrandir en plein écran"
+                  aria-label="Agrandir en plein écran"
+                  className="flex h-7 w-7 items-center justify-center rounded-lg bg-white/5 border border-white/10 text-gray-300 hover:text-[#D9A441] hover:border-[#D9A441]/40 transition-all"
+                >
+                  <Maximize2 size={13} />
+                </button>
+              </div>
+            </div>
+
+            {/* Main Stage Image Container (100% Uncropped & Crystal Clear) */}
+            <div className="relative h-[420px] sm:h-[500px] lg:h-[560px] w-full rounded-2xl overflow-hidden border border-white/10 bg-neutral-950 flex items-center justify-center p-2 group/stage">
+              
+              {/* Sharp Foreground Image - ALWAYS object-contain so 100% of photo is visible */}
               <div
                 className="relative w-full h-full cursor-pointer"
                 onClick={() => setLightboxOpen(true)}
@@ -222,64 +244,31 @@ export default function HackathonShowcase({ hackathons, t }: HackathonShowcasePr
                   alt={currentCaption}
                   fill
                   priority
-                  sizes="(max-width: 1024px) 100vw, 600px"
-                  className="object-contain sm:object-cover sm:object-top transition-transform duration-700 ease-out group-hover/stage:scale-[1.02]"
+                  sizes="(max-width: 1024px) 100vw, 750px"
+                  className="object-contain w-full h-full drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)] transition-all duration-300 group-hover/stage:scale-[1.01]"
                 />
               </div>
 
-              {/* Top Floating Badge (Rida in Action) */}
-              <div className="absolute top-4 left-4 z-20 pointer-events-none">
-                <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/80 px-3.5 py-1.5 text-xs font-mono font-semibold text-white shadow-lg backdrop-blur-md">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D9A441] opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#D9A441]" />
-                  </span>
-                  <span>{t.inActionBadge}</span>
-                </span>
-              </div>
-
-              {/* Top Right: Lightbox Expand Button */}
-              <button
-                type="button"
-                onClick={() => setLightboxOpen(true)}
-                title="Agrandir en plein écran"
-                aria-label="Agrandir en plein écran"
-                className="absolute top-4 right-4 z-20 flex h-9 w-9 items-center justify-center rounded-xl bg-black/80 border border-white/20 text-white hover:text-[#D9A441] hover:border-[#D9A441]/50 backdrop-blur-md transition-all shadow-lg"
-              >
-                <Maximize2 size={15} />
-              </button>
-
-              {/* Bottom Gradient Overlay for contrast */}
-              <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black via-black/60 to-transparent pointer-events-none" />
-
-              {/* Floating Bottom Navigation Controls */}
+              {/* Prev / Next Navigation Arrows on Edges */}
               {images.length > 1 && (
-                <div className="absolute bottom-4 inset-x-4 z-20 flex items-center justify-between">
-                  {/* Photo Counter Pill */}
-                  <div className="rounded-full border border-white/15 bg-black/80 px-3 py-1 text-xs font-mono text-gray-200 backdrop-blur-md">
-                    <span className="text-[#D9A441] font-semibold">{activePhotoIdx + 1}</span> / {images.length}
-                  </div>
-
-                  {/* Left / Right Navigation Arrows */}
-                  <div className="flex items-center gap-2">
-                    <button
-                      type="button"
-                      onClick={prevPhoto}
-                      aria-label="Photo précédente"
-                      className="flex h-9 w-9 items-center justify-center rounded-full bg-black/80 border border-white/20 text-white hover:bg-[#D9A441] hover:text-black transition-all shadow-md backdrop-blur-md"
-                    >
-                      <ChevronLeft size={17} />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={nextPhoto}
-                      aria-label="Photo suivante"
-                      className="flex h-9 w-9 items-center justify-center rounded-full bg-black/80 border border-white/20 text-white hover:bg-[#D9A441] hover:text-black transition-all shadow-md backdrop-blur-md"
-                    >
-                      <ChevronRight size={17} />
-                    </button>
-                  </div>
-                </div>
+                <>
+                  <button
+                    type="button"
+                    onClick={prevPhoto}
+                    aria-label="Photo précédente"
+                    className="absolute left-3 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-black/75 border border-white/20 text-white hover:bg-[#D9A441] hover:text-black transition-all shadow-xl backdrop-blur-md opacity-80 hover:opacity-100"
+                  >
+                    <ChevronLeft size={20} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={nextPhoto}
+                    aria-label="Photo suivante"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-black/75 border border-white/20 text-white hover:bg-[#D9A441] hover:text-black transition-all shadow-xl backdrop-blur-md opacity-80 hover:opacity-100"
+                  >
+                    <ChevronRight size={20} />
+                  </button>
+                </>
               )}
             </div>
 
