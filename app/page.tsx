@@ -66,7 +66,6 @@ import EducationShowcase, { EducationItem } from "@/components/EducationShowcase
 import ResumeShowcase from "@/components/ResumeShowcase";
 import ContactShowcase from "@/components/ContactShowcase";
 import CertificationsShowcase from "@/components/CertificationsShowcase";
-import LogoMonogram from "@/components/LogoMonogram";
 import emailjs from "@emailjs/browser";
 import { useEffect, useRef, useState } from "react";
 import {HiMenu, HiOutlineMenu, HiOutlineMenuAlt3, HiSparkles, HiX} from "react-icons/hi";
@@ -139,22 +138,6 @@ export function Header() {
         <header className="fixed top-6 inset-x-0 z-50 px-4 sm:px-8 pointer-events-none">
           <div className="mx-auto max-w-7xl flex items-center justify-between pointer-events-auto gap-3">
 
-            {/* Logo Badge */}
-            <a
-                href="#"
-                className="group flex items-center gap-3 rounded-2xl bg-neutral-950/80 p-1.5 pr-4 border border-white/10 backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.8)] hover:border-[#D9A441]/50 transition-all duration-300"
-            >
-              <LogoMonogram size={38} />
-              <div className="flex flex-col">
-              <span className="text-xs font-black tracking-widest text-white group-hover:text-[#D9A441] transition-colors">
-                RIDA TAKI
-              </span>
-                <span className="text-[9px] font-mono text-gray-400">
-                {t.nav.roleTitle}
-              </span>
-              </div>
-            </a>
-
             {/* Nav Links Badge */}
             <div
                 className={`hidden lg:flex items-center gap-1 rounded-2xl bg-neutral-950/80 p-2 border backdrop-blur-2xl transition-all duration-500 ${
@@ -183,7 +166,7 @@ export function Header() {
             </div>
 
             {/* Social Icons Badge + Action Buttons */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 ml-auto">
 
               {/* Always Visible Social Icons Badge */}
               {/* Social Icons Badge */}
@@ -1065,7 +1048,6 @@ export default function Home() {
                 <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-5 py-8 sm:flex-row sm:px-8">
                     {/* Brand Logo & Copyright */}
                     <div className="flex items-center gap-3">
-                        <LogoMonogram size={38} />
                         <div className="flex flex-col">
                             <span className="text-sm font-semibold text-white">Rida Taki</span>
                             <span className="text-[11px] font-mono text-[color:var(--muted)]">
