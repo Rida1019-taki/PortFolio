@@ -59,6 +59,7 @@ import TypewriterText from "@/components/TypewriterText";
 import { useLanguage } from "@/components/LanguageProvider";
 import LanguageToggle from "@/components/LanguageToggle";
 import HackathonShowcase, { HackathonDetail } from "@/components/HackathonShowcase";
+import SkillsShowcase from "@/components/SkillsShowcase";
 import emailjs from "@emailjs/browser";
 import { useEffect, useRef, useState } from "react";
 import {HiMenu, HiOutlineMenu, HiOutlineMenuAlt3, HiSparkles, HiX} from "react-icons/hi";
@@ -308,39 +309,6 @@ export function Header() {
 
 export default function Home() {
   const { t } = useLanguage();
-
-  const skills = [
-    {
-      category: t.skills.categories.languages,
-      icon: <Terminal size={20} />,
-      items: ["Java", "Dart", "JavaScript"],
-      accent: "var(--brand)",
-    },
-    {
-      category: t.skills.categories.mobile,
-      icon: <Smartphone size={20} />,
-      items: ["Kotlin", "Flutter"],
-      accent: "var(--accent-gold)",
-    },
-    {
-      category: t.skills.categories.web,
-      icon: <Layers size={20} />,
-      items: ["React", "Spring Boot", "Spring Security", "HTML5", "CSS3"],
-      accent: "var(--accent-blue)",
-    },
-    {
-      category: t.skills.categories.databases,
-      icon: <Database size={20} />,
-      items: ["MySQL", "SQLite", "JPA", "Hibernate"],
-      accent: "var(--accent-emerald)",
-    },
-    {
-      category: t.skills.categories.tools,
-      icon: <Wrench size={20} />,
-      items: ["Docker", "Github Actions", "Scrum", "Git", "Figma", "Postman"],
-      accent: "#a78bfa",
-    },
-  ];
 
   const projects = [
     {
@@ -954,51 +922,10 @@ export default function Home() {
                 </div>
               </ScrollReveal>
 
-              {/* Grid with items-stretch to force equal height */}
-              <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 items-stretch">
-                {skills.map((skill, i) => (
-                    <ScrollReveal key={skill.category} delay={i * 80} className="h-full">
-                      <div className="bento group relative flex h-full flex-col justify-between rounded-2xl p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[color:var(--line-strong)]">
-                        <div>
-                          <div className="mb-6 flex items-center justify-between">
-                            <div
-                                className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 transition-transform duration-300 group-hover:scale-110"
-                                style={{
-                                  background: `color-mix(in oklab, ${skill.accent} 10%, transparent)`,
-                                  color: skill.accent,
-                                }}
-                            >
-                              {skill.icon}
-                            </div>
-
-                            <span className="rounded-full border border-white/5 bg-white/[0.03] px-3 py-1 text-[10px] font-mono uppercase tracking-widest text-[color:var(--muted)]">
-                {skill.items.length} {t.skills.skillsSuffix}
-              </span>
-                          </div>
-
-                          <h3 className="mb-4 text-lg font-bold text-white tracking-wide">
-                            {skill.category}
-                          </h3>
-
-                          <div className="flex flex-wrap gap-2">
-                            {skill.items.map((item) => (
-                                <span
-                                    key={item}
-                                    className="inline-flex items-center gap-2 rounded-lg border border-white/5 bg-white/[0.03] px-3.5 py-1.5 text-xs font-medium text-gray-300 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.08] hover:text-white"
-                                >
-                  <span
-                      className="h-1.5 w-1.5 rounded-full"
-                      style={{ backgroundColor: skill.accent }}
-                  />
-                                  {item}
-                </span>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </ScrollReveal>
-                ))}
-              </div>
+              {/* Interactive Technical Arsenal & Pillars Showcase */}
+              <ScrollReveal delay={120}>
+                <SkillsShowcase t={t.skills} />
+              </ScrollReveal>
             </section>
   
             <div className="section-divider mx-auto max-w-7xl" />

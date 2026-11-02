@@ -35,6 +35,31 @@ export interface TranslationSchema {
     title2: string;
     desc: string;
     skillsSuffix: string;
+    filterAll: string;
+    filterBackend: string;
+    filterFrontend: string;
+    filterMobile: string;
+    filterDatabases: string;
+    filterDevops: string;
+    levelCore: string;
+    levelAdvanced: string;
+    levelProficient: string;
+    pillarsTitle: string;
+    pillarsSubtitle: string;
+    standardsTitle: string;
+    standardsSubtitle: string;
+    pillars: {
+      backend: { title: string; subtitle: string; desc: string };
+      frontend: { title: string; subtitle: string; desc: string };
+      mobile: { title: string; subtitle: string; desc: string };
+      dataDevops: { title: string; subtitle: string; desc: string };
+    };
+    standards: {
+      cleanArch: { title: string; desc: string };
+      security: { title: string; desc: string };
+      performance: { title: string; desc: string };
+      devops: { title: string; desc: string };
+    };
     categories: {
       languages: string;
       mobile: string;
@@ -261,8 +286,61 @@ export const translations: Record<Language, TranslationSchema> = {
       badge: "Technical Arsenal",
       title1: "Architecting with",
       title2: "modern precision.",
-      desc: "From resilient backends to fluid mobile applications — these are the core tools and frameworks I rely on daily.",
+      desc: "From scalable enterprise backends to reactive web platforms and native mobile apps — engineering solutions with precision, clean code, and production resilience.",
       skillsSuffix: "Skills",
+      filterAll: "All Technologies",
+      filterBackend: "Backend & APIs",
+      filterFrontend: "Frontend & Web",
+      filterMobile: "Mobile Apps",
+      filterDatabases: "Databases & ORM",
+      filterDevops: "DevOps & Tools",
+      levelCore: "Core Stack",
+      levelAdvanced: "Advanced",
+      levelProficient: "Proficient",
+      pillarsTitle: "Engineering Pillars",
+      pillarsSubtitle: "Core architectural specializations",
+      standardsTitle: "Architecture & Engineering Standards",
+      standardsSubtitle: "Core software engineering principles applied across all projects",
+      pillars: {
+        backend: {
+          title: "Enterprise Backend & Distributed APIs",
+          subtitle: "Spring Boot • Java • Spring Security • REST",
+          desc: "Designing resilient RESTful microservices and monoliths with Clean Architecture, robust JWT authentication, role authorization, and transaction safety.",
+        },
+        frontend: {
+          title: "Reactive Web & Modern User Interfaces",
+          subtitle: "React • Next.js • TypeScript • Tailwind",
+          desc: "Crafting fluid, high-performance web dashboards and interactive clients with responsive layouts, modern state management, and accessible UI components.",
+        },
+        mobile: {
+          title: "Native & Cross-Platform Mobile",
+          subtitle: "Kotlin • Flutter • Dart • Android",
+          desc: "Developing native Android apps in Kotlin and fluid cross-platform solutions with Flutter, delivering offline-first experiences and smooth animations.",
+        },
+        dataDevops: {
+          title: "Data Modeling & Automated DevOps",
+          subtitle: "MySQL • SQLite • Docker • GitHub Actions",
+          desc: "Ensuring ACID-compliant relational schema designs, query optimization, containerized isolated deployments, and automated CI/CD pipelines.",
+        },
+      },
+      standards: {
+        cleanArch: {
+          title: "Clean Architecture & SOLID",
+          desc: "Separation of concerns, decoupled domain logic, and high testability across all layers.",
+        },
+        security: {
+          title: "Security by Design",
+          desc: "Stateless JWT tokens, role-based access control (RBAC), and strict input validation.",
+        },
+        performance: {
+          title: "Performance & Efficiency",
+          desc: "Indexed database queries, lean bundle footprints, and non-blocking asynchronous workflows.",
+        },
+        devops: {
+          title: "Containerized & Automated",
+          desc: "Repeatable Docker environments and automated GitHub Actions verification pipelines.",
+        },
+      },
       categories: {
         languages: "Languages",
         mobile: "Mobile Dev",
@@ -525,8 +603,61 @@ export const translations: Record<Language, TranslationSchema> = {
       badge: "Arsenal Technique",
       title1: "Bâtir avec une",
       title2: "précision moderne.",
-      desc: "Des architectures backend résilientes aux applications mobiles fluides — voici l'ensemble de mes outils et frameworks quotidiens.",
+      desc: "Des architectures backend d'entreprise hautement scalables aux interfaces web réactives et applications mobiles fluides — concevoir des solutions robustes et pérennes.",
       skillsSuffix: "Compétences",
+      filterAll: "Toutes les Technologies",
+      filterBackend: "Backend & APIs",
+      filterFrontend: "Frontend & Web",
+      filterMobile: "Applications Mobiles",
+      filterDatabases: "Bases de Données & ORM",
+      filterDevops: "DevOps & Outils",
+      levelCore: "Stack Principale",
+      levelAdvanced: "Avancé",
+      levelProficient: "Maîtrisé",
+      pillarsTitle: "Piliers d'Ingénierie",
+      pillarsSubtitle: "Domaines de spécialisation logicielle",
+      standardsTitle: "Normes d'Architecture & Bonnes Pratiques",
+      standardsSubtitle: "Principes rigoureux d'ingénierie logicielle appliqués à l'ensemble des projets",
+      pillars: {
+        backend: {
+          title: "Backend Entreprise & APIs Distribuées",
+          subtitle: "Spring Boot • Java • Spring Security • REST",
+          desc: "Conception d'APIs RESTful sécurisées, architecture en couches (Clean Architecture), authentification JWT, autorisations fines et robustesse transactionnelle.",
+        },
+        frontend: {
+          title: "Web Réactif & Interfaces Modernes",
+          subtitle: "React • Next.js • TypeScript • Tailwind",
+          desc: "Développement d'applications web réactives, de tableaux de bord dynamiques et d'interfaces intuitives alliant performance et fluidité visuelle.",
+        },
+        mobile: {
+          title: "Ingénierie Mobile Native & Multiplateforme",
+          subtitle: "Kotlin • Flutter • Dart • Android",
+          desc: "Création d'applications Android natives en Kotlin et de solutions multiplateformes fluides avec Flutter, optimisées pour le mode hors-ligne.",
+        },
+        dataDevops: {
+          title: "Modélisation de Données & DevOps Automatisé",
+          subtitle: "MySQL • SQLite • Docker • GitHub Actions",
+          desc: "Conception de schémas relationnels normalisés (ACID), conteneurisation Docker reproductible et automatisation des pipelines d'intégration continue.",
+        },
+      },
+      standards: {
+        cleanArch: {
+          title: "Clean Architecture & SOLID",
+          desc: "Séparation stricte des responsabilités, logique métier découplée et haute maintenabilité du code.",
+        },
+        security: {
+          title: "Sécurité dès la Conception",
+          desc: "Authentification stateless JWT, contrôle d'accès basé sur les rôles (RBAC) et validation rigoureuse des données.",
+        },
+        performance: {
+          title: "Performance & Optimisation",
+          desc: "Requêtes SQL indexées, structures légères et exécution non-bloquante pour des temps de réponse minimaux.",
+        },
+        devops: {
+          title: "Conteneurisation & Automatisation",
+          desc: "Environnements de développement et de production isolés sous Docker avec pipelines CI/CD fiables.",
+        },
+      },
       categories: {
         languages: "Langages",
         mobile: "Dév Mobile",
