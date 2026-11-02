@@ -456,12 +456,14 @@ export default function Home() {
       degree: "Full Stack Java / React",
       period: "12/01/2025 — 28/10/2026",
       status: "completed",
+      location: "Béni Mellal, Maroc",
     },
     {
       institution: "ISTA Oued Zem",
       degree: "Digital Development — Mobile Option",
       period: "2023 — 2025",
       status: "completed",
+      location: "Oued Zem, Maroc",
     },
   ];
 

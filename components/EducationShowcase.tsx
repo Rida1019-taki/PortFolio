@@ -9,6 +9,7 @@ import {
   CheckCircle2,
   Sparkles,
   School,
+  MapPin,
 } from "lucide-react";
 
 export interface EducationItem {
@@ -16,6 +17,7 @@ export interface EducationItem {
   degree: string;
   period: string;
   status: string;
+  location?: string;
   tag?: string;
   coursework?: string[];
 }
@@ -33,10 +35,11 @@ interface EducationShowcaseProps {
 }
 
 export default function EducationShowcase({ education, t }: EducationShowcaseProps) {
-  // Enhanced coursework data for richer academic storytelling
-  const courseworkMap: Record<string, { tag: string; coursework: string[] }> = {
+  // Enhanced coursework and location data for richer academic storytelling
+  const courseworkMap: Record<string, { tag: string; location: string; coursework: string[] }> = {
     "École Numérique Ahmed Al Hansali": {
       tag: "Formation d'Excellence • Génie Logiciel",
+      location: "Béni Mellal, Maroc",
       coursework: [
         "Architecture Entreprise avec Spring Boot",
         "Interfaces Web Réactives avec React",
@@ -47,6 +50,7 @@ export default function EducationShowcase({ education, t }: EducationShowcasePro
     },
     "ISTA Oued Zem": {
       tag: "Diplôme d'État • Option Mobile",
+      location: "Oued Zem, Maroc",
       coursework: [
         "Développement Mobile Android (Kotlin)",
         "Applications Cross-Platform (Flutter & Dart)",
@@ -62,12 +66,15 @@ export default function EducationShowcase({ education, t }: EducationShowcasePro
         const isCurrent = edu.status === "current";
         const meta = courseworkMap[edu.institution] || {
           tag: isCurrent ? "Formation d'Excellence" : "Diplôme d'État",
+          location: edu.location || "Maroc",
           coursework: [
             "Génie Logiciel & Architecture",
             "Développement Web & Mobile",
             "Bases de Données & Algorithmique",
           ],
         };
+
+        const displayLocation = edu.location || meta.location || "Maroc";
 
         return (
           <div
@@ -167,7 +174,10 @@ export default function EducationShowcase({ education, t }: EducationShowcasePro
                   <Sparkles size={13} className="text-[#D9A441]" />
                   <span>Validation Académique</span>
                 </span>
-                <span className="text-white/60">Oued Zem, Maroc</span>
+                <span className="text-white/70 font-semibold flex items-center gap-1">
+                  <MapPin size={12} className="text-[#D9A441]" />
+                  <span>{displayLocation}</span>
+                </span>
               </div>
             </div>
           </div>
