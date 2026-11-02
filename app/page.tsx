@@ -60,6 +60,11 @@ import { useLanguage } from "@/components/LanguageProvider";
 import LanguageToggle from "@/components/LanguageToggle";
 import HackathonShowcase, { HackathonDetail } from "@/components/HackathonShowcase";
 import SkillsShowcase from "@/components/SkillsShowcase";
+import WorkShowcase, { ProjectItem } from "@/components/WorkShowcase";
+import ExperienceShowcase, { ExperienceItem } from "@/components/ExperienceShowcase";
+import EducationShowcase, { EducationItem } from "@/components/EducationShowcase";
+import ResumeShowcase from "@/components/ResumeShowcase";
+import ContactShowcase from "@/components/ContactShowcase";
 import emailjs from "@emailjs/browser";
 import { useEffect, useRef, useState } from "react";
 import {HiMenu, HiOutlineMenu, HiOutlineMenuAlt3, HiSparkles, HiX} from "react-icons/hi";
@@ -310,8 +315,9 @@ export function Header() {
 export default function Home() {
   const { t } = useLanguage();
 
-  const projects = [
+  const projects: ProjectItem[] = [
     {
+      id: "healthcare",
       name: "HealthCare+",
       domain: "Système Médical & Santé",
       subtitle: "Plateforme Hospitalière Full-Stack Sécurisée",
@@ -346,9 +352,9 @@ export default function Home() {
       githubFrontend:
         "https://github.com/Rida1019-taki/HealthCare-Frontend.git",
       accent: "#5a8fd4",
-      number: "01",
     },
     {
+      id: "logitrack",
       name: "LogiTrack",
       domain: "Logistique & Supply Chain",
       subtitle: "Système de Gestion des Flux et Expéditions",
@@ -381,9 +387,9 @@ export default function Home() {
       githubBackend: "https://github.com/Rida1019-taki/LogiTrack",
       githubFrontend: "https://github.com/Rida1019-taki/LogiTrack_FrontEnd",
       accent: "#e07040",
-      number: "02",
     },
     {
+      id: "fleetflow",
       name: "FleetFlow",
       domain: "Gestion de Parc & DevOps",
       subtitle: "Plateforme de Flotte Automobile & Livraisons",
@@ -413,11 +419,10 @@ export default function Home() {
       image: "/fleetflow.png",
       github: "https://github.com/NihadHub/fleetFlow.git",
       accent: "#5ab88a",
-      number: "03",
     },
   ];
 
-  const experiences = [
+  const experiences: ExperienceItem[] = [
     {
       company: "Skaii service",
       role: "DÉVELOPPEUR INFORMATIQUE",
@@ -445,7 +450,7 @@ export default function Home() {
     },
   ];
 
-  const education = [
+  const education: EducationItem[] = [
     {
       institution: "École Numérique Ahmed Al Hansali",
       degree: "Full Stack Java / React",
@@ -565,39 +570,7 @@ export default function Home() {
     { icon: <SiFigma size={18} />, label: "Figma", color: "#a78bfa" },
   ];
 
-  const [selectedProject, setSelectedProject] = useState<string>("all");
-  const [loading, setLoading] = useState(false);
-
-  const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const form = e.currentTarget;
-
-    setLoading(true);
-
-    try {
-      await emailjs.sendForm(
-          "service_jav8hl6",
-          "template_440vkxl",
-          form,
-          "TSdGK4h7h-xBeD4yD"
-      );
-
-      form.reset();
-
-      toast.success(t.contact.toastSuccessTitle, {
-        description: t.contact.toastSuccessDesc,
-      });
-    } catch (error) {
-      console.error(error);
-
-      toast.error("Failed to send message", {
-        description: "Please try again in a few moments.",
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
+  // Section states managed inside respective showcase components
 
   const [isPastAbout, setIsPastAbout] = useState(false);
 
@@ -932,484 +905,39 @@ export default function Home() {
   
             {/* ═══ FEATURED PROJECTS (BENTO SHOWCASE) ═══ */}
             <section id="work" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
-              <ScrollReveal>
-                <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8">
-                  <div>
-                    <div className="flex items-center gap-2 font-mono text-xs text-[#D9A441] mb-3">
-                      <span className="text-white/40">{"//"}</span>
-                      <span className="uppercase tracking-[0.25em] font-semibold">{t.work.badge}</span>
-                    </div>
-                    <h2 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white">
-                      {t.work.title1} <span className="text-[#D9A441] font-extrabold tracking-tight">{t.work.title2}</span>
-                    </h2>
-                  </div>
-                  <p className="max-w-md text-sm sm:text-base text-[color:var(--muted)] leading-relaxed">
-                    {t.work.desc}
-                  </p>
-                </div>
+              <ScrollReveal delay={120}>
+                <WorkShowcase
+                  projects={projects}
+                  t={{
+                    badge: t.work.badge,
+                    title1: t.work.title1,
+                    title2: t.work.title2,
+                    desc: t.work.desc,
+                    btnBackend: t.work.btnBackend,
+                    btnFrontend: t.work.btnFrontend,
+                    btnRepo: t.work.btnRepo,
+                  }}
+                />
               </ScrollReveal>
-
-              {/* Bento Grid */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                
-                {/* ─── CARD 1: HERO FEATURED PROJECT (HealthCare+) ─── */}
-                <ScrollReveal className="lg:col-span-12">
-                  <div className="group relative rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.05] via-white/[0.02] to-transparent p-1 transition-all duration-500 hover:border-[#5a8fd4]/50 hover:shadow-[0_20px_70px_-15px_rgba(90,143,212,0.25)]">
-                    <div className="relative rounded-[22px] bg-black/80 p-6 sm:p-10 backdrop-blur-2xl overflow-hidden">
-                      {/* Ambient Glow */}
-                      <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-[#5a8fd4]/15 blur-[120px] pointer-events-none group-hover:bg-[#5a8fd4]/25 transition-all duration-500" />
-                      
-                      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-                        {/* Info Left */}
-                        <div className="lg:col-span-5 space-y-6">
-                          <div className="flex items-center gap-3">
-                            <span className="font-mono text-xs font-bold text-[#5a8fd4] border border-[#5a8fd4]/30 bg-[#5a8fd4]/10 px-3 py-1 rounded-full">
-                              {t.work.healthcare.tag}
-                            </span>
-                            <span className="text-xs font-mono uppercase tracking-wider text-white/50">
-                              {t.work.healthcare.domain}
-                            </span>
-                          </div>
-
-                          <div>
-                            <h3 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight group-hover:text-[#5a8fd4] transition-colors duration-300">
-                              HealthCare+
-                            </h3>
-                            <p className="text-sm font-mono text-[#D9A441] font-medium mt-1">
-                              {t.work.healthcare.subtitle}
-                            </p>
-                          </div>
-
-                          <p className="text-sm sm:text-base text-gray-300 leading-relaxed font-normal">
-                            {t.work.healthcare.desc}
-                          </p>
-
-                          {/* Tech Pills */}
-                          <div className="flex flex-wrap gap-2 pt-2">
-                            {["Java 21", "Spring Boot", "React", "JWT Auth", "Hibernate", "MySQL", "Docker", "REST API"].map((tag) => (
-                              <span
-                                key={tag}
-                                className="rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-xs font-mono text-gray-300 transition-colors hover:border-[#5a8fd4]/40 hover:text-white"
-                              >
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-
-                          {/* CTAs */}
-                          <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-white/10">
-                            <a
-                              href="https://github.com/ENAA-School-Student/HealthCare-Syst-me-de-Gestion_M-dicale"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-xs font-mono font-semibold text-white transition-all duration-300 hover:border-[#5a8fd4] hover:bg-[#5a8fd4] hover:text-black hover:shadow-[0_0_20px_rgba(90,143,212,0.4)]"
-                            >
-                              <FaGithub size={15} />
-                              <span>{t.work.btnBackend}</span>
-                              <ArrowUpRight size={13} />
-                            </a>
-                            <a
-                              href="https://github.com/Rida1019-taki/HealthCare-Frontend.git"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-xs font-mono font-semibold text-white transition-all duration-300 hover:border-[#5a8fd4] hover:bg-[#5a8fd4] hover:text-black hover:shadow-[0_0_20px_rgba(90,143,212,0.4)]"
-                            >
-                              <FaGithub size={15} />
-                              <span>{t.work.btnFrontend}</span>
-                              <ArrowUpRight size={13} />
-                            </a>
-                          </div>
-                        </div>
-
-                        {/* Visual Right */}
-                        <div className="lg:col-span-7">
-                          <div className="relative rounded-2xl border border-white/15 bg-neutral-950/80 p-2 sm:p-3 shadow-2xl transition-all duration-500 group-hover:border-[#5a8fd4]/40 group-hover:shadow-[0_25px_60px_rgba(0,0,0,0.95)]">
-                            <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-neutral-900">
-                              <Image
-                                src="/healthcare.png"
-                                alt="HealthCare+ Preview"
-                                fill
-                                sizes="(max-width: 1024px) 100vw, 700px"
-                                className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
-                              />
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-40 transition-opacity duration-300 group-hover:opacity-10" />
-                              
-                              {/* Floating Badge on Image */}
-                              <div className="absolute bottom-4 left-4 z-10 flex items-center gap-2 rounded-full border border-white/20 bg-black/70 px-3.5 py-1.5 backdrop-blur-md text-xs font-mono text-white">
-                                <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                                <span>{t.work.healthcare.badge}</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </ScrollReveal>
-
-                {/* ─── CARD 2: LogiTrack ─── */}
-                <ScrollReveal delay={100} className="lg:col-span-6">
-                  <div className="group relative h-full rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.05] via-white/[0.02] to-transparent p-1 transition-all duration-500 hover:border-[#e07040]/50 hover:shadow-[0_20px_70px_-15px_rgba(224,112,64,0.25)] flex flex-col">
-                    <div className="relative h-full rounded-[22px] bg-black/80 p-6 sm:p-8 backdrop-blur-2xl flex flex-col justify-between overflow-hidden">
-                      {/* Ambient Glow */}
-                      <div className="absolute -top-20 -right-20 h-72 w-72 rounded-full bg-[#e07040]/15 blur-[100px] pointer-events-none group-hover:bg-[#e07040]/25 transition-all duration-500" />
-
-                      <div className="space-y-6">
-                        {/* Header */}
-                        <div className="flex items-center justify-between">
-                          <span className="font-mono text-xs font-bold text-[#e07040] border border-[#e07040]/30 bg-[#e07040]/10 px-3 py-1 rounded-full">
-                            {t.work.logitrack.tag}
-                          </span>
-                          <span className="text-xs font-mono uppercase tracking-wider text-white/50">
-                            {t.work.logitrack.domain}
-                          </span>
-                        </div>
-
-                        {/* Image Preview */}
-                        <div className="relative rounded-2xl border border-white/15 bg-neutral-950/80 p-2 shadow-2xl transition-all duration-500 group-hover:border-[#e07040]/40">
-                          <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-neutral-900">
-                            <Image
-                              src="/logitrack1.png"
-                              alt="LogiTrack Preview"
-                              fill
-                              sizes="(max-width: 1024px) 100vw, 550px"
-                              className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-40 transition-opacity duration-300 group-hover:opacity-10" />
-                          </div>
-                        </div>
-
-                        {/* Text */}
-                        <div>
-                          <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight group-hover:text-[#e07040] transition-colors duration-300">
-                            LogiTrack
-                          </h3>
-                          <p className="text-xs font-mono text-[#D9A441] font-medium mt-1">
-                            {t.work.logitrack.subtitle}
-                          </p>
-                        </div>
-
-                        <p className="text-sm text-gray-300 leading-relaxed font-normal">
-                          {t.work.logitrack.desc}
-                        </p>
-
-                        {/* Tech Pills */}
-                        <div className="flex flex-wrap gap-1.5 pt-1">
-                          {["Spring Boot", "React", "Vite", "Material UI", "JWT", "MySQL", "Axios"].map((tag) => (
-                            <span
-                              key={tag}
-                              className="rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-mono text-gray-300 transition-colors hover:border-[#e07040]/40 hover:text-white"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* CTAs */}
-                      <div className="flex flex-wrap items-center gap-3 pt-6 mt-6 border-t border-white/10">
-                        <a
-                          href="https://github.com/Rida1019-taki/LogiTrack"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-3.5 py-2 text-xs font-mono font-semibold text-white transition-all duration-300 hover:border-[#e07040] hover:bg-[#e07040] hover:text-black hover:shadow-[0_0_20px_rgba(224,112,64,0.4)]"
-                        >
-                          <FaGithub size={14} />
-                          <span>Backend</span>
-                          <ArrowUpRight size={12} />
-                        </a>
-                        <a
-                          href="https://github.com/Rida1019-taki/LogiTrack_FrontEnd"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-3.5 py-2 text-xs font-mono font-semibold text-white transition-all duration-300 hover:border-[#e07040] hover:bg-[#e07040] hover:text-black hover:shadow-[0_0_20px_rgba(224,112,64,0.4)]"
-                        >
-                          <FaGithub size={14} />
-                          <span>Frontend</span>
-                          <ArrowUpRight size={12} />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </ScrollReveal>
-
-                {/* ─── CARD 3: FleetFlow ─── */}
-                <ScrollReveal delay={200} className="lg:col-span-6">
-                  <div className="group relative h-full rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.05] via-white/[0.02] to-transparent p-1 transition-all duration-500 hover:border-[#5ab88a]/50 hover:shadow-[0_20px_70px_-15px_rgba(90,184,138,0.25)] flex flex-col">
-                    <div className="relative h-full rounded-[22px] bg-black/80 p-6 sm:p-8 backdrop-blur-2xl flex flex-col justify-between overflow-hidden">
-                      {/* Ambient Glow */}
-                      <div className="absolute -top-20 -right-20 h-72 w-72 rounded-full bg-[#5ab88a]/15 blur-[100px] pointer-events-none group-hover:bg-[#5ab88a]/25 transition-all duration-500" />
-
-                      <div className="space-y-6">
-                        {/* Header */}
-                        <div className="flex items-center justify-between">
-                          <span className="font-mono text-xs font-bold text-[#5ab88a] border border-[#5ab88a]/30 bg-[#5ab88a]/10 px-3 py-1 rounded-full">
-                            {t.work.fleetflow.tag}
-                          </span>
-                          <span className="text-xs font-mono uppercase tracking-wider text-white/50">
-                            {t.work.fleetflow.domain}
-                          </span>
-                        </div>
-
-                        {/* Image Preview */}
-                        <div className="relative rounded-2xl border border-white/15 bg-neutral-950/80 p-2 shadow-2xl transition-all duration-500 group-hover:border-[#5ab88a]/40">
-                          <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-neutral-900">
-                            <Image
-                              src="/fleetflow.png"
-                              alt="FleetFlow Preview"
-                              fill
-                              sizes="(max-width: 1024px) 100vw, 550px"
-                              className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-40 transition-opacity duration-300 group-hover:opacity-10" />
-                          </div>
-                        </div>
-
-                        {/* Text */}
-                        <div>
-                          <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight group-hover:text-[#5ab88a] transition-colors duration-300">
-                            FleetFlow
-                          </h3>
-                          <p className="text-xs font-mono text-[#D9A441] font-medium mt-1">
-                            {t.work.fleetflow.subtitle}
-                          </p>
-                        </div>
-
-                        <p className="text-sm text-gray-300 leading-relaxed font-normal">
-                          {t.work.fleetflow.desc}
-                        </p>
-
-                        {/* Tech Pills */}
-                        <div className="flex flex-wrap gap-1.5 pt-1">
-                          {["Spring Boot", "Docker", "GitHub Actions", "Swagger", "MapStruct", "MySQL", "JWT"].map((tag) => (
-                            <span
-                              key={tag}
-                              className="rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-mono text-gray-300 transition-colors hover:border-[#5ab88a]/40 hover:text-white"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* CTAs */}
-                      <div className="flex flex-wrap items-center gap-3 pt-6 mt-6 border-t border-white/10">
-                        <a
-                          href="https://github.com/NihadHub/fleetFlow.git"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-xs font-mono font-semibold text-white transition-all duration-300 hover:border-[#5ab88a] hover:bg-[#5ab88a] hover:text-black hover:shadow-[0_0_20px_rgba(90,184,138,0.4)]"
-                        >
-                          <FaGithub size={14} />
-                          <span>{t.work.btnRepo}</span>
-                          <ArrowUpRight size={12} />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </ScrollReveal>
-
-              </div>
             </section>
   
             <div className="section-divider mx-auto max-w-7xl" />
 
             {/* ═══ EXPERIENCE ═══ */}
             <section id="experience" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
-              <ScrollReveal>
-                <div className="mb-16 space-y-4 text-center max-w-3xl mx-auto">
-                  <span className="section-label inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
-                    <Briefcase size={14} /> {t.experience.badge}
-                  </span>
-                  <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
-                    <span className="gradient-text">{t.experience.title1} </span>
-                    <span className="brand-gradient-text font-extrabold tracking-tight">{t.experience.title2}</span>
-                  </h2>
-                  <p className="text-sm sm:text-base text-[color:var(--muted)] leading-relaxed">
-                    {t.experience.desc}
-                  </p>
-                </div>
+              <ScrollReveal delay={120}>
+                <ExperienceShowcase experiences={experiences} t={t.experience} />
               </ScrollReveal>
-
-              <div className="space-y-8 max-w-5xl mx-auto">
-                {experiences.map((exp, i) => {
-                  const isCurrent = exp.status === "current";
-                  return (
-                    <ScrollReveal key={exp.company} delay={i * 120}>
-                      <div className="group relative rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.05] via-white/[0.02] to-transparent p-1 transition-all duration-500 hover:border-[#D9A441]/40 hover:shadow-[0_10px_40px_-15px_rgba(217,164,65,0.25)]">
-                        {/* Glow effect on hover */}
-                        <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#D9A441]/10 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none" />
-
-                        <div className="relative rounded-[22px] bg-black/50 p-6 sm:p-10 backdrop-blur-xl">
-                          {/* Header section with Company, Role, Service and Period */}
-                          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/10 pb-6 mb-6">
-                            <div className="flex items-start sm:items-center gap-4">
-                              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-[#D9A441]/30 bg-[#D9A441]/10 text-[#D9A441] transition-transform duration-300 group-hover:scale-105 shadow-[0_0_20px_rgba(217,164,65,0.2)]">
-                                <Briefcase size={26} />
-                              </div>
-                              <div>
-                                <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                                  <h3 className="text-2xl sm:text-3xl font-bold text-white group-hover:text-[#D9A441] transition-colors">
-                                    {exp.company}
-                                  </h3>
-                                  <span className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-[10px] font-mono text-gray-300">
-                                    <MapPin size={10} className="text-[#D9A441]" />
-                                    {exp.location}
-                                  </span>
-                                </div>
-                                <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm font-mono">
-                                  <span className="text-[#D9A441] font-bold tracking-wide">
-                                    {t.experience.skaii.role.split(":")[0]}: {exp.role}
-                                  </span>
-                                  <span className="text-gray-500 hidden sm:inline">•</span>
-                                  <span className="text-gray-300 font-medium">
-                                    {t.experience.skaii.service.split(":")[0]}: {exp.service}
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div className="flex items-center gap-2 self-start md:self-auto">
-                              {isCurrent && (
-                                <span className="inline-flex items-center gap-1.5 rounded-full border border-[color:var(--accent-emerald)]/30 bg-[color:var(--accent-emerald)]/10 px-3 py-1 text-[11px] font-mono font-medium text-[color:var(--accent-emerald)]">
-                                  <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--accent-emerald)] animate-pulse" />
-                                  {t.experience.skaii.currentBadge}
-                                </span>
-                              )}
-                              <span className="rounded-xl border border-white/10 bg-white/5 px-3.5 py-1 text-xs font-mono text-gray-300">
-                                {exp.period}
-                              </span>
-                            </div>
-                          </div>
-
-                          {/* Description */}
-                          <p className="text-sm sm:text-base text-gray-300 leading-relaxed mb-6">
-                            {exp.description}
-                          </p>
-
-                          {/* Key Responsibilities */}
-                          <div className="mb-6 space-y-2.5">
-                            <h4 className="text-xs font-mono uppercase tracking-wider text-white/60">
-                              {t.experience.skaii.responsibilitiesTitle}
-                            </h4>
-                            <div className="grid gap-2.5 sm:grid-cols-2">
-                              {exp.responsibilities.map((resp, idx) => (
-                                <div
-                                  key={idx}
-                                  className="flex items-start gap-2.5 text-xs sm:text-sm text-gray-300 bg-white/[0.02] border border-white/5 rounded-xl p-3"
-                                >
-                                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[#D9A441]" />
-                                  <span>{resp}</span>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-
-                          {/* Tech stack tags */}
-                          <div className="border-t border-white/10 pt-4 flex flex-wrap items-center gap-2">
-                            <span className="text-xs font-mono text-white/40 mr-1">{t.experience.skaii.techLabel}</span>
-                            {exp.technologies.map((tech) => (
-                              <span
-                                key={tech}
-                                className="inline-flex items-center rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-xs font-mono text-gray-300 transition-colors hover:border-[#D9A441]/40 hover:text-white"
-                              >
-                                {tech}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </ScrollReveal>
-                  );
-                })}
-              </div>
             </section>
 
             <div className="section-divider mx-auto max-w-7xl" />
   
               {/* ═══ EDUCATION ═══ */}
-              <section id="education" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
-                  <ScrollReveal>
-                      <div className="mb-16 space-y-4 text-center max-w-3xl mx-auto">
-        <span className="section-label inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
-          <GraduationCap size={14} /> {t.education.badge}
-        </span>
-                          <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
-                              <span className="gradient-text">{t.education.title1} </span>
-                              <span className="brand-gradient-text font-extrabold tracking-tight">{t.education.title2}</span>
-                          </h2>
-                          <p className="text-sm sm:text-base text-[color:var(--muted)] leading-relaxed">
-                              {t.education.desc}
-                          </p>
-                      </div>
-                  </ScrollReveal>
-  
-                  <div className="grid gap-8 md:grid-cols-2">
-                      {education.map((edu, i) => {
-                          const isCurrent = edu.status === "current";
-                          return (
-                              <ScrollReveal key={edu.institution} delay={i * 120}>
-                                  <div className="group relative h-full rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.05] to-transparent p-1 transition-all duration-500 hover:border-[#D9A441]/40 hover:shadow-[0_10px_40px_-15px_rgba(217,164,65,0.2)]">
-  
-                                      {/* Glow effect on hover */}
-                                      <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#D9A441]/10 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-  
-                                      <div className="relative flex h-full flex-col justify-between rounded-[22px] bg-black/40 p-8 backdrop-blur-xl">
-  
-                                          {/* Header */}
-                                          <div>
-                                              <div className="flex items-center justify-between mb-6">
-                                                  <div className="flex items-center gap-3">
-                                                      <div
-                                                          className={`flex h-12 w-12 items-center justify-center rounded-2xl border ${
-                                                              isCurrent
-                                                                  ? "border-[color:var(--accent-emerald)]/30 bg-[color:var(--accent-emerald)]/10 text-[color:var(--accent-emerald)]"
-                                                                  : "border-[#D9A441]/30 bg-[#D9A441]/10 text-[#D9A441]"
-                                                          }`}
-                                                      >
-                                                          {isCurrent ? <BookOpen size={22} /> : <GraduationCap size={22} />}
-                                                      </div>
-                                                      <div>
-                        <span className="text-xs font-mono uppercase tracking-widest text-white/50 block">
-                          {t.education.degreeType}
-                        </span>
-                                                          <span className="text-xs font-mono font-semibold text-[#D9A441]">
-                          {edu.period}
-                        </span>
-                                                      </div>
-                                                  </div>
-  
-                                                  {isCurrent && (
-                                                      <span className="inline-flex items-center gap-1.5 rounded-full border border-[color:var(--accent-emerald)]/30 bg-[color:var(--accent-emerald)]/10 px-3 py-1 text-[10px] font-mono font-medium text-[color:var(--accent-emerald)]">
-                        <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--accent-emerald)] animate-pulse" />
-                        {t.education.activeBadge}
-                      </span>
-                                                  )}
-                                              </div>
-  
-                                              <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-[#D9A441] transition-colors duration-300">
-                                                  {edu.degree}
-                                              </h3>
-                                          </div>
-  
-                                          {/* Footer */}
-                                          <div className="mt-8 border-t border-white/10 pt-4 flex items-center justify-between">
-                                              <p className="text-sm font-medium text-gray-300">
-                                                  {edu.institution}
-                                              </p>
-  
-                                              <div className="h-8 w-8 rounded-full border border-white/10 flex items-center justify-center text-white/40 group-hover:border-[#D9A441] group-hover:text-[#D9A441] transition-all duration-300">
-                                                  <Award size={16} />
-                                              </div>
-                                          </div>
-  
-                                      </div>
-                                  </div>
-                              </ScrollReveal>
-                          );
-                      })}
-                  </div>
-              </section>
+            <section id="education" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
+              <ScrollReveal delay={120}>
+                <EducationShowcase education={education} t={t.education} />
+              </ScrollReveal>
+            </section>
   
             <div className="section-divider mx-auto max-w-7xl" />
   
@@ -1532,191 +1060,24 @@ export default function Home() {
             </section>
   
               {/* ═══ RESUME ═══ */}
-              <section id="resume" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8">
-                  <ScrollReveal>
-                      <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.05] via-white/[0.02] to-transparent p-8 sm:p-14 text-center backdrop-blur-2xl shadow-2xl">
-  
-                          {/* Background Radial Glow */}
-                          <div className="absolute -top-24 left-1/2 -translate-x-1/2 h-64 w-64 rounded-full bg-[#D9A441]/10 blur-3xl pointer-events-none" />
-  
-                          {/* Top Badge */}
-                          <div className="relative z-10 mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441]">
-                              <FileText size={14} /> {t.resume.badge}
-                          </div>
-  
-                          {/* Title & Description */}
-                          <div className="relative z-10 max-w-2xl mx-auto space-y-4">
-                              <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
-                                  <span className="gradient-text">{t.resume.title1} </span>
-                                  <br />
-                                  <span className="brand-gradient-text font-extrabold tracking-tight">{t.resume.title2}</span>
-                              </h2>
-  
-                              <p className="text-sm sm:text-base leading-relaxed text-[color:var(--muted)]">
-                                  {t.resume.desc}
-                              </p>
-                          </div>
-  
-                          {/* Download Button */}
-                          <div className="relative z-10 mt-10 flex justify-center">
-                              <a
-                                  href="/docs/Rida_Taki_CV.pdf"
-                                  download
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="group relative inline-flex items-center gap-3 overflow-hidden rounded-2xl bg-gradient-to-r from-[#C9A063] to-[#B8860B] px-8 py-4 text-sm font-bold text-black transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(217,164,65,0.4)]"
-                              >
-                                  <Download size={18} className="transition-transform duration-300 group-hover:-translate-y-0.5" />
-                                  <span>{t.resume.btnDownload}</span>
-                              </a>
-                          </div>
-  
-                          {/* Subtle Bottom Accent Line */}
-                          <div className="absolute bottom-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#D9A441]/30 to-transparent" />
-                      </div>
-                  </ScrollReveal>
-              </section>
+            <section id="resume" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8">
+              <ScrollReveal>
+                <ResumeShowcase t={t.resume} />
+              </ScrollReveal>
+            </section>
   
             <div className="section-divider mx-auto max-w-7xl" />
   
   
               {/* ═══ CONTACT ═══ */}
-              <section
-                  id="contact"
-                  className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32"
-              >
-                  <ScrollReveal>
-                      <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] p-8 sm:p-12 lg:p-16 backdrop-blur-2xl shadow-2xl">
-                          {/* Dynamic Ambient Orbs */}
-                          <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-[#D9A441]/10 blur-[120px] pointer-events-none" />
-                          <div className="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-[color:var(--brand)]/10 blur-[120px] pointer-events-none" />
-  
-                          <div className="relative z-10 grid gap-12 lg:grid-cols-12 items-start">
-                              {/* Left Column - Contact Info & Socials */}
-                              <div className="space-y-8 lg:col-span-6">
-                                  <div className="space-y-4">
-              <span className="section-label inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
-                <Mail size={14} /> {t.contact.badge}
-              </span>
-  
-                                      <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight leading-[1.1]">
-                                          <span className="gradient-text">{t.contact.title1} </span>
-                                          <br />
-                                          <span className="brand-gradient-text font-extrabold tracking-tight">{t.contact.title2}</span>
-                                      </h2>
-  
-                                      <p className="max-w-xl text-base leading-relaxed text-[color:var(--muted)] sm:text-lg font-medium">
-                                          {t.contact.desc}
-                                      </p>
-                                  </div>
-  
-                                  {/* Social Links Grid */}
-                                  <div className="space-y-3">
-              <span className="text-xs font-mono uppercase tracking-widest text-white/50 block">
-                {t.contact.socialsHeader}
-              </span>
-                                      <div className="flex flex-wrap gap-3">
-                                          {[
-                                              { icon: <FaGithub size={18} />, href: "https://github.com/Rida1019-taki", label: "GitHub", hoverBg: "hover:bg-white/20 hover:text-white" },
-                                              { icon: <FaLinkedin size={18} />, href: "https://www.linkedin.com/in/rida-taki-bb44a8350", label: "LinkedIn", hoverBg: "hover:bg-[#0A66C2] hover:text-white hover:border-[#0A66C2]" },
-                                              { icon: <FaWhatsapp size={18} />, href: "https://wa.me/212649487957", label: "WhatsApp", hoverBg: "hover:bg-[#25D366] hover:text-white hover:border-[#25D366]" },
-                                              { icon: <FaDiscord size={18} />, href: "https://discord.com/users/rida_taki", label: "Discord", hoverBg: "hover:bg-[#5865F2] hover:text-white hover:border-[#5865F2]" },
-                                              { icon: <FaInstagram size={18} />, href: "https://www.instagram.com/rida_taki_10?igsh=OW5pZnI2Mjh2ejBv", label: "Instagram", hoverBg: "hover:bg-[#E4405F] hover:text-white hover:border-[#E4405F]" },
-                                          ].map((s) => (
-                                              <a
-                                                  key={s.label}
-                                                  href={s.href}
-                                                  target="_blank"
-                                                  rel="noopener noreferrer"
-                                                  aria-label={s.label}
-                                                  className={`flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-gray-300 backdrop-blur-md transition-all duration-300 hover:scale-110 hover:shadow-lg ${s.hoverBg}`}
-                                              >
-                                                  {s.icon}
-                                              </a>
-                                          ))}
-                                      </div>
-                                  </div>
-                              </div>
-  
-                              {/* Right Column - Contact Form */}
-                              <div className="lg:col-span-6">
-                                  <form
-                                      onSubmit={sendEmail}
-                                      className="space-y-5 rounded-3xl border border-white/10 bg-white/[0.03] p-6 sm:p-8 backdrop-blur-xl shadow-xl"
-                                  >
-                                      <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-2">
-                                          <h3 className="text-xl font-bold text-white">{t.contact.formTitle}</h3>
-                                          <span className="text-xs font-mono text-[#D9A441]">{t.contact.formDirect}</span>
-                                      </div>
-  
-                                      <div className="space-y-4">
-                                          <div>
-                                              <label className="mb-2 block text-xs font-mono uppercase tracking-wider text-gray-400">
-                                                  {t.contact.labelName}
-                                              </label>
-                                              <input
-                                                  name="from_name"
-                                                  type="text"
-                                                  placeholder={t.contact.placeholderName}
-                                                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 outline-none transition-all duration-300 focus:border-[#D9A441] focus:bg-white/10 focus:shadow-[0_0_15px_rgba(217,164,65,0.2)]"
-                                                  required
-                                              />
-                                          </div>
-  
-                                          <div>
-                                              <label className="mb-2 block text-xs font-mono uppercase tracking-wider text-gray-400">
-                                                  {t.contact.labelEmail}
-                                              </label>
-                                              <input
-                                                  name="from_email"
-                                                  type="email"
-                                                  placeholder={t.contact.placeholderEmail}
-                                                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 outline-none transition-all duration-300 focus:border-[#D9A441] focus:bg-white/10 focus:shadow-[0_0_15px_rgba(217,164,65,0.2)]"
-                                                  required
-                                              />
-                                          </div>
-  
-                                          <div>
-                                              <label className="mb-2 block text-xs font-mono uppercase tracking-wider text-gray-400">
-                                                  {t.contact.labelSubject}
-                                              </label>
-                                              <input
-                                                  name="subject"
-                                                  type="text"
-                                                  placeholder={t.contact.placeholderSubject}
-                                                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 outline-none transition-all duration-300 focus:border-[#D9A441] focus:bg-white/10 focus:shadow-[0_0_15px_rgba(217,164,65,0.2)]"
-                                                  required
-                                              />
-                                          </div>
-  
-                                          <div>
-                                              <label className="mb-2 block text-xs font-mono uppercase tracking-wider text-gray-400">
-                                                  {t.contact.labelMessage}
-                                              </label>
-                                              <textarea
-                                                  name="message"
-                                                  rows={4}
-                                                  placeholder={t.contact.placeholderMessage}
-                                                  className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 outline-none transition-all duration-300 focus:border-[#D9A441] focus:bg-white/10 focus:shadow-[0_0_15px_rgba(217,164,65,0.2)]"
-                                                  required
-                                              />
-                                          </div>
-                                      </div>
-  
-                                      <button
-                                          type="submit"
-                                          disabled={loading}
-                                          className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-[#C9A063] to-[#B8860B] py-3.5 text-xs font-bold uppercase tracking-widest text-black transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_25px_rgba(217,164,65,0.4)] disabled:opacity-50"
-                                      >
-                                          <span>{loading ? t.contact.btnSending : t.contact.btnSend}</span>
-                                          <Rocket size={14} className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-                                      </button>
-                                  </form>
-                              </div>
-                          </div>
-                      </div>
-                  </ScrollReveal>
-              </section>
+            <section
+              id="contact"
+              className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32"
+            >
+              <ScrollReveal>
+                <ContactShowcase t={t.contact} />
+              </ScrollReveal>
+            </section>
           </main>
   
             {/* ═══ FOOTER ═══ */}
