@@ -141,10 +141,17 @@ export function Header() {
             {/* Logo Badge */}
             <a
                 href="#"
-                className="group flex items-center gap-3 rounded-2xl bg-neutral-950/80 p-2 pr-4 border border-white/10 backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.8)] hover:border-[#D9A441]/50 transition-all duration-300"
+                className="group flex items-center gap-3 rounded-2xl bg-neutral-950/80 p-1.5 pr-4 border border-white/10 backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.8)] hover:border-[#D9A441]/50 transition-all duration-300"
             >
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#D9A441] font-mono text-xs font-black text-black group-hover:scale-105 transition-transform">
-                RT
+              <div className="relative h-10 w-10 overflow-hidden rounded-xl border border-[#D9A441]/50 shadow-[0_0_15px_rgba(217,164,65,0.3)] group-hover:scale-105 group-hover:border-[#D9A441] transition-all duration-300 bg-black">
+                <Image
+                  src="/logo.png"
+                  alt="Rida Taki Official Logo"
+                  width={40}
+                  height={40}
+                  className="h-full w-full object-cover"
+                  priority
+                />
               </div>
               <div className="flex flex-col">
               <span className="text-xs font-black tracking-widest text-white group-hover:text-[#D9A441] transition-colors">
@@ -1023,13 +1030,14 @@ export default function Home() {
                 <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-5 py-8 sm:flex-row sm:px-8">
                     {/* Brand Logo & Copyright */}
                     <div className="flex items-center gap-3">
-                        <div
-                            className="flex h-9 w-9 items-center justify-center rounded-xl font-bold text-xs text-white shadow-lg"
-                            style={{
-                                background: "linear-gradient(135deg,#C9A063,#8B5E34,#B8860B)",
-                            }}
-                        >
-                            RT
+                        <div className="relative h-10 w-10 overflow-hidden rounded-xl border border-[#D9A441]/40 shadow-[0_0_15px_rgba(217,164,65,0.25)] bg-black">
+                          <Image
+                            src="/logo.png"
+                            alt="Rida Taki Official Logo"
+                            width={40}
+                            height={40}
+                            className="h-full w-full object-cover"
+                          />
                         </div>
                         <div className="flex flex-col">
                             <span className="text-sm font-semibold text-white">Rida Taki</span>
