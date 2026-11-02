@@ -46,6 +46,8 @@ export default function ParticleField() {
         const draw = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+            const isDark = document.documentElement.classList.contains("dark");
+
             particles.forEach((p) => {
                 p.x += p.vx;
                 p.y += p.vy;
@@ -57,7 +59,9 @@ export default function ParticleField() {
 
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = `hsla(${p.hue}, 60%, 55%, ${p.opacity})`;
+                ctx.fillStyle = isDark
+                    ? `hsla(${p.hue}, 60%, 55%, ${p.opacity})`
+                    : `hsla(${p.hue}, 80%, 45%, ${p.opacity * 0.7})`;
                 ctx.fill();
             });
 
@@ -71,7 +75,9 @@ export default function ParticleField() {
                         ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = `hsla(25, 40%, 55%, ${0.04 * (1 - dist / 120)})`;
+                        ctx.strokeStyle = isDark
+                            ? `hsla(25, 40%, 55%, ${0.04 * (1 - dist / 120)})`
+                            : `hsla(30, 80%, 40%, ${0.05 * (1 - dist / 120)})`;
                         ctx.lineWidth = 0.5;
                         ctx.stroke();
                     }

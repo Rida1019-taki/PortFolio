@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans, Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const outfit = Outfit({
     variable: "--font-outfit",
@@ -74,19 +75,46 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-                                       children,
-                                   }: Readonly<{
+    children,
+}: Readonly<{
     children: React.ReactNode;
 }>) {
     return (
         <html
             lang="en"
+            suppressHydrationWarning
             className={`${outfit.variable} ${plusJakarta.variable} ${mono.variable} h-full antialiased`}
         >
-        <body className="min-h-full flex flex-col">
-        {children}
-        <Toaster position="top-right" richColors closeButton duration={4000} />
-        <GoogleAnalytics gaId="G-DS2HD5NH07" />
+        <head>
+            <script
+                dangerouslySetInnerHTML={{
+                    __html: `
+                        (function() {
+                            try {
+                                var saved = localStorage.getItem('theme');
+                                var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+                                if (!saved) theme = 'dark';
+                                if (theme === 'dark') {
+                                    document.documentElement.classList.add('dark');
+                                    document.documentElement.classList.remove('light');
+                                } else {
+                                    document.documentElement.classList.remove('dark');
+                                    document.documentElement.classList.add('light');
+                                }
+                                document.documentElement.setAttribute('data-theme', theme);
+                                document.documentElement.style.colorScheme = theme;
+                            } catch (e) {}
+                        })();
+                    `,
+                }}
+            />
+        </head>
+        <body className="min-h-full flex flex-col bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300">
+        <ThemeProvider>
+            {children}
+            <Toaster position="top-right" richColors closeButton duration={4000} />
+            <GoogleAnalytics gaId="G-DS2HD5NH07" />
+        </ThemeProvider>
         </body>
         </html>
     );

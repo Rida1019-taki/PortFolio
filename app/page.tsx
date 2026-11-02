@@ -56,6 +56,7 @@ import ParticleField from "@/components/ParticleField";
 import MouseGlow from "@/components/MouseGlow";
 import AnimatedNumber from "@/components/AnimatedNumber";
 import TypewriterText from "@/components/TypewriterText";
+import ThemeToggle from "@/components/ThemeToggle";
 import emailjs from "@emailjs/browser";
 import { useEffect, useRef, useState } from "react";
 import {HiMenu, HiOutlineMenu, HiOutlineMenuAlt3, HiSparkles, HiX} from "react-icons/hi";
@@ -129,16 +130,16 @@ export function Header() {
             {/* Logo Badge */}
             <a
                 href="#"
-                className="group flex items-center gap-3 rounded-2xl bg-neutral-950/80 p-2 pr-4 border border-white/10 backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.8)] hover:border-[#D9A441]/50 transition-all duration-300"
+                className="group flex items-center gap-3 rounded-2xl dark:bg-neutral-950/80 bg-white/85 p-2 pr-4 border dark:border-white/10 border-slate-200/90 backdrop-blur-2xl dark:shadow-[0_10px_30px_rgba(0,0,0,0.8)] shadow-[0_10px_30px_rgba(0,0,0,0.06)] hover:border-[#D9A441]/50 transition-all duration-300"
             >
               <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#D9A441] font-mono text-xs font-black text-black group-hover:scale-105 transition-transform">
                 RT
               </div>
               <div className="flex flex-col">
-              <span className="text-xs font-black tracking-widest text-white group-hover:text-[#D9A441] transition-colors">
+              <span className="text-xs font-black tracking-widest dark:text-white text-slate-900 group-hover:text-[#D9A441] transition-colors">
                 RIDA TAKI
               </span>
-                <span className="text-[9px] font-mono text-gray-400">
+                <span className="text-[9px] font-mono dark:text-gray-400 text-slate-500">
                 DEVELOPER
               </span>
               </div>
@@ -146,10 +147,10 @@ export function Header() {
 
             {/* Nav Links Badge */}
             <div
-                className={`hidden lg:flex items-center gap-1 rounded-2xl bg-neutral-950/80 p-2 border backdrop-blur-2xl transition-all duration-500 ${
+                className={`hidden lg:flex items-center gap-1 rounded-2xl dark:bg-neutral-950/80 bg-white/85 p-2 border backdrop-blur-2xl transition-all duration-500 ${
                     scrolled
-                        ? "border-[#D9A441]/30 shadow-[0_10px_30px_rgba(0,0,0,0.8)] scale-95"
-                        : "border-white/10"
+                        ? "border-[#D9A441]/40 dark:shadow-[0_10px_30px_rgba(0,0,0,0.8)] shadow-[0_10px_30px_rgba(217,164,65,0.15)] scale-95"
+                        : "dark:border-white/10 border-slate-200/90 shadow-[0_10px_30px_rgba(0,0,0,0.06)] dark:shadow-none"
                 }`}
             >
               {navItems.map((item) => {
@@ -162,7 +163,7 @@ export function Header() {
                         className={`relative px-4 py-2 text-xs font-mono uppercase tracking-wider transition-all duration-300 rounded-xl ${
                             isActive
                                 ? "text-black bg-[#D9A441] font-bold shadow-[0_0_15px_rgba(217,164,65,0.4)]"
-                                : "text-gray-400 hover:text-white hover:bg-white/5"
+                                : "dark:text-gray-400 text-slate-600 dark:hover:text-white hover:text-slate-950 dark:hover:bg-white/5 hover:bg-slate-100"
                         }`}
                     >
                       {item.label}
@@ -174,9 +175,8 @@ export function Header() {
             {/* Social Icons Badge + Action Buttons */}
             <div className="flex items-center gap-2">
 
-              {/* Always Visible Social Icons Badge */}
               {/* Social Icons Badge */}
-              <div className="hidden sm:flex items-center gap-1.5 rounded-2xl bg-neutral-950/80 p-2 border border-white/10 backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
+              <div className="hidden sm:flex items-center gap-1.5 rounded-2xl dark:bg-neutral-950/80 bg-white/85 p-2 border dark:border-white/10 border-slate-200/90 backdrop-blur-2xl dark:shadow-[0_10px_30px_rgba(0,0,0,0.8)] shadow-[0_10px_30px_rgba(0,0,0,0.06)]">
                 {socialLinks.map((social) => (
                     <a
                         key={social.label}
@@ -184,17 +184,20 @@ export function Header() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={social.label}
-                        className="flex h-8 w-8 items-center justify-center rounded-xl text-gray-400 hover:text-black hover:bg-[#D9A441] transition-all duration-300"
+                        className="flex h-8 w-8 items-center justify-center rounded-xl dark:text-gray-400 text-slate-600 hover:text-black hover:bg-[#D9A441] transition-all duration-300"
                     >
                       {social.icon}
                     </a>
                 ))}
               </div>
 
+              {/* Theme Toggle Button */}
+              <ThemeToggle />
+
               {/* Let's Talk CTA */}
               <a
                   href="#contact"
-                  className="hidden md:flex items-center gap-2 rounded-2xl bg-neutral-950/80 px-4 py-2.5 border border-white/10 text-xs font-mono font-bold text-white hover:text-[#D9A441] hover:border-[#D9A441]/50 backdrop-blur-2xl transition-all duration-300"
+                  className="hidden md:flex items-center gap-2 rounded-2xl dark:bg-neutral-950/80 bg-white/85 px-4 py-2.5 border dark:border-white/10 border-slate-200/90 text-xs font-mono font-bold dark:text-white text-slate-900 hover:text-[#D9A441] hover:border-[#D9A441]/50 backdrop-blur-2xl transition-all duration-300 shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
               >
                 <FiCommand size={14} className="text-[#D9A441]" />
                 <span>{"LET'S TALK"}</span>
@@ -214,7 +217,7 @@ export function Header() {
 
         {/* Fullscreen Interactive Overlay Menu */}
         <div
-            className={`fixed inset-0 z-40 bg-black/95 backdrop-blur-3xl transition-all duration-700 flex flex-col justify-between p-8 md:p-16 ${
+            className={`fixed inset-0 z-40 dark:bg-black/95 bg-slate-50/98 backdrop-blur-3xl transition-all duration-700 flex flex-col justify-between p-8 md:p-16 ${
                 isOpen
                     ? "opacity-100 pointer-events-auto translate-y-0"
                     : "opacity-0 pointer-events-none -translate-y-8"
@@ -232,7 +235,7 @@ export function Header() {
                       key={item.label}
                       href={item.href}
                       onClick={() => setIsOpen(false)}
-                      className="group flex items-center gap-6 py-2 text-3xl sm:text-5xl font-black tracking-tight text-neutral-500 hover:text-white transition-all duration-300"
+                      className="group flex items-center gap-6 py-2 text-3xl sm:text-5xl font-black tracking-tight dark:text-neutral-500 text-slate-400 dark:hover:text-white hover:text-slate-900 transition-all duration-300"
                   >
                 <span className="font-mono text-sm text-[#D9A441] opacity-60 group-hover:opacity-100 group-hover:translate-x-2 transition-all">
                   {item.number}
@@ -244,7 +247,15 @@ export function Header() {
               ))}
             </nav>
 
-            <div className="flex flex-col gap-8 border-t md:border-t-0 md:border-l border-white/10 pt-8 md:pt-0 md:pl-12">
+            <div className="flex flex-col gap-8 border-t md:border-t-0 md:border-l dark:border-white/10 border-slate-200 pt-8 md:pt-0 md:pl-12">
+              {/* Theme Switcher for Mobile */}
+              <div>
+                <h4 className="font-mono text-xs uppercase tracking-widest text-[#D9A441] mb-3">
+                  {"// Theme Mode"}
+                </h4>
+                <ThemeToggle showLabel className="w-full sm:w-auto" />
+              </div>
+
               <div>
                 <h4 className="font-mono text-xs uppercase tracking-widest text-[#D9A441] mb-2">
                   {"// Direct Contact"}
@@ -252,7 +263,7 @@ export function Header() {
                 <a
                     href="#contact"
                     onClick={() => setIsOpen(false)}
-                    className="text-lg font-bold text-white hover:underline"
+                    className="text-lg font-bold dark:text-white text-slate-900 hover:underline"
                 >
                   takirida72@email.com
                 </a>
@@ -269,7 +280,7 @@ export function Header() {
                           href={social.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-xs font-mono text-gray-300 hover:border-[#D9A441] hover:text-[#D9A441] hover:bg-[#D9A441]/10 transition-all"
+                          className="flex items-center gap-2 rounded-xl border dark:border-white/10 border-slate-200 dark:bg-white/5 bg-slate-100 px-4 py-2.5 text-xs font-mono dark:text-gray-300 text-slate-700 hover:border-[#D9A441] hover:text-[#D9A441] hover:bg-[#D9A441]/10 transition-all"
                       >
                         {social.icon}
                         <span>{social.label}</span>
@@ -281,7 +292,7 @@ export function Header() {
             </div>
           </div>
 
-          <div className="relative z-10 mx-auto max-w-5xl w-full flex justify-between items-center text-xs font-mono text-gray-500 border-t border-white/10 pt-6">
+          <div className="relative z-10 mx-auto max-w-5xl w-full flex justify-between items-center text-xs font-mono dark:text-gray-500 text-slate-400 border-t dark:border-white/10 border-slate-200 pt-6">
             <span>DESIGN & CODE BY RIDA TAKI</span>
             <span className="hidden sm:inline">BENI MELLAL, MOROCCO</span>
           </div>
@@ -625,14 +636,14 @@ export default function Home() {
   }, []);
 
   return (
-      <div className="min-h-screen text-[var(--foreground)] relative">
+      <div className="min-h-screen text-[var(--foreground)] relative transition-colors duration-300">
         {/* Header / Navbar Component */}
         <Header />
 
-        {/* Background Video */}
-        <div className="fixed inset-0 -z-20 overflow-hidden">
+        {/* Background Video with Light / Dark Mode Adapting Overlay */}
+        <div className="fixed inset-0 -z-20 overflow-hidden pointer-events-none">
           <video
-              className="video-bg w-full h-full object-cover rounded-none"
+              className="video-bg w-full h-full object-cover rounded-none transition-opacity duration-700 dark:opacity-90 opacity-25"
               autoPlay
               muted
               loop
@@ -650,8 +661,8 @@ export default function Home() {
           <div
               className={`absolute inset-0 transition-all duration-700 ease-in-out ${
                   isPastAbout
-                      ? "bg-black/80 backdrop-blur-md"
-                      : "bg-black/50 backdrop-blur-none"
+                      ? "dark:bg-black/80 bg-[#f8fafc]/92 backdrop-blur-md"
+                      : "dark:bg-black/50 bg-[#f8fafc]/75 backdrop-blur-none"
               }`}
           />
         </div>
@@ -676,22 +687,22 @@ export default function Home() {
                 <div className="space-y-12">
 
                   {/* 1. Status Bar / Micro Badges */}
-                  <div className="reveal flex flex-wrap items-center justify-between gap-4 border-b border-white/[0.08] pb-6">
-                    <div className="flex items-center gap-2.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-4 py-1.5 backdrop-blur-md">
+                  <div className="reveal flex flex-wrap items-center justify-between gap-4 border-b dark:border-white/[0.08] border-slate-200/80 pb-6">
+                    <div className="flex items-center gap-2.5 rounded-full border dark:border-emerald-500/20 dark:bg-emerald-500/10 border-emerald-600/30 bg-emerald-50/90 px-4 py-1.5 backdrop-blur-md">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
           </span>
-                      <span className="text-[11px] font-mono font-medium uppercase tracking-widest text-emerald-400">
+                      <span className="text-[11px] font-mono font-medium uppercase tracking-widest dark:text-emerald-400 text-emerald-600">
             Open to New Opportunities
           </span>
                     </div>
 
-                    <div className="flex items-center gap-2 text-xs font-mono text-gray-400">
+                    <div className="flex items-center gap-2 text-xs font-mono dark:text-gray-400 text-slate-500">
                       <MapPin size={14} className="text-[#D9A441]" />
                       <span>Beni Mellal, Morocco</span>
-                      <span className="text-gray-600">|</span>
-                      <span className="text-gray-500">UTC+1</span>
+                      <span className="dark:text-gray-600 text-slate-300">|</span>
+                      <span className="dark:text-gray-500 text-slate-400">UTC+1</span>
                     </div>
                   </div>
 
@@ -705,27 +716,27 @@ export default function Home() {
                       }`}
                   >
                     <h1 className="display text-[clamp(2.2rem,5vw,4.2rem)] font-extrabold leading-[1.05] tracking-tight">
-    <span className="text-white drop-shadow-[0_4px_10px_rgba(0,0,0,0.8)]">
+    <span className="dark:text-white text-slate-900 dark:drop-shadow-[0_4px_10px_rgba(0,0,0,0.8)] drop-shadow-none">
       Crafting digital{" "}
     </span>
-                      <br />
-                      <span className="bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
+      <br />
+      <span className="bg-gradient-to-r dark:from-white dark:via-gray-200 dark:to-gray-400 from-slate-900 via-slate-700 to-slate-500 bg-clip-text text-transparent">
       experiences that{" "}
     </span>
-                      <br />
-                      <span className="bg-gradient-to-r from-[#F3C669] via-[#D9A441] to-[#B8860B] bg-clip-text text-transparent font-extrabold tracking-tight">
+      <br />
+      <span className="bg-gradient-to-r from-[#F3C669] via-[#D9A441] to-[#B8860B] bg-clip-text text-transparent font-extrabold tracking-tight">
       truly matter.
     </span>
-                    </h1>
+    </h1>
                   </div>
 
                   {/* Subtitle / Typewriter - Tech Pill Badge */}
-                  <div className="reveal reveal-d2 inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-md shadow-inner">
+                  <div className="reveal reveal-d2 inline-flex items-center gap-3 px-5 py-2.5 rounded-full dark:bg-white/[0.03] bg-white/85 border dark:border-white/10 border-slate-200/90 backdrop-blur-md shadow-sm">
   <span className="relative flex h-2.5 w-2.5">
     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D9A441] opacity-75"></span>
     <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#D9A441]"></span>
   </span>
-                    <div className="text-base sm:text-xl font-mono text-gray-200 tracking-wide">
+                    <div className="text-base sm:text-xl font-mono dark:text-gray-200 text-slate-700 tracking-wide">
                       <TypewriterText />
                     </div>
                   </div>
@@ -736,7 +747,7 @@ export default function Home() {
                     {/* Bio Narrative Card with Enhanced Background */}
                     <div
                         ref={bioRef}
-                        className={`lg:col-span-7 flex flex-col justify-between p-8 rounded-3xl border border-white/10 bg-gradient-to-br from-black/80 via-black/50 to-[#D9A441]/10 backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] relative overflow-hidden transition-all duration-700 ease-in-out hover:border-[#D9A441]/30 ${
+                        className={`lg:col-span-7 flex flex-col justify-between p-8 rounded-3xl border dark:border-white/10 border-slate-200/90 dark:bg-gradient-to-br dark:from-black/80 dark:via-black/50 dark:to-[#D9A441]/10 bg-gradient-to-br from-white/95 via-white/85 to-[#D9A441]/10 backdrop-blur-2xl dark:shadow-[0_10px_30px_rgba(0,0,0,0.5)] shadow-[0_10px_30px_rgba(0,0,0,0.06)] relative overflow-hidden transition-all duration-700 ease-in-out hover:border-[#D9A441]/40 ${
                             isBioVisible
                                 ? "opacity-100 translate-y-0"
                                 : "opacity-0 -translate-y-4 pointer-events-none"
@@ -760,8 +771,8 @@ export default function Home() {
                           </div>
                         </div>
 
-                        <p className="text-base sm:text-lg leading-relaxed text-gray-200 font-normal">
-                          Junior Developer specializing in <span className="text-white font-semibold">Java, Spring Boot, React, and Kotlin</span>. Passionate about building clean API architectures, efficient databases, and functional user interfaces.
+                        <p className="text-base sm:text-lg leading-relaxed dark:text-gray-200 text-slate-700 font-normal">
+                          Junior Developer specializing in <span className="dark:text-white text-slate-900 font-semibold">Java, Spring Boot, React, and Kotlin</span>. Passionate about building clean API architectures, efficient databases, and functional user interfaces.
                         </p>
                       </div>
 
@@ -770,7 +781,7 @@ export default function Home() {
                         {["Java 21", "Spring Boot", "React", "Next.js", "Docker", "MySQL"].map((tech) => (
                             <span
                                 key={tech}
-                                className="rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-xs font-mono text-gray-300 backdrop-blur-md hover:border-[#D9A441]/40 hover:text-white transition-all"
+                                className="rounded-lg border dark:border-white/10 border-slate-200 dark:bg-white/5 bg-slate-100 px-3 py-1 text-xs font-mono dark:text-gray-300 text-slate-700 backdrop-blur-md hover:border-[#D9A441]/40 dark:hover:text-white hover:text-slate-950 transition-all"
                             >
         {tech}
       </span>
@@ -779,29 +790,29 @@ export default function Home() {
                     </div>
 
                     {/* Stats & Actions Side Panel */}
-                    <div className="lg:col-span-5 flex flex-col justify-between p-8 rounded-3xl border border-white/10 bg-black/40 backdrop-blur-xl shadow-2xl space-y-8">
+                    <div className="lg:col-span-5 flex flex-col justify-between p-8 rounded-3xl border dark:border-white/10 border-slate-200/90 dark:bg-black/40 bg-white/85 backdrop-blur-xl dark:shadow-2xl shadow-lg space-y-8">
 
                       {/* Metrics Grid */}
-                      <div className="grid grid-cols-3 gap-2 text-center divide-x divide-white/10">
+                      <div className="grid grid-cols-3 gap-2 text-center divide-x dark:divide-white/10 divide-slate-200">
                         <div className="pr-2">
-                          <div className="text-3xl font-bold text-white font-mono">
+                          <div className="text-3xl font-bold dark:text-white text-slate-900 font-mono">
                             <AnimatedNumber value={3} suffix="+" />
                           </div>
-                          <div className="text-[9px] font-mono uppercase tracking-widest text-gray-400 mt-1">Projects</div>
+                          <div className="text-[9px] font-mono uppercase tracking-widest dark:text-gray-400 text-slate-500 mt-1">Projects</div>
                         </div>
 
                         <div className="px-2">
-                          <div className="text-3xl font-bold text-white font-mono">
+                          <div className="text-3xl font-bold dark:text-white text-slate-900 font-mono">
                             <AnimatedNumber value={10} suffix="+" />
                           </div>
-                          <div className="text-[9px] font-mono uppercase tracking-widest text-gray-400 mt-1">Tech Stack</div>
+                          <div className="text-[9px] font-mono uppercase tracking-widest dark:text-gray-400 text-slate-500 mt-1">Tech Stack</div>
                         </div>
 
                         <div className="pl-2">
-                          <div className="text-3xl font-bold text-white font-mono">
+                          <div className="text-3xl font-bold dark:text-white text-slate-900 font-mono">
                             <AnimatedNumber value={3} />
                           </div>
-                          <div className="text-[9px] font-mono uppercase tracking-widest text-gray-400 mt-1">Certs</div>
+                          <div className="text-[9px] font-mono uppercase tracking-widest dark:text-gray-400 text-slate-500 mt-1">Certs</div>
                         </div>
                       </div>
 
@@ -819,7 +830,7 @@ export default function Home() {
 
                         <a
                             href="#contact"
-                            className="w-full sm:w-auto group inline-flex items-center justify-center gap-2.5 rounded-2xl px-6 py-3.5 text-xs font-semibold text-gray-200 bg-white/[0.04] border border-white/10 backdrop-blur-xl transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:text-white hover:scale-[1.02] active:scale-95 shadow-lg"
+                            className="w-full sm:w-auto group inline-flex items-center justify-center gap-2.5 rounded-2xl px-6 py-3.5 text-xs font-semibold dark:text-gray-200 text-slate-700 dark:bg-white/[0.04] bg-slate-100 dark:border-white/10 border-slate-200 backdrop-blur-xl transition-all duration-300 hover:bg-slate-200 dark:hover:bg-white/10 hover:border-slate-300 dark:hover:border-white/20 dark:hover:text-white hover:text-slate-950 hover:scale-[1.02] active:scale-95 shadow-sm"
                         >
                           <Mail
                               size={15}
@@ -880,7 +891,7 @@ export default function Home() {
             <section id="skills" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
               <ScrollReveal>
                 <div className="mb-14 max-w-2xl space-y-4">
-      <span className="section-label inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
+      <span className="section-label inline-flex items-center gap-2 rounded-full border dark:border-white/10 border-slate-200 dark:bg-white/5 bg-white/80 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
         <Code2 size={14} /> Technical Arsenal
       </span>
                   <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
@@ -911,12 +922,12 @@ export default function Home() {
                               {skill.icon}
                             </div>
 
-                            <span className="rounded-full border border-white/5 bg-white/[0.03] px-3 py-1 text-[10px] font-mono uppercase tracking-widest text-[color:var(--muted)]">
+                            <span className="rounded-full border dark:border-white/5 border-slate-200 dark:bg-white/[0.03] bg-slate-100 px-3 py-1 text-[10px] font-mono uppercase tracking-widest text-[color:var(--muted)]">
                 {skill.items.length} Skills
               </span>
                           </div>
 
-                          <h3 className="mb-4 text-lg font-bold text-white tracking-wide">
+                          <h3 className="mb-4 text-lg font-bold dark:text-white text-slate-900 tracking-wide">
                             {skill.category}
                           </h3>
 
@@ -924,7 +935,7 @@ export default function Home() {
                             {skill.items.map((item) => (
                                 <span
                                     key={item}
-                                    className="inline-flex items-center gap-2 rounded-lg border border-white/5 bg-white/[0.03] px-3.5 py-1.5 text-xs font-medium text-gray-300 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.08] hover:text-white"
+                                    className="inline-flex items-center gap-2 rounded-lg border dark:border-white/5 border-slate-200/80 dark:bg-white/[0.03] bg-slate-100/70 px-3.5 py-1.5 text-xs font-medium dark:text-gray-300 text-slate-700 transition-all duration-300 dark:hover:border-white/20 hover:border-slate-300 dark:hover:bg-white/[0.08] hover:bg-slate-200/70 dark:hover:text-white hover:text-slate-950"
                                 >
                   <span
                       className="h-1.5 w-1.5 rounded-full"
@@ -946,13 +957,13 @@ export default function Home() {
             {/* ═══ FEATURED PROJECTS (BENTO SHOWCASE) ═══ */}
             <section id="work" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
               <ScrollReveal>
-                <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8">
+                <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6 border-b dark:border-white/10 border-slate-200 pb-8">
                   <div>
                     <div className="flex items-center gap-2 font-mono text-xs text-[#D9A441] mb-3">
-                      <span className="text-white/40">{"//"}</span>
+                      <span className="dark:text-white/40 text-slate-400">{"//"}</span>
                       <span className="uppercase tracking-[0.25em] font-semibold">Featured Work</span>
                     </div>
-                    <h2 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white">
+                    <h2 className="text-4xl sm:text-6xl font-extrabold tracking-tight dark:text-white text-slate-900">
                       Selected <span className="text-[#D9A441] font-extrabold tracking-tight">Projects</span>
                     </h2>
                   </div>
@@ -967,8 +978,8 @@ export default function Home() {
                 
                 {/* ─── CARD 1: HERO FEATURED PROJECT (HealthCare+) ─── */}
                 <ScrollReveal className="lg:col-span-12">
-                  <div className="group relative rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.05] via-white/[0.02] to-transparent p-1 transition-all duration-500 hover:border-[#5a8fd4]/50 hover:shadow-[0_20px_70px_-15px_rgba(90,143,212,0.25)]">
-                    <div className="relative rounded-[22px] bg-black/80 p-6 sm:p-10 backdrop-blur-2xl overflow-hidden">
+                  <div className="group relative rounded-3xl border dark:border-white/10 border-slate-200/90 dark:bg-gradient-to-b dark:from-white/[0.05] dark:via-white/[0.02] dark:to-transparent bg-white/80 p-1 transition-all duration-500 hover:border-[#5a8fd4]/50 hover:shadow-[0_20px_70px_-15px_rgba(90,143,212,0.25)] shadow-md">
+                    <div className="relative rounded-[22px] dark:bg-black/80 bg-white/95 p-6 sm:p-10 backdrop-blur-2xl overflow-hidden">
                       {/* Ambient Glow */}
                       <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-[#5a8fd4]/15 blur-[120px] pointer-events-none group-hover:bg-[#5a8fd4]/25 transition-all duration-500" />
                       
@@ -985,7 +996,7 @@ export default function Home() {
                           </div>
 
                           <div>
-                            <h3 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight group-hover:text-[#5a8fd4] transition-colors duration-300">
+                            <h3 className="text-3xl sm:text-5xl font-extrabold dark:text-white text-slate-900 tracking-tight group-hover:text-[#5a8fd4] transition-colors duration-300">
                               HealthCare+
                             </h3>
                             <p className="text-sm font-mono text-[#D9A441] font-medium mt-1">
@@ -993,7 +1004,7 @@ export default function Home() {
                             </p>
                           </div>
 
-                          <p className="text-sm sm:text-base text-gray-300 leading-relaxed font-normal">
+                          <p className="text-sm sm:text-base dark:text-gray-300 text-slate-600 leading-relaxed font-normal">
                             Full-stack hospital management platform composed of a secure Spring Boot REST API and a modern React frontend. Features comprehensive patient records, doctor scheduling, responsive analytics dashboards, and containerized Docker deployment.
                           </p>
 
@@ -1002,7 +1013,7 @@ export default function Home() {
                             {["Java 21", "Spring Boot", "React", "JWT Auth", "Hibernate", "MySQL", "Docker", "REST API"].map((tag) => (
                               <span
                                 key={tag}
-                                className="rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-xs font-mono text-gray-300 transition-colors hover:border-[#5a8fd4]/40 hover:text-white"
+                                className="rounded-lg border dark:border-white/10 border-slate-200 dark:bg-white/5 bg-slate-100 px-3 py-1 text-xs font-mono dark:text-gray-300 text-slate-700 transition-colors hover:border-[#5a8fd4]/40 dark:hover:text-white hover:text-slate-950"
                               >
                                 {tag}
                               </span>
@@ -1015,7 +1026,7 @@ export default function Home() {
                               href="https://github.com/ENAA-School-Student/HealthCare-Syst-me-de-Gestion_M-dicale"
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-xs font-mono font-semibold text-white transition-all duration-300 hover:border-[#5a8fd4] hover:bg-[#5a8fd4] hover:text-black hover:shadow-[0_0_20px_rgba(90,143,212,0.4)]"
+                              className="inline-flex items-center gap-2 rounded-xl border dark:border-white/15 border-slate-200 dark:bg-white/5 bg-slate-100 px-4 py-2.5 text-xs font-mono font-semibold dark:text-white text-slate-800 transition-all duration-300 hover:border-[#5a8fd4] hover:bg-[#5a8fd4] hover:text-black hover:shadow-[0_0_20px_rgba(90,143,212,0.4)]"
                             >
                               <FaGithub size={15} />
                               <span>Backend Code</span>
@@ -1025,7 +1036,7 @@ export default function Home() {
                               href="https://github.com/Rida1019-taki/HealthCare-Frontend.git"
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-xs font-mono font-semibold text-white transition-all duration-300 hover:border-[#5a8fd4] hover:bg-[#5a8fd4] hover:text-black hover:shadow-[0_0_20px_rgba(90,143,212,0.4)]"
+                              className="inline-flex items-center gap-2 rounded-xl border dark:border-white/15 border-slate-200 dark:bg-white/5 bg-slate-100 px-4 py-2.5 text-xs font-mono font-semibold dark:text-white text-slate-800 transition-all duration-300 hover:border-[#5a8fd4] hover:bg-[#5a8fd4] hover:text-black hover:shadow-[0_0_20px_rgba(90,143,212,0.4)]"
                             >
                               <FaGithub size={15} />
                               <span>Frontend Code</span>
@@ -1036,7 +1047,7 @@ export default function Home() {
 
                         {/* Visual Right */}
                         <div className="lg:col-span-7">
-                          <div className="relative rounded-2xl border border-white/15 bg-neutral-950/80 p-2 sm:p-3 shadow-2xl transition-all duration-500 group-hover:border-[#5a8fd4]/40 group-hover:shadow-[0_25px_60px_rgba(0,0,0,0.95)]">
+                          <div className="relative rounded-2xl border dark:border-white/15 border-slate-200/80 dark:bg-neutral-950/80 bg-slate-100/90 p-2 sm:p-3 shadow-2xl transition-all duration-500 group-hover:border-[#5a8fd4]/40 group-hover:shadow-[0_25px_60px_rgba(0,0,0,0.95)]">
                             <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-neutral-900">
                               <Image
                                 src="/healthcare.png"
@@ -1048,7 +1059,7 @@ export default function Home() {
                               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-40 transition-opacity duration-300 group-hover:opacity-10" />
                               
                               {/* Floating Badge on Image */}
-                              <div className="absolute bottom-4 left-4 z-10 flex items-center gap-2 rounded-full border border-white/20 bg-black/70 px-3.5 py-1.5 backdrop-blur-md text-xs font-mono text-white">
+                              <div className="absolute bottom-4 left-4 z-10 flex items-center gap-2 rounded-full border dark:border-white/20 border-slate-300 dark:bg-black/70 bg-white/90 px-3.5 py-1.5 backdrop-blur-md text-xs font-mono dark:text-white text-slate-900 shadow-md">
                                 <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
                                 <span>Hospital Management System</span>
                               </div>
@@ -1062,8 +1073,8 @@ export default function Home() {
 
                 {/* ─── CARD 2: LogiTrack ─── */}
                 <ScrollReveal delay={100} className="lg:col-span-6">
-                  <div className="group relative h-full rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.05] via-white/[0.02] to-transparent p-1 transition-all duration-500 hover:border-[#e07040]/50 hover:shadow-[0_20px_70px_-15px_rgba(224,112,64,0.25)] flex flex-col">
-                    <div className="relative h-full rounded-[22px] bg-black/80 p-6 sm:p-8 backdrop-blur-2xl flex flex-col justify-between overflow-hidden">
+                  <div className="group relative h-full rounded-3xl border dark:border-white/10 border-slate-200/90 dark:bg-gradient-to-b dark:from-white/[0.05] dark:via-white/[0.02] dark:to-transparent bg-white/80 p-1 transition-all duration-500 hover:border-[#e07040]/50 hover:shadow-[0_20px_70px_-15px_rgba(224,112,64,0.25)] shadow-md flex flex-col">
+                    <div className="relative h-full rounded-[22px] dark:bg-black/80 bg-white/95 p-6 sm:p-8 backdrop-blur-2xl flex flex-col justify-between overflow-hidden">
                       {/* Ambient Glow */}
                       <div className="absolute -top-20 -right-20 h-72 w-72 rounded-full bg-[#e07040]/15 blur-[100px] pointer-events-none group-hover:bg-[#e07040]/25 transition-all duration-500" />
 
@@ -1079,7 +1090,7 @@ export default function Home() {
                         </div>
 
                         {/* Image Preview */}
-                        <div className="relative rounded-2xl border border-white/15 bg-neutral-950/80 p-2 shadow-2xl transition-all duration-500 group-hover:border-[#e07040]/40">
+                        <div className="relative rounded-2xl border dark:border-white/15 border-slate-200/80 dark:bg-neutral-950/80 bg-slate-100/90 p-2 shadow-2xl transition-all duration-500 group-hover:border-[#e07040]/40">
                           <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-neutral-900">
                             <Image
                               src="/logitrack1.png"
@@ -1094,7 +1105,7 @@ export default function Home() {
 
                         {/* Text */}
                         <div>
-                          <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight group-hover:text-[#e07040] transition-colors duration-300">
+                          <h3 className="text-2xl sm:text-3xl font-extrabold dark:text-white text-slate-900 tracking-tight group-hover:text-[#e07040] transition-colors duration-300">
                             LogiTrack
                           </h3>
                           <p className="text-xs font-mono text-[#D9A441] font-medium mt-1">
@@ -1102,7 +1113,7 @@ export default function Home() {
                           </p>
                         </div>
 
-                        <p className="text-sm text-gray-300 leading-relaxed font-normal">
+                        <p className="text-sm dark:text-gray-300 text-slate-600 leading-relaxed font-normal">
                           Full-stack logistics management platform featuring multi-role access control (ADMIN, MANAGER, AGENT), real-time order tracking, server-side pagination, and a reactive Material UI interface.
                         </p>
 
@@ -1111,7 +1122,7 @@ export default function Home() {
                           {["Spring Boot", "React", "Vite", "Material UI", "JWT", "MySQL", "Axios"].map((tag) => (
                             <span
                               key={tag}
-                              className="rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-mono text-gray-300 transition-colors hover:border-[#e07040]/40 hover:text-white"
+                              className="rounded-lg border dark:border-white/10 border-slate-200 dark:bg-white/5 bg-slate-100 px-2.5 py-1 text-xs font-mono dark:text-gray-300 text-slate-700 transition-colors hover:border-[#e07040]/40 dark:hover:text-white hover:text-slate-950"
                             >
                               {tag}
                             </span>
@@ -1125,7 +1136,7 @@ export default function Home() {
                           href="https://github.com/Rida1019-taki/LogiTrack"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-3.5 py-2 text-xs font-mono font-semibold text-white transition-all duration-300 hover:border-[#e07040] hover:bg-[#e07040] hover:text-black hover:shadow-[0_0_20px_rgba(224,112,64,0.4)]"
+                          className="inline-flex items-center gap-2 rounded-xl border dark:border-white/15 border-slate-200 dark:bg-white/5 bg-slate-100 px-3.5 py-2 text-xs font-mono font-semibold dark:text-white text-slate-800 transition-all duration-300 hover:border-[#e07040] hover:bg-[#e07040] hover:text-black hover:shadow-[0_0_20px_rgba(224,112,64,0.4)]"
                         >
                           <FaGithub size={14} />
                           <span>Backend</span>
@@ -1135,7 +1146,7 @@ export default function Home() {
                           href="https://github.com/Rida1019-taki/LogiTrack_FrontEnd"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-3.5 py-2 text-xs font-mono font-semibold text-white transition-all duration-300 hover:border-[#e07040] hover:bg-[#e07040] hover:text-black hover:shadow-[0_0_20px_rgba(224,112,64,0.4)]"
+                          className="inline-flex items-center gap-2 rounded-xl border dark:border-white/15 border-slate-200 dark:bg-white/5 bg-slate-100 px-3.5 py-2 text-xs font-mono font-semibold dark:text-white text-slate-800 transition-all duration-300 hover:border-[#e07040] hover:bg-[#e07040] hover:text-black hover:shadow-[0_0_20px_rgba(224,112,64,0.4)]"
                         >
                           <FaGithub size={14} />
                           <span>Frontend</span>
@@ -1148,8 +1159,8 @@ export default function Home() {
 
                 {/* ─── CARD 3: FleetFlow ─── */}
                 <ScrollReveal delay={200} className="lg:col-span-6">
-                  <div className="group relative h-full rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.05] via-white/[0.02] to-transparent p-1 transition-all duration-500 hover:border-[#5ab88a]/50 hover:shadow-[0_20px_70px_-15px_rgba(90,184,138,0.25)] flex flex-col">
-                    <div className="relative h-full rounded-[22px] bg-black/80 p-6 sm:p-8 backdrop-blur-2xl flex flex-col justify-between overflow-hidden">
+                  <div className="group relative h-full rounded-3xl border dark:border-white/10 border-slate-200/90 dark:bg-gradient-to-b dark:from-white/[0.05] dark:via-white/[0.02] dark:to-transparent bg-white/80 p-1 transition-all duration-500 hover:border-[#5ab88a]/50 hover:shadow-[0_20px_70px_-15px_rgba(90,184,138,0.25)] shadow-md flex flex-col">
+                    <div className="relative h-full rounded-[22px] dark:bg-black/80 bg-white/95 p-6 sm:p-8 backdrop-blur-2xl flex flex-col justify-between overflow-hidden">
                       {/* Ambient Glow */}
                       <div className="absolute -top-20 -right-20 h-72 w-72 rounded-full bg-[#5ab88a]/15 blur-[100px] pointer-events-none group-hover:bg-[#5ab88a]/25 transition-all duration-500" />
 
@@ -1165,7 +1176,7 @@ export default function Home() {
                         </div>
 
                         {/* Image Preview */}
-                        <div className="relative rounded-2xl border border-white/15 bg-neutral-950/80 p-2 shadow-2xl transition-all duration-500 group-hover:border-[#5ab88a]/40">
+                        <div className="relative rounded-2xl border dark:border-white/15 border-slate-200/80 dark:bg-neutral-950/80 bg-slate-100/90 p-2 shadow-2xl transition-all duration-500 group-hover:border-[#5ab88a]/40">
                           <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-neutral-900">
                             <Image
                               src="/fleetflow.png"
@@ -1180,7 +1191,7 @@ export default function Home() {
 
                         {/* Text */}
                         <div>
-                          <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight group-hover:text-[#5ab88a] transition-colors duration-300">
+                          <h3 className="text-2xl sm:text-3xl font-extrabold dark:text-white text-slate-900 tracking-tight group-hover:text-[#5ab88a] transition-colors duration-300">
                             FleetFlow
                           </h3>
                           <p className="text-xs font-mono text-[#D9A441] font-medium mt-1">
@@ -1188,7 +1199,7 @@ export default function Home() {
                           </p>
                         </div>
 
-                        <p className="text-sm text-gray-300 leading-relaxed font-normal">
+                        <p className="text-sm dark:text-gray-300 text-slate-600 leading-relaxed font-normal">
                           Vehicle fleet and delivery orchestration system built with strict MapStruct DTO architecture, automated GitHub Actions CI/CD pipelines, and interactive Swagger/OpenAPI documentation.
                         </p>
 
@@ -1197,7 +1208,7 @@ export default function Home() {
                           {["Spring Boot", "Docker", "GitHub Actions", "Swagger", "MapStruct", "MySQL", "JWT"].map((tag) => (
                             <span
                               key={tag}
-                              className="rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-mono text-gray-300 transition-colors hover:border-[#5ab88a]/40 hover:text-white"
+                              className="rounded-lg border dark:border-white/10 border-slate-200 dark:bg-white/5 bg-slate-100 px-2.5 py-1 text-xs font-mono dark:text-gray-300 text-slate-700 transition-colors hover:border-[#5ab88a]/40 dark:hover:text-white hover:text-slate-950"
                             >
                               {tag}
                             </span>
@@ -1211,7 +1222,7 @@ export default function Home() {
                           href="https://github.com/NihadHub/fleetFlow.git"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-xs font-mono font-semibold text-white transition-all duration-300 hover:border-[#5ab88a] hover:bg-[#5ab88a] hover:text-black hover:shadow-[0_0_20px_rgba(90,184,138,0.4)]"
+                          className="inline-flex items-center gap-2 rounded-xl border dark:border-white/15 border-slate-200 dark:bg-white/5 bg-slate-100 px-4 py-2 text-xs font-mono font-semibold dark:text-white text-slate-800 transition-all duration-300 hover:border-[#5ab88a] hover:bg-[#5ab88a] hover:text-black hover:shadow-[0_0_20px_rgba(90,184,138,0.4)]"
                         >
                           <FaGithub size={14} />
                           <span>View Repository</span>
@@ -1231,7 +1242,7 @@ export default function Home() {
             <section id="experience" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
               <ScrollReveal>
                 <div className="mb-16 space-y-4 text-center max-w-3xl mx-auto">
-                  <span className="section-label inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
+                  <span className="section-label inline-flex items-center gap-2 rounded-full border dark:border-white/10 border-slate-200 dark:bg-white/5 bg-white/80 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
                     <Briefcase size={14} /> Career & Professional Path
                   </span>
                   <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
@@ -1249,23 +1260,23 @@ export default function Home() {
                   const isCurrent = exp.status === "current";
                   return (
                     <ScrollReveal key={exp.company} delay={i * 120}>
-                      <div className="group relative rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.05] via-white/[0.02] to-transparent p-1 transition-all duration-500 hover:border-[#D9A441]/40 hover:shadow-[0_10px_40px_-15px_rgba(217,164,65,0.25)]">
+                      <div className="group relative rounded-3xl border dark:border-white/10 border-slate-200/90 dark:bg-gradient-to-b dark:from-white/[0.05] dark:via-white/[0.02] dark:to-transparent bg-white/80 p-1 transition-all duration-500 hover:border-[#D9A441]/40 hover:shadow-[0_10px_40px_-15px_rgba(217,164,65,0.25)] shadow-md">
                         {/* Glow effect on hover */}
                         <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#D9A441]/10 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none" />
 
-                        <div className="relative rounded-[22px] bg-black/50 p-6 sm:p-10 backdrop-blur-xl">
+                        <div className="relative rounded-[22px] dark:bg-black/50 bg-white/95 p-6 sm:p-10 backdrop-blur-xl">
                           {/* Header section with Company, Role, Service and Period */}
-                          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/10 pb-6 mb-6">
+                          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b dark:border-white/10 border-slate-200 pb-6 mb-6">
                             <div className="flex items-start sm:items-center gap-4">
                               <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-[#D9A441]/30 bg-[#D9A441]/10 text-[#D9A441] transition-transform duration-300 group-hover:scale-105 shadow-[0_0_20px_rgba(217,164,65,0.2)]">
                                 <Briefcase size={26} />
                               </div>
                               <div>
                                 <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                                  <h3 className="text-2xl sm:text-3xl font-bold text-white group-hover:text-[#D9A441] transition-colors">
+                                  <h3 className="text-2xl sm:text-3xl font-bold dark:text-white text-slate-900 group-hover:text-[#D9A441] transition-colors">
                                     {exp.company}
                                   </h3>
-                                  <span className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-[10px] font-mono text-gray-300">
+                                  <span className="inline-flex items-center gap-1 rounded-full border dark:border-white/10 border-slate-200 dark:bg-white/5 bg-slate-100 px-2.5 py-0.5 text-[10px] font-mono dark:text-gray-300 text-slate-700">
                                     <MapPin size={10} className="text-[#D9A441]" />
                                     {exp.location}
                                   </span>
@@ -1289,14 +1300,14 @@ export default function Home() {
                                   Current
                                 </span>
                               )}
-                              <span className="rounded-xl border border-white/10 bg-white/5 px-3.5 py-1 text-xs font-mono text-gray-300">
+                              <span className="rounded-xl border dark:border-white/10 border-slate-200 dark:bg-white/5 bg-slate-100 px-3.5 py-1 text-xs font-mono dark:text-gray-300 text-slate-700">
                                 {exp.period}
                               </span>
                             </div>
                           </div>
 
                           {/* Description */}
-                          <p className="text-sm sm:text-base text-gray-300 leading-relaxed mb-6">
+                          <p className="text-sm sm:text-base dark:text-gray-300 text-slate-600 leading-relaxed mb-6">
                             {exp.description}
                           </p>
 
@@ -1309,7 +1320,7 @@ export default function Home() {
                               {exp.responsibilities.map((resp, idx) => (
                                 <div
                                   key={idx}
-                                  className="flex items-start gap-2.5 text-xs sm:text-sm text-gray-300 bg-white/[0.02] border border-white/5 rounded-xl p-3"
+                                  className="flex items-start gap-2.5 text-xs sm:text-sm dark:text-gray-300 text-slate-700 dark:bg-white/[0.02] bg-slate-50/90 border dark:border-white/5 border-slate-200/80 rounded-xl p-3"
                                 >
                                   <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[#D9A441]" />
                                   <span>{resp}</span>
@@ -1324,7 +1335,7 @@ export default function Home() {
                             {exp.technologies.map((tech) => (
                               <span
                                 key={tech}
-                                className="inline-flex items-center rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-xs font-mono text-gray-300 transition-colors hover:border-[#D9A441]/40 hover:text-white"
+                                className="inline-flex items-center rounded-lg border dark:border-white/10 border-slate-200 dark:bg-white/5 bg-slate-100 px-3 py-1 text-xs font-mono dark:text-gray-300 text-slate-700 transition-colors hover:border-[#D9A441]/40 dark:hover:text-white hover:text-slate-950"
                               >
                                 {tech}
                               </span>
@@ -1344,7 +1355,7 @@ export default function Home() {
               <section id="education" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
                   <ScrollReveal>
                       <div className="mb-16 space-y-4 text-center max-w-3xl mx-auto">
-        <span className="section-label inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
+        <span className="section-label inline-flex items-center gap-2 rounded-full border dark:border-white/10 border-slate-200 dark:bg-white/5 bg-white/80 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
           <GraduationCap size={14} /> Education & Credentials
         </span>
                           <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
@@ -1362,12 +1373,12 @@ export default function Home() {
                           const isCurrent = edu.status === "current";
                           return (
                               <ScrollReveal key={edu.institution} delay={i * 120}>
-                                  <div className="group relative h-full rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.05] to-transparent p-1 transition-all duration-500 hover:border-[#D9A441]/40 hover:shadow-[0_10px_40px_-15px_rgba(217,164,65,0.2)]">
+                                  <div className="group relative h-full rounded-3xl border dark:border-white/10 border-slate-200/90 dark:bg-gradient-to-b dark:from-white/[0.05] dark:to-transparent bg-white/80 p-1 transition-all duration-500 hover:border-[#D9A441]/40 hover:shadow-[0_10px_40px_-15px_rgba(217,164,65,0.2)] shadow-md">
   
                                       {/* Glow effect on hover */}
                                       <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#D9A441]/10 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
   
-                                      <div className="relative flex h-full flex-col justify-between rounded-[22px] bg-black/40 p-8 backdrop-blur-xl">
+                                      <div className="relative flex h-full flex-col justify-between rounded-[22px] dark:bg-black/40 bg-white/95 p-8 backdrop-blur-xl">
   
                                           {/* Header */}
                                           <div>
@@ -1400,14 +1411,14 @@ export default function Home() {
                                                   )}
                                               </div>
   
-                                              <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-[#D9A441] transition-colors duration-300">
+                                              <h3 className="text-2xl font-bold dark:text-white text-slate-900 mb-3 group-hover:text-[#D9A441] transition-colors duration-300">
                                                   {edu.degree}
                                               </h3>
                                           </div>
   
                                           {/* Footer */}
                                           <div className="mt-8 border-t border-white/10 pt-4 flex items-center justify-between">
-                                              <p className="text-sm font-medium text-gray-300">
+                                              <p className="text-sm font-medium dark:text-gray-300 text-slate-600">
                                                   {edu.institution}
                                               </p>
   
@@ -1431,7 +1442,7 @@ export default function Home() {
                   <ScrollReveal>
                       <div className="mb-16 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
                           <div className="space-y-4 max-w-2xl">
-          <span className="section-label inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
+          <span className="section-label inline-flex items-center gap-2 rounded-full border dark:border-white/10 border-slate-200 dark:bg-white/5 bg-white/80 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
             <Award size={14} /> Verified Credentials
           </span>
                               <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
@@ -1452,7 +1463,7 @@ export default function Home() {
   
                           return (
                               <ScrollReveal key={doc.file} delay={i * 100}>
-                                  <div className="group relative h-full rounded-3xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#D9A441]/50 hover:bg-white/[0.04] hover:shadow-[0_20px_40px_-15px_rgba(217,164,65,0.15)] flex flex-col justify-between">
+                                  <div className="group relative h-full rounded-3xl border dark:border-white/10 border-slate-200/90 dark:bg-white/[0.02] bg-white/90 p-6 sm:p-8 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#D9A441]/50 dark:hover:bg-white/[0.04] hover:bg-white hover:shadow-[0_20px_40px_-15px_rgba(217,164,65,0.15)] shadow-md flex flex-col justify-between">
   
                                       {/* Top Accent Light */}
                                       <div className="absolute top-0 right-10 h-[1px] w-20 bg-gradient-to-r from-transparent via-[#D9A441]/40 to-transparent transition-all duration-500 group-hover:w-32 group-hover:via-[#D9A441]" />
@@ -1469,7 +1480,7 @@ export default function Home() {
                                           </div>
   
                                           {/* Title & Issuer */}
-                                          <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#D9A441] transition-colors duration-300 leading-snug">
+                                          <h3 className="text-xl font-bold dark:text-white text-slate-900 mb-2 group-hover:text-[#D9A441] transition-colors duration-300 leading-snug">
                                               {doc.title}
                                           </h3>
                                           <p className="text-sm text-[color:var(--muted)] mb-8 font-medium">
@@ -1483,7 +1494,7 @@ export default function Home() {
                                               href={doc.file}
                                               target="_blank"
                                               rel="noopener noreferrer"
-                                              className="group/btn inline-flex w-full items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-xs font-semibold text-white transition-all duration-300 hover:border-[#D9A441] hover:bg-[#D9A441] hover:text-black"
+                                              className="group/btn inline-flex w-full items-center justify-between rounded-xl border dark:border-white/10 border-slate-200 dark:bg-white/5 bg-slate-100 px-4 py-3 text-xs font-semibold dark:text-white text-slate-800 transition-all duration-300 hover:border-[#D9A441] hover:bg-[#D9A441] hover:text-black"
                                           >
                   <span className="flex items-center gap-2">
                     <FileText size={15} /> View PDF Certificate
@@ -1509,7 +1520,7 @@ export default function Home() {
               <ScrollReveal>
                 <div className="mb-16 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
                   <div className="space-y-4 max-w-2xl">
-                <span className="section-label inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
+                <span className="section-label inline-flex items-center gap-2 rounded-full border dark:border-white/10 border-slate-200 dark:bg-white/5 bg-white/80 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
                     <Rocket size={14} /> Competitive Coding
                 </span>
                     <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
@@ -1528,7 +1539,7 @@ export default function Home() {
               <div className="grid gap-8 md:grid-cols-2 items-stretch">
                 {hackathons.map((hackathon, index) => (
                     <ScrollReveal key={index} delay={index * 120} className="h-full">
-                      <article className="group relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#D9A441]/50 hover:shadow-[0_20px_50px_-15px_rgba(217,164,65,0.2)]">
+                      <article className="group relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border dark:border-white/10 border-slate-200/90 dark:bg-white/[0.02] bg-white/90 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#D9A441]/50 hover:shadow-[0_20px_50px_-15px_rgba(217,164,65,0.2)] shadow-md">
 
                         {/* Top Container: Image + Header */}
                         <div className="w-full">
@@ -1553,7 +1564,7 @@ export default function Home() {
 
                           {/* Content Details */}
                           <div className="p-6 sm:p-8 space-y-4">
-                            <h3 className="text-2xl font-bold text-white transition-colors duration-300 group-hover:text-[#D9A441]">
+                            <h3 className="text-2xl font-bold dark:text-white text-slate-900 transition-colors duration-300 group-hover:text-[#D9A441]">
                               {hackathon.title}
                             </h3>
 
@@ -1569,7 +1580,7 @@ export default function Home() {
                             {hackathon.tags.map((tag) => (
                                 <span
                                     key={tag}
-                                    className="inline-flex items-center gap-1 rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-xs font-mono text-gray-300 transition-colors group-hover:border-[#D9A441]/30"
+                                    className="inline-flex items-center gap-1 rounded-lg border dark:border-white/10 border-slate-200 dark:bg-white/5 bg-slate-100 px-3 py-1 text-xs font-mono dark:text-gray-300 text-slate-700 transition-colors group-hover:border-[#D9A441]/30"
                                 >
                                     <span className="text-[#D9A441]">#</span>
                                   {tag}
@@ -1587,7 +1598,7 @@ export default function Home() {
               {/* ═══ RESUME ═══ */}
               <section id="resume" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8">
                   <ScrollReveal>
-                      <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.05] via-white/[0.02] to-transparent p-8 sm:p-14 text-center backdrop-blur-2xl shadow-2xl">
+                      <div className="relative overflow-hidden rounded-3xl border dark:border-white/10 border-slate-200/90 dark:bg-gradient-to-b dark:from-white/[0.05] dark:via-white/[0.02] dark:to-transparent bg-white/90 p-8 sm:p-14 text-center backdrop-blur-2xl dark:shadow-2xl shadow-lg">
   
                           {/* Background Radial Glow */}
                           <div className="absolute -top-24 left-1/2 -translate-x-1/2 h-64 w-64 rounded-full bg-[#D9A441]/10 blur-3xl pointer-events-none" />
@@ -1639,7 +1650,7 @@ export default function Home() {
                   className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32"
               >
                   <ScrollReveal>
-                      <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] p-8 sm:p-12 lg:p-16 backdrop-blur-2xl shadow-2xl">
+                      <div className="relative overflow-hidden rounded-3xl border dark:border-white/10 border-slate-200/90 dark:bg-white/[0.02] bg-white/90 p-8 sm:p-12 lg:p-16 backdrop-blur-2xl dark:shadow-2xl shadow-lg">
                           {/* Dynamic Ambient Orbs */}
                           <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-[#D9A441]/10 blur-[120px] pointer-events-none" />
                           <div className="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-[color:var(--brand)]/10 blur-[120px] pointer-events-none" />
@@ -1648,7 +1659,7 @@ export default function Home() {
                               {/* Left Column - Contact Info & Socials */}
                               <div className="space-y-8 lg:col-span-6">
                                   <div className="space-y-4">
-              <span className="section-label inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
+              <span className="section-label inline-flex items-center gap-2 rounded-full border dark:border-white/10 border-slate-200 dark:bg-white/5 bg-white/80 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
                 <Mail size={14} /> Get In Touch
               </span>
   
@@ -1682,7 +1693,7 @@ export default function Home() {
                                                   target="_blank"
                                                   rel="noopener noreferrer"
                                                   aria-label={s.label}
-                                                  className={`flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-gray-300 backdrop-blur-md transition-all duration-300 hover:scale-110 hover:shadow-lg ${s.hoverBg}`}
+                                                  className={`flex h-12 w-12 items-center justify-center rounded-2xl border dark:border-white/10 border-slate-200 dark:bg-white/5 bg-slate-100 dark:text-gray-300 text-slate-700 backdrop-blur-md transition-all duration-300 hover:scale-110 hover:shadow-lg ${s.hoverBg}`}
                                               >
                                                   {s.icon}
                                               </a>
@@ -1695,62 +1706,62 @@ export default function Home() {
                               <div className="lg:col-span-6">
                                   <form
                                       onSubmit={sendEmail}
-                                      className="space-y-5 rounded-3xl border border-white/10 bg-white/[0.03] p-6 sm:p-8 backdrop-blur-xl shadow-xl"
+                                      className="space-y-5 rounded-3xl border dark:border-white/10 border-slate-200/80 dark:bg-white/[0.03] bg-slate-50/80 p-6 sm:p-8 backdrop-blur-xl shadow-md"
                                   >
-                                      <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-2">
-                                          <h3 className="text-xl font-bold text-white">Send Message</h3>
+                                      <div className="flex items-center justify-between border-b dark:border-white/10 border-slate-200 pb-4 mb-2">
+                                          <h3 className="text-xl font-bold dark:text-white text-slate-900">Send Message</h3>
                                           <span className="text-xs font-mono text-[#D9A441]">{"//"} Direct Mail</span>
                                       </div>
   
                                       <div className="space-y-4">
                                           <div>
-                                              <label className="mb-2 block text-xs font-mono uppercase tracking-wider text-gray-400">
+                                              <label className="mb-2 block text-xs font-mono uppercase tracking-wider dark:text-gray-400 text-slate-600">
                                                   Full Name
                                               </label>
                                               <input
                                                   name="from_name"
                                                   type="text"
                                                   placeholder="John Doe"
-                                                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 outline-none transition-all duration-300 focus:border-[#D9A441] focus:bg-white/10 focus:shadow-[0_0_15px_rgba(217,164,65,0.2)]"
+                                                  className="w-full rounded-xl border dark:border-white/10 border-slate-200 dark:bg-white/5 bg-white px-4 py-3 text-sm dark:text-white text-slate-900 dark:placeholder-gray-500 placeholder-slate-400 outline-none transition-all duration-300 focus:border-[#D9A441] dark:focus:bg-white/10 focus:bg-white focus:shadow-[0_0_15px_rgba(217,164,65,0.2)] shadow-sm"
                                                   required
                                               />
                                           </div>
   
                                           <div>
-                                              <label className="mb-2 block text-xs font-mono uppercase tracking-wider text-gray-400">
+                                              <label className="mb-2 block text-xs font-mono uppercase tracking-wider dark:text-gray-400 text-slate-600">
                                                   Email Address
                                               </label>
                                               <input
                                                   name="from_email"
                                                   type="email"
                                                   placeholder="john@example.com"
-                                                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 outline-none transition-all duration-300 focus:border-[#D9A441] focus:bg-white/10 focus:shadow-[0_0_15px_rgba(217,164,65,0.2)]"
+                                                  className="w-full rounded-xl border dark:border-white/10 border-slate-200 dark:bg-white/5 bg-white px-4 py-3 text-sm dark:text-white text-slate-900 dark:placeholder-gray-500 placeholder-slate-400 outline-none transition-all duration-300 focus:border-[#D9A441] dark:focus:bg-white/10 focus:bg-white focus:shadow-[0_0_15px_rgba(217,164,65,0.2)] shadow-sm"
                                                   required
                                               />
                                           </div>
   
                                           <div>
-                                              <label className="mb-2 block text-xs font-mono uppercase tracking-wider text-gray-400">
+                                              <label className="mb-2 block text-xs font-mono uppercase tracking-wider dark:text-gray-400 text-slate-600">
                                                   Subject
                                               </label>
                                               <input
                                                   name="subject"
                                                   type="text"
                                                   placeholder="Project Inquiry / Opportunity"
-                                                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 outline-none transition-all duration-300 focus:border-[#D9A441] focus:bg-white/10 focus:shadow-[0_0_15px_rgba(217,164,65,0.2)]"
+                                                  className="w-full rounded-xl border dark:border-white/10 border-slate-200 dark:bg-white/5 bg-white px-4 py-3 text-sm dark:text-white text-slate-900 dark:placeholder-gray-500 placeholder-slate-400 outline-none transition-all duration-300 focus:border-[#D9A441] dark:focus:bg-white/10 focus:bg-white focus:shadow-[0_0_15px_rgba(217,164,65,0.2)] shadow-sm"
                                                   required
                                               />
                                           </div>
   
                                           <div>
-                                              <label className="mb-2 block text-xs font-mono uppercase tracking-wider text-gray-400">
+                                              <label className="mb-2 block text-xs font-mono uppercase tracking-wider dark:text-gray-400 text-slate-600">
                                                   Your Message
                                               </label>
                                               <textarea
                                                   name="message"
                                                   rows={4}
                                                   placeholder="Tell me about your project or offer..."
-                                                  className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 outline-none transition-all duration-300 focus:border-[#D9A441] focus:bg-white/10 focus:shadow-[0_0_15px_rgba(217,164,65,0.2)]"
+                                                  className="w-full resize-none rounded-xl border dark:border-white/10 border-slate-200 dark:bg-white/5 bg-white px-4 py-3 text-sm dark:text-white text-slate-900 dark:placeholder-gray-500 placeholder-slate-400 outline-none transition-all duration-300 focus:border-[#D9A441] dark:focus:bg-white/10 focus:bg-white focus:shadow-[0_0_15px_rgba(217,164,65,0.2)] shadow-sm"
                                                   required
                                               />
                                           </div>
@@ -1773,7 +1784,7 @@ export default function Home() {
           </main>
   
             {/* ═══ FOOTER ═══ */}
-            <footer className="relative z-10 border-t border-white/10 bg-black/40 backdrop-blur-xl">
+            <footer className="relative z-10 border-t dark:border-white/10 border-slate-200 dark:bg-black/40 bg-white/80 backdrop-blur-xl">
                 <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-5 py-8 sm:flex-row sm:px-8">
                     {/* Brand Logo & Copyright */}
                     <div className="flex items-center gap-3">
@@ -1786,7 +1797,7 @@ export default function Home() {
                             RT
                         </div>
                         <div className="flex flex-col">
-                            <span className="text-sm font-semibold text-white">Rida Taki</span>
+                            <span className="text-sm font-semibold dark:text-white text-slate-900">Rida Taki</span>
                             <span className="text-[11px] font-mono text-[color:var(--muted)]">
             © {new Date().getFullYear()} All rights reserved.
           </span>
@@ -1814,7 +1825,7 @@ export default function Home() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 aria-label={social.label}
-                                className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-gray-400 transition-all duration-300 hover:scale-110 hover:border-[#D9A441]/50 hover:bg-[#D9A441]/10 hover:text-[#D9A441]"
+                                className="flex h-9 w-9 items-center justify-center rounded-xl border dark:border-white/10 border-slate-200 dark:bg-white/5 bg-slate-100 dark:text-gray-400 text-slate-600 transition-all duration-300 hover:scale-110 hover:border-[#D9A441]/50 hover:bg-[#D9A441]/10 hover:text-[#D9A441]"
                             >
                                 {social.icon}
                             </a>
