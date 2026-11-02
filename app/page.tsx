@@ -65,6 +65,7 @@ import ExperienceShowcase, { ExperienceItem } from "@/components/ExperienceShowc
 import EducationShowcase, { EducationItem } from "@/components/EducationShowcase";
 import ResumeShowcase from "@/components/ResumeShowcase";
 import ContactShowcase from "@/components/ContactShowcase";
+import CertificationsShowcase from "@/components/CertificationsShowcase";
 import emailjs from "@emailjs/browser";
 import { useEffect, useRef, useState } from "react";
 import {HiMenu, HiOutlineMenu, HiOutlineMenuAlt3, HiSparkles, HiX} from "react-icons/hi";
@@ -467,26 +468,6 @@ export default function Home() {
     },
   ];
 
-  const documents = [
-    {
-      title: "Introduction à la Cybersécurité",
-      issuer: "Cisco Networking Academy",
-      file: "/docs/introduction-cybersecurite.pdf",
-      icon: ShieldCheck,
-    },
-    {
-      title: "Les Bases du Matériel Informatique",
-      issuer: "Cisco Networking Academy",
-      file: "/docs/bases-materiel-informatique.pdf",
-      icon: Laptop2,
-    },
-    {
-      title: "Python Essentials 1",
-      issuer: "Cisco Networking Academy",
-      file: "/docs/python-essentials-1.pdf",
-      icon: Code2,
-    },
-  ];
 
   const hackathonsShowcase: HackathonDetail[] = [
     {
@@ -944,77 +925,32 @@ export default function Home() {
             <div className="section-divider mx-auto max-w-7xl" />
   
               {/* ═══ CERTIFICATIONS ═══ */}
-              <section className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
-                  <ScrollReveal>
-                      <div className="mb-16 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-                          <div className="space-y-4 max-w-2xl">
-          <span className="section-label inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
-            <Award size={14} /> {t.certifications.badge}
-          </span>
-                              <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
-                                  <span className="gradient-text">{t.certifications.title1} </span>
-                                  <br />
-                                  <span className="brand-gradient-text font-extrabold tracking-tight">{t.certifications.title2}</span>
-                              </h2>
-                          </div>
-                          <p className="max-w-md text-sm sm:text-base text-[color:var(--muted)] leading-relaxed">
-                              {t.certifications.desc}
-                          </p>
-                      </div>
-                  </ScrollReveal>
-  
-                  <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                      {documents.map((doc, i) => {
-                          const Icon = doc.icon;
-  
-                          return (
-                              <ScrollReveal key={doc.file} delay={i * 100}>
-                                  <div className="group relative h-full rounded-3xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#D9A441]/50 hover:bg-white/[0.04] hover:shadow-[0_20px_40px_-15px_rgba(217,164,65,0.15)] flex flex-col justify-between">
-  
-                                      {/* Top Accent Light */}
-                                      <div className="absolute top-0 right-10 h-[1px] w-20 bg-gradient-to-r from-transparent via-[#D9A441]/40 to-transparent transition-all duration-500 group-hover:w-32 group-hover:via-[#D9A441]" />
-  
-                                      <div>
-                                          {/* Header Icon & Badge */}
-                                          <div className="flex items-center justify-between mb-6">
-                                              <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-[#D9A441] transition-transform duration-500 group-hover:scale-110 group-hover:border-[#D9A441]/40 group-hover:bg-[#D9A441]/10">
-                                                  <Icon size={26} />
-                                              </div>
-                                              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[10px] font-mono uppercase tracking-wider text-white/60">
-                    <Award size={10} className="text-[#D9A441]" /> {t.certifications.verifiedBadge}
-                  </span>
-                                          </div>
-  
-                                          {/* Title & Issuer */}
-                                          <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#D9A441] transition-colors duration-300 leading-snug">
-                                              {doc.title}
-                                          </h3>
-                                          <p className="text-sm text-[color:var(--muted)] mb-8 font-medium">
-                                              {doc.issuer}
-                                          </p>
-                                      </div>
-  
-                                      {/* Bottom Action Button */}
-                                      <div className="pt-4 border-t border-white/5">
-                                          <a
-                                              href={doc.file}
-                                              target="_blank"
-                                              rel="noopener noreferrer"
-                                              className="group/btn inline-flex w-full items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-xs font-semibold text-white transition-all duration-300 hover:border-[#D9A441] hover:bg-[#D9A441] hover:text-black"
-                                          >
-                  <span className="flex items-center gap-2">
-                    <FileText size={15} /> {t.certifications.btnPdf}
-                  </span>
-                                              <ExternalLink size={14} className="transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
-                                          </a>
-                                      </div>
-  
-                                  </div>
-                              </ScrollReveal>
-                          );
-                      })}
+            <section
+              id="certifications"
+              className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32"
+            >
+              <ScrollReveal>
+                <div className="mb-16 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+                  <div className="space-y-4 max-w-2xl">
+                    <span className="section-label inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
+                      <Award size={14} /> {t.certifications.badge}
+                    </span>
+                    <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
+                      <span className="gradient-text">{t.certifications.title1} </span>
+                      <br />
+                      <span className="brand-gradient-text font-extrabold tracking-tight">{t.certifications.title2}</span>
+                    </h2>
                   </div>
-              </section>
+                  <p className="max-w-md text-sm sm:text-base text-[color:var(--muted)] leading-relaxed">
+                    {t.certifications.desc}
+                  </p>
+                </div>
+              </ScrollReveal>
+
+              <ScrollReveal delay={120}>
+                <CertificationsShowcase t={t.certifications} />
+              </ScrollReveal>
+            </section>
   
             <div className="section-divider mx-auto max-w-7xl" />
   
