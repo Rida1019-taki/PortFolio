@@ -66,6 +66,7 @@ import EducationShowcase, { EducationItem } from "@/components/EducationShowcase
 import ResumeShowcase from "@/components/ResumeShowcase";
 import ContactShowcase from "@/components/ContactShowcase";
 import CertificationsShowcase from "@/components/CertificationsShowcase";
+import LogoMonogram from "@/components/LogoMonogram";
 import emailjs from "@emailjs/browser";
 import { useEffect, useRef, useState } from "react";
 import {HiMenu, HiOutlineMenu, HiOutlineMenuAlt3, HiSparkles, HiX} from "react-icons/hi";
@@ -143,16 +144,7 @@ export function Header() {
                 href="#"
                 className="group flex items-center gap-3 rounded-2xl bg-neutral-950/80 p-1.5 pr-4 border border-white/10 backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.8)] hover:border-[#D9A441]/50 transition-all duration-300"
             >
-              <div className="relative h-10 w-10 overflow-hidden rounded-xl border border-[#D9A441]/50 shadow-[0_0_15px_rgba(217,164,65,0.3)] group-hover:scale-105 group-hover:border-[#D9A441] transition-all duration-300 bg-black">
-                <Image
-                  src="/logo.png"
-                  alt="Rida Taki Official Logo"
-                  width={40}
-                  height={40}
-                  className="h-full w-full object-cover"
-                  priority
-                />
-              </div>
+              <LogoMonogram size={38} />
               <div className="flex flex-col">
               <span className="text-xs font-black tracking-widest text-white group-hover:text-[#D9A441] transition-colors">
                 RIDA TAKI
@@ -721,103 +713,146 @@ export default function Home() {
                     </div>
                   </div>
 
-                  {/* 3. Content Grid: Bio & Experience Specs */}
+                  {/* 3. Content Grid: Official Profile Portrait & Bio */}
                   <div className="reveal reveal-d3 grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch pt-2">
 
-                    {/* Bio Narrative Card with Enhanced Background */}
-                    <div
-                        ref={bioRef}
-                        className={`lg:col-span-7 flex flex-col justify-between p-8 rounded-3xl border border-white/10 bg-gradient-to-br from-black/80 via-black/50 to-[#D9A441]/10 backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] relative overflow-hidden transition-all duration-700 ease-in-out hover:border-[#D9A441]/30 ${
-                            isBioVisible
-                                ? "opacity-100 translate-y-0"
-                                : "opacity-0 -translate-y-4 pointer-events-none"
-                        }`}
-                    >
-                      {/* Ambient Background Glow Spot */}
-                      <div className="absolute -top-20 -right-20 h-48 w-48 rounded-full bg-[#D9A441]/15 blur-3xl pointer-events-none" />
-                      <div className="absolute -bottom-20 -left-20 h-48 w-48 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
+                    {/* Official Profile Portrait Card (Featured Bio Column) */}
+                    <div className="lg:col-span-4 relative group overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.06] via-white/[0.02] to-transparent p-2 backdrop-blur-2xl transition-all duration-500 hover:border-[#D9A441]/50 hover:shadow-[0_20px_50px_-15px_rgba(217,164,65,0.25)] flex flex-col justify-between">
+                      {/* Ambient Gold Halo */}
+                      <div className="absolute -top-16 -right-16 h-48 w-48 rounded-full bg-[#D9A441]/15 blur-3xl pointer-events-none group-hover:bg-[#D9A441]/25 transition-all" />
 
-                      {/* Subtle Left Border Accent */}
-                      <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-[#F3C669] via-[#D9A441] to-transparent opacity-80" />
+                      <div className="relative h-full w-full overflow-hidden rounded-[22px] bg-black/85 p-5 sm:p-6 flex flex-col justify-between space-y-4">
+                        {/* Top Micro-Bar */}
+                        <div className="flex items-center justify-between">
+                          <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-[10px] font-mono font-semibold text-emerald-400">
+                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                            <span>Disponible</span>
+                          </span>
+                          <span className="text-[11px] font-mono text-[#D9A441] flex items-center gap-1">
+                            <MapPin size={12} />
+                            <span>Oued Zem</span>
+                          </span>
+                        </div>
 
-                      <div className="space-y-4 relative z-10">
-                        <div className="flex items-center justify-between border-b border-white/10 pb-3">
-      <span className="text-[10px] font-mono uppercase tracking-widest text-[#D9A441] font-semibold">
-        {t.hero.aboutBadge}
-      </span>
-                          <div className="...">
-                            {/* Background */}
-                            <p>Some text</p>
+                        {/* Portrait Image Frame */}
+                        <div className="relative mx-auto w-full aspect-[4/4.4] overflow-hidden rounded-2xl border border-white/10 shadow-2xl group-hover:border-[#D9A441]/40 transition-all">
+                          <Image
+                            src="/rida-portrait.jpg"
+                            alt="Rida Taki - Développeur Full Stack"
+                            fill
+                            sizes="(max-width: 768px) 100vw, 400px"
+                            className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                            priority
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                          <div className="absolute bottom-3 inset-x-3 text-left">
+                            <div className="text-base font-extrabold text-white">Rida Taki</div>
+                            <div className="text-xs font-mono text-[#D9A441]">Full Stack Developer</div>
                           </div>
                         </div>
 
-                        <p className="text-base sm:text-lg leading-relaxed text-gray-200 font-normal">
-                          {t.hero.aboutBio}
-                        </p>
-                      </div>
-
-                      {/* Tech Pills Footer */}
-                      <div className="flex flex-wrap items-center gap-2 pt-6 mt-6 border-t border-white/10 relative z-10">
-                        {["Java 21", "Spring Boot", "React", "Kotlin", "Flutter", "Docker", "MySQL"].map((tech) => (
-                            <span
-                                key={tech}
-                                className="rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-xs font-mono text-gray-300 backdrop-blur-md hover:border-[#D9A441]/40 hover:text-white transition-all"
-                            >
-        {tech}
-      </span>
-                        ))}
+                        {/* Bottom Tagline */}
+                        <div className="pt-2 border-t border-white/5 flex items-center justify-between text-xs font-mono text-gray-400">
+                          <span className="flex items-center gap-1 text-white/60">
+                            <span className="text-[#D9A441]">{"//"}</span> Profil Officiel
+                          </span>
+                          <span className="text-[10px] uppercase tracking-wider text-emerald-400 font-semibold">Vérifié</span>
+                        </div>
                       </div>
                     </div>
 
-                    {/* Stats & Actions Side Panel */}
-                    <div className="lg:col-span-5 flex flex-col justify-between p-8 rounded-3xl border border-white/10 bg-black/40 backdrop-blur-xl shadow-2xl space-y-8">
+                    {/* Bio & Metrics Column */}
+                    <div className="lg:col-span-8 flex flex-col justify-between gap-6">
 
-                      {/* Metrics Grid */}
-                      <div className="grid grid-cols-3 gap-2 text-center divide-x divide-white/10">
-                        <div className="pr-2">
-                          <div className="text-3xl font-bold text-white font-mono">
-                            <AnimatedNumber value={3} suffix="+" />
+                      {/* Bio Narrative Card */}
+                      <div
+                        ref={bioRef}
+                        className={`flex flex-col justify-between p-8 rounded-3xl border border-white/10 bg-gradient-to-br from-black/80 via-black/50 to-[#D9A441]/10 backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] relative overflow-hidden transition-all duration-700 ease-in-out hover:border-[#D9A441]/30 ${
+                          isBioVisible
+                            ? "opacity-100 translate-y-0"
+                            : "opacity-0 -translate-y-4 pointer-events-none"
+                        }`}
+                      >
+                        {/* Ambient Glows */}
+                        <div className="absolute -top-20 -right-20 h-48 w-48 rounded-full bg-[#D9A441]/15 blur-3xl pointer-events-none" />
+                        <div className="absolute -bottom-20 -left-20 h-48 w-48 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
+                        <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-[#F3C669] via-[#D9A441] to-transparent opacity-80" />
+
+                        <div className="space-y-4 relative z-10">
+                          <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                            <span className="text-[10px] font-mono uppercase tracking-widest text-[#D9A441] font-semibold">
+                              {t.hero.aboutBadge}
+                            </span>
+                            <span className="text-xs font-mono text-white/40">{"//"} Full Stack Software Engineer</span>
                           </div>
-                          <div className="text-[9px] font-mono uppercase tracking-widest text-gray-400 mt-1">{t.hero.projectsMetric}</div>
+
+                          <p className="text-base sm:text-lg leading-relaxed text-gray-200 font-normal">
+                            {t.hero.aboutBio}
+                          </p>
                         </div>
 
-                        <div className="px-2">
-                          <div className="text-3xl font-bold text-white font-mono">
-                            <AnimatedNumber value={10} suffix="+" />
-                          </div>
-                          <div className="text-[9px] font-mono uppercase tracking-widest text-gray-400 mt-1">{t.hero.stackMetric}</div>
-                        </div>
-
-                        <div className="pl-2">
-                          <div className="text-3xl font-bold text-white font-mono">
-                            <AnimatedNumber value={3} />
-                          </div>
-                          <div className="text-[9px] font-mono uppercase tracking-widest text-gray-400 mt-1">{t.hero.certsMetric}</div>
+                        {/* Tech Pills Footer */}
+                        <div className="flex flex-wrap items-center gap-2 pt-6 mt-6 border-t border-white/10 relative z-10">
+                          {["Java 21", "Spring Boot", "React", "Kotlin", "Flutter", "Docker", "MySQL"].map((tech) => (
+                            <span
+                              key={tech}
+                              className="rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-xs font-mono text-gray-300 backdrop-blur-md hover:border-[#D9A441]/40 hover:text-white transition-all"
+                            >
+                              {tech}
+                            </span>
+                          ))}
                         </div>
                       </div>
 
-                      {/* Call-to-Action Buttons */}
-                      <div className="flex flex-col sm:flex-row items-center gap-3">
-                        <a
+                      {/* Metrics & Actions Panel */}
+                      <div className="p-6 sm:p-8 rounded-3xl border border-white/10 bg-black/40 backdrop-blur-xl shadow-2xl flex flex-col sm:flex-row items-center justify-between gap-6">
+                        {/* Metrics Grid */}
+                        <div className="grid grid-cols-3 gap-4 text-center divide-x divide-white/10 w-full sm:w-auto">
+                          <div className="pr-2 sm:pr-4">
+                            <div className="text-3xl font-bold text-white font-mono">
+                              <AnimatedNumber value={3} suffix="+" />
+                            </div>
+                            <div className="text-[9px] font-mono uppercase tracking-widest text-gray-400 mt-1">{t.hero.projectsMetric}</div>
+                          </div>
+
+                          <div className="px-2 sm:px-4">
+                            <div className="text-3xl font-bold text-white font-mono">
+                              <AnimatedNumber value={10} suffix="+" />
+                            </div>
+                            <div className="text-[9px] font-mono uppercase tracking-widest text-gray-400 mt-1">{t.hero.stackMetric}</div>
+                          </div>
+
+                          <div className="pl-2 sm:pl-4">
+                            <div className="text-3xl font-bold text-white font-mono">
+                              <AnimatedNumber value={3} />
+                            </div>
+                            <div className="text-[9px] font-mono uppercase tracking-widest text-gray-400 mt-1">{t.hero.certsMetric}</div>
+                          </div>
+                        </div>
+
+                        {/* Call-to-Action Buttons */}
+                        <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
+                          <a
                             href="#work"
-                            className="w-full sm:flex-1 inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3.5 text-xs font-bold text-black transition-all duration-300 hover:scale-[1.02] shadow-[0_0_20px_rgba(201,160,99,0.3)]"
+                            className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3.5 text-xs font-bold text-black transition-all duration-300 hover:scale-[1.02] shadow-[0_0_20px_rgba(201,160,99,0.3)]"
                             style={{
                               background: "linear-gradient(135deg, #F3C669, #C9A063)",
                             }}
-                        >
-                          {t.hero.exploreBtn} <ArrowRight size={15} />
-                        </a>
+                          >
+                            {t.hero.exploreBtn} <ArrowRight size={15} />
+                          </a>
 
-                        <a
+                          <a
                             href="#contact"
-                            className="w-full sm:w-auto group inline-flex items-center justify-center gap-2.5 rounded-2xl px-6 py-3.5 text-xs font-semibold text-gray-200 bg-white/[0.04] border border-white/10 backdrop-blur-xl transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:text-white hover:scale-[1.02] active:scale-95 shadow-lg"
-                        >
-                          <Mail
+                            className="flex-1 sm:flex-none group inline-flex items-center justify-center gap-2.5 rounded-2xl px-6 py-3.5 text-xs font-semibold text-gray-200 bg-white/[0.04] border border-white/10 backdrop-blur-xl transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:text-white hover:scale-[1.02] active:scale-95 shadow-lg"
+                          >
+                            <Mail
                               size={15}
                               className="text-[#D9A441] transition-transform duration-300 group-hover:scale-110"
-                          />
-                          <span>{"LET'S TALK"}</span>
-                        </a>
+                            />
+                            <span>{"LET'S TALK"}</span>
+                          </a>
+                        </div>
                       </div>
 
                     </div>
@@ -1030,15 +1065,7 @@ export default function Home() {
                 <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-5 py-8 sm:flex-row sm:px-8">
                     {/* Brand Logo & Copyright */}
                     <div className="flex items-center gap-3">
-                        <div className="relative h-10 w-10 overflow-hidden rounded-xl border border-[#D9A441]/40 shadow-[0_0_15px_rgba(217,164,65,0.25)] bg-black">
-                          <Image
-                            src="/logo.png"
-                            alt="Rida Taki Official Logo"
-                            width={40}
-                            height={40}
-                            className="h-full w-full object-cover"
-                          />
-                        </div>
+                        <LogoMonogram size={38} />
                         <div className="flex flex-col">
                             <span className="text-sm font-semibold text-white">Rida Taki</span>
                             <span className="text-[11px] font-mono text-[color:var(--muted)]">
