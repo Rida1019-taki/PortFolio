@@ -58,6 +58,7 @@ import AnimatedNumber from "@/components/AnimatedNumber";
 import TypewriterText from "@/components/TypewriterText";
 import { useLanguage } from "@/components/LanguageProvider";
 import LanguageToggle from "@/components/LanguageToggle";
+import HackathonCard, { HackathonItem } from "@/components/HackathonCard";
 import emailjs from "@emailjs/browser";
 import { useEffect, useRef, useState } from "react";
 import {HiMenu, HiOutlineMenu, HiOutlineMenuAlt3, HiSparkles, HiX} from "react-icons/hi";
@@ -512,21 +513,17 @@ export default function Home() {
     },
   ];
 
-  interface HackathonItem {
-    title: string;
-    description: string;
-    image: string;
-    certificate?: string | null;
-    tag?: string;
-    date?: string;
-    tags: string[];
-  }
-
   const hackathons: HackathonItem[] = [
     {
       title: t.hackathons.hacktoberfest.title,
       description: t.hackathons.hacktoberfest.desc,
-      image: "/hackathons/hacktoberfest-day.jpg",
+      image: "/hackathons/hacktoberfest-1.jpg",
+      images: [
+        "/hackathons/hacktoberfest-1.jpg",
+        "/hackathons/hacktoberfest-2.jpg",
+        "/hackathons/hacktoberfest-3.jpg",
+        "/hackathons/hacktoberfest-cert.png",
+      ],
       certificate: "/hackathons/hacktoberfest-cert.png",
       tag: t.hackathons.hacktoberfest.tag,
       date: t.hackathons.hacktoberfest.date,
@@ -1569,80 +1566,13 @@ export default function Home() {
               {/* items-stretch لتوحيد الارتفاع بين العامودين */}
               <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 items-stretch">
                 {hackathons.map((hackathon, index) => (
-                    <ScrollReveal key={index} delay={index * 120} className="h-full">
-                      <article className="group relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#D9A441]/50 hover:shadow-[0_20px_50px_-15px_rgba(217,164,65,0.2)]">
-
-                        {/* Top Container: Image + Header */}
-                        <div className="w-full">
-                          {/* Image Container with Fixed Aspect Ratio */}
-                          <div className="relative h-64 w-full overflow-hidden">
-                            <Image
-                                src={hackathon.image}
-                                alt={hackathon.title}
-                                fill
-                                className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-110"
-                            />
-                            {/* Gradient Mask for Smooth Blending */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-
-                            {/* Top Badge */}
-                            <div className="absolute top-4 inset-x-4 z-10 flex items-center justify-between pointer-events-none">
-                                <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-black/70 px-3 py-1 text-[10px] font-mono font-medium text-white backdrop-blur-md">
-                                    <Zap size={12} className="text-[#D9A441]" /> {hackathon.tag || t.hackathons.projectTag}
-                                </span>
-                                {hackathon.date && (
-                                  <span className="rounded-full border border-white/10 bg-black/60 px-2.5 py-0.5 text-[10px] font-mono text-[#D9A441] backdrop-blur-md">
-                                    {hackathon.date}
-                                  </span>
-                                )}
-                            </div>
-                          </div>
-
-                          {/* Content Details */}
-                          <div className="p-6 sm:p-8 space-y-4">
-                            <h3 className="text-2xl font-bold text-white transition-colors duration-300 group-hover:text-[#D9A441]">
-                              {hackathon.title}
-                            </h3>
-
-                            <p className="text-sm text-[color:var(--muted)] leading-relaxed font-medium">
-                              {hackathon.description}
-                            </p>
-                          </div>
-                        </div>
-
-                        {/* Bottom Container: Certificate & Tags */}
-                        <div className="px-6 pb-6 sm:px-8 sm:pb-8 pt-0">
-                          {hackathon.certificate && (
-                            <div className="pb-3">
-                              <a
-                                href={hackathon.certificate}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="group/cert inline-flex items-center gap-2 rounded-xl border border-[#D9A441]/40 bg-[#D9A441]/10 px-3.5 py-2 text-xs font-mono font-semibold text-[#D9A441] hover:bg-[#D9A441] hover:text-black transition-all duration-300 w-full justify-between"
-                              >
-                                <span className="flex items-center gap-1.5">
-                                  <Award size={14} />
-                                  <span>{t.hackathons.hacktoberfest.certificateLabel}</span>
-                                </span>
-                                <ExternalLink size={12} className="transition-transform group-hover/cert:translate-x-0.5 group-hover/cert:-translate-y-0.5" />
-                              </a>
-                            </div>
-                          )}
-                          <div className="flex flex-wrap gap-2 border-t border-white/5 pt-4">
-                            {hackathon.tags.map((tag) => (
-                                <span
-                                    key={tag}
-                                    className="inline-flex items-center gap-1 rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-xs font-mono text-gray-300 transition-colors group-hover:border-[#D9A441]/30"
-                                >
-                                    <span className="text-[#D9A441]">#</span>
-                                  {tag}
-                                </span>
-                            ))}
-                          </div>
-                        </div>
-
-                      </article>
-                    </ScrollReveal>
+                  <ScrollReveal key={index} delay={index * 120} className="h-full">
+                    <HackathonCard
+                      hackathon={hackathon}
+                      projectTag={t.hackathons.projectTag}
+                      certificateLabel={t.hackathons.hacktoberfest.certificateLabel}
+                    />
+                  </ScrollReveal>
                 ))}
               </div>
             </section>
