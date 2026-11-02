@@ -51,7 +51,7 @@ export default function ContactShowcase({ t }: ContactShowcaseProps) {
   const [loading, setLoading] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
 
-  const emailAddress = "rida.taki10@gmail.com";
+  const emailAddress = "takirida72@gmail.com";
   const whatsappNumber = "+212 649-487957";
   const whatsappUrl = "https://wa.me/212649487957";
 
@@ -59,7 +59,7 @@ export default function ContactShowcase({ t }: ContactShowcaseProps) {
     navigator.clipboard.writeText(emailAddress);
     setCopiedEmail(true);
     toast.success("Email copié !", {
-      description: "L'adresse rida.taki10@gmail.com a été copiée dans votre presse-papier.",
+      description: `L'adresse ${emailAddress} a été copiée dans votre presse-papier.`,
     });
     setTimeout(() => setCopiedEmail(false), 2500);
   };
