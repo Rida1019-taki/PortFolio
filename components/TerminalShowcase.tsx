@@ -33,11 +33,13 @@ export default function TerminalShowcase() {
   const [savedCommands, setSavedCommands] = useState<string[]>([]);
   const [copied, setCopied] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-  const terminalEndRef = useRef<HTMLDivElement>(null);
+  const terminalContainerRef = useRef<HTMLDivElement>(null);
 
-  // Auto-scroll to bottom of terminal
+  // Auto-scroll to bottom inside terminal container only when new commands are executed
   useEffect(() => {
-    terminalEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (history.length > 0 && terminalContainerRef.current) {
+      terminalContainerRef.current.scrollTop = terminalContainerRef.current.scrollHeight;
+    }
   }, [history]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -292,6 +294,7 @@ export default function TerminalShowcase() {
 
       {/* Terminal Screen & Content */}
       <div
+        ref={terminalContainerRef}
         className="p-3.5 sm:p-7 font-mono text-xs min-h-[320px] max-h-[460px] overflow-y-auto space-y-4 scrollbar-thin scrollbar-thumb-white/10 min-w-0"
         onClick={() => inputRef.current?.focus()}
       >
@@ -340,7 +343,6 @@ export default function TerminalShowcase() {
           />
         </div>
 
-        <div ref={terminalEndRef} />
       </div>
 
       {/* Terminal Quick Command Pills (Footer) */}
