@@ -53,6 +53,7 @@ import {
 } from "react-icons/si";
 import ScrollReveal from "@/components/ScrollReveal";
 import ParticleField from "@/components/ParticleField";
+import FallingLeavesWrapper from "@/components/FallingLeavesWrapper";
 import MouseGlow from "@/components/MouseGlow";
 import AnimatedNumber from "@/components/AnimatedNumber";
 import TypewriterText from "@/components/TypewriterText";
@@ -625,6 +626,7 @@ export default function Home() {
 
         <ParticleField />
         <MouseGlow />
+        <FallingLeavesWrapper />
 
           <main className="relative z-10 pt-20">
             {/* HERO SECTION */}
