@@ -78,7 +78,7 @@ export default function GitHubStats() {
   ];
 
   return (
-    <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.05] via-white/[0.02] to-transparent p-6 sm:p-8 backdrop-blur-2xl shadow-2xl space-y-6">
+    <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.05] via-white/[0.02] to-transparent p-4 sm:p-6 lg:p-8 backdrop-blur-2xl shadow-2xl space-y-6 min-w-0">
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-white/10 pb-5">
         <div className="flex items-center gap-3.5">
@@ -105,7 +105,7 @@ export default function GitHubStats() {
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => playClick()}
-          className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-xs font-mono font-semibold text-white transition-all duration-300 hover:border-[#D9A441] hover:bg-[#D9A441]/10 hover:text-[#D9A441] cursor-pointer"
+          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-xs font-mono font-semibold text-white transition-all duration-300 hover:border-[#D9A441] hover:bg-[#D9A441]/10 hover:text-[#D9A441] cursor-pointer"
         >
           <span>Voir le Profil GitHub</span>
           <ExternalLink size={13} />
@@ -141,7 +141,7 @@ export default function GitHubStats() {
 
       {/* Contribution Heatmap Card */}
       <div className="rounded-2xl border border-white/10 bg-black/60 p-5 space-y-3">
-        <div className="flex items-center justify-between text-xs font-mono text-gray-400">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 text-xs font-mono text-gray-400">
           <div className="flex items-center gap-2">
             <GitCommit size={14} className="text-[#D9A441]" />
             <span className="font-semibold text-white">Graphique de Contributions (Derniers 12 mois)</span>
@@ -158,7 +158,7 @@ export default function GitHubStats() {
         </div>
 
         {/* Heatmap Grid */}
-        <div className="overflow-x-auto pb-1">
+        <div className="overflow-x-auto pb-2 -mx-1 px-1 touch-pan-x">
           <div className="inline-flex gap-1 min-w-full">
             {weeks.map((week, wIdx) => (
               <div key={wIdx} className="flex flex-col gap-1">
@@ -179,7 +179,7 @@ export default function GitHubStats() {
 
       {/* Languages Distribution Bar */}
       <div className="space-y-2">
-        <div className="flex items-center justify-between text-xs font-mono text-gray-400">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 text-xs font-mono text-gray-400">
           <span>Distribution des Technologies</span>
           <span className="text-[10px] text-gray-500">Calculé sur l&apos;ensemble du code source</span>
         </div>

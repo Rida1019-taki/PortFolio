@@ -136,7 +136,7 @@ export default function ApiPlayground() {
   -H "Authorization: Bearer dev_session_token_rida"`;
 
   return (
-    <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-black/85 backdrop-blur-2xl shadow-2xl p-6 sm:p-8 space-y-6">
+    <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-black/85 backdrop-blur-2xl shadow-2xl p-4 sm:p-6 lg:p-8 space-y-6 min-w-0">
       {/* Background Ambient Glow */}
       <div className="absolute -top-24 right-1/4 h-64 w-96 rounded-full bg-[#D9A441]/10 blur-3xl pointer-events-none" />
 
@@ -192,8 +192,8 @@ export default function ApiPlayground() {
       </div>
 
       {/* URL Request Bar */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 rounded-2xl border border-white/15 bg-neutral-950 p-2 shadow-inner">
-        <div className="flex items-center gap-2 flex-1 px-3 py-1 font-mono text-xs sm:text-sm overflow-x-auto">
+      <div className="flex flex-col md:flex-row items-stretch md:items-center gap-2 rounded-2xl border border-white/15 bg-neutral-950 p-2 shadow-inner min-w-0">
+        <div className="flex items-center gap-2 flex-1 px-3 py-1 font-mono text-xs sm:text-sm overflow-x-auto min-w-0">
           <span
             className={`font-bold px-2 py-1 rounded text-xs ${
               selectedEndpoint.method === "GET"
@@ -211,7 +211,7 @@ export default function ApiPlayground() {
           type="button"
           onClick={handleSend}
           disabled={isLoading}
-          className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#D9A441] to-[#B8860B] px-5 py-2.5 text-xs font-bold font-mono text-black shadow-lg shadow-[#D9A441]/20 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(217,164,65,0.4)] cursor-pointer disabled:opacity-50"
+          className="w-full md:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#D9A441] to-[#B8860B] px-5 py-2.5 text-xs font-bold font-mono text-black shadow-lg shadow-[#D9A441]/20 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(217,164,65,0.4)] cursor-pointer disabled:opacity-50 shrink-0"
         >
           {isLoading ? (
             <>
@@ -230,7 +230,7 @@ export default function ApiPlayground() {
       {/* Response Panel */}
       <div className="rounded-2xl border border-white/10 bg-neutral-950 overflow-hidden">
         {/* Response Tabs & Meta Bar */}
-        <div className="flex flex-wrap items-center justify-between border-b border-white/10 px-4 py-2.5 bg-white/[0.02]">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-white/10 px-4 py-2.5 bg-white/[0.02]">
           <div className="flex items-center gap-2">
             <button
               type="button"

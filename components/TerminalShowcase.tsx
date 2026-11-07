@@ -271,7 +271,7 @@ export default function TerminalShowcase() {
           <span className="h-3 w-3 rounded-full bg-green-500/80 transition-opacity hover:opacity-100" />
           <span className="ml-3 font-mono text-xs text-gray-400 flex items-center gap-2">
             <Terminal size={13} className="text-[#D9A441]" />
-            <span>rida@workstation: ~ (zsh)</span>
+            <span className="hidden sm:inline">rida@workstation: ~ (zsh)</span><span className="sm:hidden text-xs">rida: ~</span>
           </span>
         </div>
 
@@ -292,7 +292,7 @@ export default function TerminalShowcase() {
 
       {/* Terminal Screen & Content */}
       <div
-        className="p-5 sm:p-7 font-mono text-xs min-h-[320px] max-h-[460px] overflow-y-auto space-y-4 scrollbar-thin scrollbar-thumb-white/10"
+        className="p-3.5 sm:p-7 font-mono text-xs min-h-[320px] max-h-[460px] overflow-y-auto space-y-4 scrollbar-thin scrollbar-thumb-white/10 min-w-0"
         onClick={() => inputRef.current?.focus()}
       >
         {/* Welcome Banner */}
@@ -310,7 +310,7 @@ export default function TerminalShowcase() {
         {history.map((item) => (
           <div key={item.id} className="space-y-1.5 animate-in fade-in duration-150">
             <div className="flex items-center gap-2 text-gray-400">
-              <span className="text-[#D9A441] font-bold">rida@workstation</span>
+              <span className="text-[#D9A441] font-bold"><span className="hidden sm:inline">rida@workstation</span><span className="sm:hidden">rida</span></span>
               <span className="text-gray-600">:</span>
               <span className="text-emerald-400 font-semibold">~</span>
               <span className="text-gray-500">$</span>
@@ -322,7 +322,7 @@ export default function TerminalShowcase() {
 
         {/* Live Input Line */}
         <div className="flex items-center gap-2 pt-1">
-          <span className="text-[#D9A441] font-bold shrink-0">rida@workstation</span>
+          <span className="text-[#D9A441] font-bold shrink-0"><span className="hidden sm:inline">rida@workstation</span><span className="sm:hidden">rida</span></span>
           <span className="text-gray-600 shrink-0">:</span>
           <span className="text-emerald-400 font-semibold shrink-0">~</span>
           <span className="text-gray-500 shrink-0">$</span>

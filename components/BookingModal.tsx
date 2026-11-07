@@ -67,7 +67,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-xl overflow-hidden rounded-3xl border border-white/15 bg-neutral-950 p-6 sm:p-8 shadow-2xl shadow-black/90 backdrop-blur-2xl animate-in zoom-in-95 duration-200"
+        className="relative w-full max-w-xl max-h-[90vh] overflow-y-auto rounded-3xl border border-white/15 bg-neutral-950 p-5 sm:p-8 shadow-2xl shadow-black/90 backdrop-blur-2xl animate-in zoom-in-95 duration-200"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Gold Gradient Bar */}

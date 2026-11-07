@@ -117,13 +117,13 @@ export default function BugHuntGame() {
   };
 
   return (
-    <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-black/90 p-6 sm:p-8 backdrop-blur-2xl shadow-2xl space-y-6">
+    <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-black/90 p-4 sm:p-6 lg:p-8 backdrop-blur-2xl shadow-2xl space-y-6 min-w-0">
       {/* Ambient Top Glow */}
       <div className="absolute -top-20 left-1/3 h-56 w-72 rounded-full bg-[#D9A441]/10 blur-3xl pointer-events-none" />
 
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-white/10 pb-5">
-        <div className="space-y-1">
+        <div className="space-y-1 min-w-[500px]">
           <div className="flex items-center gap-2">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 px-3.5 py-1 text-xs font-mono font-semibold text-amber-400">
               <Bug size={13} />
@@ -173,8 +173,8 @@ export default function BugHuntGame() {
       )}
 
       {/* Interactive Code Editor Box */}
-      <div className="rounded-2xl border border-white/15 bg-neutral-950 p-4 sm:p-5 font-mono text-xs overflow-x-auto shadow-inner">
-        <div className="space-y-1">
+      <div className="rounded-2xl border border-white/15 bg-neutral-950 p-3 sm:p-5 font-mono text-xs overflow-x-auto shadow-inner min-w-0">
+        <div className="space-y-1 min-w-[500px]">
           {CODE_LINES.map((line) => {
             const isSelected = selectedLine === line.lineNum;
             const isLineBug = line.isBug;

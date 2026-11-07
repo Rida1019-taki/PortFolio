@@ -96,7 +96,7 @@ export default function CommandPalette() {
           playPop();
           setOpen(true);
         }}
-        className="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 rounded-full border border-white/15 bg-black/80 px-4 py-2.5 text-xs font-mono font-medium text-white shadow-2xl backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:border-[#D9A441] hover:shadow-[0_0_25px_rgba(217,164,65,0.35)] group cursor-pointer"
+        className="fixed bottom-6 right-4 sm:right-6 z-40 flex items-center gap-2 sm:gap-2.5 rounded-full border border-white/15 bg-black/80 px-3.5 sm:px-4 py-2 sm:py-2.5 text-xs font-mono font-medium text-white shadow-2xl backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:border-[#D9A441] hover:shadow-[0_0_25px_rgba(217,164,65,0.35)] group cursor-pointer"
         aria-label="Ouvrir le menu de commande (Cmd+K)"
       >
         <span className="flex h-5 w-5 items-center justify-center rounded-md bg-white/10 text-[11px] font-bold text-[#D9A441] group-hover:bg-[#D9A441] group-hover:text-black transition-colors">
@@ -114,12 +114,12 @@ export default function CommandPalette() {
       {/* Command Palette Modal Backdrop */}
       {open && (
         <div
-          className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-28 px-4 bg-black/75 backdrop-blur-md animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 flex items-start justify-center pt-10 sm:pt-28 px-3 sm:px-4 bg-black/75 backdrop-blur-md animate-in fade-in duration-200"
           onClick={() => setOpen(false)}
         >
           {/* Modal Container */}
           <div
-            className="relative w-full max-w-xl overflow-hidden rounded-2xl border border-white/15 bg-neutral-950/95 shadow-2xl shadow-black/80 ring-1 ring-white/10 backdrop-blur-2xl animate-in zoom-in-95 duration-200"
+            className="relative w-full max-w-xl max-h-[85vh] overflow-hidden rounded-2xl border border-white/15 bg-neutral-950/95 shadow-2xl shadow-black/80 ring-1 ring-white/10 backdrop-blur-2xl animate-in zoom-in-95 duration-200 flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Top Gold Gradient Bar */}
@@ -151,7 +151,7 @@ export default function CommandPalette() {
               </div>
 
               {/* Items List */}
-              <Command.List className="max-h-[380px] overflow-y-auto p-2 scrollbar-thin scrollbar-thumb-white/10">
+              <Command.List className="max-h-[300px] sm:max-h-[380px] overflow-y-auto p-2 scrollbar-thin scrollbar-thumb-white/10">
                 <Command.Empty className="py-8 text-center text-xs font-mono text-gray-500">
                   {lang === "fr" ? "Aucun résultat trouvé." : "No results found."}
                 </Command.Empty>

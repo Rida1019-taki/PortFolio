@@ -201,7 +201,7 @@ export default function SystemArchitecture() {
   };
 
   return (
-    <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-black/85 backdrop-blur-2xl shadow-2xl p-6 sm:p-10 space-y-10">
+    <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-black/85 backdrop-blur-2xl shadow-2xl p-4 sm:p-8 lg:p-10 space-y-8 min-w-0">
       {/* Background Ambient Glow */}
       <div
         className="absolute top-1/3 left-1/2 -translate-x-1/2 h-72 w-[500px] rounded-full blur-[120px] pointer-events-none transition-all duration-700 opacity-40"
@@ -232,7 +232,7 @@ export default function SystemArchitecture() {
       </div>
 
       {/* ─── INTERACTIVE ARCHITECTURE PIPELINE NODES ─── */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-3 relative">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 relative min-w-0">
         {NODES.map((node, idx) => {
           const isSelected = activeNode.id === node.id;
           const NodeIcon = node.icon;
@@ -286,9 +286,9 @@ export default function SystemArchitecture() {
       </div>
 
       {/* ─── NODE DEEP-DIVE INSPECTION DRAWER ─── */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start rounded-2xl border border-white/10 bg-neutral-950 p-6 sm:p-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start rounded-2xl border border-white/10 bg-neutral-950 p-4 sm:p-6 lg:p-8 min-w-0">
         {/* Left Column: Responsibilities & Stack */}
-        <div className="lg:col-span-6 space-y-6">
+        <div className="lg:col-span-6 space-y-6 min-w-0">
           <div className="space-y-2">
             <div className="flex items-center gap-2">
               <span
@@ -343,7 +343,7 @@ export default function SystemArchitecture() {
         </div>
 
         {/* Right Column: Production Code Snippet */}
-        <div className="lg:col-span-6 rounded-2xl border border-white/15 bg-black/90 p-4 sm:p-5 space-y-3 font-mono shadow-2xl">
+        <div className="lg:col-span-6 rounded-2xl border border-white/15 bg-black/90 p-3 sm:p-5 space-y-3 font-mono shadow-2xl min-w-0 w-full overflow-hidden">
           <div className="flex items-center justify-between border-b border-white/10 pb-3">
             <div className="flex items-center gap-2">
               <span className="h-2.5 w-2.5 rounded-full bg-red-500/80" />

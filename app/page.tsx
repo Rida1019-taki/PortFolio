@@ -806,25 +806,25 @@ export default function Home() {
                       </div>
 
                       {/* Metrics & Actions Panel */}
-                      <div className="p-6 sm:p-8 rounded-3xl border border-white/10 bg-black/40 backdrop-blur-xl shadow-2xl flex flex-col sm:flex-row items-center justify-between gap-6">
+                      <div className="p-5 sm:p-8 rounded-3xl border border-white/10 bg-black/40 backdrop-blur-xl shadow-2xl flex flex-col xl:flex-row items-stretch xl:items-center justify-between gap-6">
                         {/* Metrics Grid */}
-                        <div className="grid grid-cols-3 gap-4 text-center divide-x divide-white/10 w-full sm:w-auto">
+                        <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center divide-x divide-white/10 w-full xl:w-auto">
                           <div className="pr-2 sm:pr-4">
-                            <div className="text-3xl font-bold text-white font-mono">
+                            <div className="text-2xl sm:text-3xl font-bold text-white font-mono">
                               <AnimatedNumber value={3} suffix="+" />
                             </div>
                             <div className="text-[9px] font-mono uppercase tracking-widest text-gray-400 mt-1">{t.hero.projectsMetric}</div>
                           </div>
 
                           <div className="px-2 sm:px-4">
-                            <div className="text-3xl font-bold text-white font-mono">
+                            <div className="text-2xl sm:text-3xl font-bold text-white font-mono">
                               <AnimatedNumber value={10} suffix="+" />
                             </div>
                             <div className="text-[9px] font-mono uppercase tracking-widest text-gray-400 mt-1">{t.hero.stackMetric}</div>
                           </div>
 
                           <div className="pl-2 sm:pl-4">
-                            <div className="text-3xl font-bold text-white font-mono">
+                            <div className="text-2xl sm:text-3xl font-bold text-white font-mono">
                               <AnimatedNumber value={3} />
                             </div>
                             <div className="text-[9px] font-mono uppercase tracking-widest text-gray-400 mt-1">{t.hero.certsMetric}</div>
@@ -832,10 +832,10 @@ export default function Home() {
                         </div>
 
                         {/* Call-to-Action Buttons */}
-                        <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
+                        <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-2.5 sm:gap-3 w-full xl:w-auto justify-center xl:justify-end">
                           <a
                             href="#work"
-                            className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3.5 text-xs font-bold text-black transition-all duration-300 hover:scale-[1.02] shadow-[0_0_20px_rgba(201,160,99,0.3)]"
+                            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-2xl px-5 sm:px-6 py-3.5 text-xs font-bold text-black transition-all duration-300 hover:scale-[1.02] shadow-[0_0_20px_rgba(201,160,99,0.3)] text-center"
                             style={{
                               background: "linear-gradient(135deg, #F3C669, #C9A063)",
                             }}
@@ -849,19 +849,19 @@ export default function Home() {
                               playClick();
                               setIsBookingOpen(true);
                             }}
-                            className="flex-1 sm:flex-none group inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3.5 text-xs font-bold font-mono text-black bg-[#D9A441] shadow-lg shadow-[#D9A441]/20 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_25px_rgba(217,164,65,0.45)] cursor-pointer"
+                            className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 rounded-2xl px-4 sm:px-5 py-3.5 text-xs font-bold font-mono text-black bg-[#D9A441] shadow-lg shadow-[#D9A441]/20 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_25px_rgba(217,164,65,0.45)] cursor-pointer text-center"
                           >
-                            <Calendar size={14} className="text-black" />
+                            <Calendar size={14} className="text-black shrink-0" />
                             <span>{lang === "fr" ? "Réserver un appel 15m" : "Book 15m Call"}</span>
                           </button>
 
                           <a
                             href="#contact"
-                            className="flex-1 sm:flex-none group inline-flex items-center justify-center gap-2.5 rounded-2xl px-6 py-3.5 text-xs font-semibold text-gray-200 bg-white/[0.04] border border-white/10 backdrop-blur-xl transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:text-white hover:scale-[1.02] active:scale-95 shadow-lg"
+                            className="w-full sm:w-auto group inline-flex items-center justify-center gap-2.5 rounded-2xl px-5 sm:px-6 py-3.5 text-xs font-semibold text-gray-200 bg-white/[0.04] border border-white/10 backdrop-blur-xl transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:text-white hover:scale-[1.02] active:scale-95 shadow-lg text-center"
                           >
                             <Mail
                               size={15}
-                              className="text-[#D9A441] transition-transform duration-300 group-hover:scale-110"
+                              className="text-[#D9A441] transition-transform duration-300 group-hover:scale-110 shrink-0"
                             />
                             <span>{"LET'S TALK"}</span>
                           </a>
