@@ -68,6 +68,10 @@ import ResumeShowcase from "@/components/ResumeShowcase";
 import ContactShowcase from "@/components/ContactShowcase";
 import CertificationsShowcase from "@/components/CertificationsShowcase";
 import CommandPalette from "@/components/CommandPalette";
+import ScrollProgress from "@/components/ScrollProgress";
+import TerminalShowcase from "@/components/TerminalShowcase";
+import ApiPlayground from "@/components/ApiPlayground";
+import GitHubStats from "@/components/GitHubStats";
 import emailjs from "@emailjs/browser";
 import { useEffect, useRef, useState } from "react";
 import {HiMenu, HiOutlineMenu, HiOutlineMenuAlt3, HiSparkles, HiX} from "react-icons/hi";
@@ -299,7 +303,7 @@ export function Header() {
 }
 
 export default function Home() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   const projects: ProjectItem[] = [
     {
@@ -629,6 +633,7 @@ export default function Home() {
         <MouseGlow />
         <FallingLeavesWrapper />
         <CommandPalette />
+        <ScrollProgress />
 
           <main className="relative z-10 pt-20">
             {/* HERO SECTION */}
@@ -936,10 +941,91 @@ export default function Home() {
   
             <div className="section-divider mx-auto max-w-7xl" />
 
+            {/* ═══ API PLAYGROUND (Spring Boot Architecture Sandbox) ═══ */}
+            <section id="api-playground" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
+              <ScrollReveal>
+                <div className="mb-14 max-w-2xl space-y-4">
+                  <span className="section-label inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
+                    <Server size={14} /> {lang === "fr" ? "Architecture Backend & REST API" : "Backend Architecture & REST API"}
+                  </span>
+                  <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
+                    <span className="gradient-text">{lang === "fr" ? "API Live " : "Live API "}</span>
+                    <br />
+                    <span className="brand-gradient-text font-extrabold tracking-tight">{lang === "fr" ? "Playground & Specs" : "Playground & Specs"}</span>
+                  </h2>
+                  <p className="text-base leading-relaxed text-[color:var(--muted)] sm:text-lg">
+                    {lang === "fr"
+                      ? "Testez en direct les endpoints RESTful de mes applications Spring Boot 3 : sécurité stateless JWT, persistance Hibernate et métriques de latence."
+                      : "Directly test the RESTful endpoints of my Spring Boot 3 services: stateless JWT security, Hibernate persistence, and latency benchmarks."}
+                  </p>
+                </div>
+              </ScrollReveal>
+
+              <ScrollReveal delay={120}>
+                <ApiPlayground />
+              </ScrollReveal>
+            </section>
+
+            <div className="section-divider mx-auto max-w-7xl" />
+
+            {/* ═══ INTERACTIVE DEVELOPER TERMINAL ═══ */}
+            <section id="terminal" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
+              <ScrollReveal>
+                <div className="mb-14 max-w-2xl space-y-4">
+                  <span className="section-label inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
+                    <Terminal size={14} /> {lang === "fr" ? "Console Interactive CLI" : "Interactive CLI Console"}
+                  </span>
+                  <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
+                    <span className="gradient-text">{lang === "fr" ? "Terminal " : "Developer "}</span>
+                    <br />
+                    <span className="brand-gradient-text font-extrabold tracking-tight">{lang === "fr" ? "Workstation Linux" : "Linux Workstation"}</span>
+                  </h2>
+                  <p className="text-base leading-relaxed text-[color:var(--muted)] sm:text-lg">
+                    {lang === "fr"
+                      ? "Pour les recruteurs et tech leads qui préfèrent la ligne de commande. Tapez 'help', inspectez les compétences ou lancez 'sudo hire'."
+                      : "For recruiters and engineering leaders who thrive in the shell. Run 'help', inspect technical competencies, or invoke 'sudo hire'."}
+                  </p>
+                </div>
+              </ScrollReveal>
+
+              <ScrollReveal delay={120}>
+                <TerminalShowcase />
+              </ScrollReveal>
+            </section>
+
+            <div className="section-divider mx-auto max-w-7xl" />
+
             {/* ═══ EXPERIENCE ═══ */}
             <section id="experience" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
               <ScrollReveal delay={120}>
                 <ExperienceShowcase experiences={experiences} t={t.experience} />
+              </ScrollReveal>
+            </section>
+
+            <div className="section-divider mx-auto max-w-7xl" />
+
+            {/* ═══ GITHUB ACTIVITY & METRICS ═══ */}
+            <section id="github-activity" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
+              <ScrollReveal>
+                <div className="mb-14 max-w-2xl space-y-4">
+                  <span className="section-label inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
+                    <FaGithub size={14} /> {lang === "fr" ? "Écosystème & Open Source" : "Ecosystem & Open Source"}
+                  </span>
+                  <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
+                    <span className="gradient-text">{lang === "fr" ? "Activité " : "Live "}</span>
+                    <br />
+                    <span className="brand-gradient-text font-extrabold tracking-tight">{lang === "fr" ? "GitHub & Commits" : "GitHub Activity & Commits"}</span>
+                  </h2>
+                  <p className="text-base leading-relaxed text-[color:var(--muted)] sm:text-lg">
+                    {lang === "fr"
+                      ? "Suivi en direct de ma fréquence de commits, distribution des langages de programmation et dépôts de code publics."
+                      : "Live tracking of my commit cadence, programming language distribution, and public repositories."}
+                  </p>
+                </div>
+              </ScrollReveal>
+
+              <ScrollReveal delay={120}>
+                <GitHubStats />
               </ScrollReveal>
             </section>
 

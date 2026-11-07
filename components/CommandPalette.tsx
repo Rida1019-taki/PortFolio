@@ -16,9 +16,12 @@ import {
   User,
   Wrench,
   Send,
+  Terminal,
+  Server,
 } from "lucide-react";
 import { FaGithub, FaLinkedin, FaWhatsapp, FaInstagram } from "react-icons/fa";
 import { triggerGoldConfetti, triggerSideCannons } from "@/lib/confetti";
+import { playPop, playClick } from "@/lib/sound";
 import { toast } from "sonner";
 import { useLanguage } from "./LanguageProvider";
 
@@ -31,7 +34,10 @@ export default function CommandPalette() {
     const down = (e: KeyboardEvent) => {
       if ((e.key === "k" || e.key === "K") && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
-        setOpen((prev) => !prev);
+        setOpen((prev) => {
+          if (!prev) playPop();
+          return !prev;
+        });
       }
       if (e.key === "Escape" && open) {
         setOpen(false);
@@ -43,6 +49,7 @@ export default function CommandPalette() {
   }, [open]);
 
   const navigateTo = useCallback((id: string) => {
+    playClick();
     setOpen(false);
     const element = document.getElementById(id);
     if (element) {
@@ -81,7 +88,10 @@ export default function CommandPalette() {
       {/* Floating Trigger Pill Button (Bottom Right) */}
       <button
         type="button"
-        onClick={() => setOpen(true)}
+        onClick={() => {
+          playPop();
+          setOpen(true);
+        }}
         className="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 rounded-full border border-white/15 bg-black/80 px-4 py-2.5 text-xs font-mono font-medium text-white shadow-2xl backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:border-[#D9A441] hover:shadow-[0_0_25px_rgba(217,164,65,0.35)] group cursor-pointer"
         aria-label="Ouvrir le menu de commande (Cmd+K)"
       >
@@ -241,6 +251,42 @@ export default function CommandPalette() {
                       <span>{lang === "fr" ? "Section CV" : "Resume Section"}</span>
                     </div>
                     <span className="text-[10px] font-mono text-gray-500">#resume</span>
+                  </Command.Item>
+
+                  <Command.Item
+                    value="terminal console cli linux hacker commandes interactif"
+                    onSelect={() => navigateTo("terminal")}
+                    className="flex cursor-pointer items-center justify-between rounded-xl px-3 py-2.5 text-xs text-gray-300 transition-colors data-[selected=true]:bg-white/10 data-[selected=true]:text-white hover:bg-white/10 hover:text-white"
+                  >
+                    <div className="flex items-center gap-3">
+                      <Terminal size={15} className="text-[#D9A441]" />
+                      <span>{lang === "fr" ? "Terminal Développeur (CLI)" : "Developer Terminal (CLI)"}</span>
+                    </div>
+                    <span className="text-[10px] font-mono text-gray-500">#terminal</span>
+                  </Command.Item>
+
+                  <Command.Item
+                    value="api sandbox swagger spring backend rest postman"
+                    onSelect={() => navigateTo("api-playground")}
+                    className="flex cursor-pointer items-center justify-between rounded-xl px-3 py-2.5 text-xs text-gray-300 transition-colors data-[selected=true]:bg-white/10 data-[selected=true]:text-white hover:bg-white/10 hover:text-white"
+                  >
+                    <div className="flex items-center gap-3">
+                      <Server size={15} className="text-emerald-400" />
+                      <span>{lang === "fr" ? "Sandbox API Spring Boot" : "Spring Boot API Sandbox"}</span>
+                    </div>
+                    <span className="text-[10px] font-mono text-gray-500">#api-playground</span>
+                  </Command.Item>
+
+                  <Command.Item
+                    value="github activite commits code stats streak"
+                    onSelect={() => navigateTo("github-activity")}
+                    className="flex cursor-pointer items-center justify-between rounded-xl px-3 py-2.5 text-xs text-gray-300 transition-colors data-[selected=true]:bg-white/10 data-[selected=true]:text-white hover:bg-white/10 hover:text-white"
+                  >
+                    <div className="flex items-center gap-3">
+                      <FaGithub size={15} className="text-white" />
+                      <span>{lang === "fr" ? "Activité GitHub & Commits" : "GitHub Activity & Commits"}</span>
+                    </div>
+                    <span className="text-[10px] font-mono text-gray-500">#github-activity</span>
                   </Command.Item>
 
                   <Command.Item
