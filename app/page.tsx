@@ -76,6 +76,8 @@ import GitHubStats from "@/components/GitHubStats";
 import SystemArchitecture from "@/components/SystemArchitecture";
 import NowSection from "@/components/NowSection";
 import BookingModal from "@/components/BookingModal";
+import FloatingDock from "@/components/FloatingDock";
+import TechMarquee from "@/components/TechMarquee";
 import BugHuntGame from "@/components/BugHuntGame";
 import { playClick } from "@/lib/sound";
 import emailjs from "@emailjs/browser";
@@ -642,6 +644,7 @@ export default function Home() {
         <CommandPalette />
         <ScrollProgress />
         <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
+        <FloatingDock onOpenBooking={() => setIsBookingOpen(true)} />
 
           <main className="relative z-10 pt-20">
             {/* HERO SECTION */}
@@ -901,18 +904,9 @@ export default function Home() {
               </ScrollReveal>
             </div>
   
-            {/* ═══ ARCHITECTURE TELEMETRY TICKER ═══ */}
+            {/* ═══ LIVE TECH STACK MARQUEE ═══ */}
             <div className="mt-20 sm:mt-28">
-              <div className="ticker group py-1.5 border-y border-white/10 bg-neutral-950/40 backdrop-blur-md">
-                <div className="ticker-track text-xs font-mono font-bold uppercase tracking-[0.25em] text-gray-400 group-hover:[animation-play-state:paused]">
-                  {[...tickerItems, ...tickerItems].map((item, i) => (
-                      <span key={`${item}-${i}`} className="flex items-center gap-[2.5rem] transition-colors duration-300 hover:text-[#D9A441] cursor-default">
-                    {i > 0 && <span className="ticker-dot bg-[#D9A441] shadow-[0_0_8px_rgba(217,164,65,0.8)]" />}
-                        {item}
-                  </span>
-                  ))}
-                </div>
-              </div>
+              <TechMarquee />
             </div>
   
             {/* ═══ LIVE NOW & CODING VIBES SECTION ═══ */}
