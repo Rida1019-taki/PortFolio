@@ -306,13 +306,13 @@ export default function CommandPalette() {
                   </Command.Item>
 
                   <Command.Item
-                    value="now statut temps reel musique lofi beats"
+                    value="now statut temps reel objectifs focus"
                     onSelect={() => navigateTo("now")}
                     className="flex cursor-pointer items-center justify-between rounded-xl px-3 py-2.5 text-xs text-gray-300 transition-colors data-[selected=true]:bg-white/10 data-[selected=true]:text-white hover:bg-white/10 hover:text-white"
                   >
                     <div className="flex items-center gap-3">
                       <Clock size={15} className="text-emerald-400" />
-                      <span>{lang === "fr" ? "Statut /now & Lo-Fi Beats" : "/now Status & Lo-Fi Beats"}</span>
+                      <span>{lang === "fr" ? "Statut /now & Objectifs" : "/now Status & Focus"}</span>
                     </div>
                     <span className="text-[10px] font-mono text-gray-500">#now</span>
                   </Command.Item>

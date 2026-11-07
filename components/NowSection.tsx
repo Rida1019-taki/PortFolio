@@ -1,107 +1,17 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import {
   Clock,
   Sparkles,
   BookOpen,
   Code2,
   Compass,
-  Headphones,
-  Play,
-  Pause,
-  Volume2,
-  Music,
   MapPin,
   CheckCircle2,
 } from "lucide-react";
-import { playClick } from "@/lib/sound";
 
 export default function NowSection() {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const audioCtxRef = useRef<AudioContext | null>(null);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-
-  // Clean synthesized Lo-Fi ambient chords (Fmaj7 - Em7 - Dm7 - Cmaj7)
-  const chords = [
-    [349.23, 440.0, 523.25, 659.25], // Fmaj7
-    [329.63, 392.0, 493.88, 587.33], // Em7
-    [293.66, 349.23, 440.0, 523.25], // Dm7
-    [261.63, 329.63, 392.0, 493.88], // Cmaj7
-  ];
-
-  const playChord = (chord: number[]) => {
-    if (!audioCtxRef.current) return;
-    const ctx = audioCtxRef.current;
-    if (ctx.state === "suspended") ctx.resume();
-
-    chord.forEach((freq) => {
-      try {
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        const filter = ctx.createBiquadFilter();
-
-        // Warm low-pass filter for cozy lo-fi character
-        filter.type = "lowpass";
-        filter.frequency.setValueAtTime(800, ctx.currentTime);
-
-        osc.type = "sine";
-        osc.frequency.setValueAtTime(freq, ctx.currentTime);
-
-        // Smooth attack and long decay
-        gain.gain.setValueAtTime(0.001, ctx.currentTime);
-        gain.gain.linearRampToValueAtTime(0.025, ctx.currentTime + 0.4);
-        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 2.8);
-
-        osc.connect(filter);
-        filter.connect(gain);
-        gain.connect(ctx.destination);
-
-        osc.start(ctx.currentTime);
-        osc.stop(ctx.currentTime + 2.8);
-      } catch {
-        // Ignore audio errors
-      }
-    });
-  };
-
-  const toggleMusic = () => {
-    playClick();
-
-    if (isPlaying) {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-      if (audioCtxRef.current) audioCtxRef.current.suspend();
-      setIsPlaying(false);
-    } else {
-      if (!audioCtxRef.current) {
-        const AudioCtx =
-          window.AudioContext ||
-          (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-        if (AudioCtx) audioCtxRef.current = new AudioCtx();
-      }
-      if (audioCtxRef.current?.state === "suspended") {
-        audioCtxRef.current.resume();
-      }
-
-      let chordIndex = 0;
-      playChord(chords[chordIndex]);
-
-      intervalRef.current = setInterval(() => {
-        chordIndex = (chordIndex + 1) % chords.length;
-        playChord(chords[chordIndex]);
-      }, 3000);
-
-      setIsPlaying(true);
-    }
-  };
-
-  useEffect(() => {
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-      if (audioCtxRef.current) audioCtxRef.current.close().catch(() => {});
-    };
-  }, []);
-
   return (
     <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.05] via-white/[0.02] to-transparent p-6 sm:p-10 backdrop-blur-2xl shadow-2xl space-y-8">
       {/* Top Ambient Glow */}
@@ -121,46 +31,13 @@ export default function NowSection() {
             <span className="text-xs font-mono text-gray-500">Mis à jour récemment</span>
           </div>
           <p className="text-xs sm:text-sm text-gray-400 font-mono">
-            Un aperçu transparent de mes projets en cours, mes lectures actuelles et ma bande-son de code.
+            Un aperçu transparent de mes projets en cours, mes lectures actuelles et mes objectifs d&apos;ingénierie.
           </p>
         </div>
 
-        {/* Lo-Fi Player Widget */}
-        <div className="flex items-center gap-3 rounded-2xl border border-white/15 bg-black/80 px-4 py-2.5 backdrop-blur-xl shadow-lg">
-          <button
-            type="button"
-            onClick={toggleMusic}
-            title={isPlaying ? "Mettre en pause" : "Écouter l'ambiance Lo-Fi de code"}
-            className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#D9A441] text-black shadow-md shadow-[#D9A441]/20 transition-transform hover:scale-110 cursor-pointer"
-          >
-            {isPlaying ? <Pause size={15} /> : <Play size={15} className="ml-0.5 fill-black" />}
-          </button>
-
-          <div className="flex flex-col">
-            <div className="flex items-center gap-2">
-              <Headphones size={13} className="text-[#D9A441]" />
-              <span className="text-xs font-bold font-mono text-white">Coding Beats (60 BPM)</span>
-            </div>
-            <span className="text-[10px] font-mono text-gray-400">
-              {isPlaying ? "En lecture • Ambiance calme" : "Cliquez pour écouter"}
-            </span>
-          </div>
-
-          {/* Equalizer Wave Bars */}
-          <div className="flex items-end gap-1 h-5 ml-2">
-            {[4, 8, 14, 10, 16, 6].map((h, i) => (
-              <span
-                key={i}
-                style={{
-                  height: isPlaying ? `${h}px` : "3px",
-                  transition: "height 0.3s ease",
-                }}
-                className={`w-1 rounded-full ${
-                  isPlaying ? "bg-[#D9A441] animate-pulse" : "bg-white/20"
-                }`}
-              />
-            ))}
-          </div>
+        <div className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-mono text-gray-300">
+          <Clock size={13} className="text-[#D9A441]" />
+          <span>Novembre 2026 • En cours</span>
         </div>
       </div>
 
