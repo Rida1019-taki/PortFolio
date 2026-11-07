@@ -4,6 +4,7 @@ import {
   ArrowRight,
   ArrowUpRight,
   Award,
+  Calendar,
   BookOpen,
   Briefcase,
   Code2,
@@ -72,6 +73,11 @@ import ScrollProgress from "@/components/ScrollProgress";
 import TerminalShowcase from "@/components/TerminalShowcase";
 import ApiPlayground from "@/components/ApiPlayground";
 import GitHubStats from "@/components/GitHubStats";
+import SystemArchitecture from "@/components/SystemArchitecture";
+import NowSection from "@/components/NowSection";
+import BookingModal from "@/components/BookingModal";
+import BugHuntGame from "@/components/BugHuntGame";
+import { playClick } from "@/lib/sound";
 import emailjs from "@emailjs/browser";
 import { useEffect, useRef, useState } from "react";
 import {HiMenu, HiOutlineMenu, HiOutlineMenuAlt3, HiSparkles, HiX} from "react-icons/hi";
@@ -304,6 +310,7 @@ export function Header() {
 
 export default function Home() {
   const { t, lang } = useLanguage();
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
 
   const projects: ProjectItem[] = [
     {
@@ -634,6 +641,7 @@ export default function Home() {
         <FallingLeavesWrapper />
         <CommandPalette />
         <ScrollProgress />
+        <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
 
           <main className="relative z-10 pt-20">
             {/* HERO SECTION */}
@@ -835,6 +843,18 @@ export default function Home() {
                             {t.hero.exploreBtn} <ArrowRight size={15} />
                           </a>
 
+                          <button
+                            type="button"
+                            onClick={() => {
+                              playClick();
+                              setIsBookingOpen(true);
+                            }}
+                            className="flex-1 sm:flex-none group inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3.5 text-xs font-bold font-mono text-black bg-[#D9A441] shadow-lg shadow-[#D9A441]/20 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_25px_rgba(217,164,65,0.45)] cursor-pointer"
+                          >
+                            <Calendar size={14} className="text-black" />
+                            <span>{lang === "fr" ? "Réserver un appel 15m" : "Book 15m Call"}</span>
+                          </button>
+
                           <a
                             href="#contact"
                             className="flex-1 sm:flex-none group inline-flex items-center justify-center gap-2.5 rounded-2xl px-6 py-3.5 text-xs font-semibold text-gray-200 bg-white/[0.04] border border-white/10 backdrop-blur-xl transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:text-white hover:scale-[1.02] active:scale-95 shadow-lg"
@@ -895,6 +915,15 @@ export default function Home() {
               </div>
             </div>
   
+            {/* ═══ LIVE NOW & CODING VIBES SECTION ═══ */}
+            <section id="now" className="relative mx-auto max-w-7xl px-5 pt-16 pb-12 sm:px-8">
+              <ScrollReveal>
+                <NowSection />
+              </ScrollReveal>
+            </section>
+
+            <div className="section-divider mx-auto max-w-7xl" />
+
             {/* ═══ SKILLS SECTION ═══ */}
             <section id="skills" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
               <ScrollReveal>
@@ -939,6 +968,33 @@ export default function Home() {
               </ScrollReveal>
             </section>
   
+            <div className="section-divider mx-auto max-w-7xl" />
+
+            {/* ═══ SYSTEM DESIGN ARCHITECTURE VIEWER ═══ */}
+            <section id="architecture" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
+              <ScrollReveal>
+                <div className="mb-14 max-w-2xl space-y-4">
+                  <span className="section-label inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
+                    <Layers size={14} /> {lang === "fr" ? "Ingénierie & System Design" : "Engineering & System Design"}
+                  </span>
+                  <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
+                    <span className="gradient-text">{lang === "fr" ? "Architecture " : "System "}</span>
+                    <br />
+                    <span className="brand-gradient-text font-extrabold tracking-tight">{lang === "fr" ? "Design & Flux N-Tiers" : "Design & N-Tier Pipeline"}</span>
+                  </h2>
+                  <p className="text-base leading-relaxed text-[color:var(--muted)] sm:text-lg">
+                    {lang === "fr"
+                      ? "Explorez la décomposition modulaire de mes applications : de l'interception des requêtes client jusqu'à la persistance relationnelle ACID."
+                      : "Explore the modular decomposition of my services: from client request interception down to ACID relational persistence."}
+                  </p>
+                </div>
+              </ScrollReveal>
+
+              <ScrollReveal delay={120}>
+                <SystemArchitecture />
+              </ScrollReveal>
+            </section>
+
             <div className="section-divider mx-auto max-w-7xl" />
 
             {/* ═══ API PLAYGROUND (Spring Boot Architecture Sandbox) ═══ */}
@@ -1070,6 +1126,15 @@ export default function Home() {
   
             <div className="section-divider mx-auto max-w-7xl" />
   
+            {/* ═══ BUG HUNT DEVELOPER EASTER EGG ═══ */}
+            <section id="challenge" className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8">
+              <ScrollReveal>
+                <BugHuntGame />
+              </ScrollReveal>
+            </section>
+
+            <div className="section-divider mx-auto max-w-7xl" />
+
               {/* ═══ HACKATHONS ═══ */}
             <section
                 id="hackathons"

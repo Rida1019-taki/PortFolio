@@ -18,6 +18,10 @@ import {
   Send,
   Terminal,
   Server,
+  Layers,
+  Clock,
+  Bug,
+  Calendar,
 } from "lucide-react";
 import { FaGithub, FaLinkedin, FaWhatsapp, FaInstagram } from "react-icons/fa";
 import { triggerGoldConfetti, triggerSideCannons } from "@/lib/confetti";
@@ -287,6 +291,42 @@ export default function CommandPalette() {
                       <span>{lang === "fr" ? "Activité GitHub & Commits" : "GitHub Activity & Commits"}</span>
                     </div>
                     <span className="text-[10px] font-mono text-gray-500">#github-activity</span>
+                  </Command.Item>
+
+                  <Command.Item
+                    value="architecture system design backend n-tiers flux layers"
+                    onSelect={() => navigateTo("architecture")}
+                    className="flex cursor-pointer items-center justify-between rounded-xl px-3 py-2.5 text-xs text-gray-300 transition-colors data-[selected=true]:bg-white/10 data-[selected=true]:text-white hover:bg-white/10 hover:text-white"
+                  >
+                    <div className="flex items-center gap-3">
+                      <Layers size={15} className="text-[#D9A441]" />
+                      <span>{lang === "fr" ? "System Design Architecture" : "System Design Architecture"}</span>
+                    </div>
+                    <span className="text-[10px] font-mono text-gray-500">#architecture</span>
+                  </Command.Item>
+
+                  <Command.Item
+                    value="now statut temps reel musique lofi beats"
+                    onSelect={() => navigateTo("now")}
+                    className="flex cursor-pointer items-center justify-between rounded-xl px-3 py-2.5 text-xs text-gray-300 transition-colors data-[selected=true]:bg-white/10 data-[selected=true]:text-white hover:bg-white/10 hover:text-white"
+                  >
+                    <div className="flex items-center gap-3">
+                      <Clock size={15} className="text-emerald-400" />
+                      <span>{lang === "fr" ? "Statut /now & Lo-Fi Beats" : "/now Status & Lo-Fi Beats"}</span>
+                    </div>
+                    <span className="text-[10px] font-mono text-gray-500">#now</span>
+                  </Command.Item>
+
+                  <Command.Item
+                    value="challenge bug hunt game easter egg spring"
+                    onSelect={() => navigateTo("challenge")}
+                    className="flex cursor-pointer items-center justify-between rounded-xl px-3 py-2.5 text-xs text-gray-300 transition-colors data-[selected=true]:bg-white/10 data-[selected=true]:text-white hover:bg-white/10 hover:text-white"
+                  >
+                    <div className="flex items-center gap-3">
+                      <Bug size={15} className="text-amber-400" />
+                      <span>{lang === "fr" ? "Bug Hunt Easter Egg" : "Bug Hunt Easter Egg"}</span>
+                    </div>
+                    <span className="text-[10px] font-mono text-gray-500">#challenge</span>
                   </Command.Item>
 
                   <Command.Item
