@@ -67,6 +67,7 @@ import EducationShowcase, { EducationItem } from "@/components/EducationShowcase
 import ResumeShowcase from "@/components/ResumeShowcase";
 import ContactShowcase from "@/components/ContactShowcase";
 import CertificationsShowcase from "@/components/CertificationsShowcase";
+import CommandPalette from "@/components/CommandPalette";
 import emailjs from "@emailjs/browser";
 import { useEffect, useRef, useState } from "react";
 import {HiMenu, HiOutlineMenu, HiOutlineMenuAlt3, HiSparkles, HiX} from "react-icons/hi";
@@ -627,6 +628,7 @@ export default function Home() {
         <ParticleField />
         <MouseGlow />
         <FallingLeavesWrapper />
+        <CommandPalette />
 
           <main className="relative z-10 pt-20">
             {/* HERO SECTION */}

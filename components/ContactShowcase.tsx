@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
+import { triggerGoldConfetti } from "@/lib/confetti";
 import {
   Mail,
   Send,
@@ -78,6 +79,7 @@ export default function ContactShowcase({ t }: ContactShowcaseProps) {
       );
 
       form.reset();
+      triggerGoldConfetti();
       toast.success(t.toastSuccessTitle || "Message envoyé avec succès !", {
         description:
           t.toastSuccessDesc ||

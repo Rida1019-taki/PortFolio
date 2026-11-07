@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { triggerGoldConfetti } from "@/lib/confetti";
 import {
   FileText,
   Download,
@@ -121,6 +122,7 @@ export default function ResumeShowcase({ t }: ResumeShowcaseProps) {
               <a
                 href={cvPath}
                 download
+                onClick={() => triggerGoldConfetti()}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative flex items-center justify-center gap-2.5 w-full sm:w-auto flex-1 rounded-2xl bg-gradient-to-r from-[#D9A441] to-[#B8860B] px-6 py-3.5 text-xs sm:text-sm font-bold text-black shadow-lg shadow-[#D9A441]/20 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(217,164,65,0.4)]"

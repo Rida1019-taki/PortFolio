@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Tilt from "react-parallax-tilt";
 import Image from "next/image";
 import {
   ArrowUpRight,
@@ -103,11 +104,22 @@ export default function WorkShowcase({ projects, t }: WorkShowcaseProps) {
               key={project.id}
               className={`${
                 isHero ? "lg:col-span-12" : "lg:col-span-6"
-              } group relative rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.05] via-white/[0.02] to-transparent p-1 transition-all duration-500 hover:-translate-y-1.5`}
-              style={{
-                boxShadow: undefined,
-              }}
+              } h-full`}
             >
+              <Tilt
+                tiltMaxAngleX={4}
+                tiltMaxAngleY={4}
+                perspective={1200}
+                glareEnable={true}
+                glareMaxOpacity={0.08}
+                glareColor={project.accent || "#D9A441"}
+                glarePosition="all"
+                glareBorderRadius="24px"
+                className="h-full rounded-3xl"
+              >
+                <div
+                  className="group relative h-full rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.05] via-white/[0.02] to-transparent p-1 transition-all duration-500"
+                >
               {/* Dynamic Ambient Hover Glow */}
               <div
                 className="absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-700 group-hover:opacity-100 pointer-events-none blur-3xl"
@@ -339,6 +351,8 @@ export default function WorkShowcase({ projects, t }: WorkShowcaseProps) {
                   </div>
                 )}
               </div>
+                </div>
+              </Tilt>
             </div>
           );
         })}

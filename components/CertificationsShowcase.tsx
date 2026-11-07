@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Tilt from "react-parallax-tilt";
 import {
   ShieldCheck,
   Laptop2,
@@ -206,10 +207,21 @@ export default function CertificationsShowcase({ t }: CertificationsShowcaseProp
           const Icon = cert.icon;
 
           return (
-            <div
-              key={cert.id}
-              className="group relative flex flex-col justify-between rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.05] via-white/[0.02] to-transparent p-1 transition-all duration-500 hover:-translate-y-2 hover:border-[#D9A441]/60 hover:shadow-[0_20px_50px_-15px_rgba(217,164,65,0.3)]"
-            >
+            <div key={cert.id} className="h-full">
+              <Tilt
+                tiltMaxAngleX={6}
+                tiltMaxAngleY={6}
+                perspective={1000}
+                glareEnable={true}
+                glareMaxOpacity={0.12}
+                glareColor={cert.accentColor}
+                glarePosition="all"
+                glareBorderRadius="24px"
+                className="h-full rounded-3xl"
+              >
+                <div
+                  className="group relative flex flex-col justify-between h-full rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.05] via-white/[0.02] to-transparent p-1 transition-all duration-500 hover:border-[#D9A441]/60 hover:shadow-[0_20px_50px_-15px_rgba(217,164,65,0.3)]"
+                >
               {/* Top Dynamic Ambient Glow */}
               <div
                 className="absolute -top-16 -right-16 h-48 w-48 rounded-full blur-[80px] pointer-events-none transition-all duration-500 opacity-60 group-hover:opacity-100"
@@ -312,6 +324,8 @@ export default function CertificationsShowcase({ t }: CertificationsShowcaseProp
                 </div>
 
               </div>
+                </div>
+              </Tilt>
             </div>
           );
         })}
