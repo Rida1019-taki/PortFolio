@@ -745,7 +745,7 @@ export default function Home() {
                             alt="Rida Taki - Développeur Full Stack"
                             fill
                             sizes="(max-width: 768px) 100vw, 400px"
-                            className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                            className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                             priority
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
