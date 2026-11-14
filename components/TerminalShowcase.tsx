@@ -5,6 +5,7 @@ import { Terminal, Maximize2, Minimize2, Sparkles, CornerDownLeft, X, Copy, Chec
 import { playTerminalKey, playSuccess, playClick } from "@/lib/sound";
 import { triggerGoldConfetti } from "@/lib/confetti";
 import { toast } from "sonner";
+import { useLanguage } from "@/components/LanguageProvider";
 
 interface CommandOutput {
   id: number;
@@ -27,6 +28,8 @@ const COMMAND_LIST = [
 ];
 
 export default function TerminalShowcase() {
+  const { lang } = useLanguage();
+  const fr = lang === "fr";
   const [history, setHistory] = useState<CommandOutput[]>([]);
   const [inputVal, setInputVal] = useState("");
   const [cmdIndex, setCmdIndex] = useState<number | null>(null);
@@ -96,20 +99,20 @@ export default function TerminalShowcase() {
       case "help":
         out = (
           <div className="space-y-1.5 text-xs font-mono text-gray-300">
-            <div className="text-[#D9A441] font-bold">Outils & Commandes disponibles :</div>
+            <div className="text-[#D9A441] font-bold">{fr ? "Outils & Commandes disponibles :" : "Available tools & commands:"}</div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1 pt-1">
-              <div><span className="text-emerald-400 font-bold">whoami</span> — Présentation & Bio</div>
-              <div><span className="text-emerald-400 font-bold">skills</span> — Stack technique & Compétences</div>
-              <div><span className="text-emerald-400 font-bold">projects</span> — Liste des projets majeurs</div>
-              <div><span className="text-emerald-400 font-bold">experience</span> — Parcours pro en entreprise</div>
-              <div><span className="text-emerald-400 font-bold">certifications</span> — Accréditations Cisco</div>
-              <div><span className="text-emerald-400 font-bold">cv</span> — Télécharger le CV en PDF</div>
-              <div><span className="text-emerald-400 font-bold">contact</span> — Email, WhatsApp & Réseaux</div>
-              <div><span className="text-emerald-400 font-bold">sudo hire</span> — Proposition d'embauche 🚀</div>
-              <div><span className="text-emerald-400 font-bold">date</span> — Horodatage local</div>
-              <div><span className="text-emerald-400 font-bold">clear</span> — Nettoyer le terminal</div>
+              <div><span className="text-emerald-400 font-bold">whoami</span> — {fr ? "Présentation & Bio" : "Introduction & Bio"}</div>
+              <div><span className="text-emerald-400 font-bold">skills</span> — {fr ? "Stack technique & Compétences" : "Tech stack & Skills"}</div>
+              <div><span className="text-emerald-400 font-bold">projects</span> — {fr ? "Liste des projets majeurs" : "Key projects"}</div>
+              <div><span className="text-emerald-400 font-bold">experience</span> — {fr ? "Parcours pro en entreprise" : "Professional experience"}</div>
+              <div><span className="text-emerald-400 font-bold">certifications</span> — {fr ? "Accréditations Cisco" : "Cisco certifications"}</div>
+              <div><span className="text-emerald-400 font-bold">cv</span> — {fr ? "Télécharger le CV en PDF" : "Download resume (PDF)"}</div>
+              <div><span className="text-emerald-400 font-bold">contact</span> — {fr ? "Email, WhatsApp & Réseaux" : "Email, WhatsApp & Socials"}</div>
+              <div><span className="text-emerald-400 font-bold">sudo hire</span> — {fr ? "Proposition d'embauche 🚀" : "Make a job offer 🚀"}</div>
+              <div><span className="text-emerald-400 font-bold">date</span> — {fr ? "Horodatage local" : "Local timestamp"}</div>
+              <div><span className="text-emerald-400 font-bold">clear</span> — {fr ? "Nettoyer le terminal" : "Clear the terminal"}</div>
             </div>
-            <div className="text-[11px] text-gray-500 pt-1">Astuce : Utilisez [Tab] pour l'autocomplétion et [↑/↓] pour l'historique.</div>
+            <div className="text-[11px] text-gray-500 pt-1">{fr ? "Astuce : Utilisez [Tab] pour l'autocomplétion et [↑/↓] pour l'historique." : "Tip: Use [Tab] for autocompletion and [↑/↓] for history."}</div>
           </div>
         );
         break;
@@ -117,10 +120,10 @@ export default function TerminalShowcase() {
       case "whoami":
         out = (
           <div className="space-y-1 text-xs font-mono text-gray-300">
-            <div className="text-white font-bold">Rida Taki — Développeur Full Stack & Mobile</div>
-            <div className="text-gray-400">📍 Oued Zem, Béni Mellal-Khénifra, Maroc</div>
-            <div className="text-gray-400">🎓 Diplômé ISTA (Full Stack) & Master ENAA (Ingénierie du Web)</div>
-            <div className="text-emerald-400 font-semibold pt-1">⚡ Spécialité : Architectures robustes Java / Spring Boot, React, Kotlin & Cloud.</div>
+            <div className="text-white font-bold">{fr ? "Rida Taki — Développeur Full Stack & Mobile" : "Rida Taki — Full Stack & Mobile Developer"}</div>
+            <div className="text-gray-400">{fr ? "📍 Oued Zem, Béni Mellal-Khénifra, Maroc" : "📍 Oued Zem, Béni Mellal-Khénifra, Morocco"}</div>
+            <div className="text-gray-400">{fr ? "🎓 Diplômé ISTA (Full Stack) & Master ENAA (Ingénierie du Web)" : "🎓 ISTA graduate (Full Stack) & ENAA Master's (Web Engineering)"}</div>
+            <div className="text-emerald-400 font-semibold pt-1">{fr ? "⚡ Spécialité : Architectures robustes Java / Spring Boot, React, Kotlin & Cloud." : "⚡ Specialty: Robust Java / Spring Boot, React, Kotlin & Cloud architectures."}</div>
           </div>
         );
         break;
@@ -141,7 +144,7 @@ export default function TerminalShowcase() {
               <span className="text-gray-300">Kotlin (Android Native), Flutter, Dart</span>
             </div>
             <div>
-              <span className="text-[#D9A441] font-bold">Bases de données & DevOps : </span>
+              <span className="text-[#D9A441] font-bold">{fr ? "Bases de données & DevOps : " : "Databases & DevOps: "}</span>
               <span className="text-gray-300">MySQL, PostgreSQL, Docker, Git, Linux, Postman</span>
             </div>
           </div>
@@ -152,13 +155,13 @@ export default function TerminalShowcase() {
         out = (
           <div className="space-y-2 text-xs font-mono text-gray-300">
             <div className="border-l-2 border-[#D9A441] pl-2">
-              <span className="text-white font-bold">1. HealthCare+</span> : Plateforme médicale intelligente (Spring Boot + React + MySQL)
+              <span className="text-white font-bold">1. HealthCare+</span>{fr ? " : Plateforme médicale intelligente (Spring Boot + React + MySQL)" : ": Smart healthcare platform (Spring Boot + React + MySQL)"}
             </div>
             <div className="border-l-2 border-emerald-500 pl-2">
-              <span className="text-white font-bold">2. LogiTrack</span> : Système de gestion logistique & traçabilité temps réel (Spring Boot + Vite)
+              <span className="text-white font-bold">2. LogiTrack</span>{fr ? " : Système de gestion logistique & traçabilité temps réel (Spring Boot + Vite)" : ": Logistics management & real-time tracking system (Spring Boot + Vite)"}
             </div>
             <div className="border-l-2 border-blue-500 pl-2">
-              <span className="text-white font-bold">3. Auto Parc</span> : Supervision & maintenance de parc automobile (Java/Spring + Dashboard)
+              <span className="text-white font-bold">3. Auto Parc</span>{fr ? " : Supervision & maintenance de parc automobile (Java/Spring + Dashboard)" : ": Vehicle fleet monitoring & maintenance (Java/Spring + Dashboard)"}
             </div>
           </div>
         );
@@ -167,8 +170,8 @@ export default function TerminalShowcase() {
       case "experience":
         out = (
           <div className="text-xs font-mono text-gray-300 space-y-1">
-            <div className="text-white font-bold">RSI (Réseaux et Systèmes d'Information) — Stagiaire Développeur</div>
-            <div className="text-gray-400">Conception et développement d'applications métiers, refonte de modules back-office et APIs REST.</div>
+            <div className="text-white font-bold">{fr ? "RSI (Réseaux et Systèmes d'Information) — Stagiaire Développeur" : "RSI (Networks & Information Systems) — Software Developer Intern"}</div>
+            <div className="text-gray-400">{fr ? "Conception et développement d'applications métiers, refonte de modules back-office et APIs REST." : "Designed and built business applications, redesigned back-office modules and REST APIs."}</div>
           </div>
         );
         break;
@@ -176,8 +179,8 @@ export default function TerminalShowcase() {
       case "certifications":
         out = (
           <div className="text-xs font-mono text-gray-300 space-y-1">
-            <div>🛡️ <span className="text-white font-semibold">Introduction à la Cybersécurité</span> — Cisco Networking Academy</div>
-            <div>💻 <span className="text-white font-semibold">Les Bases du Matériel Informatique</span> — Cisco Networking Academy</div>
+            <div>🛡️ <span className="text-white font-semibold">{fr ? "Introduction à la Cybersécurité" : "Introduction to Cybersecurity"}</span> — Cisco Networking Academy</div>
+            <div>💻 <span className="text-white font-semibold">{fr ? "Les Bases du Matériel Informatique" : "Computer Hardware Basics"}</span> — Cisco Networking Academy</div>
             <div>🐍 <span className="text-white font-semibold">Python Essentials 1</span> — Cisco Networking Academy</div>
           </div>
         );
@@ -188,9 +191,9 @@ export default function TerminalShowcase() {
         playSuccess();
         out = (
           <div className="text-xs font-mono text-gray-300 space-y-1">
-            <div className="text-[#D9A441] font-bold">📄 Téléchargement du CV lancé !</div>
+            <div className="text-[#D9A441] font-bold">{fr ? "📄 Téléchargement du CV lancé !" : "📄 Resume download started!"}</div>
             <div>
-              Lien direct :{" "}
+              {fr ? "Lien direct :" : "Direct link:"}{" "}
               <a
                 href="/docs/Rida_Taki_CV.pdf"
                 download
@@ -220,17 +223,17 @@ export default function TerminalShowcase() {
       case "hire":
         triggerGoldConfetti();
         playSuccess();
-        toast.success("🎉 Excellente décision !", {
-          description: "Redirection vers la section contact...",
+        toast.success(fr ? "🎉 Excellente décision !" : "🎉 Excellent decision!", {
+          description: fr ? "Redirection vers la section contact..." : "Redirecting to the contact section...",
         });
         setTimeout(() => {
           document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
         }, 1200);
         out = (
           <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-3 text-xs font-mono text-emerald-400 space-y-1">
-            <div className="font-bold text-base">✨ Offre d'embauche acceptée !</div>
-            <div>Statut : Disponibilité immédiate en CDI / Freelance / Hybride.</div>
-            <div>Redirection vers le formulaire de contact en cours...</div>
+            <div className="font-bold text-base">{fr ? "✨ Offre d'embauche acceptée !" : "✨ Job offer accepted!"}</div>
+            <div>{fr ? "Statut : Disponibilité immédiate en CDI / Freelance / Hybride." : "Status: Available immediately for full-time / freelance / hybrid roles."}</div>
+            <div>{fr ? "Redirection vers le formulaire de contact en cours..." : "Redirecting to the contact form..."}</div>
           </div>
         );
         break;
@@ -238,7 +241,7 @@ export default function TerminalShowcase() {
       case "date":
         out = (
           <div className="text-xs font-mono text-gray-400">
-            {new Date().toUTCString()} (Heure Maroc : UTC+1)
+            {new Date().toUTCString()} {fr ? "(Heure Maroc : UTC+1)" : "(Morocco time: UTC+1)"}
           </div>
         );
         break;
@@ -246,7 +249,7 @@ export default function TerminalShowcase() {
       default:
         out = (
           <div className="text-xs font-mono text-red-400">
-            Commande non reconnue: &quot;{cmd}&quot;. Tapez <span className="text-white font-bold">&quot;help&quot;</span> pour voir les commandes valides.
+            {fr ? "Commande non reconnue: " : "Command not found: "}&quot;{cmd}&quot;. {fr ? "Tapez " : "Type "}<span className="text-white font-bold">&quot;help&quot;</span>{fr ? " pour voir les commandes valides." : " to see available commands."}
           </div>
         );
         break;
@@ -259,7 +262,7 @@ export default function TerminalShowcase() {
     const text = history.map((h) => `$ ${h.command}`).join("\n");
     navigator.clipboard.writeText(text || "Terminal Rida Taki v2.0");
     setCopied(true);
-    toast.success("Contenu copié dans le presse-papier !");
+    toast.success(fr ? "Contenu copié dans le presse-papier !" : "Content copied to clipboard!");
     setTimeout(() => setCopied(false), 2000);
   };
 
@@ -281,7 +284,7 @@ export default function TerminalShowcase() {
           <button
             type="button"
             onClick={copyTerminalContent}
-            title="Copier l'historique"
+            title={fr ? "Copier l'historique" : "Copy history"}
             className="flex h-7 w-7 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-gray-400 transition-colors hover:bg-white/10 hover:text-white cursor-pointer"
           >
             {copied ? <Check size={12} className="text-emerald-400" /> : <Copy size={12} />}
@@ -303,9 +306,9 @@ export default function TerminalShowcase() {
           <div className="text-[#D9A441] font-bold text-sm">
             Rida Taki — Interactive Developer Console [v2.4.0]
           </div>
-          <div>Système : Linux 6.8.0-x86_64 • Java 21 LTS • Spring Boot 3.3 • Node 22</div>
+          <div>{fr ? "Système :" : "System:"} Linux 6.8.0-x86_64 • Java 21 LTS • Spring Boot 3.3 • Node 22</div>
           <div className="text-gray-500">
-            Tapez <span className="text-emerald-400 font-semibold">&apos;help&apos;</span> pour afficher la liste des commandes ou <span className="text-[#D9A441] font-semibold">&apos;sudo hire&apos;</span> pour collaborer.
+            {fr ? "Tapez " : "Type "}<span className="text-emerald-400 font-semibold">&apos;help&apos;</span>{fr ? " pour afficher la liste des commandes ou " : " to list available commands or "}<span className="text-[#D9A441] font-semibold">&apos;sudo hire&apos;</span>{fr ? " pour collaborer." : " to work together."}
           </div>
         </div>
 
@@ -335,7 +338,7 @@ export default function TerminalShowcase() {
             value={inputVal}
             onChange={(e) => setInputVal(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Tapez 'help', 'skills', 'projects'..."
+            placeholder={fr ? "Tapez 'help', 'skills', 'projects'..." : "Type 'help', 'skills', 'projects'..."}
             className="w-full bg-transparent text-white font-mono text-xs focus:outline-none placeholder-gray-600 caret-[#D9A441]"
             autoCapitalize="off"
             autoComplete="off"
@@ -347,7 +350,7 @@ export default function TerminalShowcase() {
 
       {/* Terminal Quick Command Pills (Footer) */}
       <div className="flex flex-wrap items-center gap-2 border-t border-white/10 bg-white/[0.02] px-4 py-2.5 sm:px-6">
-        <span className="text-[10px] font-mono text-gray-500 mr-1 hidden sm:inline">Exemples :</span>
+        <span className="text-[10px] font-mono text-gray-500 mr-1 hidden sm:inline">{fr ? "Exemples :" : "Examples:"}</span>
         {["help", "whoami", "skills", "projects", "sudo hire"].map((cmd) => (
           <button
             key={cmd}

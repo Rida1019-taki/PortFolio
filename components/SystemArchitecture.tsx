@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { playClick } from "@/lib/sound";
 import { toast } from "sonner";
+import { useLanguage } from "@/components/LanguageProvider";
 
 interface ArchitectureNode {
   id: string;
@@ -29,7 +30,7 @@ interface ArchitectureNode {
   glowColor: string;
   protocol: string;
   latency: string;
-  responsibilities: string[];
+  responsibilities: { en: string; fr: string }[];
   techStack: string[];
   codeSnippet: string;
 }
@@ -45,10 +46,22 @@ const NODES: ArchitectureNode[] = [
     protocol: "HTTPS / WSS • HTTP/2",
     latency: "< 25 ms",
     responsibilities: [
-      "Client Web React.js & Next.js avec rendu réactif et state management optimisé",
-      "Application mobile native Android (Kotlin) et cross-platform Flutter",
-      "Intercepteurs Axios pour l'injection automatique des tokens JWT",
-      "Validation côté client et gestion offline des requêtes",
+      {
+        fr: "Client Web React.js & Next.js avec rendu réactif et state management optimisé",
+        en: "React.js & Next.js web client with reactive rendering and optimized state management",
+      },
+      {
+        fr: "Application mobile native Android (Kotlin) et cross-platform Flutter",
+        en: "Native Android (Kotlin) and cross-platform Flutter mobile apps",
+      },
+      {
+        fr: "Intercepteurs Axios pour l'injection automatique des tokens JWT",
+        en: "Axios interceptors for automatic JWT token injection",
+      },
+      {
+        fr: "Validation côté client et gestion offline des requêtes",
+        en: "Client-side validation and offline request handling",
+      },
     ],
     techStack: ["React 19", "Next.js", "TypeScript", "Kotlin", "Flutter", "Tailwind CSS"],
     codeSnippet: `// Axios HTTP Client with Automatic JWT Injection
@@ -73,10 +86,22 @@ apiClient.interceptors.request.use((config) => {
     protocol: "Spring Security 6.3 • Bearer JWT",
     latency: "3.2 ms",
     responsibilities: [
-      "Filtre OncePerRequestFilter pour la validation cryptographique des signatures JWT",
-      "Contrôle d'accès basé sur les rôles (RBAC) : ROLE_ADMIN, ROLE_DOCTOR, ROLE_USER",
-      "Isolation CORS stricte et protection contre les attaques CSRF & XSS",
-      "Limitation du débit (Rate Limiting) et journalisation sécurisée des accès",
+      {
+        fr: "Filtre OncePerRequestFilter pour la validation cryptographique des signatures JWT",
+        en: "OncePerRequestFilter for cryptographic validation of JWT signatures",
+      },
+      {
+        fr: "Contrôle d'accès basé sur les rôles (RBAC) : ROLE_ADMIN, ROLE_DOCTOR, ROLE_USER",
+        en: "Role-based access control (RBAC): ROLE_ADMIN, ROLE_DOCTOR, ROLE_USER",
+      },
+      {
+        fr: "Isolation CORS stricte et protection contre les attaques CSRF & XSS",
+        en: "Strict CORS isolation and protection against CSRF & XSS attacks",
+      },
+      {
+        fr: "Limitation du débit (Rate Limiting) et journalisation sécurisée des accès",
+        en: "Rate limiting and secure access logging",
+      },
     ],
     techStack: ["Spring Security 6", "jjwt 0.12", "CORS Configuration", "BCrypt Hashing"],
     codeSnippet: `@Component
@@ -111,10 +136,22 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protocol: "RESTful JSON • Spring MVC",
     latency: "12.4 ms",
     responsibilities: [
-      "Architecture en couches découplées : Controllers, Services Métiers, DTOs & Mappers",
-      "Gestion transactionnelle déclarative (@Transactional) garantissant l'atomicité ACID",
-      "Validation stricte des payloads entrants avec Bean Validation (JSR-380)",
-      "Gestion centralisée des exceptions avec @RestControllerAdvice et DTOs d'erreur",
+      {
+        fr: "Architecture en couches découplées : Controllers, Services Métiers, DTOs & Mappers",
+        en: "Decoupled layered architecture: Controllers, Business Services, DTOs & Mappers",
+      },
+      {
+        fr: "Gestion transactionnelle déclarative (@Transactional) garantissant l'atomicité ACID",
+        en: "Declarative transaction management (@Transactional) ensuring ACID atomicity",
+      },
+      {
+        fr: "Validation stricte des payloads entrants avec Bean Validation (JSR-380)",
+        en: "Strict validation of incoming payloads with Bean Validation (JSR-380)",
+      },
+      {
+        fr: "Gestion centralisée des exceptions avec @RestControllerAdvice et DTOs d'erreur",
+        en: "Centralized exception handling with @RestControllerAdvice and error DTOs",
+      },
     ],
     techStack: ["Spring Boot 3.3", "Java 21 LTS", "MapStruct", "Jakarta Validation", "Lombok"],
     codeSnippet: `@Service
@@ -144,10 +181,22 @@ public class PatientManagementService {
     protocol: "JDBC • HikariCP Pool",
     latency: "4.8 ms",
     responsibilities: [
-      "Mapping objet-relationnel avancé avec Hibernate 6 et requêtes JPQL/Native optimisées",
-      "Gestion intelligente des relations (@OneToMany, @ManyToMany) et prévention du problème N+1",
-      "Pool de connexions ultra-performant HikariCP avec monitoring actif",
-      "Auditing automatique (@CreatedDate, @LastModifiedBy) via JPA Auditing",
+      {
+        fr: "Mapping objet-relationnel avancé avec Hibernate 6 et requêtes JPQL/Native optimisées",
+        en: "Advanced object-relational mapping with Hibernate 6 and optimized JPQL/native queries",
+      },
+      {
+        fr: "Gestion intelligente des relations (@OneToMany, @ManyToMany) et prévention du problème N+1",
+        en: "Smart relationship management (@OneToMany, @ManyToMany) and N+1 problem prevention",
+      },
+      {
+        fr: "Pool de connexions ultra-performant HikariCP avec monitoring actif",
+        en: "High-performance HikariCP connection pool with active monitoring",
+      },
+      {
+        fr: "Auditing automatique (@CreatedDate, @LastModifiedBy) via JPA Auditing",
+        en: "Automatic auditing (@CreatedDate, @LastModifiedBy) via JPA Auditing",
+      },
     ],
     techStack: ["Spring Data JPA", "Hibernate 6", "HikariCP", "Flyway Migration"],
     codeSnippet: `public interface PatientRepository extends JpaRepository<Patient, Long> {
@@ -169,10 +218,22 @@ public class PatientManagementService {
     protocol: "TCP/IP 3306 & Redis 6379",
     latency: "1.2 ms",
     responsibilities: [
-      "Persistance relationnelle robuste avec moteur InnoDB, clés étrangères et index composites",
-      "Transactions conformes aux normes ACID garantissant l'intégrité absolue des données",
-      "Mise en cache intelligente Redis pour les sessions utilisateurs et requêtes fréquentes",
-      "Stratégies de sauvegarde périodique et réplication sécurisée",
+      {
+        fr: "Persistance relationnelle robuste avec moteur InnoDB, clés étrangères et index composites",
+        en: "Robust relational persistence with the InnoDB engine, foreign keys and composite indexes",
+      },
+      {
+        fr: "Transactions conformes aux normes ACID garantissant l'intégrité absolue des données",
+        en: "ACID-compliant transactions guaranteeing full data integrity",
+      },
+      {
+        fr: "Mise en cache intelligente Redis pour les sessions utilisateurs et requêtes fréquentes",
+        en: "Smart Redis caching for user sessions and frequent queries",
+      },
+      {
+        fr: "Stratégies de sauvegarde périodique et réplication sécurisée",
+        en: "Periodic backup strategies and secure replication",
+      },
     ],
     techStack: ["MySQL 8.0", "Redis", "InnoDB", "B-Tree Indexes", "ACID Compliance"],
     codeSnippet: `-- MySQL 8.0 DDL Schema with Foreign Constraints & Composite Indexes
@@ -192,11 +253,13 @@ CREATE TABLE patients (
 export default function SystemArchitecture() {
   const [activeNode, setActiveNode] = useState<ArchitectureNode>(NODES[1]); // Default to Security Gateway
   const [copied, setCopied] = useState(false);
+  const { lang } = useLanguage();
+  const isFr = lang === "fr";
 
   const handleCopyCode = () => {
     navigator.clipboard.writeText(activeNode.codeSnippet);
     setCopied(true);
-    toast.success("Code source copié !");
+    toast.success(isFr ? "Code source copié !" : "Source code copied!");
     setTimeout(() => setCopied(false), 2000);
   };
 
@@ -217,17 +280,23 @@ export default function SystemArchitecture() {
               <span>Full Stack System Design Architecture</span>
             </span>
             <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 text-[10px] font-mono text-emerald-400">
-              Interactive
+              {isFr ? "Interactif" : "Interactive"}
             </span>
           </div>
           <p className="text-xs sm:text-sm text-gray-400 font-mono mt-1">
-            Explorez les 5 couches architecturales : de l&apos;interface utilisateur jusqu&apos;à la persistance ACID.
+            {isFr
+              ? "Explorez les 5 couches architecturales : de l'interface utilisateur jusqu'à la persistance ACID."
+              : "Explore the 5 architectural layers: from the user interface down to ACID persistence."}
           </p>
         </div>
 
         <div className="flex items-center gap-2 text-xs font-mono text-gray-400">
           <Activity size={14} className="text-[#D9A441] animate-pulse" />
-          <span>Flux de données continu • Latence moyenne : 18ms</span>
+          <span>
+            {isFr
+              ? "Flux de données continu • Latence moyenne : 18ms"
+              : "Continuous data flow • Average latency: 18ms"}
+          </span>
         </div>
       </div>
 
@@ -296,21 +365,26 @@ export default function SystemArchitecture() {
                 style={{ backgroundColor: activeNode.accentColor }}
               />
               <span className="text-xs font-mono uppercase tracking-wider text-gray-400">
-                Couche sélectionnée
+                {isFr ? "Couche sélectionnée" : "Selected layer"}
               </span>
             </div>
             <h3 className="text-2xl font-extrabold text-white font-mono tracking-tight">
               {activeNode.title}
             </h3>
             <p className="text-xs font-mono text-[#D9A441] font-semibold">
-              Protocole : {activeNode.protocol} • Temps de réponse : {activeNode.latency}
+              {isFr ? "Protocole : " : "Protocol: "}
+              {activeNode.protocol}
+              {isFr ? " • Temps de réponse : " : " • Response time: "}
+              {activeNode.latency}
             </p>
           </div>
 
           {/* Key Responsibilities Checklist */}
           <div className="space-y-2.5">
             <div className="text-xs font-mono font-bold text-gray-300 uppercase tracking-wider">
-              Responsabilités Techniques & Sécurité :
+              {isFr
+                ? "Responsabilités Techniques & Sécurité :"
+                : "Technical & Security Responsibilities:"}
             </div>
             <div className="space-y-2">
               {activeNode.responsibilities.map((resp, i) => (
@@ -320,7 +394,7 @@ export default function SystemArchitecture() {
                     className="shrink-0 mt-0.5"
                     style={{ color: activeNode.accentColor }}
                   />
-                  <span>{resp}</span>
+                  <span>{resp[lang]}</span>
                 </div>
               ))}
             </div>
@@ -328,7 +402,9 @@ export default function SystemArchitecture() {
 
           {/* Tech Stack Pills */}
           <div className="space-y-2 pt-2 border-t border-white/5">
-            <div className="text-xs font-mono font-bold text-gray-400">Frameworks & Outils :</div>
+            <div className="text-xs font-mono font-bold text-gray-400">
+              {isFr ? "Frameworks & Outils :" : "Frameworks & Tools:"}
+            </div>
             <div className="flex flex-wrap gap-2">
               {activeNode.techStack.map((tech) => (
                 <span
@@ -365,7 +441,7 @@ export default function SystemArchitecture() {
             <button
               type="button"
               onClick={handleCopyCode}
-              title="Copier le code"
+              title={isFr ? "Copier le code" : "Copy code"}
               className="flex h-7 w-7 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-gray-300 hover:text-white transition-colors cursor-pointer"
             >
               {copied ? <Check size={13} className="text-emerald-400" /> : <Copy size={13} />}

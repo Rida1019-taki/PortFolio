@@ -17,7 +17,9 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLangState] = useState<Language>("en");
   const [mounted, setMounted] = useState(false);
 
+  // Saved language lives in localStorage, so it can only be read after mount (SSR-safe hydration).
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     try {
       const saved = localStorage.getItem("preferred_lang") as Language | null;

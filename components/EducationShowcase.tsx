@@ -11,6 +11,7 @@ import {
   School,
   MapPin,
 } from "lucide-react";
+import { useLanguage } from "@/components/LanguageProvider";
 
 export interface EducationItem {
   institution: string;
@@ -35,28 +36,68 @@ interface EducationShowcaseProps {
 }
 
 export default function EducationShowcase({ education, t }: EducationShowcaseProps) {
+  const { lang } = useLanguage();
+  const fr = lang === "fr";
+  const copy = {
+    en: {
+      country: "Morocco",
+      excellence: "Excellence Program",
+      stateDiploma: "State Diploma",
+      graduated: "Graduated",
+      inProgress: "In Progress",
+      keySubjects: "Key Subjects & Skills:",
+      validation: "Academic Validation",
+    },
+    fr: {
+      country: "Maroc",
+      excellence: "Formation d'Excellence",
+      stateDiploma: "Diplôme d'État",
+      graduated: "Diplômé",
+      inProgress: "En cours",
+      keySubjects: "Matières & Compétences Clés :",
+      validation: "Validation Académique",
+    },
+  }[lang];
+
   // Enhanced coursework and location data for richer academic storytelling
   const courseworkMap: Record<string, { tag: string; location: string; coursework: string[] }> = {
     "École Numérique Ahmed Al Hansali": {
-      tag: "Formation d'Excellence • Génie Logiciel",
-      location: "Béni Mellal, Maroc",
-      coursework: [
-        "Architecture Entreprise avec Spring Boot",
-        "Interfaces Web Réactives avec React",
-        "Clean Architecture & Principes SOLID",
-        "Modélisation Relationnelle & MySQL",
-        "Conteneurisation Docker & Outils CI/CD",
-      ],
+      tag: fr
+        ? "Formation d'Excellence • Génie Logiciel"
+        : "Excellence Program • Software Engineering",
+      location: `Béni Mellal, ${copy.country}`,
+      coursework: fr
+        ? [
+            "Architecture Entreprise avec Spring Boot",
+            "Interfaces Web Réactives avec React",
+            "Clean Architecture & Principes SOLID",
+            "Modélisation Relationnelle & MySQL",
+            "Conteneurisation Docker & Outils CI/CD",
+          ]
+        : [
+            "Enterprise Architecture with Spring Boot",
+            "Reactive Web Interfaces with React",
+            "Clean Architecture & SOLID Principles",
+            "Relational Modeling & MySQL",
+            "Docker Containerization & CI/CD Tooling",
+          ],
     },
     "ISTA Oued Zem": {
-      tag: "Diplôme d'État • Option Mobile",
-      location: "Oued Zem, Maroc",
-      coursework: [
-        "Développement Mobile Android (Kotlin)",
-        "Applications Cross-Platform (Flutter & Dart)",
-        "Programmation Orientée Objet & Algorithmique",
-        "Conception UML & Bases de Données",
-      ],
+      tag: fr ? "Diplôme d'État • Option Mobile" : "State Diploma • Mobile Track",
+      location: `Oued Zem, ${copy.country}`,
+      coursework: fr
+        ? [
+            "Développement Mobile Android (Kotlin)",
+            "Applications Cross-Platform (Flutter & Dart)",
+            "Programmation Orientée Objet & Algorithmique",
+            "Conception UML & Bases de Données",
+          ]
+        : [
+            "Android Mobile Development (Kotlin)",
+            "Cross-Platform Apps (Flutter & Dart)",
+            "Object-Oriented Programming & Algorithms",
+            "UML Design & Databases",
+          ],
     },
   };
 
@@ -65,16 +106,22 @@ export default function EducationShowcase({ education, t }: EducationShowcasePro
       {education.map((edu, i) => {
         const isCurrent = edu.status === "current";
         const meta = courseworkMap[edu.institution] || {
-          tag: isCurrent ? "Formation d'Excellence" : "Diplôme d'État",
-          location: edu.location || "Maroc",
-          coursework: [
-            "Génie Logiciel & Architecture",
-            "Développement Web & Mobile",
-            "Bases de Données & Algorithmique",
-          ],
+          tag: isCurrent ? copy.excellence : copy.stateDiploma,
+          location: edu.location || copy.country,
+          coursework: fr
+            ? [
+                "Génie Logiciel & Architecture",
+                "Développement Web & Mobile",
+                "Bases de Données & Algorithmique",
+              ]
+            : [
+                "Software Engineering & Architecture",
+                "Web & Mobile Development",
+                "Databases & Algorithms",
+              ],
         };
 
-        const displayLocation = edu.location || meta.location || "Maroc";
+        const displayLocation = edu.location || meta.location || copy.country;
 
         return (
           <div
@@ -124,12 +171,12 @@ export default function EducationShowcase({ education, t }: EducationShowcasePro
                           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                           <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
                         </span>
-                        <span>{t.activeBadge || "En cours"}</span>
+                        <span>{t.activeBadge || copy.inProgress}</span>
                       </span>
                     ) : (
                       <span className="inline-flex items-center gap-1.5 rounded-full border border-[#D9A441]/40 bg-[#D9A441]/10 px-3 py-1 text-[11px] font-mono font-semibold text-[#D9A441]">
                         <Award size={13} />
-                        <span>Diplômé</span>
+                        <span>{copy.graduated}</span>
                       </span>
                     )}
                   </div>
@@ -149,7 +196,7 @@ export default function EducationShowcase({ education, t }: EducationShowcasePro
                 {/* Academic Highlights & Coursework */}
                 <div className="space-y-2.5 pt-2">
                   <span className="text-[11px] font-mono uppercase tracking-wider text-white/50 block">
-                    Matières & Compétences Clés :
+                    {copy.keySubjects}
                   </span>
                   <div className="grid gap-2">
                     {meta.coursework.map((course, idx) => (
@@ -172,7 +219,7 @@ export default function EducationShowcase({ education, t }: EducationShowcasePro
               <div className="border-t border-white/10 pt-4 flex items-center justify-between text-xs font-mono text-gray-400">
                 <span className="flex items-center gap-1.5">
                   <Sparkles size={13} className="text-[#D9A441]" />
-                  <span>Validation Académique</span>
+                  <span>{copy.validation}</span>
                 </span>
                 <span className="text-white/70 font-semibold flex items-center gap-1">
                   <MapPin size={12} className="text-[#D9A441]" />

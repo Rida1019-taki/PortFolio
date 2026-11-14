@@ -14,6 +14,7 @@ import {
   MapPin,
   User,
 } from "lucide-react";
+import { useLanguage } from "@/components/LanguageProvider";
 
 interface ResumeShowcaseProps {
   t: {
@@ -27,6 +28,31 @@ interface ResumeShowcaseProps {
 
 export default function ResumeShowcase({ t }: ResumeShowcaseProps) {
   const cvPath = "/docs/Rida_Taki_CV.pdf";
+  const { lang } = useLanguage();
+  const copy = {
+    en: {
+      availability: "Availability: Immediate",
+      location: "Oued Zem • Hybrid / Remote",
+      verified: "Verified Profile & Degrees",
+      format: "A4 Format • Updated 2026",
+      ready: "Ready",
+      expertise: "Expertise: Java, Spring Boot, React, Kotlin, Flutter, MySQL",
+      experience: "Professional experience and on-the-job achievements",
+      projects: "Major projects, national hackathons and Cisco certifications",
+      preview: "PDF Preview",
+    },
+    fr: {
+      availability: "Disponibilité : Immédiate",
+      location: "Oued Zem • Hybride / Remote",
+      verified: "Profil & Diplômes Vérifiés",
+      format: "Format A4 • Mis à jour 2026",
+      ready: "Prêt",
+      expertise: "Expertise : Java, Spring Boot, React, Kotlin, Flutter, MySQL",
+      experience: "Expérience professionnelle et réalisations en entreprise",
+      projects: "Projets majeurs, hackathons nationaux et certifications Cisco",
+      preview: "Aperçu PDF",
+    },
+  }[lang];
 
   return (
     <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.05] via-white/[0.02] to-transparent p-6 sm:p-10 lg:p-12 backdrop-blur-2xl shadow-2xl">
@@ -62,15 +88,15 @@ export default function ResumeShowcase({ t }: ResumeShowcaseProps) {
             </div>
             <div className="flex items-center gap-2.5 rounded-xl border border-white/5 bg-white/[0.02] px-3.5 py-2.5 text-xs font-mono text-gray-200">
               <Clock size={14} className="text-emerald-400 shrink-0" />
-              <span>Disponibilité : Immédiate</span>
+              <span>{copy.availability}</span>
             </div>
             <div className="flex items-center gap-2.5 rounded-xl border border-white/5 bg-white/[0.02] px-3.5 py-2.5 text-xs font-mono text-gray-200">
               <MapPin size={14} className="text-[#D9A441] shrink-0" />
-              <span>Oued Zem • Hybride / Remote</span>
+              <span>{copy.location}</span>
             </div>
             <div className="flex items-center gap-2.5 rounded-xl border border-white/5 bg-white/[0.02] px-3.5 py-2.5 text-xs font-mono text-gray-200">
               <ShieldCheck size={14} className="text-emerald-400 shrink-0" />
-              <span>Profil & Diplômes Vérifiés</span>
+              <span>{copy.verified}</span>
             </div>
           </div>
         </div>
@@ -90,13 +116,13 @@ export default function ResumeShowcase({ t }: ResumeShowcaseProps) {
                     Rida_Taki_CV.pdf
                   </h3>
                   <div className="text-xs font-mono text-gray-400 mt-0.5">
-                    Format A4 • Mis à jour 2026
+                    {copy.format}
                   </div>
                 </div>
               </div>
 
               <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-[11px] font-mono text-emerald-400">
-                Prêt
+                {copy.ready}
               </span>
             </div>
 
@@ -104,15 +130,15 @@ export default function ResumeShowcase({ t }: ResumeShowcaseProps) {
             <div className="space-y-2 text-xs font-mono text-gray-300">
               <div className="flex items-center gap-2">
                 <CheckCircle2 size={13} className="text-[#D9A441]" />
-                <span>Expertise : Java, Spring Boot, React, Kotlin, Flutter, MySQL</span>
+                <span>{copy.expertise}</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 size={13} className="text-[#D9A441]" />
-                <span>Expérience professionnelle et réalisations en entreprise</span>
+                <span>{copy.experience}</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 size={13} className="text-[#D9A441]" />
-                <span>Projets majeurs, hackathons nationaux et certifications Cisco</span>
+                <span>{copy.projects}</span>
               </div>
             </div>
 
@@ -138,7 +164,7 @@ export default function ResumeShowcase({ t }: ResumeShowcaseProps) {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 w-full sm:w-auto rounded-2xl border border-white/15 bg-white/5 px-5 py-3.5 text-xs sm:text-sm font-mono font-semibold text-white transition-all duration-300 hover:border-white/30 hover:bg-white/10"
               >
-                <span>Aperçu PDF</span>
+                <span>{copy.preview}</span>
                 <ExternalLink size={14} />
               </a>
             </div>

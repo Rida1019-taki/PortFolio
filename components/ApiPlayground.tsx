@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { Play, Copy, Check, Server, ShieldCheck, Database, Zap, Sparkles, Terminal } from "lucide-react";
 import { playClick, playSuccess } from "@/lib/sound";
 import { toast } from "sonner";
+import { useLanguage } from "@/components/LanguageProvider";
+import type { Language } from "@/lib/translations";
 
 interface EndpointSpec {
   id: string;
@@ -15,17 +17,24 @@ interface EndpointSpec {
   response: object;
 }
 
-const ENDPOINTS: EndpointSpec[] = [
+// Must be deterministic: a module-level `new Date()` differs between server and client and breaks hydration.
+const INITIAL_TIMESTAMP = "2026-01-01T00:00:00.000Z";
+
+const getEndpoints = (lang: Language): EndpointSpec[] => {
+  const fr = lang === "fr";
+  return [
   {
     id: "profile",
     method: "GET",
     path: "/api/v1/engineer/profile",
-    summary: "Profil Développeur & Stack",
-    description: "Retourne les métadonnées officielles de Rida Taki, rôles Spring Security et disponibilité.",
+    summary: fr ? "Profil Développeur & Stack" : "Developer Profile & Stack",
+    description: fr
+      ? "Retourne les métadonnées officielles de Rida Taki, rôles Spring Security et disponibilité."
+      : "Returns Rida Taki's official metadata, Spring Security roles and availability.",
     response: {
       status: "SUCCESS",
       statusCode: 200,
-      timestamp: new Date().toISOString(),
+      timestamp: INITIAL_TIMESTAMP,
       data: {
         fullName: "Rida Taki",
         title: "Full Stack & Mobile Developer",
@@ -33,13 +42,18 @@ const ENDPOINTS: EndpointSpec[] = [
         location: {
           city: "Oued Zem",
           region: "Béni Mellal-Khénifra",
-          country: "Maroc",
+          country: fr ? "Maroc" : "Morocco",
           timezone: "Africa/Casablanca (UTC+1)",
         },
-        credentials: [
-          "Diplôme ISTA — Full Stack Development",
-          "Master ENAA — Ingénierie du Web & Architectures Logicielles",
-        ],
+        credentials: fr
+          ? [
+              "Diplôme ISTA — Full Stack Development",
+              "Master ENAA — Ingénierie du Web & Architectures Logicielles",
+            ]
+          : [
+              "ISTA Diploma — Full Stack Development",
+              "ENAA Master's — Web Engineering & Software Architecture",
+            ],
         certifications: [
           "Cisco Networking Academy — Introduction to Cybersecurity",
           "Cisco Networking Academy — Computer Hardware Fundamentals",
@@ -54,8 +68,10 @@ const ENDPOINTS: EndpointSpec[] = [
     id: "healthcare",
     method: "GET",
     path: "/api/v1/projects/healthcare/architecture",
-    summary: "Architecture HealthCare+ (Spring Boot)",
-    description: "Spécification technique de l'application phare : sécurité JWT, couche JPA et modèle de données.",
+    summary: fr ? "Architecture HealthCare+ (Spring Boot)" : "HealthCare+ Architecture (Spring Boot)",
+    description: fr
+      ? "Spécification technique de l'application phare : sécurité JWT, couche JPA et modèle de données."
+      : "Technical specification of the flagship application: JWT security, JPA layer and data model.",
     response: {
       projectId: "healthcare-core",
       name: "HealthCare+ Patient Management Suite",
@@ -83,51 +99,72 @@ const ENDPOINTS: EndpointSpec[] = [
     id: "hire",
     method: "POST",
     path: "/api/v1/recruiter/dispatch-offer",
-    summary: "Dispatcher une Opportunité (POST)",
-    description: "Simule la soumission d'une proposition de poste avec validation Bean Validation (JSR 380).",
+    summary: fr ? "Dispatcher une Opportunité (POST)" : "Submit an Opportunity (POST)",
+    description: fr
+      ? "Simule la soumission d'une proposition de poste avec validation Bean Validation (JSR 380)."
+      : "Simulates submitting a job offer with Bean Validation (JSR 380).",
     requestBody: {
       companyName: "Tech Enterprise",
       recruiterEmail: "talent@techcorp.com",
-      contractType: "CDI / Hybride / Remote",
+      contractType: fr ? "CDI / Hybride / Remote" : "Full-time / Hybrid / Remote",
       position: "Full Stack Java / Spring Boot Developer",
       preferredStartDate: "Immediate",
     },
     response: {
       status: "CREATED",
       statusCode: 201,
-      message: "Proposition transmise avec succès au service de messagerie de Rida Taki.",
+      message: fr
+        ? "Proposition transmise avec succès au service de messagerie de Rida Taki."
+        : "Offer successfully delivered to Rida Taki's messaging service.",
       auditTrail: {
         queueId: "MSG-SPRING-7849",
         encryptedPayload: true,
         dispatchStatus: "DELIVERED_TO_INBOX",
       },
-      nextStep: "Notification transmise sur takirida72@gmail.com. Réponse sous 24h ouvrées.",
+      nextStep: fr
+        ? "Notification transmise sur takirida72@gmail.com. Réponse sous 24h ouvrées."
+        : "Notification sent to takirida72@gmail.com. Reply within 24 business hours.",
     },
   },
-];
+  ];
+};
 
 export default function ApiPlayground() {
-  const [selectedEndpoint, setSelectedEndpoint] = useState<EndpointSpec>(ENDPOINTS[0]);
+  const { lang } = useLanguage();
+  const fr = lang === "fr";
+  const endpoints = getEndpoints(lang);
+  const [selectedId, setSelectedId] = useState<string>(endpoints[0].id);
+  const selectedEndpoint = endpoints.find((ep) => ep.id === selectedId) ?? endpoints[0];
   const [isLoading, setIsLoading] = useState(false);
   const [activeTab, setActiveTab] = useState<"response" | "headers" | "curl">("response");
   const [copied, setCopied] = useState(false);
+  const [timestamp, setTimestamp] = useState(INITIAL_TIMESTAMP);
+
+  const responseJson = JSON.stringify(
+    "timestamp" in selectedEndpoint.response
+      ? { ...selectedEndpoint.response, timestamp }
+      : selectedEndpoint.response,
+    null,
+    2
+  );
 
   const handleSend = () => {
     playClick();
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
+      setTimestamp(new Date().toISOString());
       playSuccess();
       toast.success(`HTTP 200 OK — ${selectedEndpoint.path}`, {
-        description: "Requête exécutée en 36ms.",
+        description: fr ? "Requête exécutée en 36ms." : "Request completed in 36ms.",
       });
     }, 450);
   };
 
   const copyJson = () => {
-    navigator.clipboard.writeText(JSON.stringify(selectedEndpoint.response, null, 2));
+    navigator.clipboard.writeText(responseJson);
     setCopied(true);
-    toast.success("JSON copié dans le presse-papier !");
+    toast.success(fr ? "JSON copié dans le presse-papier !" : "JSON copied to clipboard!");
     setTimeout(() => setCopied(false), 2000);
   };
 
@@ -153,13 +190,15 @@ export default function ApiPlayground() {
             </span>
           </div>
           <p className="text-xs sm:text-sm text-gray-400 font-mono">
-            Simulateur d&apos;appels API en direct pour tester les payloads et l&apos;architecture backend.
+            {fr
+              ? "Simulateur d'appels API en direct pour tester les payloads et l'architecture backend."
+              : "Live API call simulator to explore payloads and the backend architecture."}
           </p>
         </div>
 
         {/* Endpoint Selector Pills */}
         <div className="flex flex-wrap items-center gap-2">
-          {ENDPOINTS.map((ep) => {
+          {endpoints.map((ep) => {
             const isSelected = selectedEndpoint.id === ep.id;
             return (
               <button
@@ -167,7 +206,7 @@ export default function ApiPlayground() {
                 type="button"
                 onClick={() => {
                   playClick();
-                  setSelectedEndpoint(ep);
+                  setSelectedId(ep.id);
                 }}
                 className={`inline-flex items-center gap-2 rounded-xl px-3 py-1.5 text-xs font-mono font-semibold transition-all ${
                   isSelected
@@ -216,7 +255,7 @@ export default function ApiPlayground() {
           {isLoading ? (
             <>
               <span className="h-3 w-3 animate-spin rounded-full border-2 border-black border-t-transparent" />
-              <span>Exécution...</span>
+              <span>{fr ? "Exécution..." : "Executing..."}</span>
             </>
           ) : (
             <>
@@ -279,7 +318,7 @@ export default function ApiPlayground() {
             <button
               type="button"
               onClick={copyJson}
-              title="Copier le JSON"
+              title={fr ? "Copier le JSON" : "Copy JSON"}
               className="ml-2 flex h-6 w-6 items-center justify-center rounded border border-white/10 bg-white/5 text-gray-300 hover:text-white cursor-pointer"
             >
               {copied ? <Check size={12} className="text-emerald-400" /> : <Copy size={12} />}
@@ -291,7 +330,7 @@ export default function ApiPlayground() {
         <div className="p-4 sm:p-5 font-mono text-xs max-h-[360px] overflow-y-auto scrollbar-thin scrollbar-thumb-white/10">
           {activeTab === "response" && (
             <pre className="text-gray-300 leading-relaxed overflow-x-auto whitespace-pre">
-              <code>{JSON.stringify(selectedEndpoint.response, null, 2)}</code>
+              <code>{responseJson}</code>
             </pre>
           )}
 
@@ -315,12 +354,12 @@ export default function ApiPlayground() {
                 type="button"
                 onClick={() => {
                   navigator.clipboard.writeText(curlCommand);
-                  toast.success("Commande cURL copiée !");
+                  toast.success(fr ? "Commande cURL copiée !" : "cURL command copied!");
                 }}
                 className="inline-flex items-center gap-1.5 text-xs text-gray-400 hover:text-white font-mono cursor-pointer"
               >
                 <Copy size={12} />
-                <span>Copier la commande cURL</span>
+                <span>{fr ? "Copier la commande cURL" : "Copy cURL command"}</span>
               </button>
             </div>
           )}

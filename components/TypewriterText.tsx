@@ -14,13 +14,15 @@ export default function TypewriterText({ roles = defaultRoles }: { roles?: strin
     const [roleIndex, setRoleIndex] = useState(0);
     const [charIndex, setCharIndex] = useState(0);
     const [isDeleting, setIsDeleting] = useState(false);
+    const [prevRoles, setPrevRoles] = useState(roles);
 
     // Reset indices when roles array changes (e.g., language switch)
-    useEffect(() => {
+    if (roles !== prevRoles) {
+        setPrevRoles(roles);
         setRoleIndex(0);
         setCharIndex(0);
         setIsDeleting(false);
-    }, [roles]);
+    }
 
     useEffect(() => {
         const activeRoles = roles && roles.length > 0 ? roles : defaultRoles;
@@ -32,13 +34,13 @@ export default function TypewriterText({ roles = defaultRoles }: { roles?: strin
             return () => clearTimeout(timeout);
         }
 
-        if (isDeleting && charIndex === 0) {
-            setIsDeleting(false);
-            setRoleIndex((prev) => (prev + 1) % activeRoles.length);
-            return;
-        }
-
         const timeout = setTimeout(() => {
+            if (isDeleting && charIndex <= 1) {
+                setCharIndex(0);
+                setIsDeleting(false);
+                setRoleIndex((prev) => (prev + 1) % activeRoles.length);
+                return;
+            }
             setCharIndex((prev) => prev + (isDeleting ? -1 : 1));
         }, speed);
 

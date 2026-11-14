@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { FaJava, FaReact, FaPython, FaDocker } from "react-icons/fa";
 import { SiSpringboot, SiFlutter, SiMysql, SiFastapi } from "react-icons/si";
+import { useLanguage } from "@/components/LanguageProvider";
 
 export interface HackathonDetail {
   id: string;
@@ -72,17 +73,14 @@ function getTechIcon(tag: string) {
 }
 
 export default function HackathonShowcase({ hackathons, t }: HackathonShowcaseProps) {
+  const { lang } = useLanguage();
+  const fr = lang === "fr";
   const [selectedEventIdx, setSelectedEventIdx] = useState(0);
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
 
   const currentEvent = hackathons[selectedEventIdx] || hackathons[0];
   const images = currentEvent?.images?.length ? currentEvent.images : ["/hackathons/foottech.jpg"];
-
-  // Reset active photo when event changes
-  useEffect(() => {
-    setActivePhotoIdx(0);
-  }, [selectedEventIdx]);
 
   // Keyboard navigation for lightbox
   useEffect(() => {
@@ -127,7 +125,10 @@ export default function HackathonShowcase({ hackathons, t }: HackathonShowcasePr
             <button
               key={ev.id}
               type="button"
-              onClick={() => setSelectedEventIdx(idx)}
+              onClick={() => {
+                setSelectedEventIdx(idx);
+                setActivePhotoIdx(0);
+              }}
               className={`group relative text-left p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between overflow-hidden ${
                 isSelected
                   ? "border-[#D9A441] bg-gradient-to-b from-[#D9A441]/15 via-white/[0.04] to-transparent shadow-[0_0_30px_rgba(217,164,65,0.2)] -translate-y-1"
@@ -183,7 +184,7 @@ export default function HackathonShowcase({ hackathons, t }: HackathonShowcasePr
                   <>
                     <span className="text-gray-600">•</span>
                     <span className="flex items-center gap-1 text-[#D9A441]">
-                      <Award size={12} /> Attestation
+                      <Award size={12} /> {fr ? "Attestation" : "Certificate"}
                     </span>
                   </>
                 )}
@@ -222,8 +223,8 @@ export default function HackathonShowcase({ hackathons, t }: HackathonShowcasePr
                 <button
                   type="button"
                   onClick={() => setLightboxOpen(true)}
-                  title="Agrandir en plein écran"
-                  aria-label="Agrandir en plein écran"
+                  title={fr ? "Agrandir en plein écran" : "View fullscreen"}
+                  aria-label={fr ? "Agrandir en plein écran" : "View fullscreen"}
                   className="flex h-7 w-7 items-center justify-center rounded-lg bg-white/5 border border-white/10 text-gray-300 hover:text-[#D9A441] hover:border-[#D9A441]/40 transition-all"
                 >
                   <Maximize2 size={13} />
@@ -255,7 +256,7 @@ export default function HackathonShowcase({ hackathons, t }: HackathonShowcasePr
                   <button
                     type="button"
                     onClick={prevPhoto}
-                    aria-label="Photo précédente"
+                    aria-label={fr ? "Photo précédente" : "Previous photo"}
                     className="absolute left-3 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-black/75 border border-white/20 text-white hover:bg-[#D9A441] hover:text-black transition-all shadow-xl backdrop-blur-md opacity-80 hover:opacity-100"
                   >
                     <ChevronLeft size={20} />
@@ -263,7 +264,7 @@ export default function HackathonShowcase({ hackathons, t }: HackathonShowcasePr
                   <button
                     type="button"
                     onClick={nextPhoto}
-                    aria-label="Photo suivante"
+                    aria-label={fr ? "Photo suivante" : "Next photo"}
                     className="absolute right-3 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-black/75 border border-white/20 text-white hover:bg-[#D9A441] hover:text-black transition-all shadow-xl backdrop-blur-md opacity-80 hover:opacity-100"
                   >
                     <ChevronRight size={20} />
@@ -290,7 +291,7 @@ export default function HackathonShowcase({ hackathons, t }: HackathonShowcasePr
                     >
                       <Image
                         src={img}
-                        alt={`Miniature ${idx + 1}`}
+                        alt={fr ? `Miniature ${idx + 1}` : `Thumbnail ${idx + 1}`}
                         fill
                         sizes="80px"
                         className="object-cover"
@@ -377,7 +378,8 @@ export default function HackathonShowcase({ hackathons, t }: HackathonShowcasePr
                   >
                     <span className="flex items-center gap-2.5">
                       <Award size={18} className="text-[#D9A441] group-hover/cert:text-black transition-colors" />
-                      <span>{currentEvent.certificateLabel || "Voir l'Attestation Officielle"}</span>
+                      <span>{currentEvent.certificateLabel ||
+                        (fr ? "Voir l'Attestation Officielle" : "View Official Certificate")}</span>
                     </span>
                     <ExternalLink
                       size={16}
@@ -390,7 +392,7 @@ export default function HackathonShowcase({ hackathons, t }: HackathonShowcasePr
               {/* Tech Stack Chips with Real Logos */}
               <div className="space-y-2">
                 <span className="text-[11px] font-mono uppercase tracking-wider text-gray-400">
-                  Technologies Déployées :
+                  {fr ? "Technologies Déployées :" : "Technologies Used:"}
                 </span>
                 <div className="flex flex-wrap gap-2">
                   {currentEvent.tags.map((tg) => (
@@ -426,7 +428,7 @@ export default function HackathonShowcase({ hackathons, t }: HackathonShowcasePr
               type="button"
               onClick={() => setLightboxOpen(false)}
               className="absolute -top-12 right-0 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 hover:text-[#D9A441] transition-all"
-              aria-label="Fermer"
+              aria-label={fr ? "Fermer" : "Close"}
             >
               <X size={20} />
             </button>
@@ -449,7 +451,7 @@ export default function HackathonShowcase({ hackathons, t }: HackathonShowcasePr
                     type="button"
                     onClick={prevPhoto}
                     className="absolute left-4 top-1/2 -translate-y-1/2 flex h-12 w-12 items-center justify-center rounded-full bg-black/80 border border-white/20 text-white hover:bg-[#D9A441] hover:text-black transition-all shadow-xl backdrop-blur-md"
-                    aria-label="Photo précédente"
+                    aria-label={fr ? "Photo précédente" : "Previous photo"}
                   >
                     <ChevronLeft size={24} />
                   </button>
@@ -458,7 +460,7 @@ export default function HackathonShowcase({ hackathons, t }: HackathonShowcasePr
                     type="button"
                     onClick={nextPhoto}
                     className="absolute right-4 top-1/2 -translate-y-1/2 flex h-12 w-12 items-center justify-center rounded-full bg-black/80 border border-white/20 text-white hover:bg-[#D9A441] hover:text-black transition-all shadow-xl backdrop-blur-md"
-                    aria-label="Photo suivante"
+                    aria-label={fr ? "Photo suivante" : "Next photo"}
                   >
                     <ChevronRight size={24} />
                   </button>
@@ -490,7 +492,7 @@ export default function HackathonShowcase({ hackathons, t }: HackathonShowcasePr
                     >
                       <Image
                         src={img}
-                        alt={`Thumb ${idx + 1}`}
+                        alt={fr ? `Miniature ${idx + 1}` : `Thumbnail ${idx + 1}`}
                         fill
                         sizes="50px"
                         className="object-cover"

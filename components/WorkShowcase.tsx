@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import { playClick, playPop } from "@/lib/sound";
+import { useLanguage } from "@/components/LanguageProvider";
 
 export interface ProjectItem {
   id: string;
@@ -48,6 +49,8 @@ interface WorkShowcaseProps {
 }
 
 export default function WorkShowcase({ projects, t }: WorkShowcaseProps) {
+  const { lang } = useLanguage();
+  const fr = lang === "fr";
   const [activeFilter, setActiveFilter] = useState<string>("all");
   const [activeTabs, setActiveTabs] = useState<Record<string, "preview" | "specs" | "highlights">>({
     healthcare: "preview",
@@ -90,7 +93,7 @@ export default function WorkShowcase({ projects, t }: WorkShowcaseProps) {
           }`}
         >
           <Sparkles size={12} className={activeFilter === "all" ? "text-[#D9A441]" : ""} />
-          <span>Tous les Projets</span>
+          <span>{fr ? "Tous les Projets" : "All Projects"}</span>
           <span className="rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-bold text-gray-300">
             {projects.length}
           </span>
@@ -172,10 +175,10 @@ export default function WorkShowcase({ projects, t }: WorkShowcaseProps) {
                             style={{ backgroundColor: project.accent }}
                           />
                           {project.id === "healthcare"
-                            ? "01 • PROJET PHARE"
+                            ? fr ? "01 • PROJET PHARE" : "01 • FLAGSHIP PROJECT"
                             : project.id === "logitrack"
-                            ? "02 • LOGISTIQUE"
-                            : "03 • GESTION PARC"}
+                            ? fr ? "02 • LOGISTIQUE" : "02 • LOGISTICS"
+                            : fr ? "03 • GESTION PARC" : "03 • FLEET MANAGEMENT"}
                         </span>
                         <span className="text-xs font-mono uppercase tracking-wider text-white/50 hidden sm:inline">
                           {project.domain}
@@ -194,7 +197,7 @@ export default function WorkShowcase({ projects, t }: WorkShowcaseProps) {
                           }`}
                         >
                           <Layout size={11} />
-                          <span>Aperçu</span>
+                          <span>{fr ? "Aperçu" : "Preview"}</span>
                         </button>
                         <button
                           type="button"
@@ -276,7 +279,7 @@ export default function WorkShowcase({ projects, t }: WorkShowcaseProps) {
                               </span>
                               <span className="flex items-center gap-1 text-[10px] font-mono text-emerald-400">
                                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                                Online
+                                {fr ? "En ligne" : "Online"}
                               </span>
                             </div>
 
@@ -284,7 +287,7 @@ export default function WorkShowcase({ projects, t }: WorkShowcaseProps) {
                             <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-neutral-900">
                               <Image
                                 src={project.image}
-                                alt={`${project.name} Preview`}
+                                alt={fr ? `Aperçu de ${project.name}` : `${project.name} Preview`}
                                 fill
                                 sizes={isHero ? "(max-width: 1024px) 100vw, 750px" : "(max-width: 1024px) 100vw, 550px"}
                                 className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
@@ -300,10 +303,16 @@ export default function WorkShowcase({ projects, t }: WorkShowcaseProps) {
                         <div>
                           <h4 className="text-xl font-bold text-white font-mono flex items-center gap-2">
                             <Cpu size={18} className="text-[#D9A441]" />
-                            <span>Spécifications Techniques & Architecture</span>
+                            <span>
+                              {fr
+                                ? "Spécifications Techniques & Architecture"
+                                : "Technical Specifications & Architecture"}
+                            </span>
                           </h4>
                           <p className="text-xs text-gray-400 mt-1">
-                            Normes d&apos;ingénierie, sécurité et persistance mises en place pour {project.name}.
+                            {fr
+                              ? `Normes d'ingénierie, sécurité et persistance mises en place pour ${project.name}.`
+                              : `Engineering standards, security and persistence implemented for ${project.name}.`}
                           </p>
                         </div>
 
@@ -335,7 +344,7 @@ export default function WorkShowcase({ projects, t }: WorkShowcaseProps) {
                         <div className="rounded-xl border border-white/10 bg-black/50 p-4 font-mono text-xs text-gray-300 space-y-2">
                           <div className="text-[#D9A441] font-semibold flex items-center gap-2">
                             <Code2 size={14} />
-                            <span>Stack Principale :</span>
+                            <span>{fr ? "Stack Principale :" : "Core Stack:"}</span>
                           </div>
                           <div className="flex flex-wrap gap-2 text-[11px]">
                             {project.tags.map((t) => (
@@ -355,10 +364,12 @@ export default function WorkShowcase({ projects, t }: WorkShowcaseProps) {
                         <div>
                           <h4 className="text-xl font-bold text-white font-mono flex items-center gap-2">
                             <Gauge size={18} className="text-emerald-400" />
-                            <span>Points Forts & Impact Métier</span>
+                            <span>{fr ? "Points Forts & Impact Métier" : "Highlights & Business Impact"}</span>
                           </h4>
                           <p className="text-xs text-gray-400 mt-1">
-                            Résultats mesurables et fonctionnalités à forte valeur ajoutée.
+                            {fr
+                              ? "Résultats mesurables et fonctionnalités à forte valeur ajoutée."
+                              : "Measurable results and high-value features."}
                           </p>
                         </div>
 

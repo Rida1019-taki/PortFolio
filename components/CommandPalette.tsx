@@ -28,6 +28,7 @@ import { triggerGoldConfetti, triggerSideCannons } from "@/lib/confetti";
 import { playPop, playClick } from "@/lib/sound";
 import { toast } from "sonner";
 import { useLanguage } from "./LanguageProvider";
+import { LAB_SELECT_EVENT, LAB_TABS } from "./EngineeringLab";
 
 export default function CommandPalette() {
   const [open, setOpen] = useState(false);
@@ -55,6 +56,11 @@ export default function CommandPalette() {
   const navigateTo = useCallback((id: string) => {
     playClick();
     setOpen(false);
+    if ((LAB_TABS as readonly string[]).includes(id)) {
+      window.dispatchEvent(new CustomEvent(LAB_SELECT_EVENT, { detail: id }));
+      document.getElementById("lab")?.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -63,8 +69,11 @@ export default function CommandPalette() {
 
   const copyEmail = () => {
     navigator.clipboard.writeText("takirida72@gmail.com");
-    toast.success("Email copié !", {
-      description: "takirida72@gmail.com copié dans le presse-papier.",
+    toast.success(lang === "fr" ? "Email copié !" : "Email copied!", {
+      description:
+        lang === "fr"
+          ? "takirida72@gmail.com copié dans le presse-papier."
+          : "takirida72@gmail.com copied to clipboard.",
     });
     setOpen(false);
   };
@@ -76,9 +85,15 @@ export default function CommandPalette() {
     link.download = "Rida_Taki_CV.pdf";
     link.target = "_blank";
     link.click();
-    toast.success("Téléchargement du CV lancé !", {
-      description: "Le CV de Rida Taki est en cours de téléchargement.",
-    });
+    toast.success(
+      lang === "fr" ? "Téléchargement du CV lancé !" : "Resume download started!",
+      {
+        description:
+          lang === "fr"
+            ? "Le CV de Rida Taki est en cours de téléchargement."
+            : "Rida Taki's resume is downloading.",
+      }
+    );
     setOpen(false);
   };
 
@@ -97,7 +112,11 @@ export default function CommandPalette() {
           setOpen(true);
         }}
         className="fixed bottom-6 right-4 sm:right-6 z-40 flex items-center gap-2 sm:gap-2.5 rounded-full border border-white/15 bg-black/80 px-3.5 sm:px-4 py-2 sm:py-2.5 text-xs font-mono font-medium text-white shadow-2xl backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:border-[#D9A441] hover:shadow-[0_0_25px_rgba(217,164,65,0.35)] group cursor-pointer"
-        aria-label="Ouvrir le menu de commande (Cmd+K)"
+        aria-label={
+          lang === "fr"
+            ? "Ouvrir le menu de commande (Cmd+K)"
+            : "Open command menu (Cmd+K)"
+        }
       >
         <span className="flex h-5 w-5 items-center justify-center rounded-md bg-white/10 text-[11px] font-bold text-[#D9A441] group-hover:bg-[#D9A441] group-hover:text-black transition-colors">
           ⌘K
@@ -144,6 +163,7 @@ export default function CommandPalette() {
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
+                  aria-label={lang === "fr" ? "Fermer" : "Close"}
                   className="rounded-lg p-1 text-gray-400 hover:bg-white/10 hover:text-white transition-colors cursor-pointer"
                 >
                   <X size={16} />
@@ -411,9 +431,15 @@ export default function CommandPalette() {
                     value="confetti fete celebration gold cannons"
                     onSelect={() => {
                       triggerSideCannons();
-                      toast.success("✨ Célébration Dorée !", {
-                        description: "Confettis lancés avec succès.",
-                      });
+                      toast.success(
+                        lang === "fr" ? "✨ Célébration Dorée !" : "✨ Golden Celebration!",
+                        {
+                          description:
+                            lang === "fr"
+                              ? "Confettis lancés avec succès."
+                              : "Confetti launched successfully.",
+                        }
+                      );
                       setOpen(false);
                     }}
                     className="flex cursor-pointer items-center justify-between rounded-xl px-3 py-2.5 text-xs text-gray-300 transition-colors data-[selected=true]:bg-white/10 data-[selected=true]:text-white hover:bg-white/10 hover:text-white"

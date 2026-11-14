@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
 import { triggerGoldConfetti } from "@/lib/confetti";
+import { useLanguage } from "@/components/LanguageProvider";
 import {
   Mail,
   Send,
@@ -49,6 +50,8 @@ interface ContactShowcaseProps {
 }
 
 export default function ContactShowcase({ t }: ContactShowcaseProps) {
+  const { lang } = useLanguage();
+  const isFr = lang === "fr";
   const [loading, setLoading] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
 
@@ -59,8 +62,10 @@ export default function ContactShowcase({ t }: ContactShowcaseProps) {
   const copyEmailToClipboard = () => {
     navigator.clipboard.writeText(emailAddress);
     setCopiedEmail(true);
-    toast.success("Email copié !", {
-      description: `L'adresse ${emailAddress} a été copiée dans votre presse-papier.`,
+    toast.success(isFr ? "Email copié !" : "Email copied!", {
+      description: isFr
+        ? `L'adresse ${emailAddress} a été copiée dans votre presse-papier.`
+        : `${emailAddress} has been copied to your clipboard.`,
     });
     setTimeout(() => setCopiedEmail(false), 2500);
   };
@@ -70,25 +75,36 @@ export default function ContactShowcase({ t }: ContactShowcaseProps) {
     const form = e.currentTarget;
     setLoading(true);
 
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
     try {
-      await emailjs.sendForm(
-        "service_jav8hl6",
-        "template_440vkxl",
-        form,
-        "TSdGK4h7h-xBeD4yD"
-      );
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error("EmailJS environment variables are not configured");
+      }
+
+      await emailjs.sendForm(serviceId, templateId, form, publicKey);
 
       form.reset();
       triggerGoldConfetti();
-      toast.success(t.toastSuccessTitle || "Message envoyé avec succès !", {
-        description:
-          t.toastSuccessDesc ||
-          "Merci pour votre message. Je vous répondrai dans les plus brefs délais.",
-      });
+      toast.success(
+        t.toastSuccessTitle ||
+          (isFr ? "Message envoyé avec succès !" : "Message sent successfully!"),
+        {
+          description:
+            t.toastSuccessDesc ||
+            (isFr
+              ? "Merci pour votre message. Je vous répondrai dans les plus brefs délais."
+              : "Thank you for your message. I'll get back to you as soon as possible."),
+        }
+      );
     } catch (error) {
       console.error(error);
-      toast.error("Échec de l'envoi", {
-        description: "Une erreur est survenue. Veuillez réessayer dans quelques instants ou me contacter sur WhatsApp.",
+      toast.error(isFr ? "Échec de l'envoi" : "Failed to send", {
+        description: isFr
+          ? "Une erreur est survenue. Veuillez réessayer dans quelques instants ou me contacter sur WhatsApp."
+          : "Something went wrong. Please try again in a moment or contact me on WhatsApp.",
       });
     } finally {
       setLoading(false);
@@ -176,7 +192,7 @@ export default function ContactShowcase({ t }: ContactShowcaseProps) {
                 </div>
                 <div>
                   <div className="text-xs font-mono uppercase tracking-wider text-white/50">
-                    Discussion Directe WhatsApp
+                    {isFr ? "Discussion Directe WhatsApp" : "Direct WhatsApp Chat"}
                   </div>
                   <div className="text-sm font-bold text-white group-hover:text-[#25D366] transition-colors font-mono">
                     {whatsappNumber}
@@ -194,7 +210,7 @@ export default function ContactShowcase({ t }: ContactShowcaseProps) {
                 </div>
                 <div>
                   <div className="text-xs font-mono uppercase tracking-wider text-white/50">
-                    Email Professionnel
+                    {isFr ? "Email Professionnel" : "Professional Email"}
                   </div>
                   <div className="text-sm font-bold text-white font-mono">
                     {emailAddress}
@@ -205,11 +221,12 @@ export default function ContactShowcase({ t }: ContactShowcaseProps) {
               <button
                 type="button"
                 onClick={copyEmailToClipboard}
-                title="Copier l'email"
+                title={isFr ? "Copier l'email" : "Copy email"}
+                aria-label={isFr ? "Copier l'email" : "Copy email"}
                 className="flex items-center gap-1.5 rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-mono text-gray-300 hover:border-[#D9A441] hover:text-[#D9A441] transition-all"
               >
                 {copiedEmail ? <Check size={14} className="text-emerald-400" /> : <Copy size={14} />}
-                <span>{copiedEmail ? "Copié !" : "Copier"}</span>
+                <span>{copiedEmail ? (isFr ? "Copié !" : "Copied!") : isFr ? "Copier" : "Copy"}</span>
               </button>
             </div>
 
@@ -220,10 +237,12 @@ export default function ContactShowcase({ t }: ContactShowcaseProps) {
               </div>
               <div>
                 <div className="text-xs font-mono uppercase tracking-wider text-white/50">
-                  Localisation & Mobilité
+                  {isFr ? "Localisation & Mobilité" : "Location & Mobility"}
                 </div>
                 <div className="text-xs sm:text-sm font-medium text-gray-300">
-                  Oued Zem, Maroc • Disponible en présentiel, hybride ou télétravail
+                  {isFr
+                    ? "Oued Zem, Maroc • Disponible en présentiel, hybride ou télétravail"
+                    : "Oued Zem, Morocco • Available on-site, hybrid or remote"}
                 </div>
               </div>
             </div>
@@ -233,7 +252,7 @@ export default function ContactShowcase({ t }: ContactShowcaseProps) {
           {/* Social Links Row */}
           <div className="space-y-3 pt-2">
             <span className="text-xs font-mono uppercase tracking-widest text-white/50 block">
-              {t.socialsHeader || "Réseaux Professionnels :"}
+              {t.socialsHeader || (isFr ? "Réseaux Professionnels :" : "Professional Networks:")}
             </span>
 
             <div className="flex flex-wrap gap-3">
@@ -266,7 +285,7 @@ export default function ContactShowcase({ t }: ContactShowcaseProps) {
               </h3>
               <span className="text-xs font-mono text-[#D9A441] flex items-center gap-1.5">
                 <Clock size={12} />
-                <span>Réponse &lt; 24h</span>
+                <span>{isFr ? "Réponse < 24h" : "Reply < 24h"}</span>
               </span>
             </div>
 

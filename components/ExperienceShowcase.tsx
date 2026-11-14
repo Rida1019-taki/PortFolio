@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { FaJava, FaReact, FaGitAlt, FaLaravel } from "react-icons/fa";
 import { SiSpringboot, SiMysql } from "react-icons/si";
+import { useLanguage } from "@/components/LanguageProvider";
 
 export interface ExperienceItem {
   company: string;
@@ -60,6 +61,8 @@ function getExpTechIcon(tag: string) {
 }
 
 export default function ExperienceShowcase({ experiences, t }: ExperienceShowcaseProps) {
+  const { lang } = useLanguage();
+  const isFr = lang === "fr";
   return (
     <div className="w-full space-y-8 max-w-5xl mx-auto">
       {experiences.map((exp, i) => {
@@ -115,7 +118,7 @@ export default function ExperienceShowcase({ experiences, t }: ExperienceShowcas
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
                       </span>
-                      <span>{t.skaii.currentBadge || "En poste"}</span>
+                      <span>{t.skaii.currentBadge || (isFr ? "En poste" : "Current role")}</span>
                     </span>
                   )}
                   <span className="rounded-xl border border-white/10 bg-white/5 px-3.5 py-1 text-xs font-mono text-gray-300">
@@ -134,7 +137,8 @@ export default function ExperienceShowcase({ experiences, t }: ExperienceShowcas
               <div className="space-y-3">
                 <h4 className="text-xs font-mono uppercase tracking-widest text-[#D9A441] font-bold flex items-center gap-2">
                   <Sparkles size={13} />
-                  <span>{t.skaii.responsibilitiesTitle || "// Missions & Réalisations Clés"}</span>
+                  <span>{t.skaii.responsibilitiesTitle ||
+                    (isFr ? "// Missions & Réalisations Clés" : "// Key Missions & Achievements")}</span>
                 </h4>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
@@ -157,7 +161,7 @@ export default function ExperienceShowcase({ experiences, t }: ExperienceShowcas
               {/* Technologies Applied */}
               <div className="border-t border-white/10 pt-5 flex flex-wrap items-center gap-2.5">
                 <span className="text-xs font-mono uppercase tracking-wider text-white/50 mr-2">
-                  {t.skaii.techLabel || "Technologies :"}
+                  {t.skaii.techLabel || (isFr ? "Technologies :" : "Technologies:")}
                 </span>
                 {exp.technologies.map((tech) => (
                   <span

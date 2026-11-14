@@ -4,8 +4,11 @@ import React, { useState } from "react";
 import { FaGithub, FaStar, FaCodeBranch, FaCircle } from "react-icons/fa";
 import { ExternalLink, GitCommit, Sparkles, Flame, CheckCircle2 } from "lucide-react";
 import { playClick } from "@/lib/sound";
+import { useLanguage } from "@/components/LanguageProvider";
 
 export default function GitHubStats() {
+  const { lang } = useLanguage();
+  const fr = lang === "fr";
   const [activeTab, setActiveTab] = useState<"activity" | "repos">("activity");
 
   const githubUser = "Rida1019-taki";
@@ -50,7 +53,9 @@ export default function GitHubStats() {
   const featuredRepos = [
     {
       name: "HealthCare-Suite-Backend",
-      desc: "Architecture Spring Boot 3 & Spring Security JWT avec Hibernate et MySQL 8.",
+      desc: fr
+        ? "Architecture Spring Boot 3 & Spring Security JWT avec Hibernate et MySQL 8."
+        : "Spring Boot 3 & Spring Security JWT architecture with Hibernate and MySQL 8.",
       lang: "Java",
       color: "#E76F00",
       stars: 12,
@@ -59,7 +64,9 @@ export default function GitHubStats() {
     },
     {
       name: "LogiTrack-Vite-Frontend",
-      desc: "Interface de gestion logistique temps réel avec React, Tailwind et charts dynamiques.",
+      desc: fr
+        ? "Interface de gestion logistique temps réel avec React, Tailwind et charts dynamiques."
+        : "Real-time logistics management interface built with React, Tailwind and dynamic charts.",
       lang: "TypeScript",
       color: "#3178C6",
       stars: 8,
@@ -68,7 +75,9 @@ export default function GitHubStats() {
     },
     {
       name: "Mobile-Fleet-Manager",
-      desc: "Application mobile native de gestion de flotte développée sous Android Studio.",
+      desc: fr
+        ? "Application mobile native de gestion de flotte développée sous Android Studio."
+        : "Native fleet management mobile app built with Android Studio.",
       lang: "Kotlin",
       color: "#7F52FF",
       stars: 6,
@@ -95,7 +104,9 @@ export default function GitHubStats() {
               </span>
             </div>
             <p className="text-xs font-mono text-gray-400">
-              Activité de développement, commits et contributions Open Source.
+              {fr
+                ? "Activité de développement, commits et contributions Open Source."
+                : "Development activity, commits and open-source contributions."}
             </p>
           </div>
         </div>
@@ -107,7 +118,7 @@ export default function GitHubStats() {
           onClick={() => playClick()}
           className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-xs font-mono font-semibold text-white transition-all duration-300 hover:border-[#D9A441] hover:bg-[#D9A441]/10 hover:text-[#D9A441] cursor-pointer"
         >
-          <span>Voir le Profil GitHub</span>
+          <span>{fr ? "Voir le Profil GitHub" : "View GitHub Profile"}</span>
           <ExternalLink size={13} />
         </a>
       </div>
@@ -117,25 +128,25 @@ export default function GitHubStats() {
         <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-4 font-mono">
           <div className="text-[11px] text-gray-400 uppercase tracking-wider">Total Commits</div>
           <div className="text-2xl font-bold text-white mt-1">480+</div>
-          <div className="text-[10px] text-emerald-400 mt-0.5">Année en cours</div>
+          <div className="text-[10px] text-emerald-400 mt-0.5">{fr ? "Année en cours" : "This year"}</div>
         </div>
         <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-4 font-mono">
-          <div className="text-[11px] text-gray-400 uppercase tracking-wider">Dépôts Publics</div>
+          <div className="text-[11px] text-gray-400 uppercase tracking-wider">{fr ? "Dépôts Publics" : "Public Repos"}</div>
           <div className="text-2xl font-bold text-white mt-1">14+</div>
-          <div className="text-[10px] text-[#D9A441] mt-0.5">Repos vérifiés</div>
+          <div className="text-[10px] text-[#D9A441] mt-0.5">{fr ? "Repos vérifiés" : "Verified repos"}</div>
         </div>
         <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-4 font-mono">
           <div className="text-[11px] text-gray-400 uppercase tracking-wider">Current Streak</div>
           <div className="text-2xl font-bold text-white mt-1 flex items-center gap-1.5">
-            <span>24 jours</span>
+            <span>{fr ? "24 jours" : "24 days"}</span>
             <Flame size={16} className="text-amber-500" />
           </div>
-          <div className="text-[10px] text-gray-400 mt-0.5">Activité soutenue</div>
+          <div className="text-[10px] text-gray-400 mt-0.5">{fr ? "Activité soutenue" : "Sustained activity"}</div>
         </div>
         <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-4 font-mono">
-          <div className="text-[11px] text-gray-400 uppercase tracking-wider">Top Langage</div>
+          <div className="text-[11px] text-gray-400 uppercase tracking-wider">{fr ? "Top Langage" : "Top Language"}</div>
           <div className="text-2xl font-bold text-[#D9A441] mt-1">Java</div>
-          <div className="text-[10px] text-gray-400 mt-0.5">44% de la base</div>
+          <div className="text-[10px] text-gray-400 mt-0.5">{fr ? "44% de la base" : "44% of codebase"}</div>
         </div>
       </div>
 
@@ -144,16 +155,20 @@ export default function GitHubStats() {
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 text-xs font-mono text-gray-400">
           <div className="flex items-center gap-2">
             <GitCommit size={14} className="text-[#D9A441]" />
-            <span className="font-semibold text-white">Graphique de Contributions (Derniers 12 mois)</span>
+            <span className="font-semibold text-white">
+              {fr
+                ? "Graphique de Contributions (Derniers 12 mois)"
+                : "Contribution Graph (Last 12 months)"}
+            </span>
           </div>
           <div className="flex items-center gap-1.5 text-[10px]">
-            <span>Moins</span>
+            <span>{fr ? "Moins" : "Less"}</span>
             <span className="h-2.5 w-2.5 rounded-sm bg-white/5" />
             <span className="h-2.5 w-2.5 rounded-sm bg-white/20" />
             <span className="h-2.5 w-2.5 rounded-sm bg-[#10B981]/60" />
             <span className="h-2.5 w-2.5 rounded-sm bg-[#10B981]" />
             <span className="h-2.5 w-2.5 rounded-sm bg-[#D9A441]" />
-            <span>Plus</span>
+            <span>{fr ? "Plus" : "More"}</span>
           </div>
         </div>
 
@@ -165,7 +180,7 @@ export default function GitHubStats() {
                 {week.map((level, dIdx) => (
                   <div
                     key={dIdx}
-                    title={`Jour ${dIdx + 1}, Semaine ${wIdx + 1}`}
+                    title={fr ? `Jour ${dIdx + 1}, Semaine ${wIdx + 1}` : `Day ${dIdx + 1}, Week ${wIdx + 1}`}
                     className={`h-2.5 w-2.5 rounded-xs transition-transform hover:scale-125 ${getCellColor(
                       level
                     )}`}
@@ -180,8 +195,10 @@ export default function GitHubStats() {
       {/* Languages Distribution Bar */}
       <div className="space-y-2">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 text-xs font-mono text-gray-400">
-          <span>Distribution des Technologies</span>
-          <span className="text-[10px] text-gray-500">Calculé sur l&apos;ensemble du code source</span>
+          <span>{fr ? "Distribution des Technologies" : "Technology Distribution"}</span>
+          <span className="text-[10px] text-gray-500">
+            {fr ? "Calculé sur l'ensemble du code source" : "Computed across the entire codebase"}
+          </span>
         </div>
 
         {/* Multi-segmented bar */}

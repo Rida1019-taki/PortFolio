@@ -54,7 +54,6 @@ import {
 } from "react-icons/si";
 import ScrollReveal from "@/components/ScrollReveal";
 import ParticleField from "@/components/ParticleField";
-import FallingLeavesWrapper from "@/components/FallingLeavesWrapper";
 import MouseGlow from "@/components/MouseGlow";
 import AnimatedNumber from "@/components/AnimatedNumber";
 import TypewriterText from "@/components/TypewriterText";
@@ -70,15 +69,11 @@ import ContactShowcase from "@/components/ContactShowcase";
 import CertificationsShowcase from "@/components/CertificationsShowcase";
 import CommandPalette from "@/components/CommandPalette";
 import ScrollProgress from "@/components/ScrollProgress";
-import TerminalShowcase from "@/components/TerminalShowcase";
-import ApiPlayground from "@/components/ApiPlayground";
+import EngineeringLab from "@/components/EngineeringLab";
 import GitHubStats from "@/components/GitHubStats";
-import SystemArchitecture from "@/components/SystemArchitecture";
 import NowSection from "@/components/NowSection";
 import BookingModal from "@/components/BookingModal";
-import FloatingDock from "@/components/FloatingDock";
 import TechMarquee from "@/components/TechMarquee";
-import BugHuntGame from "@/components/BugHuntGame";
 import { playClick } from "@/lib/sound";
 import emailjs from "@emailjs/browser";
 import { useEffect, useRef, useState } from "react";
@@ -87,7 +82,7 @@ import {FiArrowUpRight, FiCommand} from "react-icons/fi";
 
 
 export function Header() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   const socialLinks = [
     { icon: <FaGithub size={15} />, href: "https://github.com/Rida1019-taki", label: "GitHub" },
@@ -99,14 +94,13 @@ export function Header() {
 
   const navItems = [
     { number: "01", label: t.nav.about, href: "#about" },
-    { number: "02", label: t.nav.skills, href: "#skills" },
-    { number: "03", label: t.nav.work, href: "#work" },
-    { number: "04", label: t.nav.experience, href: "#experience" },
-    { number: "05", label: t.nav.education, href: "#education" },
-    { number: "06", label: t.nav.certifications, href: "#certifications" },
+    { number: "02", label: t.nav.work, href: "#work" },
+    { number: "03", label: t.nav.experience, href: "#experience" },
+    { number: "04", label: t.nav.skills, href: "#skills" },
+    { number: "05", label: lang === "fr" ? "Labo" : "Lab", href: "#lab" },
+    { number: "06", label: t.nav.education, href: "#education" },
     { number: "07", label: t.nav.hackathons, href: "#hackathons" },
-    { number: "08", label: t.nav.resume, href: "#resume" },
-    { number: "09", label: t.nav.contact, href: "#contact" },
+    { number: "08", label: t.nav.contact, href: "#contact" },
   ];
 
   const [scrolled, setScrolled] = useState(false);
@@ -313,25 +307,26 @@ export function Header() {
 export default function Home() {
   const { t, lang } = useLanguage();
   const [isBookingOpen, setIsBookingOpen] = useState(false);
+  const tr = (fr: string, en: string) => (lang === "fr" ? fr : en);
 
   const projects: ProjectItem[] = [
     {
       id: "healthcare",
       name: "HealthCare+",
-      domain: "Système Médical & Santé",
-      subtitle: "Plateforme Hospitalière Full-Stack Sécurisée",
+      domain: tr("Système Médical & Santé", "Healthcare & Medical Systems"),
+      subtitle: tr("Plateforme Hospitalière Full-Stack Sécurisée", "Secure Full-Stack Hospital Platform"),
       description:
-        "Solution complète de gestion médicale permettant l'administration centralisée des patients, médecins, consultations et dossiers médicaux, articulée autour d'une API REST Spring Boot robuste et d'un client React dynamique.",
+        tr("Solution complète de gestion médicale permettant l'administration centralisée des patients, médecins, consultations et dossiers médicaux, articulée autour d'une API REST Spring Boot robuste et d'un client React dynamique.", "End-to-end medical management solution for centrally administering patients, doctors, consultations and medical records, built around a robust Spring Boot REST API and a dynamic React client."),
       specs: [
-        { label: "Architecture", value: "API RESTful découplée" },
-        { label: "Sécurité", value: "Spring Security & JWT" },
-        { label: "Base de données", value: "MySQL & Hibernate ORM" },
-        { label: "Déploiement", value: "Docker & Environnement isolé" },
+        { label: "Architecture", value: tr("API RESTful découplée", "Decoupled RESTful API") },
+        { label: tr("Sécurité", "Security"), value: "Spring Security & JWT" },
+        { label: tr("Base de données", "Database"), value: "MySQL & Hibernate ORM" },
+        { label: tr("Déploiement", "Deployment"), value: tr("Docker & Environnement isolé", "Docker & isolated environments") },
       ],
       highlights: [
-        "Authentification sécurisée par token JWT et gestion granulaire des rôles (Médecin, Patient, Admin).",
-        "Gestion complète des dossiers médicaux électroniques et prise de rendez-vous en temps réel.",
-        "Tableaux de bord d'analyse avec requêtes optimisées et architecture prête pour la production.",
+        tr("Authentification sécurisée par token JWT et gestion granulaire des rôles (Médecin, Patient, Admin).", "Secure JWT token authentication with fine-grained roles (Doctor, Patient, Admin)."),
+        tr("Gestion complète des dossiers médicaux électroniques et prise de rendez-vous en temps réel.", "Full electronic medical records management and real-time appointment booking."),
+        tr("Tableaux de bord d'analyse avec requêtes optimisées et architecture prête pour la production.", "Analytics dashboards with optimized queries and a production-ready architecture."),
       ],
       tags: [
         "Java",
@@ -355,20 +350,20 @@ export default function Home() {
     {
       id: "logitrack",
       name: "LogiTrack",
-      domain: "Logistique & Supply Chain",
-      subtitle: "Système de Gestion des Flux et Expéditions",
+      domain: tr("Logistique & Supply Chain", "Logistics & Supply Chain"),
+      subtitle: tr("Système de Gestion des Flux et Expéditions", "Shipment & Flow Management System"),
       description:
-        "Plateforme d'entreprise dédiée au pilotage des opérations logistiques, du suivi des stocks et de la traçabilité des livraisons, dotée d'un contrôle d'accès multi-rôles strict et d'une interface utilisateur Material UI avancée.",
+        tr("Plateforme d'entreprise dédiée au pilotage des opérations logistiques, du suivi des stocks et de la traçabilité des livraisons, dotée d'un contrôle d'accès multi-rôles strict et d'une interface utilisateur Material UI avancée.", "Enterprise platform for steering logistics operations, inventory tracking and delivery traceability, with strict multi-role access control and an advanced Material UI interface."),
       specs: [
-        { label: "Architecture", value: "Client-Serveur modulaire" },
-        { label: "Contrôle d'accès", value: "Role Guards (ADMIN, MANAGER, AGENT)" },
+        { label: "Architecture", value: tr("Client-Serveur modulaire", "Modular client-server") },
+        { label: tr("Contrôle d'accès", "Access control"), value: "Role Guards (ADMIN, MANAGER, AGENT)" },
         { label: "Validation", value: "React Hook Form & Yup" },
-        { label: "Données", value: "MySQL, Pagination & Filtrage" },
+        { label: tr("Données", "Data"), value: tr("MySQL, Pagination & Filtrage", "MySQL, pagination & filtering") },
       ],
       highlights: [
-        "Sécurisation complète du routage (Protected Routes, Role Guards et intercepteurs Axios).",
-        "Gestion en temps réel des commandes, produits et statuts d'expédition avec filtres avancés.",
-        "Tableaux de bord statistiques interactifs avec pagination et requêtes API asynchrones.",
+        tr("Sécurisation complète du routage (Protected Routes, Role Guards et intercepteurs Axios).", "Fully secured routing (Protected Routes, Role Guards and Axios interceptors)."),
+        tr("Gestion en temps réel des commandes, produits et statuts d'expédition avec filtres avancés.", "Real-time management of orders, products and shipment statuses with advanced filters."),
+        tr("Tableaux de bord statistiques interactifs avec pagination et requêtes API asynchrones.", "Interactive statistics dashboards with pagination and asynchronous API calls."),
       ],
       tags: [
         "Java",
@@ -390,20 +385,20 @@ export default function Home() {
     {
       id: "fleetflow",
       name: "FleetFlow",
-      domain: "Gestion de Parc & DevOps",
-      subtitle: "Plateforme de Flotte Automobile & Livraisons",
+      domain: tr("Gestion de Parc & DevOps", "Fleet Management & DevOps"),
+      subtitle: tr("Plateforme de Flotte Automobile & Livraisons", "Vehicle Fleet & Delivery Platform"),
       description:
-        "Solution d'ingénierie logicielle pour l'orchestration des flottes de véhicules, la gestion des conducteurs et l'automatisation des flux logistiques, intégrée dans une chaîne d'intégration continue CI/CD.",
+        tr("Solution d'ingénierie logicielle pour l'orchestration des flottes de véhicules, la gestion des conducteurs et l'automatisation des flux logistiques, intégrée dans une chaîne d'intégration continue CI/CD.", "Software solution for orchestrating vehicle fleets, managing drivers and automating logistics flows, integrated into a CI/CD pipeline."),
       specs: [
-        { label: "Architecture", value: "Micro-services & Design Patterns" },
+        { label: "Architecture", value: tr("Micro-services & Design Patterns", "Microservices & design patterns") },
         { label: "Documentation", value: "Swagger / OpenAPI 3.0" },
-        { label: "DevOps & CI/CD", value: "Pipeline GitHub Actions" },
-        { label: "Persistance", value: "MySQL & Transactions JPA" },
+        { label: "DevOps & CI/CD", value: tr("Pipeline GitHub Actions", "GitHub Actions pipeline") },
+        { label: tr("Persistance", "Persistence"), value: tr("MySQL & Transactions JPA", "MySQL & JPA transactions") },
       ],
       highlights: [
-        "Architecture basée sur des DTOs stricts avec MapStruct pour des transferts de données optimisés.",
-        "Pipeline CI/CD automatisé avec GitHub Actions pour les tests et la validation continue.",
-        "Documentation interactive des endpoints API via Swagger UI facilitant l'intégration.",
+        tr("Architecture basée sur des DTOs stricts avec MapStruct pour des transferts de données optimisés.", "Strict DTO-based architecture with MapStruct for optimized data transfer."),
+        tr("Pipeline CI/CD automatisé avec GitHub Actions pour les tests et la validation continue.", "Automated CI/CD pipeline with GitHub Actions for testing and continuous validation."),
+        tr("Documentation interactive des endpoints API via Swagger UI facilitant l'intégration.", "Interactive API endpoint documentation with Swagger UI for easy integration."),
       ],
       tags: [
         "Java",
@@ -424,11 +419,11 @@ export default function Home() {
   const experiences: ExperienceItem[] = [
     {
       company: "Skaii service",
-      role: "DÉVELOPPEUR INFORMATIQUE",
-      service: "DÉVELOPPEUR WEB",
+      role: tr("DÉVELOPPEUR INFORMATIQUE", "SOFTWARE DEVELOPER"),
+      service: tr("DÉVELOPPEUR WEB", "WEB DEVELOPER"),
       period: "15/10/2026 — Present",
       status: "current",
-      location: "Morocco",
+      location: tr("Maroc", "Morocco"),
       description:
         "Design, development, and maintenance of modern high-performance web applications. Implementing robust software architectures, RESTful API design, and intuitive user interfaces.",
       responsibilities: [
@@ -455,14 +450,14 @@ export default function Home() {
       degree: "Full Stack Java / React",
       period: "12/01/2025 — 28/10/2026",
       status: "completed",
-      location: "Béni Mellal, Maroc",
+      location: tr("Béni Mellal, Maroc", "Béni Mellal, Morocco"),
     },
     {
       institution: "ISTA Oued Zem",
       degree: "Digital Development — Mobile Option",
       period: "2023 — 2025",
       status: "completed",
-      location: "Oued Zem, Maroc",
+      location: tr("Oued Zem, Maroc", "Oued Zem, Morocco"),
     },
   ];
 
@@ -535,20 +530,6 @@ export default function Home() {
     "Database Optimization",
     "JWT Security & Auth",
     "High Performance & Scalability",
-  ];
-
-  const techStack = [
-    { icon: <FaJava size={26} />, label: "Java", color: "#e07040" },
-    { icon: <SiSpringboot size={22} />, label: "Spring", color: "#5ab88a" },
-    { icon: <SiKotlin size={20} />, label: "Kotlin", color: "#a78bfa" },
-    { icon: <FaReact size={22} />, label: "React", color: "#5a8fd4" },
-    { icon: <FaPython size={22} />, label: "Python", color: "#d4a853" },
-    { icon: <FaDocker size={22} />, label: "Docker", color: "#5a8fd4" },
-    { icon: <SiFlutter size={20} />, label: "Flutter", color: "#5a8fd4" },
-    { icon: <SiDart size={20} />, label: "Dart", color: "#0175C2" },
-    { icon: <SiMysql size={24} />, label: "MySQL", color: "#e07040" },
-    { icon: <SiPostman size={20} />, label: "Postman", color: "#e07040" },
-    { icon: <SiFigma size={18} />, label: "Figma", color: "#a78bfa" },
   ];
 
   // Section states managed inside respective showcase components
@@ -636,15 +617,16 @@ export default function Home() {
                       : "bg-black/50 backdrop-blur-none"
               }`}
           />
+          {/* Cinematic vignette: keeps the video visible while making hero text readable */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_30%,transparent_0%,rgba(0,0,0,0.35)_55%,rgba(0,0,0,0.85)_100%)]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/20 to-transparent" />
         </div>
 
         <ParticleField />
         <MouseGlow />
-        <FallingLeavesWrapper />
         <CommandPalette />
         <ScrollProgress />
         <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
-        <FloatingDock onOpenBooking={() => setIsBookingOpen(true)} />
 
           <main className="relative z-10 pt-20">
             {/* HERO SECTION */}
@@ -730,7 +712,7 @@ export default function Home() {
                         <div className="flex items-center justify-between">
                           <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-[10px] font-mono font-semibold text-emerald-400">
                             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                            <span>Disponible</span>
+                            <span>{tr("Disponible", "Available")}</span>
                           </span>
                           <span className="text-[11px] font-mono text-[#D9A441] flex items-center gap-1">
                             <MapPin size={12} />
@@ -742,7 +724,7 @@ export default function Home() {
                         <div className="relative mx-auto w-full aspect-[4/4.4] overflow-hidden rounded-2xl border border-white/10 shadow-2xl group-hover:border-[#D9A441]/40 transition-all">
                           <Image
                             src="/rida-portrait.jpg"
-                            alt="Rida Taki - Développeur Full Stack"
+                            alt={tr("Rida Taki - Développeur Full Stack", "Rida Taki - Full Stack Developer")}
                             fill
                             sizes="(max-width: 768px) 100vw, 400px"
                             className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
@@ -758,9 +740,9 @@ export default function Home() {
                         {/* Bottom Tagline */}
                         <div className="pt-2 border-t border-white/5 flex items-center justify-between text-xs font-mono text-gray-400">
                           <span className="flex items-center gap-1 text-white/60">
-                            <span className="text-[#D9A441]">{"//"}</span> Profil Officiel
+                            <span className="text-[#D9A441]">{"//"}</span> {tr("Profil Officiel", "Official Profile")}
                           </span>
-                          <span className="text-[10px] uppercase tracking-wider text-emerald-400 font-semibold">Vérifié</span>
+                          <span className="text-[10px] uppercase tracking-wider text-emerald-400 font-semibold">{tr("Vérifié", "Verified")}</span>
                         </div>
                       </div>
                     </div>
@@ -879,40 +861,35 @@ export default function Home() {
               </div>
             </section>
   
-            {/* ═══ TECH STACK STRIP ═══ */}
-            <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8">
-              <ScrollReveal>
-                <div className="glass rounded-2xl px-6 py-5 sm:px-10 sm:py-6">
-                  <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10">
-                    {techStack.map((t) => (
-                        <div
-                            key={t.label}
-                            className="icon-lift group flex flex-col items-center gap-2"
-                            style={{ color: "var(--muted)" }}
-                            title={t.label}
-                        >
-                          <div className="transition-colors" style={{ color: "inherit" }}>
-                            {t.icon}
-                          </div>
-                          <span className="text-[9px] font-semibold uppercase tracking-[0.14em] opacity-0 transition-opacity group-hover:opacity-100">
-                        {t.label}
-                      </span>
-                        </div>
-                    ))}
-                  </div>
-                </div>
-              </ScrollReveal>
-            </div>
-  
             {/* ═══ LIVE TECH STACK MARQUEE ═══ */}
             <div className="mt-20 sm:mt-28">
               <TechMarquee />
             </div>
-  
-            {/* ═══ LIVE NOW & CODING VIBES SECTION ═══ */}
-            <section id="now" className="relative mx-auto max-w-7xl px-5 pt-16 pb-12 sm:px-8">
-              <ScrollReveal>
-                <NowSection />
+
+            {/* ═══ FEATURED PROJECTS (BENTO SHOWCASE) ═══ */}
+            <section id="work" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
+              <ScrollReveal delay={120}>
+                <WorkShowcase
+                  projects={projects}
+                  t={{
+                    badge: t.work.badge,
+                    title1: t.work.title1,
+                    title2: t.work.title2,
+                    desc: t.work.desc,
+                    btnBackend: t.work.btnBackend,
+                    btnFrontend: t.work.btnFrontend,
+                    btnRepo: t.work.btnRepo,
+                  }}
+                />
+              </ScrollReveal>
+            </section>
+
+            <div className="section-divider mx-auto max-w-7xl" />
+
+            {/* ═══ EXPERIENCE ═══ */}
+            <section id="experience" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
+              <ScrollReveal delay={120}>
+                <ExperienceShowcase experiences={experiences} t={t.experience} />
               </ScrollReveal>
             </section>
 
@@ -941,156 +918,28 @@ export default function Home() {
                 <SkillsShowcase t={t.skills} />
               </ScrollReveal>
             </section>
-  
-            <div className="section-divider mx-auto max-w-7xl" />
-  
-            {/* ═══ FEATURED PROJECTS (BENTO SHOWCASE) ═══ */}
-            <section id="work" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
-              <ScrollReveal delay={120}>
-                <WorkShowcase
-                  projects={projects}
-                  t={{
-                    badge: t.work.badge,
-                    title1: t.work.title1,
-                    title2: t.work.title2,
-                    desc: t.work.desc,
-                    btnBackend: t.work.btnBackend,
-                    btnFrontend: t.work.btnFrontend,
-                    btnRepo: t.work.btnRepo,
-                  }}
-                />
-              </ScrollReveal>
-            </section>
-  
+
             <div className="section-divider mx-auto max-w-7xl" />
 
-            {/* ═══ SYSTEM DESIGN ARCHITECTURE VIEWER ═══ */}
-            <section id="architecture" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
+            {/* ═══ ENGINEERING LAB (Architecture · API · Terminal · Bug Hunt) ═══ */}
+            <section id="lab" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
               <ScrollReveal>
-                <div className="mb-14 max-w-2xl space-y-4">
-                  <span className="section-label inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
-                    <Layers size={14} /> {lang === "fr" ? "Ingénierie & System Design" : "Engineering & System Design"}
-                  </span>
-                  <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
-                    <span className="gradient-text">{lang === "fr" ? "Architecture " : "System "}</span>
-                    <br />
-                    <span className="brand-gradient-text font-extrabold tracking-tight">{lang === "fr" ? "Design & Flux N-Tiers" : "Design & N-Tier Pipeline"}</span>
-                  </h2>
-                  <p className="text-base leading-relaxed text-[color:var(--muted)] sm:text-lg">
-                    {lang === "fr"
-                      ? "Explorez la décomposition modulaire de mes applications : de l'interception des requêtes client jusqu'à la persistance relationnelle ACID."
-                      : "Explore the modular decomposition of my services: from client request interception down to ACID relational persistence."}
-                  </p>
-                </div>
-              </ScrollReveal>
-
-              <ScrollReveal delay={120}>
-                <SystemArchitecture />
+                <EngineeringLab />
               </ScrollReveal>
             </section>
 
             <div className="section-divider mx-auto max-w-7xl" />
 
-            {/* ═══ API PLAYGROUND (Spring Boot Architecture Sandbox) ═══ */}
-            <section id="api-playground" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
-              <ScrollReveal>
-                <div className="mb-14 max-w-2xl space-y-4">
-                  <span className="section-label inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
-                    <Server size={14} /> {lang === "fr" ? "Architecture Backend & REST API" : "Backend Architecture & REST API"}
-                  </span>
-                  <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
-                    <span className="gradient-text">{lang === "fr" ? "API Live " : "Live API "}</span>
-                    <br />
-                    <span className="brand-gradient-text font-extrabold tracking-tight">{lang === "fr" ? "Playground & Specs" : "Playground & Specs"}</span>
-                  </h2>
-                  <p className="text-base leading-relaxed text-[color:var(--muted)] sm:text-lg">
-                    {lang === "fr"
-                      ? "Testez en direct les endpoints RESTful de mes applications Spring Boot 3 : sécurité stateless JWT, persistance Hibernate et métriques de latence."
-                      : "Directly test the RESTful endpoints of my Spring Boot 3 services: stateless JWT security, Hibernate persistence, and latency benchmarks."}
-                  </p>
-                </div>
-              </ScrollReveal>
-
-              <ScrollReveal delay={120}>
-                <ApiPlayground />
-              </ScrollReveal>
-            </section>
-
-            <div className="section-divider mx-auto max-w-7xl" />
-
-            {/* ═══ INTERACTIVE DEVELOPER TERMINAL ═══ */}
-            <section id="terminal" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
-              <ScrollReveal>
-                <div className="mb-14 max-w-2xl space-y-4">
-                  <span className="section-label inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
-                    <Terminal size={14} /> {lang === "fr" ? "Console Interactive CLI" : "Interactive CLI Console"}
-                  </span>
-                  <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
-                    <span className="gradient-text">{lang === "fr" ? "Terminal " : "Developer "}</span>
-                    <br />
-                    <span className="brand-gradient-text font-extrabold tracking-tight">{lang === "fr" ? "Workstation Linux" : "Linux Workstation"}</span>
-                  </h2>
-                  <p className="text-base leading-relaxed text-[color:var(--muted)] sm:text-lg">
-                    {lang === "fr"
-                      ? "Pour les recruteurs et tech leads qui préfèrent la ligne de commande. Tapez 'help', inspectez les compétences ou lancez 'sudo hire'."
-                      : "For recruiters and engineering leaders who thrive in the shell. Run 'help', inspect technical competencies, or invoke 'sudo hire'."}
-                  </p>
-                </div>
-              </ScrollReveal>
-
-              <ScrollReveal delay={120}>
-                <TerminalShowcase />
-              </ScrollReveal>
-            </section>
-
-            <div className="section-divider mx-auto max-w-7xl" />
-
-            {/* ═══ EXPERIENCE ═══ */}
-            <section id="experience" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
-              <ScrollReveal delay={120}>
-                <ExperienceShowcase experiences={experiences} t={t.experience} />
-              </ScrollReveal>
-            </section>
-
-            <div className="section-divider mx-auto max-w-7xl" />
-
-            {/* ═══ GITHUB ACTIVITY & METRICS ═══ */}
-            <section id="github-activity" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
-              <ScrollReveal>
-                <div className="mb-14 max-w-2xl space-y-4">
-                  <span className="section-label inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
-                    <FaGithub size={14} /> {lang === "fr" ? "Écosystème & Open Source" : "Ecosystem & Open Source"}
-                  </span>
-                  <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
-                    <span className="gradient-text">{lang === "fr" ? "Activité " : "Live "}</span>
-                    <br />
-                    <span className="brand-gradient-text font-extrabold tracking-tight">{lang === "fr" ? "GitHub & Commits" : "GitHub Activity & Commits"}</span>
-                  </h2>
-                  <p className="text-base leading-relaxed text-[color:var(--muted)] sm:text-lg">
-                    {lang === "fr"
-                      ? "Suivi en direct de ma fréquence de commits, distribution des langages de programmation et dépôts de code publics."
-                      : "Live tracking of my commit cadence, programming language distribution, and public repositories."}
-                  </p>
-                </div>
-              </ScrollReveal>
-
-              <ScrollReveal delay={120}>
-                <GitHubStats />
-              </ScrollReveal>
-            </section>
-
-            <div className="section-divider mx-auto max-w-7xl" />
-  
-              {/* ═══ EDUCATION ═══ */}
+            {/* ═══ EDUCATION ═══ */}
             <section id="education" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
               <ScrollReveal delay={120}>
                 <EducationShowcase education={education} t={t.education} />
               </ScrollReveal>
             </section>
-  
+
             <div className="section-divider mx-auto max-w-7xl" />
-  
-              {/* ═══ CERTIFICATIONS ═══ */}
+
+            {/* ═══ CERTIFICATIONS ═══ */}
             <section
               id="certifications"
               className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32"
@@ -1117,19 +966,10 @@ export default function Home() {
                 <CertificationsShowcase t={t.certifications} />
               </ScrollReveal>
             </section>
-  
-            <div className="section-divider mx-auto max-w-7xl" />
-  
-            {/* ═══ BUG HUNT DEVELOPER EASTER EGG ═══ */}
-            <section id="challenge" className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8">
-              <ScrollReveal>
-                <BugHuntGame />
-              </ScrollReveal>
-            </section>
 
             <div className="section-divider mx-auto max-w-7xl" />
 
-              {/* ═══ HACKATHONS ═══ */}
+            {/* ═══ HACKATHONS ═══ */}
             <section
                 id="hackathons"
                 className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32"
@@ -1171,17 +1011,54 @@ export default function Home() {
                 />
               </ScrollReveal>
             </section>
-  
-              {/* ═══ RESUME ═══ */}
+
+            <div className="section-divider mx-auto max-w-7xl" />
+
+            {/* ═══ GITHUB ACTIVITY & METRICS ═══ */}
+            <section id="github-activity" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
+              <ScrollReveal>
+                <div className="mb-14 max-w-2xl space-y-4">
+                  <span className="section-label inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-[#D9A441] backdrop-blur-md">
+                    <FaGithub size={14} /> {lang === "fr" ? "Écosystème & Open Source" : "Ecosystem & Open Source"}
+                  </span>
+                  <h2 className="section-title text-3xl sm:text-5xl font-extrabold tracking-tight">
+                    <span className="gradient-text">{lang === "fr" ? "Activité " : "Live "}</span>
+                    <br />
+                    <span className="brand-gradient-text font-extrabold tracking-tight">{lang === "fr" ? "GitHub & Commits" : "GitHub Activity & Commits"}</span>
+                  </h2>
+                  <p className="text-base leading-relaxed text-[color:var(--muted)] sm:text-lg">
+                    {lang === "fr"
+                      ? "Suivi en direct de ma fréquence de commits, distribution des langages de programmation et dépôts de code publics."
+                      : "Live tracking of my commit cadence, programming language distribution, and public repositories."}
+                  </p>
+                </div>
+              </ScrollReveal>
+
+              <ScrollReveal delay={120}>
+                <GitHubStats />
+              </ScrollReveal>
+            </section>
+
+            <div className="section-divider mx-auto max-w-7xl" />
+
+            {/* ═══ LIVE NOW & CODING VIBES SECTION ═══ */}
+            <section id="now" className="relative mx-auto max-w-7xl px-5 pt-16 pb-12 sm:px-8">
+              <ScrollReveal>
+                <NowSection />
+              </ScrollReveal>
+            </section>
+
+            <div className="section-divider mx-auto max-w-7xl" />
+
+            {/* ═══ RESUME ═══ */}
             <section id="resume" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8">
               <ScrollReveal>
                 <ResumeShowcase t={t.resume} />
               </ScrollReveal>
             </section>
-  
+
             <div className="section-divider mx-auto max-w-7xl" />
-  
-  
+
               {/* ═══ CONTACT ═══ */}
             <section
               id="contact"

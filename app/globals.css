@@ -21,7 +21,7 @@
   --surface-3: #2c2622;
   --foreground: #f2ece4;
   --foreground-dim: #d4cbc0;
-  --muted: #8a7e72;
+  --muted: #a89c8f;
   --brand: #e07040;
   --brand-light: #f0945a;
   --brand-glow: rgba(224, 112, 64, 0.15);
@@ -255,14 +255,14 @@ body::before {
    Gradient Text
    ═══════════════════════════════════════════ */
 .gradient-text {
-  background: linear-gradient(135deg, var(--foreground) 0%, var(--foreground-dim) 50%, var(--brand-light) 100%);
+  background: linear-gradient(135deg, #ffffff 0%, var(--foreground) 55%, var(--foreground-dim) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .brand-gradient-text {
-  background: linear-gradient(135deg, var(--brand) 0%, var(--accent-gold) 100%);
+  background: linear-gradient(120deg, var(--brand-light) 0%, #f3c669 55%, var(--accent-gold) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

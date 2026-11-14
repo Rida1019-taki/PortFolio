@@ -20,6 +20,7 @@ import {
   Shield,
 } from "lucide-react";
 import { SiCisco, SiPython } from "react-icons/si";
+import { useLanguage } from "@/components/LanguageProvider";
 
 export interface CertificateItem {
   id: string;
@@ -50,11 +51,52 @@ interface CertificationsShowcaseProps {
 export default function CertificationsShowcase({ t }: CertificationsShowcaseProps) {
   const [activeFilter, setActiveFilter] = useState<string>("all");
   const [previewDoc, setPreviewDoc] = useState<CertificateItem | null>(null);
+  const { lang } = useLanguage();
+  const fr = lang === "fr";
+
+  const copy = {
+    en: {
+      officialAccreditation: "Official Accreditation",
+      verified100: "100% Verified",
+      heroDesc:
+        "Cisco-certified skills spanning systems engineering, network defense and software development.",
+      statCertificates: "Certificates",
+      statIssuer: "Issuer",
+      statProof: "Direct proof",
+      verified: "Verified",
+      keySkills: "Key Modules & Skills:",
+      preview: "Preview",
+      officialDoc: "Verified Official Document",
+      download: "Download",
+      fullScreen: "Full Screen",
+      close: "Close",
+      authId: "Cisco authentication ID validated",
+      closePreview: "Close preview (Esc)",
+    },
+    fr: {
+      officialAccreditation: "Accréditation Officielle",
+      verified100: "100% Vérifié",
+      heroDesc:
+        "Compétences certifiées par Cisco couvrant l'ingénierie des systèmes, la défense réseau et le développement logiciel.",
+      statCertificates: "Certificats",
+      statIssuer: "Organisme",
+      statProof: "Preuves directes",
+      verified: "Vérifié",
+      keySkills: "Modules & Compétences Clés :",
+      preview: "Aperçu",
+      officialDoc: "Document Officiel Vérifié",
+      download: "Télécharger",
+      fullScreen: "Plein Écran",
+      close: "Fermer",
+      authId: "ID d'authentification Cisco validé",
+      closePreview: "Fermer l'aperçu (Esc)",
+    },
+  }[lang];
 
   const certificates: CertificateItem[] = [
     {
       id: "cyber",
-      title: "Introduction à la Cybersécurité",
+      title: fr ? "Introduction à la Cybersécurité" : "Introduction to Cybersecurity",
       category: "security",
       issuer: "Cisco Networking Academy",
       file: "/docs/introduction-cybersecurite.pdf",
@@ -62,19 +104,27 @@ export default function CertificationsShowcase({ t }: CertificationsShowcaseProp
       accentColor: "#10B981", // Emerald
       glowColor: "rgba(16, 185, 129, 0.2)",
       badge: "Cisco Certified • Security",
-      domain: "Sécurité Réseau & Défense",
-      description:
-        "Maîtrise des principes fondamentaux de la sécurité informatique, de la confidentialité des données et de l'atténuation des cybermenaces dans les architectures distribuées.",
-      skills: [
-        "Principes de Confidentialité, Intégrité & Disponibilité (CIA)",
-        "Analyse & Détection des Cyberattaques & Vulnérabilités",
-        "Fondements de la Cryptographie & Protocoles Sécurisés",
-        "Protection des Données & Bonnes Pratiques Défensives",
-      ],
+      domain: fr ? "Sécurité Réseau & Défense" : "Network Security & Defense",
+      description: fr
+        ? "Maîtrise des principes fondamentaux de la sécurité informatique, de la confidentialité des données et de l'atténuation des cybermenaces dans les architectures distribuées."
+        : "Command of the core principles of information security, data privacy and cyber threat mitigation across distributed architectures.",
+      skills: fr
+        ? [
+            "Principes de Confidentialité, Intégrité & Disponibilité (CIA)",
+            "Analyse & Détection des Cyberattaques & Vulnérabilités",
+            "Fondements de la Cryptographie & Protocoles Sécurisés",
+            "Protection des Données & Bonnes Pratiques Défensives",
+          ]
+        : [
+            "Confidentiality, Integrity & Availability (CIA) Principles",
+            "Cyberattack & Vulnerability Analysis and Detection",
+            "Cryptography Fundamentals & Secure Protocols",
+            "Data Protection & Defensive Best Practices",
+          ],
     },
     {
       id: "hardware",
-      title: "Les Bases du Matériel Informatique",
+      title: fr ? "Les Bases du Matériel Informatique" : "Computer Hardware Basics",
       category: "hardware",
       issuer: "Cisco Networking Academy",
       file: "/docs/bases-materiel-informatique.pdf",
@@ -82,15 +132,23 @@ export default function CertificationsShowcase({ t }: CertificationsShowcaseProp
       accentColor: "#D9A441", // Gold
       glowColor: "rgba(217, 164, 65, 0.2)",
       badge: "Cisco Certified • Systems",
-      domain: "Architecture Systèmes & Hardware",
-      description:
-        "Compréhension approfondie de l'architecture matérielle des ordinateurs, de l'assemblage de composants, de la gestion des mémoires et du diagnostic système.",
-      skills: [
-        "Architecture des Processeurs, Bus & Cartes Mères",
-        "Hiérarchie Mémoire : Cache, RAM & Unités de Stockage",
-        "Firmware BIOS/UEFI & Initialisation du Système d'Exploitation",
-        "Maintenance Préventive, Diagnostic & Dépannage Matériel",
-      ],
+      domain: fr ? "Architecture Systèmes & Hardware" : "Systems & Hardware Architecture",
+      description: fr
+        ? "Compréhension approfondie de l'architecture matérielle des ordinateurs, de l'assemblage de composants, de la gestion des mémoires et du diagnostic système."
+        : "In-depth understanding of computer hardware architecture, component assembly, memory management and system diagnostics.",
+      skills: fr
+        ? [
+            "Architecture des Processeurs, Bus & Cartes Mères",
+            "Hiérarchie Mémoire : Cache, RAM & Unités de Stockage",
+            "Firmware BIOS/UEFI & Initialisation du Système d'Exploitation",
+            "Maintenance Préventive, Diagnostic & Dépannage Matériel",
+          ]
+        : [
+            "Processor, Bus & Motherboard Architecture",
+            "Memory Hierarchy: Cache, RAM & Storage Units",
+            "BIOS/UEFI Firmware & Operating System Boot",
+            "Preventive Maintenance, Diagnostics & Hardware Troubleshooting",
+          ],
     },
     {
       id: "python",
@@ -102,23 +160,31 @@ export default function CertificationsShowcase({ t }: CertificationsShowcaseProp
       accentColor: "#3B82F6", // Royal Blue
       glowColor: "rgba(59, 130, 246, 0.2)",
       badge: "Cisco Certified • Programming",
-      domain: "Programmation & Algorithmique",
-      description:
-        "Fondements avancés du langage Python, de la programmation orientée objet, de la manipulation de structures de données et de la résolution algorithmique de problèmes.",
-      skills: [
-        "Syntaxe Moderne, Types de Données & Opérateurs Python",
-        "Structures de Données : Listes, Tuples, Dictionnaires & Sets",
-        "Conception de Fonctions, Portée des Variables & Récursivité",
-        "Gestion Robuste des Exceptions & Bonnes Pratiques de Code",
-      ],
+      domain: fr ? "Programmation & Algorithmique" : "Programming & Algorithms",
+      description: fr
+        ? "Fondements avancés du langage Python, de la programmation orientée objet, de la manipulation de structures de données et de la résolution algorithmique de problèmes."
+        : "Advanced Python fundamentals, object-oriented programming, data structure manipulation and algorithmic problem solving.",
+      skills: fr
+        ? [
+            "Syntaxe Moderne, Types de Données & Opérateurs Python",
+            "Structures de Données : Listes, Tuples, Dictionnaires & Sets",
+            "Conception de Fonctions, Portée des Variables & Récursivité",
+            "Gestion Robuste des Exceptions & Bonnes Pratiques de Code",
+          ]
+        : [
+            "Modern Python Syntax, Data Types & Operators",
+            "Data Structures: Lists, Tuples, Dictionaries & Sets",
+            "Function Design, Variable Scope & Recursion",
+            "Robust Exception Handling & Coding Best Practices",
+          ],
     },
   ];
 
   const filterTabs = [
-    { id: "all", label: "Toutes les Certifications" },
-    { id: "security", label: "Cybersécurité" },
-    { id: "hardware", label: "Systèmes & Hardware" },
-    { id: "python", label: "Python & Algorithmique" },
+    { id: "all", label: fr ? "Toutes les Certifications" : "All Certifications" },
+    { id: "security", label: fr ? "Cybersécurité" : "Cybersecurity" },
+    { id: "hardware", label: fr ? "Systèmes & Hardware" : "Systems & Hardware" },
+    { id: "python", label: fr ? "Python & Algorithmique" : "Python & Algorithms" },
   ];
 
   const filteredCerts =
@@ -141,18 +207,18 @@ export default function CertificationsShowcase({ t }: CertificationsShowcaseProp
             <div className="space-y-1 text-left">
               <div className="flex items-center gap-2">
                 <span className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[#D9A441]">
-                  Official Accreditation
+                  {copy.officialAccreditation}
                 </span>
                 <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-mono font-semibold text-emerald-400">
                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  100% Vérifié
+                  {copy.verified100}
                 </span>
               </div>
               <h3 className="text-xl sm:text-2xl font-extrabold text-white">
                 Cisco Networking Academy
               </h3>
               <p className="text-xs sm:text-sm text-gray-400 max-w-xl">
-                Compétences certifiées par Cisco couvrant l&apos;ingénierie des systèmes, la défense réseau et le développement logiciel.
+                {copy.heroDesc}
               </p>
             </div>
           </div>
@@ -161,15 +227,15 @@ export default function CertificationsShowcase({ t }: CertificationsShowcaseProp
           <div className="flex items-center gap-3 sm:gap-6 w-full lg:w-auto justify-between lg:justify-end border-t lg:border-t-0 border-white/10 pt-4 lg:pt-0">
             <div className="text-center px-4 py-2 rounded-2xl bg-white/[0.02] border border-white/5">
               <div className="text-2xl font-black text-[#D9A441] font-mono">03</div>
-              <div className="text-[10px] font-mono uppercase tracking-wider text-gray-400">Certificats</div>
+              <div className="text-[10px] font-mono uppercase tracking-wider text-gray-400">{copy.statCertificates}</div>
             </div>
             <div className="text-center px-4 py-2 rounded-2xl bg-white/[0.02] border border-white/5">
               <div className="text-2xl font-black text-emerald-400 font-mono">Cisco</div>
-              <div className="text-[10px] font-mono uppercase tracking-wider text-gray-400">Organisme</div>
+              <div className="text-[10px] font-mono uppercase tracking-wider text-gray-400">{copy.statIssuer}</div>
             </div>
             <div className="text-center px-4 py-2 rounded-2xl bg-white/[0.02] border border-white/5">
               <div className="text-2xl font-black text-blue-400 font-mono">PDF</div>
-              <div className="text-[10px] font-mono uppercase tracking-wider text-gray-400">Preuves directes</div>
+              <div className="text-[10px] font-mono uppercase tracking-wider text-gray-400">{copy.statProof}</div>
             </div>
           </div>
         </div>
@@ -251,7 +317,7 @@ export default function CertificationsShowcase({ t }: CertificationsShowcaseProp
                     <div className="flex flex-col items-end gap-1">
                       <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] font-mono font-semibold text-white/70">
                         <Award size={11} className="text-[#D9A441]" />
-                        <span>{t.verifiedBadge || "Vérifié"}</span>
+                        <span>{t.verifiedBadge || copy.verified}</span>
                       </span>
                       <span className="text-[10px] font-mono text-[#D9A441] flex items-center gap-1">
                         <SiCisco size={11} />
@@ -276,7 +342,7 @@ export default function CertificationsShowcase({ t }: CertificationsShowcaseProp
                   {/* Skills Chip List */}
                   <div className="space-y-2 pt-2 border-t border-white/5">
                     <span className="text-[10px] font-mono uppercase tracking-wider text-white/40 block">
-                      Modules & Compétences Clés :
+                      {copy.keySkills}
                     </span>
                     <div className="grid gap-1.5">
                       {cert.skills.map((skill, sIdx) => (
@@ -306,7 +372,7 @@ export default function CertificationsShowcase({ t }: CertificationsShowcaseProp
                       className="group/preview inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-xs font-semibold text-white transition-all duration-300 hover:border-[#D9A441]/50 hover:bg-[#D9A441]/10 hover:text-[#D9A441]"
                     >
                       <Eye size={14} className="transition-transform duration-300 group-hover/preview:scale-110" />
-                      <span>Aperçu</span>
+                      <span>{copy.preview}</span>
                     </button>
 
                     {/* Direct PDF Link */}
@@ -361,7 +427,7 @@ export default function CertificationsShowcase({ t }: CertificationsShowcaseProp
                   <div className="flex items-center gap-2 text-xs font-mono text-gray-400">
                     <span className="text-[#D9A441]">Cisco Networking Academy</span>
                     <span>•</span>
-                    <span>Document Officiel Vérifié</span>
+                    <span>{copy.officialDoc}</span>
                   </div>
                 </div>
               </div>
@@ -373,7 +439,7 @@ export default function CertificationsShowcase({ t }: CertificationsShowcaseProp
                   className="flex h-9 items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 text-xs font-semibold text-white transition-all duration-200 hover:border-[#D9A441] hover:text-[#D9A441]"
                 >
                   <Download size={14} />
-                  <span className="hidden sm:inline">Télécharger</span>
+                  <span className="hidden sm:inline">{copy.download}</span>
                 </a>
                 <a
                   href={previewDoc.file}
@@ -382,13 +448,13 @@ export default function CertificationsShowcase({ t }: CertificationsShowcaseProp
                   className="flex h-9 items-center gap-2 rounded-xl bg-[#D9A441] px-3 text-xs font-bold text-black transition-all duration-200 hover:shadow-[0_0_20px_rgba(217,164,65,0.4)]"
                 >
                   <ExternalLink size={14} />
-                  <span className="hidden sm:inline">Plein Écran</span>
+                  <span className="hidden sm:inline">{copy.fullScreen}</span>
                 </a>
                 <button
                   type="button"
                   onClick={() => setPreviewDoc(null)}
                   className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-gray-400 hover:border-red-500/50 hover:bg-red-500/10 hover:text-red-400 transition-all duration-200 ml-2"
-                  aria-label="Fermer"
+                  aria-label={copy.close}
                 >
                   <X size={18} />
                 </button>
@@ -408,14 +474,14 @@ export default function CertificationsShowcase({ t }: CertificationsShowcaseProp
             <div className="flex items-center justify-between border-t border-white/10 px-6 py-3 bg-black/60 text-xs font-mono text-gray-400">
               <span className="flex items-center gap-2">
                 <Sparkles size={12} className="text-[#D9A441]" />
-                <span>ID d&apos;authentification Cisco validé</span>
+                <span>{copy.authId}</span>
               </span>
               <button
                 type="button"
                 onClick={() => setPreviewDoc(null)}
                 className="text-gray-400 hover:text-white transition-colors"
               >
-                Fermer l&apos;aperçu (Esc)
+                {copy.closePreview}
               </button>
             </div>
           </div>

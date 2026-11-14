@@ -13,6 +13,8 @@ import {
 } from "lucide-react";
 import { playClick, playSuccess } from "@/lib/sound";
 import { triggerGoldConfetti } from "@/lib/confetti";
+import { useLanguage } from "@/components/LanguageProvider";
+import type { Language } from "@/lib/translations";
 
 interface CodeLine {
   lineNum: number;
@@ -21,18 +23,27 @@ interface CodeLine {
   explanation?: string;
 }
 
-const CODE_LINES: CodeLine[] = [
+const getCodeLines = (lang: Language): CodeLine[] => {
+  const fr = lang === "fr";
+  return [
   { lineNum: 1, code: "@Service", isBug: false },
   { lineNum: 2, code: "public class FundTransferService {", isBug: false },
   { lineNum: 3, code: "    @Autowired private AccountRepository accountRepo;", isBug: false },
   { lineNum: 4, code: "", isBug: false },
-  { lineNum: 5, code: "    // 🎯 Challenge : Cliquez sur la ligne contenant la faille critique !", isBug: false },
+  {
+    lineNum: 5,
+    code: fr
+      ? "    // 🎯 Challenge : Cliquez sur la ligne contenant la faille critique !"
+      : "    // 🎯 Challenge: Click the line containing the critical flaw!",
+    isBug: false,
+  },
   {
     lineNum: 6,
     code: "    @Transactional",
     isBug: true,
-    explanation:
-      "🎯 BRAVO ! Par défaut, @Transactional dans Spring ne rollback QUE sur les RuntimeException. Pour intercepter les checked Exception, il faut impérativement spécifier: @Transactional(rollbackFor = Exception.class) !",
+    explanation: fr
+      ? "🎯 BRAVO ! Par défaut, @Transactional dans Spring ne rollback QUE sur les RuntimeException. Pour intercepter les checked Exception, il faut impérativement spécifier: @Transactional(rollbackFor = Exception.class) !"
+      : "🎯 WELL DONE! By default, Spring's @Transactional ONLY rolls back on RuntimeException. To also roll back on checked exceptions, you must specify: @Transactional(rollbackFor = Exception.class)!",
   },
   {
     lineNum: 7,
@@ -66,10 +77,13 @@ const CODE_LINES: CodeLine[] = [
   },
   {
     lineNum: 13,
-    code: "            throw new Exception(\"Montant invalide\"); // ⚠️ Checked Exception!",
+    code: fr
+      ? "            throw new Exception(\"Montant invalide\"); // ⚠️ Checked Exception!"
+      : "            throw new Exception(\"Invalid amount\"); // ⚠️ Checked Exception!",
     isBug: true,
-    explanation:
-      "🎯 EXACT ! Lancer une checked 'Exception' sans rollbackFor = Exception.class sur @Transactional fait que la transaction est commitée quand même en base de données !",
+    explanation: fr
+      ? "🎯 EXACT ! Lancer une checked 'Exception' sans rollbackFor = Exception.class sur @Transactional fait que la transaction est commitée quand même en base de données !"
+      : "🎯 CORRECT! Throwing a checked 'Exception' without rollbackFor = Exception.class on @Transactional means the transaction still gets committed to the database!",
   },
   {
     lineNum: 14,
@@ -88,9 +102,13 @@ const CODE_LINES: CodeLine[] = [
   },
   { lineNum: 17, code: "    }", isBug: false },
   { lineNum: 18, code: "}", isBug: false },
-];
+  ];
+};
 
 export default function BugHuntGame() {
+  const { lang } = useLanguage();
+  const fr = lang === "fr";
+  const codeLines = getCodeLines(lang);
   const [selectedLine, setSelectedLine] = useState<number | null>(null);
   const [hasWon, setHasWon] = useState(false);
   const [showHint, setShowHint] = useState(false);
@@ -132,12 +150,14 @@ export default function BugHuntGame() {
             {hasWon && (
               <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 text-[10px] font-mono text-emerald-400 font-bold flex items-center gap-1">
                 <Trophy size={11} />
-                BUG RÉSOLU
+                {fr ? "BUG RÉSOLU" : "BUG FIXED"}
               </span>
             )}
           </div>
           <p className="text-xs sm:text-sm text-gray-400 font-mono">
-            Un défi pour les recruteurs & Tech Leads : trouvez l&apos;erreur de transaction Spring Boot en cliquant sur la ligne défectueuse !
+            {fr
+              ? "Un défi pour les recruteurs & Tech Leads : trouvez l'erreur de transaction Spring Boot en cliquant sur la ligne défectueuse !"
+              : "A challenge for recruiters & Tech Leads: find the Spring Boot transaction bug by clicking the faulty line!"}
           </p>
         </div>
 
@@ -148,13 +168,13 @@ export default function BugHuntGame() {
             className="inline-flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-mono text-gray-300 hover:text-white hover:border-white/20 transition-colors cursor-pointer"
           >
             <HelpCircle size={13} className="text-[#D9A441]" />
-            <span>Indice</span>
+            <span>{fr ? "Indice" : "Hint"}</span>
           </button>
 
           <button
             type="button"
             onClick={handleReset}
-            title="Recommencer"
+            title={fr ? "Recommencer" : "Restart"}
             className="flex h-8 w-8 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-gray-400 hover:text-white transition-colors cursor-pointer"
           >
             <RotateCcw size={13} />
@@ -167,7 +187,10 @@ export default function BugHuntGame() {
         <div className="rounded-xl border border-[#D9A441]/30 bg-[#D9A441]/10 p-3.5 text-xs font-mono text-[#D9A441] flex items-start gap-2.5 animate-in fade-in">
           <AlertTriangle size={15} className="shrink-0 mt-0.5" />
           <span>
-            💡 <strong>Indice Spring Boot :</strong> Observez bien le type d&apos;exception levée (`Exception` vs `RuntimeException`) et la manière dont l&apos;annotation `@Transactional` gère les rollbacks automatiques par défaut.
+            💡 <strong>{fr ? "Indice Spring Boot :" : "Spring Boot hint:"}</strong>{" "}
+            {fr
+              ? "Observez bien le type d'exception levée (`Exception` vs `RuntimeException`) et la manière dont l'annotation `@Transactional` gère les rollbacks automatiques par défaut."
+              : "Look closely at the type of exception thrown (`Exception` vs `RuntimeException`) and how the `@Transactional` annotation handles automatic rollbacks by default."}
           </span>
         </div>
       )}
@@ -175,7 +198,7 @@ export default function BugHuntGame() {
       {/* Interactive Code Editor Box */}
       <div className="rounded-2xl border border-white/15 bg-neutral-950 p-3 sm:p-5 font-mono text-xs overflow-x-auto shadow-inner min-w-0">
         <div className="space-y-1 min-w-[500px]">
-          {CODE_LINES.map((line) => {
+          {codeLines.map((line) => {
             const isSelected = selectedLine === line.lineNum;
             const isLineBug = line.isBug;
 
@@ -219,11 +242,11 @@ export default function BugHuntGame() {
             </div>
             <div>
               <h4 className="text-sm font-bold text-white font-mono flex items-center gap-2">
-                <span>Félicitations ! Badge Débloqué :</span>
+                <span>{fr ? "Félicitations ! Badge Débloqué :" : "Congratulations! Badge Unlocked:"}</span>
                 <span className="text-[#D9A441] underline">Senior Spring Architect</span>
               </h4>
               <p className="text-xs font-mono text-emerald-400 mt-0.5">
-                {CODE_LINES.find((l) => l.lineNum === selectedLine)?.explanation}
+                {codeLines.find((l) => l.lineNum === selectedLine)?.explanation}
               </p>
             </div>
           </div>

@@ -40,6 +40,7 @@ import {
   SiHtml5,
   SiGithubactions,
 } from "react-icons/si";
+import { useLanguage } from "@/components/LanguageProvider";
 
 export type SkillCategory = "all" | "backend" | "frontend" | "mobile" | "databases" | "devops";
 
@@ -92,6 +93,8 @@ interface SkillsShowcaseProps {
 
 export default function SkillsShowcase({ t }: SkillsShowcaseProps) {
   const [activeCategory, setActiveCategory] = useState<SkillCategory>("all");
+  const { lang } = useLanguage();
+  const isFr = lang === "fr";
 
   // Comprehensive tech catalog with official brand identities
   const allTechnologies: TechItem[] = useMemo(() => [
@@ -104,7 +107,7 @@ export default function SkillsShowcase({ t }: SkillsShowcaseProps) {
       brandColor: "#6DB33F",
       level: "core",
       role: "Enterprise REST APIs & Microservices",
-      description: "Architecture en couches, injection de dépendances, contrôleurs REST et intégration Spring Data JPA.",
+      description: isFr ? "Architecture en couches, injection de dépendances, contrôleurs REST et intégration Spring Data JPA." : "Layered architecture, dependency injection, REST controllers and Spring Data JPA integration.",
       chips: ["REST APIs", "Spring Data", "IoC / DI", "Microservices"],
     },
     {
@@ -115,7 +118,7 @@ export default function SkillsShowcase({ t }: SkillsShowcaseProps) {
       brandColor: "#ED8B00",
       level: "core",
       role: "Modern OOP & System Design",
-      description: "Clean Code, programmation orientée objet avancée, Streams API, multi-threading et principes SOLID.",
+      description: isFr ? "Clean Code, programmation orientée objet avancée, Streams API, multi-threading et principes SOLID." : "Clean Code, advanced object-oriented programming, Streams API, multithreading and SOLID principles.",
       chips: ["Java 17+", "Streams API", "SOLID", "Clean Architecture"],
     },
     {
@@ -126,7 +129,7 @@ export default function SkillsShowcase({ t }: SkillsShowcaseProps) {
       brandColor: "#6DB33F",
       level: "advanced",
       role: "Stateless Auth & RBAC Security",
-      description: "Filtres de sécurité, authentification stateless JWT, hachage BCrypt et contrôle d'accès granulaire.",
+      description: isFr ? "Filtres de sécurité, authentification stateless JWT, hachage BCrypt et contrôle d'accès granulaire." : "Security filters, stateless JWT authentication, BCrypt hashing and fine-grained access control.",
       chips: ["JWT Tokens", "RBAC", "BCrypt", "Auth Filters"],
     },
     {
@@ -137,7 +140,7 @@ export default function SkillsShowcase({ t }: SkillsShowcaseProps) {
       brandColor: "#C68742",
       level: "advanced",
       role: "ORM & Transactional Data Mapping",
-      description: "Modélisation relationnelle, requêtes JPQL, gestion transactionnelle @Transactional et lazy loading.",
+      description: isFr ? "Modélisation relationnelle, requêtes JPQL, gestion transactionnelle @Transactional et lazy loading." : "Relational modeling, JPQL queries, @Transactional transaction management and lazy loading.",
       chips: ["Entity Mapping", "JPQL", "Transactions", "Repository"],
     },
 
@@ -150,7 +153,7 @@ export default function SkillsShowcase({ t }: SkillsShowcaseProps) {
       brandColor: "#61DAFB",
       level: "core",
       role: "Reactive UI & Web Dashboards",
-      description: "Composants fonctionnels, custom hooks, gestion d'état réactive, virtual DOM et consommation d'APIs REST.",
+      description: isFr ? "Composants fonctionnels, custom hooks, gestion d'état réactive, virtual DOM et consommation d'APIs REST." : "Functional components, custom hooks, reactive state management, virtual DOM and REST API consumption.",
       chips: ["Hooks & State", "Single Page Apps", "REST Client", "Modern UI"],
     },
     {
@@ -161,7 +164,7 @@ export default function SkillsShowcase({ t }: SkillsShowcaseProps) {
       brandColor: "#F7DF1E",
       level: "advanced",
       role: "Dynamic Client-Side Scripting",
-      description: "Programmation asynchrone (Async/Await, Promises), manipulation du DOM, closures et modularité moderne.",
+      description: isFr ? "Programmation asynchrone (Async/Await, Promises), manipulation du DOM, closures et modularité moderne." : "Asynchronous programming (Async/Await, Promises), DOM manipulation, closures and modern modularity.",
       chips: ["ES6+ Syntax", "Async / Await", "Fetch API", "Event Driven"],
     },
     {
@@ -172,7 +175,7 @@ export default function SkillsShowcase({ t }: SkillsShowcaseProps) {
       brandColor: "#E34F26",
       level: "core",
       role: "Semantic Web Structure & Styling",
-      description: "Structure web sémantique, accessibilité (a11y), flexbox, grid layouts et animations CSS keyframes.",
+      description: isFr ? "Structure web sémantique, accessibilité (a11y), flexbox, grid layouts et animations CSS keyframes." : "Semantic web structure, accessibility (a11y), flexbox, grid layouts and CSS keyframe animations.",
       chips: ["Semantic HTML", "CSS Grid", "Flexbox", "Animations"],
     },
 
@@ -185,7 +188,7 @@ export default function SkillsShowcase({ t }: SkillsShowcaseProps) {
       brandColor: "#7F52FF",
       level: "core",
       role: "Android Native Development",
-      description: "Applications Android natives, Android Studio, architecture MVVM, coroutines et composants Jetpack.",
+      description: isFr ? "Applications Android natives, Android Studio, architecture MVVM, coroutines et composants Jetpack." : "Native Android apps, Android Studio, MVVM architecture, coroutines and Jetpack components.",
       chips: ["Android SDK", "MVVM", "Coroutines", "Jetpack"],
     },
     {
@@ -196,7 +199,7 @@ export default function SkillsShowcase({ t }: SkillsShowcaseProps) {
       brandColor: "#02569B",
       level: "core",
       role: "Cross-Platform Mobile Apps",
-      description: "Développement cross-platform iOS & Android, gestion d'état, animations et design personnalisé.",
+      description: isFr ? "Développement cross-platform iOS & Android, gestion d'état, animations et design personnalisé." : "Cross-platform iOS & Android development, state management, animations and custom design.",
       chips: ["Cross-Platform", "State Mgmt", "Custom Widgets", "iOS & Android"],
     },
     {
@@ -207,7 +210,7 @@ export default function SkillsShowcase({ t }: SkillsShowcaseProps) {
       brandColor: "#0175C2",
       level: "advanced",
       role: "Client-Optimized Language",
-      description: "Typage statique fort, programmation asynchrone avec Streams & Futures pour Flutter.",
+      description: isFr ? "Typage statique fort, programmation asynchrone avec Streams & Futures pour Flutter." : "Strong static typing, asynchronous programming with Streams & Futures for Flutter.",
       chips: ["Async Streams", "Futures", "Strong Typing", "OOP"],
     },
 
@@ -220,7 +223,7 @@ export default function SkillsShowcase({ t }: SkillsShowcaseProps) {
       brandColor: "#4479A1",
       level: "core",
       role: "Relational Schemas & Indexing",
-      description: "Modélisation de bases de données relationnelles, requêtes complexes, indexation, jointures et transactions ACID.",
+      description: isFr ? "Modélisation de bases de données relationnelles, requêtes complexes, indexation, jointures et transactions ACID." : "Relational database modeling, complex queries, indexing, joins and ACID transactions.",
       chips: ["Relational Design", "Indexing", "ACID", "Complex Queries"],
     },
     {
@@ -231,7 +234,7 @@ export default function SkillsShowcase({ t }: SkillsShowcaseProps) {
       brandColor: "#003B57",
       level: "advanced",
       role: "Embedded & Mobile Storage",
-      description: "Persistance locale pour applications mobiles Flutter & Android, gestion du mode hors-ligne et synchronisation.",
+      description: isFr ? "Persistance locale pour applications mobiles Flutter & Android, gestion du mode hors-ligne et synchronisation." : "Local persistence for Flutter & Android mobile apps, offline mode handling and synchronization.",
       chips: ["Local Storage", "Offline-First", "Mobile DB", "Lightweight"],
     },
 
@@ -244,7 +247,7 @@ export default function SkillsShowcase({ t }: SkillsShowcaseProps) {
       brandColor: "#2496ED",
       level: "advanced",
       role: "Containerization & Environment Isolation",
-      description: "Conteneurisation d'applications Spring Boot et React, Dockerfile optimisés, Docker Compose et isolation des services.",
+      description: isFr ? "Conteneurisation d'applications Spring Boot et React, Dockerfile optimisés, Docker Compose et isolation des services." : "Containerizing Spring Boot and React apps, optimized Dockerfiles, Docker Compose and service isolation.",
       chips: ["Containers", "Docker Compose", "Multi-Stage", "Microservices"],
     },
     {
@@ -255,7 +258,7 @@ export default function SkillsShowcase({ t }: SkillsShowcaseProps) {
       brandColor: "#2088FF",
       level: "proficient",
       role: "Automated CI/CD Pipelines",
-      description: "Workflows automatisés d'intégration continue, exécution des tests unitaires et intégration de déploiement continu.",
+      description: isFr ? "Workflows automatisés d'intégration continue, exécution des tests unitaires et intégration de déploiement continu." : "Automated continuous integration workflows, unit test execution and continuous deployment integration.",
       chips: ["CI / CD", "Auto Test", "Workflows", "Build Pipeline"],
     },
     {
@@ -266,7 +269,7 @@ export default function SkillsShowcase({ t }: SkillsShowcaseProps) {
       brandColor: "#F05032",
       level: "core",
       role: "Version Control & Collaborative GitFlow",
-      description: "Gestion de versions, branching GitFlow, revues de code, merge requests et collaboration d'équipe.",
+      description: isFr ? "Gestion de versions, branching GitFlow, revues de code, merge requests et collaboration d'équipe." : "Version control, GitFlow branching, code reviews, merge requests and team collaboration.",
       chips: ["GitFlow", "Version Control", "Branches", "Code Reviews"],
     },
     {
@@ -277,7 +280,7 @@ export default function SkillsShowcase({ t }: SkillsShowcaseProps) {
       brandColor: "#FF6C37",
       level: "core",
       role: "API Testing & Contract Validation",
-      description: "Tests d'endpoints REST, validation de schémas JSON, collections automatisées et documentation d'APIs.",
+      description: isFr ? "Tests d'endpoints REST, validation de schémas JSON, collections automatisées et documentation d'APIs." : "REST endpoint testing, JSON schema validation, automated collections and API documentation.",
       chips: ["API Testing", "JSON Validation", "Mocking", "Collections"],
     },
     {
@@ -288,7 +291,7 @@ export default function SkillsShowcase({ t }: SkillsShowcaseProps) {
       brandColor: "#F24E1E",
       level: "proficient",
       role: "UI/UX Prototyping & Wireframing",
-      description: "Conception de maquettes interactives, prototypage de parcours utilisateurs et design systems cohérents.",
+      description: isFr ? "Conception de maquettes interactives, prototypage de parcours utilisateurs et design systems cohérents." : "Interactive mockup design, user journey prototyping and consistent design systems.",
       chips: ["Wireframing", "UI Prototyping", "Design System", "UX Flow"],
     },
     {
@@ -299,10 +302,10 @@ export default function SkillsShowcase({ t }: SkillsShowcaseProps) {
       brandColor: "#D9A441",
       level: "advanced",
       role: "Agile Project Delivery & Sprints",
-      description: "Organisation de sprints, standups, découpage de user stories, gestion des priorités et livraison itérative.",
+      description: isFr ? "Organisation de sprints, standups, découpage de user stories, gestion des priorités et livraison itérative." : "Sprint organization, standups, user story breakdown, priority management and iterative delivery.",
       chips: ["Sprint Planning", "User Stories", "Kanban / Scrum", "Iterative"],
     },
-  ], []);
+  ], [isFr]);
 
   // Filtered list based on active tab
   const filteredTech = useMemo(() => {
